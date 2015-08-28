@@ -1,0 +1,20 @@
+PODS:
+  - Alamofire (2.0.0-beta.3)
+
+DEPENDENCIES:
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: swift-2.0
+    :git: https://github.com/Alamofire/Alamofire.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 0fd77fec2a33e237ab99069c36410eb7101126c6
+    :git: https://github.com/Alamofire/Alamofire.git
+
+SPEC CHECKSUMS:
+  Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
+
+COCOAPODS: 0.38.2
