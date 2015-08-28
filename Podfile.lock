@@ -1,23 +1,30 @@
 PODS:
   - Alamofire (2.0.0-beta.3)
-  - SWRevealViewController (2.3.0)
+  - SWRevealViewController (2.4.0)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
-  - SWRevealViewController
+  - SWRevealViewController (from `https://github.com/John-Lluch/SWRevealViewController.git`,
+    branch `master`)
 
 EXTERNAL SOURCES:
   Alamofire:
     :branch: swift-2.0
     :git: https://github.com/Alamofire/Alamofire.git
+  SWRevealViewController:
+    :branch: master
+    :git: https://github.com/John-Lluch/SWRevealViewController.git
 
 CHECKOUT OPTIONS:
   Alamofire:
     :commit: 0fd77fec2a33e237ab99069c36410eb7101126c6
     :git: https://github.com/Alamofire/Alamofire.git
+  SWRevealViewController:
+    :commit: bb4a110989d67a5fc5f5c533cacc92f6cb02f5e2
+    :git: https://github.com/John-Lluch/SWRevealViewController.git
 
 SPEC CHECKSUMS:
   Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
-  SWRevealViewController: 6d3fd97f70112fd7cef9de14df4260eacce4c63a
+  SWRevealViewController: b653f339865208c97be99a24876545f5be0cc4bb
 
 COCOAPODS: 0.38.2
