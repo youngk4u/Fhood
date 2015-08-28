@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SWRevealViewController
 
 class ListViewController: UIViewController, UISearchBarDelegate, FilterMenuDelegate, UITableViewDelegate, UITableViewDataSource {
 

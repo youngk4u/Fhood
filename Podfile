@@ -5,6 +5,7 @@ target :Fhood do
     xcodeproj 'Fhood.xcodeproj'
 
     pod 'Alamofire'             , :git => "https://github.com/Alamofire/Alamofire.git", :branch => "swift-2.0"
+    pod 'SWRevealViewController', :inhibit_warnings => true
 end
 
 post_install do |installer|

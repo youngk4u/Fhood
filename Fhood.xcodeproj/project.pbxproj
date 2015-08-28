@@ -23,7 +23,6 @@
 		639B461A1B7E927700A001F2 /* BubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639B46191B7E927700A001F2 /* BubbleView.xib */; };
 		63A29A321B1DA07100ED7C3D /* MapNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A29A311B1DA07100ED7C3D /* MapNavigationController.swift */; };
 		63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */; };
-		63B329CC1B1FECB400077377 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CB1B1FECB400077377 /* SWRevealViewController.m */; };
 		63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CD1B2010AA00077377 /* AccountViewController.swift */; };
 		63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CF1B201E9D00077377 /* PaymentViewController.swift */; };
 		63B329D41B20234200077377 /* PaymentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329D31B20234200077377 /* PaymentNavigationController.swift */; };
@@ -86,8 +85,6 @@
 		63A29A311B1DA07100ED7C3D /* MapNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapNavigationController.swift; sourceTree = "<group>"; };
 		63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		63B329C91B1FECB300077377 /* Fhood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fhood-Bridging-Header.h"; sourceTree = "<group>"; };
-		63B329CA1B1FECB400077377 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		63B329CB1B1FECB400077377 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		63B329CD1B2010AA00077377 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		63B329CF1B201E9D00077377 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		63B329D31B20234200077377 /* PaymentNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentNavigationController.swift; sourceTree = "<group>"; };
@@ -154,6 +151,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3BF3252A1B902B4300C606D5 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
 		5D19B0B3E987BD482D130E6E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +189,7 @@
 		63C8302D1B0996FB0089CCFF /* Fhood */ = {
 			isa = PBXGroup;
 			children = (
+				3BF3252A1B902B4300C606D5 /* Classes */,
 				63CA5CA31B41AF3B008D16A1 /* FilterMenu.swift */,
 				63C830301B0996FB0089CCFF /* AppDelegate.swift */,
 				636CC8D61B1EEFE90084CCE8 /* TabBarController.swift */,
@@ -238,8 +243,6 @@
 		63C8302E1B0996FB0089CCFF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				63B329CA1B1FECB400077377 /* SWRevealViewController.h */,
-				63B329CB1B1FECB400077377 /* SWRevealViewController.m */,
 				63C8302F1B0996FB0089CCFF /* Info.plist */,
 				63B329C91B1FECB300077377 /* Fhood-Bridging-Header.h */,
 			);
@@ -458,7 +461,6 @@
 				63A29A321B1DA07100ED7C3D /* MapNavigationController.swift in Sources */,
 				63F70A3B1B5B766900A2D618 /* fhooderSeven.swift in Sources */,
 				63D8D72E1B25E41C0016D33D /* HistoryViewController.swift in Sources */,
-				63B329CC1B1FECB400077377 /* SWRevealViewController.m in Sources */,
 				636F75141B7E973A00A8C1E8 /* BubbleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
