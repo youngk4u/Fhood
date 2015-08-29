@@ -19,8 +19,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
         let tabBarController = mainStoryboard.instantiateInitialViewController()
-        let accountViewController = mainStoryboard.instantiateViewControllerWithIdentifier("account")
+        let accountViewController = revealStoryboard.instantiateInitialViewController()
         let revealController = SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
 
         self.window?.rootViewController = revealController
