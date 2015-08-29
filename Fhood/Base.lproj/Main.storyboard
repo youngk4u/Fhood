@@ -2851,8 +2851,8 @@
         <!--MapNavigationController-->
         <scene sceneID="bSO-S4-gWN">
             <objects>
-                <navigationController id="NaO-Zl-lhC" userLabel="MapNavigationController" customClass="MapNavigationController" customModule="Fhood" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" image="MapWhite" id="8Qt-k1-NQx"/>
+                <navigationController id="NaO-Zl-lhC" userLabel="MapNavigationController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="MapWhite" selectedImage="MapCyan" id="8Qt-k1-NQx"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="60g-so-LWe">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -3143,8 +3143,8 @@
         <!--FeaturedNavigationController-->
         <scene sceneID="KVU-rZ-6nf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="blm-D3-szA" userLabel="FeaturedNavigationController" customClass="FeaturedNavigationController" customModule="Fhood" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Featured" image="FeaturedWhite" id="DhP-QW-t7a"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="blm-D3-szA" userLabel="FeaturedNavigationController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Featured" image="FeaturedWhite" selectedImage="FeaturedCyan" id="DhP-QW-t7a"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xFk-J6-HRy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3165,8 +3165,8 @@
         <!--MoreNavigationController-->
         <scene sceneID="DXK-VW-uGh">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Eks-Yv-TNT" userLabel="MoreNavigationController" customClass="MoreNavigationController" customModule="Fhood" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" image="MoreWhite" id="jnO-1n-qWx"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Eks-Yv-TNT" userLabel="MoreNavigationController" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="More" image="MoreWhite" selectedImage="MoreCyan" id="jnO-1n-qWx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="UAW-Gz-OAg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3266,8 +3266,8 @@
         <!--List-->
         <scene sceneID="acS-0Q-Swk">
             <objects>
-                <navigationController id="Z0w-oj-HBz" customClass="ListNavigationController" customModule="Fhood" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="List" image="ListWhite" id="jxp-Nc-BE6" userLabel="List"/>
+                <navigationController id="Z0w-oj-HBz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="List" image="ListWhite" selectedImage="ListCyan" id="jxp-Nc-BE6" userLabel="List"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ree-fS-fvm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -3557,6 +3557,7 @@
         <image name="4andHalf-Spoon" width="400" height="76"/>
         <image name="Bibimbap (To go)" width="600" height="600"/>
         <image name="Donkatsu Bento" width="600" height="600"/>
+        <image name="FeaturedCyan" width="30" height="30"/>
         <image name="FeaturedWhite" width="30" height="30"/>
         <image name="Fhood-Logo" width="166" height="41"/>
         <image name="FhoodLogo" width="126" height="30"/>
@@ -3566,10 +3567,13 @@
         <image name="Grilled Cheese" width="600" height="600"/>
         <image name="History-Map" width="936" height="449"/>
         <image name="LemonCupcakeBG" width="584" height="383"/>
+        <image name="ListCyan" width="30" height="30"/>
         <image name="ListWhite" width="30" height="30"/>
         <image name="Macaron" width="600" height="600"/>
+        <image name="MapCyan" width="30" height="30"/>
         <image name="MapWhite" width="30" height="30"/>
         <image name="Messages" width="326" height="438"/>
+        <image name="MoreCyan" width="30" height="30"/>
         <image name="MoreWhite" width="30" height="30"/>
         <image name="My Location" width="40" height="73"/>
         <image name="Payment" width="30" height="30"/>
