@@ -1,9 +1,13 @@
 PODS:
   - Alamofire (2.0.0-beta.3)
+  - Bolts/Tasks (1.2.1)
+  - Parse (1.8.2):
+    - Bolts/Tasks (>= 1.2.1)
   - SWRevealViewController (2.4.0)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - Parse
   - SWRevealViewController (from `https://github.com/John-Lluch/SWRevealViewController.git`,
     branch `master`)
 
@@ -25,6 +29,8 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
+  Bolts: 7686a5cb204d1ac54cee26f12d9b7622db3f80d1
+  Parse: 188601c6cd91fae55906badd283b513104a3a8c9
   SWRevealViewController: b653f339865208c97be99a24876545f5be0cc4bb
 
 COCOAPODS: 0.38.2
