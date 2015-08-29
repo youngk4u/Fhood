@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3BF325331B92533700C606D5 /* Reveal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF325321B92533700C606D5 /* Reveal.storyboard */; settings = {ASSET_TAGS = (); }; };
+		3BF91B7F1B926EC5005C9EDB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */; settings = {ASSET_TAGS = (); }; };
 		4B48668B113C843C865D4100 /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		630609DF1B0AFC4400DAA7B4 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630609DE1B0AFC4400DAA7B4 /* FeaturedViewController.swift */; };
 		630609E11B0AFC5B00DAA7B4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630609E01B0AFC5B00DAA7B4 /* MoreViewController.swift */; };
@@ -22,7 +23,7 @@
 		638654131B65A81A000DFC5E /* OrderedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638654121B65A81A000DFC5E /* OrderedViewController.swift */; };
 		639B461A1B7E927700A001F2 /* BubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639B46191B7E927700A001F2 /* BubbleView.xib */; };
 		63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */; };
-		63AD61BA1B91A1C200BA1574 /* LoggedOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B71B91A1C200BA1574 /* LoggedOutViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		63AD61BA1B91A1C200BA1574 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B71B91A1C200BA1574 /* LandingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		63AD61BB1B91A1C200BA1574 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B81B91A1C200BA1574 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		63AD61BC1B91A1C200BA1574 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B91B91A1C200BA1574 /* SignUpViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CD1B2010AA00077377 /* AccountViewController.swift */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		2C5C1754B724B459109316E4 /* Pods-Fhood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.debug.xcconfig"; sourceTree = "<group>"; };
 		3BF325321B92533700C606D5 /* Reveal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reveal.storyboard; sourceTree = "<group>"; };
+		3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		630609DE1B0AFC4400DAA7B4 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		630609E01B0AFC5B00DAA7B4 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
@@ -80,7 +82,7 @@
 		638654121B65A81A000DFC5E /* OrderedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedViewController.swift; sourceTree = "<group>"; };
 		639B46191B7E927700A001F2 /* BubbleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BubbleView.xib; sourceTree = "<group>"; };
 		63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
-		63AD61B71B91A1C200BA1574 /* LoggedOutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggedOutViewController.swift; sourceTree = "<group>"; };
+		63AD61B71B91A1C200BA1574 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		63AD61B81B91A1C200BA1574 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		63AD61B91B91A1C200BA1574 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		63B329C91B1FECB300077377 /* Fhood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fhood-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			children = (
 				63C830361B0996FB0089CCFF /* Main.storyboard */,
 				3BF325321B92533700C606D5 /* Reveal.storyboard */,
+				3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */,
 				63C8303B1B0996FB0089CCFF /* LaunchScreen.xib */,
 				639B46191B7E927700A001F2 /* BubbleView.xib */,
 				63C830391B0996FB0089CCFF /* Images.xcassets */,
@@ -234,7 +237,7 @@
 		3BF91B7D1B9269B0005C9EDB /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				63AD61B71B91A1C200BA1574 /* LoggedOutViewController.swift */,
+				63AD61B71B91A1C200BA1574 /* LandingViewController.swift */,
 				63AD61B81B91A1C200BA1574 /* LoginViewController.swift */,
 				63AD61B91B91A1C200BA1574 /* SignUpViewController.swift */,
 			);
@@ -394,6 +397,7 @@
 				63C830381B0996FB0089CCFF /* Main.storyboard in Resources */,
 				63C8303D1B0996FB0089CCFF /* LaunchScreen.xib in Resources */,
 				639B461A1B7E927700A001F2 /* BubbleView.xib in Resources */,
+				3BF91B7F1B926EC5005C9EDB /* Onboarding.storyboard in Resources */,
 				63C8303A1B0996FB0089CCFF /* Images.xcassets in Resources */,
 				3BF325331B92533700C606D5 /* Reveal.storyboard in Resources */,
 			);
@@ -477,7 +481,7 @@
 				63C830351B0996FB0089CCFF /* ListViewController.swift in Sources */,
 				63C830311B0996FB0089CCFF /* AppDelegate.swift in Sources */,
 				63CA5CA11B3F82F1008D16A1 /* TableViewCell3.swift in Sources */,
-				63AD61BA1B91A1C200BA1574 /* LoggedOutViewController.swift in Sources */,
+				63AD61BA1B91A1C200BA1574 /* LandingViewController.swift in Sources */,
 				63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */,
 				63F70A371B5B765300A2D618 /* fhooderFive.swift in Sources */,
 				63AD61BC1B91A1C200BA1574 /* SignUpViewController.swift in Sources */,

@@ -29,9 +29,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
         let tabBarController = mainStoryboard.instantiateInitialViewController()
         let accountViewController = revealStoryboard.instantiateInitialViewController()
-        let revealController = SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
+        let revealViewController = SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
 
-        self.window?.rootViewController = revealController
+        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        let onboardingViewController = onboardingStoryboard.instantiateInitialViewController()
+
+        self.window?.rootViewController = onboardingViewController
         self.window?.makeKeyAndVisible()
 
         return true
