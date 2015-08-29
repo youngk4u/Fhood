@@ -13,6 +13,8 @@ final class MapNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        // Set Tab Bar icon image
+        self.tabBarItem.image = UIImage(named: "MapWhite")
+        self.tabBarItem.selectedImage = UIImage(named: "MapCyan")
     }
 }

@@ -13,5 +13,8 @@ final class ListNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Set Tab Bar icon image
+        self.tabBarItem.image = UIImage(named: "ListWhite")
+        self.tabBarItem.selectedImage = UIImage(named: "ListCyan")
     }
 }
