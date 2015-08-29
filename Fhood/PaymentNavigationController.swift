@@ -14,10 +14,4 @@ final class PaymentNavigationController: UINavigationController {
         super.viewDidLoad()
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
 }

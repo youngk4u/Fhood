@@ -209,13 +209,6 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             self.detailIngredients.alpha = 0
         
     }
-
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
     
     // CollectionView
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

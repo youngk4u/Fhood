@@ -37,11 +37,4 @@ final class ConfirmViewController: UIViewController {
         self.fhooderFace.image = UIImage(named: variables.fhooderFace!)
         self.fhooderFaceName.text = variables.fhooderFirstName!
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
-
 }

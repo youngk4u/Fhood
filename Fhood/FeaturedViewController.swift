@@ -24,11 +24,6 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
         self.tableView.dataSource = self
         self.tableView.layoutMargins = UIEdgeInsetsZero
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1

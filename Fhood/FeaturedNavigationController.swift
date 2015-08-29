@@ -18,11 +18,4 @@ final class FeaturedNavigationController: UINavigationController {
         self.tabBarItem.selectedImage = UIImage(named: "FeaturedCyan")
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
 }

@@ -24,8 +24,7 @@ final class DirectionViewController: UIViewController {
         super.viewDidLoad()
         
         self.tabBarController?.tabBar.hidden = true
-        
-        
+
         // Animate mylocation and time
         UIView.animateWithDuration(3, animations: { () -> Void in
             
@@ -43,11 +42,6 @@ final class DirectionViewController: UIViewController {
             self.notificationView.alpha = 1
             
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-      
     }
     
     override func viewWillAppear(animated: Bool)

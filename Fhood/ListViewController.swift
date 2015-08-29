@@ -79,13 +79,6 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         searchBar.resignFirstResponder()
     }
     
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
     func filterAction(sender: AnyObject) {
         if filterMenu == nil
         {

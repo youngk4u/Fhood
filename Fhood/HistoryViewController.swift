@@ -14,11 +14,4 @@ final class HistoryViewController: UIViewController {
         super.viewDidLoad()
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
-
 }

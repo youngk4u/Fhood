@@ -10,7 +10,6 @@ import UIKit
 
 final class RateViewController: UIViewController, UITextViewDelegate {
 
-
     @IBOutlet weak var spoonOne: UIButton!
     @IBOutlet weak var spoonTwo: UIButton!
     @IBOutlet weak var spoonThree: UIButton!
@@ -59,13 +58,6 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-    
-    
     
     func textViewDidBeginEditing(textView: UITextView) {
         self.view.layoutIfNeeded()

@@ -14,10 +14,4 @@ final class ListNavigationController: UINavigationController {
         super.viewDidLoad()
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
 }

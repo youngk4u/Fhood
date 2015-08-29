@@ -29,12 +29,4 @@ final class FinalViewController: UIViewController {
         self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
-
-
 }

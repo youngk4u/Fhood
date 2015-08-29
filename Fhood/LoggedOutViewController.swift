@@ -32,12 +32,4 @@ final class LoggedOutViewController: UIViewController {
     {
         self.navigationController?.navigationBarHidden = true
     }
-    
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-
-
 }

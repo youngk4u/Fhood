@@ -245,13 +245,4 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         self.cancelInfo.enabled = false
     }
 
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-    }
-
-
 }
-
-

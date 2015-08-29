@@ -17,10 +17,4 @@ final class MoreNavigationController: UINavigationController {
         self.tabBarItem.image = UIImage(named: "MoreWhite")
         self.tabBarItem.selectedImage = UIImage(named: "MoreCyan")
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 }

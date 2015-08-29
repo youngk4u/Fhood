@@ -15,11 +15,4 @@ final class PaymentViewController: UIViewController {
 
     
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
 }
-

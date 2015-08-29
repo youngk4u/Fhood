@@ -24,12 +24,4 @@ final class LoginViewController: UIViewController {
         self.navigationItem.title = "Log in"
     
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
-
-
 }

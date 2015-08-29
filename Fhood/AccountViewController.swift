@@ -20,7 +20,6 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
     @IBOutlet weak var joinWindow: UIView!
     @IBOutlet weak var signUpButton: UIButton!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,17 +36,10 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
 
         
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        
-    }
-    
+
     func tableView(tableView2: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return self.array.count
-        
     }
-    
     
     func tableView(tableView2: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         

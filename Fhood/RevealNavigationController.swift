@@ -16,13 +16,5 @@ final class RevealNavigationController: UINavigationController {
         // Set Tab Bar icon image
         self.tabBarItem.image = UIImage(named: "MapWhite")
         self.tabBarItem.selectedImage = UIImage(named: "MapCyan")
-
-
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
 }

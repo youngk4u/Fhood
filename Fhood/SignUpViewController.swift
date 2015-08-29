@@ -24,12 +24,4 @@ final class SignUpViewController: UIViewController {
         self.navigationItem.title = "Sign up"
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-    
-
-
 }

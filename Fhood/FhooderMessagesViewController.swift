@@ -12,21 +12,12 @@ final class FhooderMessagesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
-    
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
-    }
-   
+
     @IBAction func segmentControl(sender: AnyObject) {
         
         switch sender.selectedSegmentIndex

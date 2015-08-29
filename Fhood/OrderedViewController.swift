@@ -30,11 +30,4 @@ final class OrderedViewController: UIViewController {
     {
         self.navigationController?.navigationBarHidden = true
     }
-    
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
-
 }

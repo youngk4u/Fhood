@@ -9,7 +9,6 @@
 import UIKit
 
 final class MoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,10 +25,6 @@ final class MoreViewController: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.dataSource = self
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moreArray.count
     }
