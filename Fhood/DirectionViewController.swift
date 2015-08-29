@@ -44,15 +44,12 @@ final class DirectionViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
     }
-    
-    
 
     @IBAction func segmentControl(sender: AnyObject) {
-        
         switch sender.selectedSegmentIndex
         {
         case 0:
@@ -64,7 +61,5 @@ final class DirectionViewController: UIViewController {
         default:
             break
         }
-        
     }
-    
 }

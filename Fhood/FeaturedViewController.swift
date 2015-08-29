@@ -9,9 +9,8 @@
 import UIKit
 
 final class FeaturedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,22 +39,14 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCellWithIdentifier("featuredTableCell") as! FeaturedTableViewCell
-        
         cell.layoutMargins = UIEdgeInsetsZero
-        
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         fhooderOne()
-        
         self.performSegueWithIdentifier("toFhooderView", sender: tableView)
-
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-
-    
 }

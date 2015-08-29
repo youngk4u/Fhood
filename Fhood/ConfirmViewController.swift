@@ -10,27 +10,25 @@ import UIKit
 
 final class ConfirmViewController: UIViewController {
 
-    
-    @IBOutlet weak var totalPriceLabel: UILabel!
-    @IBOutlet weak var welcomeSign: UILabel!
-    @IBOutlet weak var fhooderFace: UIImageView!
-    @IBOutlet weak var fhooderFaceName: UILabel!
-    
-    
-    var formatter = NSNumberFormatter()
+    @IBOutlet private var totalPriceLabel: UILabel!
+    @IBOutlet private var welcomeSign: UILabel!
+    @IBOutlet private var fhooderFace: UIImageView!
+    @IBOutlet private var fhooderFaceName: UILabel!
+
+    private let formatter = NSNumberFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let logo = UIImage(named: "FhoodLogo")
-        let imageView = UIImageView(image:logo)
+        let imageView = UIImageView(image: logo)
         self.navigationItem.titleView = imageView
         
         self.tabBarController?.tabBar.hidden = true
         
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
-        totalPriceLabel.text = formatter.stringFromNumber(variables.totalItemPrice!)
+        totalPriceLabel.text = self.formatter.stringFromNumber(variables.totalItemPrice!)
         
         self.welcomeSign.text = "Welcome to \(variables.name!)!"
         

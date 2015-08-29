@@ -44,7 +44,7 @@ final class FilterMenu: UIView {
         fatalError("NSCoding not supported")
     }
     
-    // MARK:- Public methods -
+    // MARK: - Public methods
     
     func show () {
         self.hidden = false

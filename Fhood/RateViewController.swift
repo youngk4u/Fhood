@@ -19,7 +19,6 @@ final class RateViewController: UIViewController, UITextViewDelegate {
     let goodSpoon = UIImage(named: "goodSpoon")
     let badSpoon = UIImage(named: "badSpoon")
     
-    
     @IBOutlet weak var fhooderImage: UIImageView!
     @IBOutlet weak var fhooderName: UILabel!
     
@@ -55,8 +54,6 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         
         self.fhooderImage.image = UIImage(named: variables.fhooderPic!)
         self.fhooderName.text = variables.name!
-        
-        
     }
     
     func textViewDidBeginEditing(textView: UITextView) {
@@ -74,13 +71,13 @@ final class RateViewController: UIViewController, UITextViewDelegate {
 
 
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        super.touchesBegan(touches, withEvent: event)
+
         self.dismissKeyboard()
     }
 
-    
     // called when 'return' key pressed. return NO to ignore.
     func textViewShouldReturn(textView: UITextView) -> Bool {
-        
         self.dismissKeyboard()
         textView.resignFirstResponder()
         return true
@@ -138,7 +135,4 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.spoonFour.setImage(goodSpoon, forState: UIControlState.Normal)
         self.spoonFive.setImage(goodSpoon, forState: UIControlState.Normal)
     }
-
-
-    
 }

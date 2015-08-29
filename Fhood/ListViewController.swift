@@ -7,27 +7,23 @@
 //
 
 import UIKit
-import SWRevealViewController
 
 final class ListViewController: UIViewController, UISearchBarDelegate, FilterMenuDelegate, UITableViewDelegate, UITableViewDataSource {
 
-    var searchBars: UISearchBar = UISearchBar()
-    var filterIcon  = UIImage(named: "Filter 2")
-    
-    var filterMenu : FilterMenu?
-    var filterShown : Bool = false
-    
-    var selectedRow = -1
-    
-    var arrPrice: [Double]  = []
-    var formatter = NSNumberFormatter()
-    
-    @IBOutlet weak var TableView: UITableView!
-
-    
     // Put Fhooder lists in array
-    let array : [String] = ["", "", "", "", "", "", "", "", "", ""]
+    private let array : [String] = ["", "", "", "", "", "", "", "", "", ""]
+    private let searchBars = UISearchBar()
+    private let formatter = NSNumberFormatter()
+
+    @IBOutlet private var TableView: UITableView!
+
+    private var filterMenu: FilterMenu?
+    private var filterShown = false
     
+    private var selectedRow = -1
+    
+    private var arrPrice = [Double]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,6 +51,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
             target: revealController, action: "revealToggle:")
 
         // Filter Icon
+        let filterIcon = UIImage(named: "Filter 2")
         let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
         self.navigationItem.rightBarButtonItem = rightBarButton
         
@@ -68,21 +65,16 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         self.TableView.dataSource = self
         self.TableView.layoutMargins = UIEdgeInsetsZero
 
-        
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
-        
     }
-    
-    
+
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
         searchBar.resignFirstResponder()
     }
     
     func filterAction(sender: AnyObject) {
-        if filterMenu == nil
-        {
+        if filterMenu == nil {
             let sections = [FilterMenuSectionInfo(titles: ["Less than $5", "$5 ~ $10", "More than $10"]),
                 FilterMenuSectionInfo(titles: ["Highest rated", "Most reviewed"]),
                 FilterMenuSectionInfo(titles: ["Open now", "Reserve"]),
@@ -101,9 +93,8 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
     }
     
     func filterMenuViewDidSelect(section: Int, subMenu: Int) {
-        
         print("Did select: \nsection: \(section)\nsubMenu:\(subMenu)")
-        
+
         if (section == 1 && subMenu == 1) {
             
         }

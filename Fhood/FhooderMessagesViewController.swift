@@ -15,13 +15,13 @@ final class FhooderMessagesViewController: UIViewController {
     }
 
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
         self.navigationController?.navigationBarHidden = true
     }
 
     @IBAction func segmentControl(sender: AnyObject) {
-        
-        switch sender.selectedSegmentIndex
-        {
+        switch sender.selectedSegmentIndex {
         case 0:
             performSegueWithIdentifier("toDirectionView", sender: self)
         case 1:
@@ -32,5 +32,4 @@ final class FhooderMessagesViewController: UIViewController {
             break
         }
     }
-
 }

@@ -9,34 +9,27 @@
 import UIKit
 import MapKit
 import CoreLocation
-import SWRevealViewController
 
 final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet weak var Map: MKMapView!
+    @IBOutlet private var Map: MKMapView!
+    @IBOutlet private var cancelInfo: UIButton!
     
-    let locationManager = CLLocationManager()
-    
-    var searchBars:UISearchBar = UISearchBar()
-    var filterIcon  = UIImage(named: "Filter 2")
-    
-    var filterMenu : FilterMenu?
-    var filterShown : Bool = false
-    
-    var latitude : CLLocationDegrees!
-    var longitude : CLLocationDegrees!
-    var latDelta : CLLocationDegrees!
-    var lonDelta : CLLocationDegrees!
-    var span : MKCoordinateSpan!
-    var location : CLLocationCoordinate2D!
-    var region : MKCoordinateRegion!
+    private let locationManager = CLLocationManager()
+    private let searchBars = UISearchBar()
 
+    private var filterMenu: FilterMenu?
+    private var filterShown = false
     
-    @IBOutlet weak var cancelInfo: UIButton!
-    
-    
+    private var latitude: CLLocationDegrees!
+    private var longitude: CLLocationDegrees!
+    private var latDelta: CLLocationDegrees!
+    private var lonDelta: CLLocationDegrees!
+    private var span: MKCoordinateSpan!
+    private var location: CLLocationCoordinate2D!
+    private var region: MKCoordinateRegion!
+
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         // Map location (San Francisco)
@@ -121,6 +114,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
             target: revealController, action: "revealToggle:")
 
         // Filter Icon
+        let filterIcon = UIImage(named: "Filter 2")
         let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
         self.navigationItem.rightBarButtonItem = rightBarButton
 
@@ -134,14 +128,12 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
         
         if pinView == nil {
-            
             pinView = BubbleView(annotation: annotation, reuseIdentifier: reuseIdentifier)
             pinView!.canShowCallout = false
-            
-        }
-        else {
+        } else {
             pinView!.annotation = annotation
         }
+
         //Set custom pin image
         pinView!.image = UIImage(named: "FhooderOn")
         
@@ -149,15 +141,10 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     }
     
     func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        
-            performSegueWithIdentifier("fhooderOne", sender: self)
-        
+        performSegueWithIdentifier("fhooderOne", sender: self)
     }
-    
-    
+
     func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView){
-        
-        
         let bubbleView = NSBundle.mainBundle().loadNibNamed("BubbleView", owner: self, options: nil)[0] as? BubbleView
         let annotationObj = view.annotation as! AnnotationObject
         bubbleView?.SetUpView(annotationObj)
@@ -165,8 +152,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         view.addSubview(bubbleView!)
         
         bubbleView?.center = CGPointMake(bubbleView!.bounds.size.width*0.1, -bubbleView!.bounds.size.height*0.53)
-        
-        
     }
     
     /*
@@ -177,27 +162,14 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     */
     
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        
-        for v in view.subviews
-        {
-            v.removeFromSuperview()
-        }
-
+        view.subviews.forEach { $0.removeFromSuperview() }
     }
 
-    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
         searchBar.resignFirstResponder()
     }
-    
 
-    
-    override func viewDidAppear(animated: Bool) {
-        
-
-    }
-/*
+    /*
     func filterAction(sender: AnyObject) {
         if filterMenu == nil
         {

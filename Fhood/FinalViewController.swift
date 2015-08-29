@@ -12,8 +12,7 @@ final class FinalViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         // Color Gradient
         let topColor = UIColor(red: 0, green: 255/255.0, blue: 234/255.0, alpha: 1)
         let bottomColor = UIColor(red: 255/255.0, green: 255/225.0, blue: 255/255.0, alpha: 1)
@@ -27,6 +26,5 @@ final class FinalViewController: UIViewController {
         
         gradientLayer.frame = self.view.bounds
         self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
-        
     }
 }

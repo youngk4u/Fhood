@@ -33,8 +33,6 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
         // Make join window and sign up button round
         self.joinWindow.layer.cornerRadius = 5
         self.signUpButton.layer.cornerRadius = 5
-
-        
     }
 
     func tableView(tableView2: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,7 +40,6 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView2: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         // Try to get a cell to reuse
         let cell: UITableViewCell = tableView2.dequeueReusableCellWithIdentifier("Tablecell2", forIndexPath: indexPath)
         
@@ -57,21 +54,18 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(tableView2: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         self.selectedRow = indexPath.row
   
         if self.selectedRow == 0 {
-        self.performSegueWithIdentifier("toHistoryView", sender: tableView2)
+            self.performSegueWithIdentifier("toHistoryView", sender: tableView2)
         }
         else if self.selectedRow == 1 {
-        self.performSegueWithIdentifier("toPhotoView", sender: tableView2)
+            self.performSegueWithIdentifier("toPhotoView", sender: tableView2)
         }
     }
     
     func toggleSwitch(sender: UISwitch) {
-        
         UIView.animateWithDuration(0.5, animations: {
-            
             if self.joinWindow.alpha == 0 {
                 self.joinWindow.alpha = 1
             }
@@ -79,7 +73,5 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
                 self.joinWindow.alpha = 0
             }
         })
-                
     }
-    
 }

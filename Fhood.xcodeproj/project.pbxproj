@@ -27,7 +27,6 @@
 		63AD61BC1B91A1C200BA1574 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B91B91A1C200BA1574 /* SignUpViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CD1B2010AA00077377 /* AccountViewController.swift */; };
 		63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CF1B201E9D00077377 /* PaymentViewController.swift */; };
-		63B329D41B20234200077377 /* PaymentNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329D31B20234200077377 /* PaymentNavigationController.swift */; };
 		63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B4560A1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift */; };
 		63C830311B0996FB0089CCFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C830301B0996FB0089CCFF /* AppDelegate.swift */; };
 		63C830331B0996FB0089CCFF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C830321B0996FB0089CCFF /* MapViewController.swift */; };
@@ -87,7 +86,6 @@
 		63B329C91B1FECB300077377 /* Fhood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fhood-Bridging-Header.h"; sourceTree = "<group>"; };
 		63B329CD1B2010AA00077377 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		63B329CF1B201E9D00077377 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
-		63B329D31B20234200077377 /* PaymentNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentNavigationController.swift; sourceTree = "<group>"; };
 		63B4560A1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedTableViewCell.swift; sourceTree = "<group>"; };
 		63C8302B1B0996FB0089CCFF /* Fhood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fhood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C8302F1B0996FB0089CCFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -205,10 +203,8 @@
 		3BF3252E1B90377E00C606D5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3BF91B7D1B9269B0005C9EDB /* Onboarding */,
 				3BF3252F1B92522000C606D5 /* Reveal */,
-				63AD61B71B91A1C200BA1574 /* LoggedOutViewController.swift */,
-				63AD61B81B91A1C200BA1574 /* LoginViewController.swift */,
-				63AD61B91B91A1C200BA1574 /* SignUpViewController.swift */,
 				636CC8D61B1EEFE90084CCE8 /* TabBarController.swift */,
 				63C830321B0996FB0089CCFF /* MapViewController.swift */,
 				63C830341B0996FB0089CCFF /* ListViewController.swift */,
@@ -221,10 +217,6 @@
 				6363759D1B533A1C00BBE93B /* DirectionViewController.swift */,
 				63CA5CA61B425119008D16A1 /* FhooderViewController.swift */,
 				63733FC31B2A60FA009E99CF /* FhooderMessagesViewController.swift */,
-				63D8D72D1B25E41C0016D33D /* HistoryViewController.swift */,
-				63B329D31B20234200077377 /* PaymentNavigationController.swift */,
-				63B329CF1B201E9D00077377 /* PaymentViewController.swift */,
-				63B329CD1B2010AA00077377 /* AccountViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -232,8 +224,21 @@
 		3BF3252F1B92522000C606D5 /* Reveal */ = {
 			isa = PBXGroup;
 			children = (
+				63B329CD1B2010AA00077377 /* AccountViewController.swift */,
+				63D8D72D1B25E41C0016D33D /* HistoryViewController.swift */,
+				63B329CF1B201E9D00077377 /* PaymentViewController.swift */,
 			);
 			name = Reveal;
+			sourceTree = "<group>";
+		};
+		3BF91B7D1B9269B0005C9EDB /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				63AD61B71B91A1C200BA1574 /* LoggedOutViewController.swift */,
+				63AD61B81B91A1C200BA1574 /* LoginViewController.swift */,
+				63AD61B91B91A1C200BA1574 /* SignUpViewController.swift */,
+			);
+			name = Onboarding;
 			sourceTree = "<group>";
 		};
 		5D19B0B3E987BD482D130E6E /* Frameworks */ = {
@@ -487,7 +492,6 @@
 				63611A6D1B5EFE69004BDDCF /* ListTableViewCell.swift in Sources */,
 				63CA5CA71B425119008D16A1 /* FhooderViewController.swift in Sources */,
 				6333769B1B5845FD00F7D846 /* RateViewController.swift in Sources */,
-				63B329D41B20234200077377 /* PaymentNavigationController.swift in Sources */,
 				63AD61BB1B91A1C200BA1574 /* LoginViewController.swift in Sources */,
 				63F70A3D1B5B767500A2D618 /* fhooderEight.swift in Sources */,
 				63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */,

@@ -12,7 +12,7 @@ final class MoreViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    let moreArray = ["Contact us", "Notifications", "About us", "Report users", "Help"]
+    private let moreArray = ["Contact us", "Notifications", "About us", "Report users", "Help"]
     
     override func viewDidLoad() {
         super.viewDidLoad()

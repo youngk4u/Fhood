@@ -28,8 +28,7 @@ final class LoggedOutViewController: UIViewController {
         self.view.layer.insertSublayer(gradientLayer, atIndex: 0)
     }
     
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
         self.navigationController?.navigationBarHidden = true
     }
 }

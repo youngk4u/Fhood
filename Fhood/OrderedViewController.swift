@@ -10,11 +10,9 @@ import UIKit
 
 final class OrderedViewController: UIViewController {
 
-    @IBOutlet weak var address: UILabel!
-    
-    @IBOutlet weak var orderTime: UILabel!
-    
-    
+    @IBOutlet private var address: UILabel!
+    @IBOutlet private var orderTime: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,12 +20,10 @@ final class OrderedViewController: UIViewController {
         
         self.address.text = variables.address!
         //self.orderTime.text = "\(variables.orderTimeHour):\(variables.orderTimeMinute) \(variables.orderTimeAmpm)"
-        
     }
-    
 
-    override func viewWillAppear(animated: Bool)
-    {
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         self.navigationController?.navigationBarHidden = true
     }
 }
