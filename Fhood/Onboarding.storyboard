@@ -108,7 +108,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YNS-uv-n7F">
-                                <rect key="frame" x="20" y="135" width="280" height="50"/>
+                                <rect key="frame" x="20" y="126" width="280" height="50"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.39266104569999999" blue="0.69947522100000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -118,36 +118,36 @@
                                 <state key="normal" title="Facebook"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up with:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCv-ip-m9x">
-                                <rect key="frame" x="20" y="100" width="96" height="21"/>
+                                <rect key="frame" x="20" y="90" width="96" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or sign up with email:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4zq-IN-cUO">
-                                <rect key="frame" x="20" y="245" width="159" height="21"/>
+                                <rect key="frame" x="20" y="206" width="159" height="20"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yEf-4V-sRe">
-                                <rect key="frame" x="20" y="281" width="280" height="45"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yEf-4V-sRe">
+                                <rect key="frame" x="20" y="241" width="280" height="45"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="T4H-x1-mCZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qQN-cv-Yk6">
-                                <rect key="frame" x="20" y="331" width="280" height="45"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="qQN-cv-Yk6">
+                                <rect key="frame" x="20" y="291" width="280" height="45"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="wKK-9P-z6V"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <animations/>
@@ -157,11 +157,11 @@
                             <constraint firstItem="yEf-4V-sRe" firstAttribute="leading" secondItem="wJQ-BL-Etg" secondAttribute="leading" constant="20" id="Nsk-Wo-Pkt"/>
                             <constraint firstItem="4zq-IN-cUO" firstAttribute="leading" secondItem="wJQ-BL-Etg" secondAttribute="leading" constant="20" id="Qnm-3u-UpH"/>
                             <constraint firstAttribute="trailing" secondItem="qQN-cv-Yk6" secondAttribute="trailing" constant="20" id="SwT-ue-cb1"/>
-                            <constraint firstItem="eCv-ip-m9x" firstAttribute="top" secondItem="wJQ-BL-Etg" secondAttribute="top" constant="100" id="T9S-g0-fGc"/>
+                            <constraint firstItem="eCv-ip-m9x" firstAttribute="top" secondItem="wJQ-BL-Etg" secondAttribute="top" constant="90" id="T9S-g0-fGc"/>
                             <constraint firstItem="qQN-cv-Yk6" firstAttribute="leading" secondItem="wJQ-BL-Etg" secondAttribute="leading" constant="20" id="Zua-Sb-M4x"/>
                             <constraint firstItem="YNS-uv-n7F" firstAttribute="top" secondItem="pGT-YE-0Ls" secondAttribute="bottom" constant="30" id="cul-SI-WO6"/>
                             <constraint firstAttribute="trailing" secondItem="YNS-uv-n7F" secondAttribute="trailing" constant="20" id="eaY-Wy-gef"/>
-                            <constraint firstItem="4zq-IN-cUO" firstAttribute="top" secondItem="YNS-uv-n7F" secondAttribute="bottom" constant="60" id="ggb-lh-89l"/>
+                            <constraint firstItem="4zq-IN-cUO" firstAttribute="top" secondItem="YNS-uv-n7F" secondAttribute="bottom" constant="30" id="ggb-lh-89l"/>
                             <constraint firstItem="qQN-cv-Yk6" firstAttribute="top" secondItem="yEf-4V-sRe" secondAttribute="bottom" constant="5" id="jOw-mO-kjX"/>
                             <constraint firstAttribute="trailing" secondItem="yEf-4V-sRe" secondAttribute="trailing" constant="20" id="nnY-ah-2Ln"/>
                             <constraint firstItem="yEf-4V-sRe" firstAttribute="top" secondItem="4zq-IN-cUO" secondAttribute="bottom" constant="15" id="olR-rg-Qvk"/>
@@ -176,6 +176,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Sign up" id="YCh-KS-A9J"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="yEf-4V-sRe" id="Fyb-4C-FaS"/>
+                        <outlet property="passwordTextField" destination="qQN-cv-Yk6" id="qdE-p6-3Pd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gii-50-9ld" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -194,7 +199,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qA4-Xl-tAM">
-                                <rect key="frame" x="20" y="135" width="280" height="50"/>
+                                <rect key="frame" x="20" y="126" width="280" height="50"/>
                                 <animations/>
                                 <color key="backgroundColor" red="0.0" green="0.39266104569999999" blue="0.69947522100000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -204,49 +209,49 @@
                                 <state key="normal" title="Facebook"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in with:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWZ-oH-prM">
-                                <rect key="frame" x="20" y="100" width="85" height="21"/>
+                                <rect key="frame" x="20" y="90" width="85" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or log in with email:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVF-pH-OWE">
-                                <rect key="frame" x="20" y="245" width="144" height="21"/>
+                                <rect key="frame" x="20" y="206" width="144" height="20"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GEM-U3-3go">
-                                <rect key="frame" x="20" y="281" width="280" height="45"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="GEM-U3-3go">
+                                <rect key="frame" x="20" y="241" width="280" height="45"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="pvB-oL-06R"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QL1-T8-gYi">
-                                <rect key="frame" x="20" y="331" width="280" height="45"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="QL1-T8-gYi">
+                                <rect key="frame" x="20" y="291" width="280" height="45"/>
                                 <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="r3q-52-Vsw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
                             </textField>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VVF-pH-OWE" firstAttribute="leading" secondItem="QMU-t9-2OX" secondAttribute="leading" constant="20" id="2Uq-Dl-caO"/>
-                            <constraint firstItem="iWZ-oH-prM" firstAttribute="top" secondItem="QMU-t9-2OX" secondAttribute="top" constant="100" id="D9e-B3-dZv"/>
+                            <constraint firstItem="iWZ-oH-prM" firstAttribute="top" secondItem="QMU-t9-2OX" secondAttribute="top" constant="90" id="D9e-B3-dZv"/>
                             <constraint firstItem="qA4-Xl-tAM" firstAttribute="top" secondItem="iWZ-oH-prM" secondAttribute="bottom" constant="15" id="I8u-yd-osO"/>
                             <constraint firstItem="QL1-T8-gYi" firstAttribute="leading" secondItem="QMU-t9-2OX" secondAttribute="leading" constant="20" id="L2r-6B-pZg"/>
                             <constraint firstItem="iWZ-oH-prM" firstAttribute="leading" secondItem="QMU-t9-2OX" secondAttribute="leading" constant="20" id="M22-rO-V14"/>
                             <constraint firstItem="GEM-U3-3go" firstAttribute="top" secondItem="VVF-pH-OWE" secondAttribute="bottom" constant="15" id="MAB-KZ-m0g"/>
                             <constraint firstItem="QL1-T8-gYi" firstAttribute="top" secondItem="GEM-U3-3go" secondAttribute="bottom" constant="5" id="R7N-Yk-9e3"/>
-                            <constraint firstItem="VVF-pH-OWE" firstAttribute="top" secondItem="qA4-Xl-tAM" secondAttribute="bottom" constant="60" id="bW9-hZ-G2o"/>
+                            <constraint firstItem="VVF-pH-OWE" firstAttribute="top" secondItem="qA4-Xl-tAM" secondAttribute="bottom" constant="30" id="bW9-hZ-G2o"/>
                             <constraint firstAttribute="trailing" secondItem="QL1-T8-gYi" secondAttribute="trailing" constant="20" id="dzF-cy-Lim"/>
                             <constraint firstAttribute="trailing" secondItem="qA4-Xl-tAM" secondAttribute="trailing" constant="20" id="hZg-Dm-iV4"/>
                             <constraint firstItem="qA4-Xl-tAM" firstAttribute="leading" secondItem="QMU-t9-2OX" secondAttribute="leading" constant="20" id="pB2-Yx-Tdl"/>
@@ -255,6 +260,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Log in" id="dvc-H0-b95"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="emailTextField" destination="GEM-U3-3go" id="Wd8-WZ-0kZ"/>
+                        <outlet property="passwordTextField" destination="QL1-T8-gYi" id="zk4-87-okl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vJt-Eh-PuQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

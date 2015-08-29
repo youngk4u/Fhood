@@ -8,15 +8,13 @@
 
 import UIKit
 
-final class SignUpViewController: UIViewController {
+final class SignUpViewController: OnboardingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
 
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    override func authenticate() {
+
     }
 }

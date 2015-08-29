@@ -8,15 +8,13 @@
 
 import UIKit
 
-final class LoginViewController: UIViewController {
+final class LoginViewController: OnboardingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func authenticate() {
 
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
