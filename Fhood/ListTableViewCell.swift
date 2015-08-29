@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListTableViewCell: UITableViewCell {
+final class ListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var fhooderPic: UIImageView!
     @IBOutlet weak var fhooderPrice: UILabel!

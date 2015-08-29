@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConfirmViewController: UIViewController {
+final class ConfirmViewController: UIViewController {
 
     
     @IBOutlet weak var totalPriceLabel: UILabel!

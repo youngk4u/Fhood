@@ -8,9 +8,8 @@
 
 import UIKit
 
-class FilterMenu: UIView {
+final class FilterMenu: UIView {
 
-    
     // MARK:- Properties -
     
     private var mainButtons : [UIButton] = [UIButton]()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DirectionViewController: UIViewController {
+final class DirectionViewController: UIViewController {
     
     @IBOutlet weak var myLocation: UIImageView!
     @IBOutlet weak var guideLine: UIImageView!

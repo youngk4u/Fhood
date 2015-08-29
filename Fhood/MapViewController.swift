@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
     @IBOutlet weak var Map: MKMapView!
     

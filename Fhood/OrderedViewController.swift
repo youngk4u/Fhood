@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderedViewController: UIViewController {
+final class OrderedViewController: UIViewController {
 
     @IBOutlet weak var address: UILabel!
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FhooderViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource  {
+final class FhooderViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource  {
     
     @IBOutlet weak var shopName: UILabel!
     @IBOutlet weak var spoonRating: UIImageView!

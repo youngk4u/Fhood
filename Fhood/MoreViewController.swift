@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class MoreViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     @IBOutlet weak var tableView: UITableView!

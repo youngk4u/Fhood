@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewCell3: UITableViewCell {
+final class TableViewCell3: UITableViewCell {
 
     @IBOutlet weak var tableViewImage: UIImageView!
     @IBOutlet weak var tableViewLabel: UILabel!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListRevealNavigationController: UINavigationController {
+final class ListRevealNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

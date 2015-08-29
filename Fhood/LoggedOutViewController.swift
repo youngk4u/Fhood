@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoggedOutViewController: UIViewController {
+final class LoggedOutViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

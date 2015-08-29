@@ -9,7 +9,7 @@
 import UIKit
 import SWRevealViewController
 
-class ListViewController: UIViewController, UISearchBarDelegate, FilterMenuDelegate, UITableViewDelegate, UITableViewDataSource {
+final class ListViewController: UIViewController, UISearchBarDelegate, FilterMenuDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var searchBars: UISearchBar = UISearchBar()
     var accountIcon = UIImage(named: "userCircle2")

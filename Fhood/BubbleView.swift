@@ -9,9 +9,8 @@
 import UIKit
 import MapKit
 
-class BubbleView: MKAnnotationView {
+final class BubbleView: MKAnnotationView {
 
-    
     @IBOutlet weak var BubbleView: UIView!
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var ImageLabel: UIImageView!

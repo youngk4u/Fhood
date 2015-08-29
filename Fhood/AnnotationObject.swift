@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class AnnotationObject: NSObject, MKAnnotation  {
+final class AnnotationObject: NSObject, MKAnnotation  {
    
     //MKAnnotation ->>> Protocol
     let title: String?

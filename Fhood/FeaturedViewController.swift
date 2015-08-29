@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeaturedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class FeaturedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
 
     @IBOutlet weak var tableView: UITableView!

@@ -6,11 +6,9 @@
 //  Copyright (c) 2015 Fhood LLC. All rights reserved.
 //
 
-
-
 import UIKit
 
-class AccountViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+final class AccountViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
     
     var array : [String] = ["   History                                           >",
                             "   Photos                                           >",

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeaturedTableViewCell: UITableViewCell {
+final class FeaturedTableViewCell: UITableViewCell {
 
 
     

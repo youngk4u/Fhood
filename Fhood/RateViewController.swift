@@ -8,8 +8,7 @@
 
 import UIKit
 
-
-class RateViewController: UIViewController, UITextViewDelegate {
+final class RateViewController: UIViewController, UITextViewDelegate {
 
 
     @IBOutlet weak var spoonOne: UIButton!

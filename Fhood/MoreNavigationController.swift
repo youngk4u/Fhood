@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoreNavigationController: UINavigationController {
+final class MoreNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

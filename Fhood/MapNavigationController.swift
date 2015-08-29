@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MapNavigationController: UINavigationController {
+final class MapNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FeaturedNavigationController: UINavigationController {
+final class FeaturedNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
