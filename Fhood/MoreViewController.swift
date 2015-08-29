@@ -23,6 +23,11 @@ final class MoreViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+
+        // Account Icon
+        let accountIcon = UIImage(named: "userCircle2")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
+            target: self.revealViewController(), action: "revealToggle:")
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

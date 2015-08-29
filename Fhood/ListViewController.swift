@@ -12,7 +12,6 @@ import SWRevealViewController
 final class ListViewController: UIViewController, UISearchBarDelegate, FilterMenuDelegate, UITableViewDelegate, UITableViewDataSource {
 
     var searchBars: UISearchBar = UISearchBar()
-    var accountIcon = UIImage(named: "userCircle2")
     var filterIcon  = UIImage(named: "Filter 2")
     
     var filterMenu : FilterMenu?
@@ -46,13 +45,10 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         UISearchBar.appearance().backgroundImage = UIImage(named: "")
         
         // Account Icon
-        let leftBarButton = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain, target: self, action: nil)
-        self.navigationItem.leftBarButtonItem = leftBarButton
-        
-        // Account menu
-        leftBarButton.target = self.revealViewController()
-        leftBarButton.action = Selector("revealToggle:")
-        
+        let accountIcon = UIImage(named: "userCircle2")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
+            target: self.revealViewController(), action: "revealToggle:")
+
         // Filter Icon
         let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
         self.navigationItem.rightBarButtonItem = rightBarButton
