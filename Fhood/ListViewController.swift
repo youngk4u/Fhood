@@ -43,11 +43,16 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         
         // Search Bar with no rim
         UISearchBar.appearance().backgroundImage = UIImage(named: "")
-        
+
+        // Configure reveal for this view
+        let revealController = self.revealViewController()
+        revealController.panGestureRecognizer()
+        revealController.tapGestureRecognizer()
+
         // Account Icon
         let accountIcon = UIImage(named: "userCircle2")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
-            target: self.revealViewController(), action: "revealToggle:")
+            target: revealController, action: "revealToggle:")
 
         // Filter Icon
         let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
@@ -62,7 +67,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         self.TableView.delegate = self
         self.TableView.dataSource = self
         self.TableView.layoutMargins = UIEdgeInsetsZero
-        
+
         
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle

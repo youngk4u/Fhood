@@ -109,20 +109,20 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         
         // Search Bar with no rim
         UISearchBar.appearance().backgroundImage = UIImage(named: "")
-   
+
+        // Configure reveal for this view
+        let revealController = self.revealViewController()
+        revealController.panGestureRecognizer()
+        revealController.tapGestureRecognizer()
+
         // Account Icon
         let accountIcon = UIImage(named: "userCircle2")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
-            target: self.revealViewController(), action: "revealToggle:")
+            target: revealController, action: "revealToggle:")
 
         // Filter Icon
         let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
         self.navigationItem.rightBarButtonItem = rightBarButton
-        
-        // Swipe to left only
-        let swipeLeft = UISwipeGestureRecognizer(target: self.revealViewController(), action: "revealToggle:")
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
-        self.view.addGestureRecognizer(swipeLeft)
 
         // When Fhooder button pressed, you can tap anywhere to disable the info window
         self.cancelInfo.enabled = false
