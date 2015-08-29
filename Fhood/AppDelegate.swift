@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import SWRevealViewController
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Since we are not using any default XIB we have to create the window.
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let tabBarController = mainStoryboard.instantiateInitialViewController()
+        let accountViewController = mainStoryboard.instantiateViewControllerWithIdentifier("account")
+        let revealController = SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
+
+        self.window?.rootViewController = revealController
+        self.window?.makeKeyAndVisible()
+
         return true
     }
 
@@ -40,7 +50,4 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
-

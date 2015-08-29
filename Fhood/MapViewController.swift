@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SWRevealViewController
 
 final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
@@ -17,7 +18,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     let locationManager = CLLocationManager()
     
     var searchBars:UISearchBar = UISearchBar()
-    var accountIcon = UIImage(named: "userCircle2")
     var filterIcon  = UIImage(named: "Filter 2")
     
     var filterMenu : FilterMenu?
@@ -109,35 +109,27 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         
         // Search Bar with no rim
         UISearchBar.appearance().backgroundImage = UIImage(named: "")
-   
+
+        // Configure reveal for this view
+        let revealController = self.revealViewController()
+        revealController.panGestureRecognizer()
+        revealController.tapGestureRecognizer()
+
         // Account Icon
-        let leftBarButton = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain, target: self, action: nil)
-        self.navigationItem.leftBarButtonItem = leftBarButton
-        
-        // Account menu
-        leftBarButton.target = self.revealViewController()
-        leftBarButton.action = Selector("revealToggle:")
+        let accountIcon = UIImage(named: "userCircle2")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
+            target: revealController, action: "revealToggle:")
 
         // Filter Icon
         let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
         self.navigationItem.rightBarButtonItem = rightBarButton
-        
-        // Swipe to left only
-        let swipeLeft = UISwipeGestureRecognizer(target: self.revealViewController(), action: "revealToggle:")
-        swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
-        self.view.addGestureRecognizer(swipeLeft)
-        
+
         // When Fhooder button pressed, you can tap anywhere to disable the info window
         self.cancelInfo.enabled = false
         self.cancelInfo.addTarget(self, action: "cancelPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        
     }
-    
-    
-    
+
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?{
-        
-        
         let reuseIdentifier = "pin"
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
         

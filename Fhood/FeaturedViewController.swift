@@ -23,8 +23,18 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.layoutMargins = UIEdgeInsetsZero
+
+        // Configure reveal for this view
+        let revealController = self.revealViewController()
+        revealController.panGestureRecognizer()
+        revealController.tapGestureRecognizer()
+
+        // Account Icon
+        let accountIcon = UIImage(named: "userCircle2")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
+            target: revealController, action: "revealToggle:")
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
