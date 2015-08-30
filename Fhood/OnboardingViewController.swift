@@ -15,13 +15,12 @@ class OnboardingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.emailTextField.becomeFirstResponder()
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
+        self.emailTextField.becomeFirstResponder()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
@@ -32,9 +31,40 @@ class OnboardingViewController: UIViewController {
     // MARK: - Private functions
 
     private func validateInput() -> Bool {
-        // validate email
-        // validate password
-        return false
+        guard let email = self.emailTextField.text where !email.isEmpty else {
+            self.showAlert(withMessage: "Please, enter an email before continuing!")
+            self.emailTextField.becomeFirstResponder()
+            return false
+        }
+
+        guard let password = self.passwordTextField.text where !password.isEmpty else {
+            self.showAlert(withMessage: "Please, enter a password before continuing!")
+            self.passwordTextField.becomeFirstResponder()
+            return false
+        }
+
+        let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
+        let pattern = try! NSRegularExpression(pattern: emailRegex, options: [])
+        let strRange = NSRange(location: 0, length: email.characters.count)
+        guard pattern.firstMatchInString(email, options: [], range: strRange) != nil else {
+            self.showAlert(withMessage: "Please, enter a valid email before continuing!")
+            self.emailTextField.becomeFirstResponder()
+            return false
+        }
+
+        guard password.characters.count > 2 else {
+            self.showAlert(withMessage: "Please, enter a password with at least 3 characters!")
+            self.passwordTextField.becomeFirstResponder()
+            return false
+        }
+
+        return true
+    }
+
+    private func showAlert(withMessage message: String) {
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
     }
 }
 
