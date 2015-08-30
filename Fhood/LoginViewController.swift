@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 final class LoginViewController: OnboardingViewController {
 
@@ -15,6 +16,11 @@ final class LoginViewController: OnboardingViewController {
     }
 
     override func authenticate() {
+        let email = self.emailTextField.text!
+        let password = self.passwordTextField.text!
 
+        PFUser.logInWithUsernameInBackground(email, password: password) { user, error in
+
+        }
     }
 }
