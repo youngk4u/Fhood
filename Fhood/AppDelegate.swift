@@ -23,21 +23,25 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
 
         // Since we are not using any default XIB we have to create the window.
+        let loggedInUser = PFUser.currentUser()
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = loggedInUser != nil ? self.mainViewController() : self.onboardingViewController()
+        self.window?.makeKeyAndVisible()
 
+        return true
+    }
+
+    func onboardingViewController() -> UIViewController? {
+        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        return onboardingStoryboard.instantiateInitialViewController()
+    }
+
+    func mainViewController() -> UIViewController? {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
         let tabBarController = mainStoryboard.instantiateInitialViewController()
         let accountViewController = revealStoryboard.instantiateInitialViewController()
-        let revealViewController = SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
-
-        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
-        let onboardingViewController = onboardingStoryboard.instantiateInitialViewController()
-
-        self.window?.rootViewController = onboardingViewController
-        self.window?.makeKeyAndVisible()
-
-        return true
+        return SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
     }
 
     func applicationWillResignActive(application: UIApplication) {
