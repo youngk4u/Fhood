@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (2.0.0-beta.3)
   - Bolts/Tasks (1.2.1)
+  - ClosureKit (0.0.1)
   - JGProgressHUD (1.3)
   - Parse (1.8.2):
     - Bolts/Tasks (>= 1.2.1)
@@ -9,6 +10,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `swift-2.0`)
+  - ClosureKit (from `https://github.com/Reflejo/ClosureKit`, branch `swift-2.0`)
   - JGProgressHUD
   - Parse
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `swift-2.0`)
@@ -19,6 +21,9 @@ EXTERNAL SOURCES:
   Alamofire:
     :branch: swift-2.0
     :git: https://github.com/Alamofire/Alamofire.git
+  ClosureKit:
+    :branch: swift-2.0
+    :git: https://github.com/Reflejo/ClosureKit
   SnapKit:
     :branch: swift-2.0
     :git: https://github.com/SnapKit/SnapKit.git
@@ -30,6 +35,9 @@ CHECKOUT OPTIONS:
   Alamofire:
     :commit: 0fd77fec2a33e237ab99069c36410eb7101126c6
     :git: https://github.com/Alamofire/Alamofire.git
+  ClosureKit:
+    :commit: 58c6a6ccbbd971a964114ba6568d761d4fafa8cb
+    :git: https://github.com/Reflejo/ClosureKit
   SnapKit:
     :commit: 4f19419528baa3dfaca20e26fea2be410ddc79e2
     :git: https://github.com/SnapKit/SnapKit.git
@@ -40,6 +48,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 39dddb7d3725d1771b1d2f7099c8bd45bd83ffbb
   Bolts: 7686a5cb204d1ac54cee26f12d9b7622db3f80d1
+  ClosureKit: 68911cc45bdbf13b2a150066f729fb223bfd71a3
   JGProgressHUD: a58f62d3afac173d201250c3ba628fe44bd67017
   Parse: 188601c6cd91fae55906badd283b513104a3a8c9
   SnapKit: 69fe274c71511df89a5591c11437a8b826bfa9eb
