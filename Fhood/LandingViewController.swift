@@ -1,5 +1,5 @@
 //
-//  LoggedOutViewController.swift
+//  LandingViewController.swift
 //  Fhood
 //
 //  Created by Young-hu Kim on 8/28/15.
@@ -8,10 +8,14 @@
 
 import UIKit
 
-final class LoggedOutViewController: UIViewController {
+final class LandingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let navigationBar = self.navigationController!.navigationBar
+        navigationBar.barTintColor = UIColor(red: 0/255, green: 255/255, blue: 234/255, alpha: 1.0)
+        navigationBar.tintColor = UIColor.blackColor()
 
         // Color Gradient
         let topColor = UIColor(red: 0, green: 255/255.0, blue: 234/255.0, alpha: 1)
@@ -29,6 +33,8 @@ final class LoggedOutViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = true
+        super.viewWillAppear(animated)
+
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 }

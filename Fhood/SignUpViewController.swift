@@ -7,17 +7,26 @@
 //
 
 import UIKit
+import Parse
+import JGProgressHUD
 
-final class SignUpViewController: UIViewController {
+final class SignUpViewController: OnboardingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0/255, green: 255/255, blue: 234/255, alpha: 1.0)
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        self.navigationItem.title = "Sign up"
+
+    override func authenticate() {
+        let user = PFUser()
+        user.username = self.emailTextField.text
+        user.password = self.passwordTextField.text
+        user.email = self.emailTextField.text
+        user["phone"] = "555-555-5555"
+
+        HUD.show()
+        user.signUpInBackgroundWithBlock { success, error in
+            HUD.dismiss()
+            Router.route(animated: true)
+        }
     }
 }

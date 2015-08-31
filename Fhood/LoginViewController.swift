@@ -7,18 +7,22 @@
 //
 
 import UIKit
+import Parse
 
-final class LoginViewController: UIViewController {
+final class LoginViewController: OnboardingViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.navigationBarHidden = false
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0/255, green: 255/255, blue: 234/255, alpha: 1.0)
-        self.navigationController?.navigationBar.tintColor = UIColor.blackColor()
-        self.navigationItem.title = "Log in"
-    
+    override func authenticate() {
+        let email = self.emailTextField.text!
+        let password = self.passwordTextField.text!
+
+        HUD.show()
+        PFUser.logInWithUsernameInBackground(email, password: password) { user, error in
+            HUD.dismiss()
+            Router.route(animated: true)
+        }
     }
 }
