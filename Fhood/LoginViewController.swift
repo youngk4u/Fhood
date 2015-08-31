@@ -19,7 +19,9 @@ final class LoginViewController: OnboardingViewController {
         let email = self.emailTextField.text!
         let password = self.passwordTextField.text!
 
+        HUD.show()
         PFUser.logInWithUsernameInBackground(email, password: password) { user, error in
+            HUD.dismiss()
 
         }
     }

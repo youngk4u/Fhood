@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import JGProgressHUD
 
 final class SignUpViewController: OnboardingViewController {
 
@@ -22,8 +23,9 @@ final class SignUpViewController: OnboardingViewController {
         user.email = self.emailTextField.text
         user["phone"] = "555-555-5555"
 
+        HUD.show()
         user.signUpInBackgroundWithBlock { success, error in
-
+            HUD.dismiss()
         }
     }
 }
