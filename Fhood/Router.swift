@@ -12,30 +12,27 @@ import SWRevealViewController
 
 struct Router {
 
-    private static var onboardingViewController: UIViewController? {
-        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
-        return onboardingStoryboard.instantiateInitialViewController()
-    }
-
-    private static var mainViewController: UIViewController? {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
-        let tabBarController = mainStoryboard.instantiateInitialViewController()
-        let accountViewController = revealStoryboard.instantiateInitialViewController()
-        return SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
-    }
-
     static func rootViewController() -> UIViewController? {
-        guard let currentUser = PFUser.currentUser(), token = currentUser.sessionToken else {
+        guard let
+            currentUser = PFUser.currentUser(),
+            token = currentUser.sessionToken,
+            window = UIApplication.sharedApplication().delegate?.window!
+        else {
             return self.onboardingViewController
         }
 
-        // TODO: Show extended launch
+
         PFUser.becomeInBackground(token, block: { user, error in
             print("becomeInBackground ended with user: \(user) and error: \(error)")
+            if error != nil || user == nil {
+                PFUser.logOut()
+            }
+
+            //launchScreenView.dismiss()
+            //self.route(animated: false)
         })
 
-        return self.mainViewController
+        return self.launchViewController
     }
 
     static func route(animated animated: Bool) {
@@ -58,5 +55,27 @@ struct Router {
         }, completion: { _ in
             snapshotView.removeFromSuperview()
         })
+    }
+}
+
+// MARK: - View Controllers
+
+extension Router {
+
+    private static var onboardingViewController: UIViewController? {
+        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        return onboardingStoryboard.instantiateInitialViewController()
+    }
+
+    private static var mainViewController: UIViewController? {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
+        let tabBarController = mainStoryboard.instantiateInitialViewController()
+        let accountViewController = revealStoryboard.instantiateInitialViewController()
+        return SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
+    }
+
+    private static var launchViewController: LaunchViewController {
+        return LaunchViewController(nibName: nil, bundle: nil)
     }
 }

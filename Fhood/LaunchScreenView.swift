@@ -17,6 +17,7 @@ final class LaunchScreenView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
 
+        self.createLayout()
         self.startConnectionTimer()
     }
 
@@ -28,7 +29,33 @@ final class LaunchScreenView: UIView {
         self.cancelConnectionTimer()
     }
 
+    func dismiss() {
+        self.cancelConnectionTimer()
+        UIView.animateWithDuration(0.5, animations: {
+            self.alpha = 0
+        }, completion: { _ in
+            self.removeFromSuperview()
+        })
+    }
+
     // MARK: - Private functions
+
+    private func createLayout() {
+        let activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        activityIndicatorView.hidesWhenStopped = false
+        activityIndicatorView.startAnimating()
+
+        self.addSubview(activityIndicatorView)
+        activityIndicatorView.snp_makeConstraints { make in
+            make.centerX.equalTo(self)
+            make.bottom.equalTo(self).offset(-32)
+        }
+
+        activityIndicatorView.alpha = 0
+        UIView.animateWithDuration(0.5) {
+            activityIndicatorView.alpha = 1
+        }
+    }
 
     private func startConnectionTimer() {
         self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(5, repeats: false) { [weak self] _ in
@@ -65,7 +92,7 @@ final class LaunchScreenView: UIView {
         logoutButton.titleLabel?.font = UIFont.boldSystemFontOfSize(16)
         logoutButton.setTitle("Log out", forState: .Normal)
         logoutButton.addEventHandler(forControlEvents: .TouchUpInside) { _ in
-            // logout
+            // TODO: logout
         }
 
         self.addSubview(logoutButton)
