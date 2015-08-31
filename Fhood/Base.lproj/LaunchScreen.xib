@@ -8,22 +8,26 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash-BG" translatesAutoresizingMaskIntoConstraints="NO" id="CJj-oq-hlF">
-                    <rect key="frame" x="33" y="-128" width="414" height="736"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <animations/>
                 </imageView>
             </subviews>
             <animations/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.12941176469999999" green="1" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="CJj-oq-hlF" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="0Vp-ut-ZKA"/>
-                <constraint firstItem="CJj-oq-hlF" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="cwl-bO-b9q"/>
+                <constraint firstItem="CJj-oq-hlF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="FST-6d-rA5"/>
+                <constraint firstAttribute="trailing" secondItem="CJj-oq-hlF" secondAttribute="trailing" id="Rgs-cd-U2S"/>
+                <constraint firstAttribute="bottom" secondItem="CJj-oq-hlF" secondAttribute="bottom" id="mGy-C5-Km1"/>
+                <constraint firstItem="CJj-oq-hlF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zTh-nf-8Yq"/>
             </constraints>
-            <nil key="simulatedStatusBarMetrics"/>
-            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>

@@ -12,6 +12,7 @@
 		3B356FD01B93DEE70014AD22 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FCF1B93DEE70014AD22 /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		3B356FD31B93E6A30014AD22 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD21B93E6A30014AD22 /* HUD.swift */; settings = {ASSET_TAGS = (); }; };
 		3B356FD61B93F1170014AD22 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD51B93F1170014AD22 /* Router.swift */; settings = {ASSET_TAGS = (); }; };
+		3B356FD81B93FCB30014AD22 /* LaunchScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD71B93FCB30014AD22 /* LaunchScreenView.swift */; settings = {ASSET_TAGS = (); }; };
 		3BF325331B92533700C606D5 /* Reveal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF325321B92533700C606D5 /* Reveal.storyboard */; settings = {ASSET_TAGS = (); }; };
 		3BF91B7F1B926EC5005C9EDB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */; settings = {ASSET_TAGS = (); }; };
 		4B48668B113C843C865D4100 /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -84,6 +85,7 @@
 		3B356FCF1B93DEE70014AD22 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B356FD21B93E6A30014AD22 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		3B356FD51B93F1170014AD22 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		3B356FD71B93FCB30014AD22 /* LaunchScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenView.swift; sourceTree = "<group>"; };
 		3BF325321B92533700C606D5 /* Reveal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reveal.storyboard; sourceTree = "<group>"; };
 		3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -235,6 +237,7 @@
 				636CB16C1B94530600674C91 /* ManageCollectionViewCell.swift */,
 				636CB16D1B94530600674C91 /* ManageTableViewCell.swift */,
 				63CB95231B945714005815E7 /* OrdersTableViewCell.swift */,
+				3B356FD71B93FCB30014AD22 /* LaunchScreenView.swift */,
 				636F75131B7E973A00A8C1E8 /* BubbleView.swift */,
 				63CA5CA31B41AF3B008D16A1 /* FilterMenu.swift */,
 				63CA5CA01B3F82F1008D16A1 /* TableViewCell3.swift */,
@@ -541,6 +544,7 @@
 				63AD61BC1B91A1C200BA1574 /* SignUpViewController.swift in Sources */,
 				3B356FCE1B9284500014AD22 /* Constants.swift in Sources */,
 				63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */,
+				3B356FD81B93FCB30014AD22 /* LaunchScreenView.swift in Sources */,
 				63F70A351B5B764800A2D618 /* fhooderFour.swift in Sources */,
 				63F70A311B5B720C00A2D618 /* fhooderTwo.swift in Sources */,
 				3B356FCC1B9275670014AD22 /* OnboardingViewController.swift in Sources */,
