@@ -34,7 +34,19 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Since we are not using any default XIB we have to create the window.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = PFUser.currentUser() != nil ? self.mainViewController : self.onboardingViewController
+
+        let rootViewController: UIViewController?
+        if let currentUser = PFUser.currentUser(), token = currentUser.sessionToken {
+            rootViewController = self.mainViewController
+            // TODO: Show extended launch
+            PFUser.becomeInBackground(token, block: { user, error in
+                print("becomeInBackground ended with user: \(user) and error: \(error)")
+            })
+        } else {
+            rootViewController = self.onboardingViewController
+        }
+
+        self.window?.rootViewController = rootViewController
         self.window?.makeKeyAndVisible()
 
         return true
