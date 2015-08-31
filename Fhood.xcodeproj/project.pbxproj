@@ -11,6 +11,7 @@
 		3B356FCE1B9284500014AD22 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FCD1B9284500014AD22 /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
 		3B356FD01B93DEE70014AD22 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FCF1B93DEE70014AD22 /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		3B356FD31B93E6A30014AD22 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD21B93E6A30014AD22 /* HUD.swift */; settings = {ASSET_TAGS = (); }; };
+		3B356FD61B93F1170014AD22 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD51B93F1170014AD22 /* Router.swift */; settings = {ASSET_TAGS = (); }; };
 		3BF325331B92533700C606D5 /* Reveal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF325321B92533700C606D5 /* Reveal.storyboard */; settings = {ASSET_TAGS = (); }; };
 		3BF91B7F1B926EC5005C9EDB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */; settings = {ASSET_TAGS = (); }; };
 		4B48668B113C843C865D4100 /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -74,6 +75,7 @@
 		3B356FCD1B9284500014AD22 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3B356FCF1B93DEE70014AD22 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B356FD21B93E6A30014AD22 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		3B356FD51B93F1170014AD22 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3BF325321B92533700C606D5 /* Reveal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reveal.storyboard; sourceTree = "<group>"; };
 		3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +174,7 @@
 				3BF3252C1B9036A400C606D5 /* Model */,
 				63C830301B0996FB0089CCFF /* AppDelegate.swift */,
 				3B356FCD1B9284500014AD22 /* Constants.swift */,
+				3B356FD51B93F1170014AD22 /* Router.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				633376991B582CB400F7D846 /* ConfirmViewController.swift in Sources */,
 				63733FC41B2A60FA009E99CF /* FhooderMessagesViewController.swift in Sources */,
 				636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */,
+				3B356FD61B93F1170014AD22 /* Router.swift in Sources */,
 				636CC8D71B1EEFE90084CCE8 /* TabBarController.swift in Sources */,
 				6363759E1B533A1C00BBE93B /* DirectionViewController.swift in Sources */,
 				63E085CF1B44AB750095C603 /* variables.swift in Sources */,

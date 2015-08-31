@@ -13,7 +13,7 @@ struct HUD {
     private static var currentHUD: JGProgressHUD?
 
     static func show(withText text: String? = nil) {
-        guard let window = UIApplication.sharedApplication().delegate?.window else { return }
+        guard let window = UIApplication.sharedApplication().delegate?.window! else { return }
 
         self.dismiss()
 

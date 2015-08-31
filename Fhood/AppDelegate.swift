@@ -7,46 +7,20 @@
 //
 
 import UIKit
-import SWRevealViewController
 import Parse
-import Bolts
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    private var onboardingViewController: UIViewController? {
-        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
-        return onboardingStoryboard.instantiateInitialViewController()
-    }
-
-    private var mainViewController: UIViewController? {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
-        let tabBarController = mainStoryboard.instantiateInitialViewController()
-        let accountViewController = revealStoryboard.instantiateInitialViewController()
-        return SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
-    }
-
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Initiailize Vendor modules like Parse, Stripe, etc.
         self.loadVendorLibraries(withLaunchOptions: launchOptions)
 
         // Since we are not using any default XIB we have to create the window.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-
-        let rootViewController: UIViewController?
-        if let currentUser = PFUser.currentUser(), token = currentUser.sessionToken {
-            rootViewController = self.mainViewController
-            // TODO: Show extended launch
-            PFUser.becomeInBackground(token, block: { user, error in
-                print("becomeInBackground ended with user: \(user) and error: \(error)")
-            })
-        } else {
-            rootViewController = self.onboardingViewController
-        }
-
-        self.window?.rootViewController = rootViewController
+        self.window?.rootViewController = Router.rootViewController()
         self.window?.makeKeyAndVisible()
 
         return true

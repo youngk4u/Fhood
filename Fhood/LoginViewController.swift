@@ -22,7 +22,7 @@ final class LoginViewController: OnboardingViewController {
         HUD.show()
         PFUser.logInWithUsernameInBackground(email, password: password) { user, error in
             HUD.dismiss()
-
+            Router.route(animated: true)
         }
     }
 }
