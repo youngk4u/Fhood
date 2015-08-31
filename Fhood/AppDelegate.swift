@@ -7,9 +7,7 @@
 //
 
 import UIKit
-import SWRevealViewController
 import Parse
-import Bolts
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,24 +15,21 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Configure Parse
-        Parse.enableLocalDatastore()
-        Parse.setApplicationId("Ji19GFajRMo6ruqU64dLdKhjdJLJNeFHN0t7AW1y", clientKey: "vCP3IBibukwFMF3LdoxyKim7uw1hglzZhWDsQ4BO")
-        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+        // Initiailize Vendor modules like Parse, Stripe, etc.
+        self.loadVendorLibraries(withLaunchOptions: launchOptions)
 
         // Since we are not using any default XIB we have to create the window.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
-        let tabBarController = mainStoryboard.instantiateInitialViewController()
-        let accountViewController = revealStoryboard.instantiateInitialViewController()
-        let revealController = SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
-
-        self.window?.rootViewController = revealController
+        self.window?.rootViewController = Router.rootViewController()
         self.window?.makeKeyAndVisible()
 
         return true
+    }
+
+    func loadVendorLibraries(withLaunchOptions launchOptions: [NSObject: AnyObject]?) {
+        Parse.enableLocalDatastore()
+        Parse.setApplicationId(Constants.Vendor.ParseApplicationID, clientKey: Constants.Vendor.ParseClientKey)
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
     }
 
     func applicationWillResignActive(application: UIApplication) {
