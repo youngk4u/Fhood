@@ -14,34 +14,36 @@ import Bolts
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var window: UIWindow?
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Configure Parse
-        Parse.enableLocalDatastore()
-        Parse.setApplicationId("Ji19GFajRMo6ruqU64dLdKhjdJLJNeFHN0t7AW1y", clientKey: "vCP3IBibukwFMF3LdoxyKim7uw1hglzZhWDsQ4BO")
-        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-
-        // Since we are not using any default XIB we have to create the window.
-        let loggedInUser = PFUser.currentUser()
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = loggedInUser != nil ? self.mainViewController() : self.onboardingViewController()
-        self.window?.makeKeyAndVisible()
-
-        return true
-    }
-
-    func onboardingViewController() -> UIViewController? {
+    private var onboardingViewController: UIViewController? {
         let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
         return onboardingStoryboard.instantiateInitialViewController()
     }
 
-    func mainViewController() -> UIViewController? {
+    private var mainViewController: UIViewController? {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
         let tabBarController = mainStoryboard.instantiateInitialViewController()
         let accountViewController = revealStoryboard.instantiateInitialViewController()
         return SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
+    }
+
+    var window: UIWindow?
+
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        self.loadVendorLibraries(withLaunchOptions: launchOptions)
+
+        // Since we are not using any default XIB we have to create the window.
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = PFUser.currentUser() != nil ? self.mainViewController : self.onboardingViewController
+        self.window?.makeKeyAndVisible()
+
+        return true
+    }
+
+    func loadVendorLibraries(withLaunchOptions launchOptions: [NSObject: AnyObject]?) {
+        Parse.enableLocalDatastore()
+        Parse.setApplicationId(Constants.Vendor.ParseApplicationID, clientKey: Constants.Vendor.ParseClientKey)
+        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
     }
 
     func applicationWillResignActive(application: UIApplication) {
