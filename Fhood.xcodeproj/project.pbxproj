@@ -15,6 +15,13 @@
 		6333769B1B5845FD00F7D846 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333769A1B5845FD00F7D846 /* RateViewController.swift */; };
 		63611A6D1B5EFE69004BDDCF /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63611A6C1B5EFE69004BDDCF /* ListTableViewCell.swift */; };
 		6363759E1B533A1C00BBE93B /* DirectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6363759D1B533A1C00BBE93B /* DirectionViewController.swift */; };
+		636CB1651B94523300674C91 /* Fhooder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 636CB1641B94523300674C91 /* Fhooder.storyboard */; settings = {ASSET_TAGS = (); }; };
+		636CB1671B9452A700674C91 /* FhooderMoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CB1661B9452A700674C91 /* FhooderMoreViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		636CB1691B9452D100674C91 /* FhooderTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CB1681B9452D100674C91 /* FhooderTabBarController.swift */; settings = {ASSET_TAGS = (); }; };
+		636CB16B1B9452FC00674C91 /* ManageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CB16A1B9452FC00674C91 /* ManageViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		636CB16E1B94530600674C91 /* ManageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CB16C1B94530600674C91 /* ManageCollectionViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		636CB16F1B94530600674C91 /* ManageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CB16D1B94530600674C91 /* ManageTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		636CB1711B94536400674C91 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CB1701B94536400674C91 /* OrdersViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		636CC8D71B1EEFE90084CCE8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CC8D61B1EEFE90084CCE8 /* TabBarController.swift */; };
 		636F75141B7E973A00A8C1E8 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75131B7E973A00A8C1E8 /* BubbleView.swift */; };
 		636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */; };
@@ -73,6 +80,13 @@
 		6333769A1B5845FD00F7D846 /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
 		63611A6C1B5EFE69004BDDCF /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		6363759D1B533A1C00BBE93B /* DirectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionViewController.swift; sourceTree = "<group>"; };
+		636CB1641B94523300674C91 /* Fhooder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Fhooder.storyboard; sourceTree = "<group>"; };
+		636CB1661B9452A700674C91 /* FhooderMoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FhooderMoreViewController.swift; sourceTree = "<group>"; };
+		636CB1681B9452D100674C91 /* FhooderTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FhooderTabBarController.swift; sourceTree = "<group>"; };
+		636CB16A1B9452FC00674C91 /* ManageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageViewController.swift; sourceTree = "<group>"; };
+		636CB16C1B94530600674C91 /* ManageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageCollectionViewCell.swift; sourceTree = "<group>"; };
+		636CB16D1B94530600674C91 /* ManageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManageTableViewCell.swift; sourceTree = "<group>"; };
+		636CB1701B94536400674C91 /* OrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		636CC8D61B1EEFE90084CCE8 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		636F75131B7E973A00A8C1E8 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationObject.swift; sourceTree = "<group>"; };
@@ -160,6 +174,7 @@
 			isa = PBXGroup;
 			children = (
 				63C830361B0996FB0089CCFF /* Main.storyboard */,
+				636CB1641B94523300674C91 /* Fhooder.storyboard */,
 				3BF325321B92533700C606D5 /* Reveal.storyboard */,
 				63C8303B1B0996FB0089CCFF /* LaunchScreen.xib */,
 				639B46191B7E927700A001F2 /* BubbleView.xib */,
@@ -190,6 +205,8 @@
 		3BF3252D1B9036CD00C606D5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				636CB16C1B94530600674C91 /* ManageCollectionViewCell.swift */,
+				636CB16D1B94530600674C91 /* ManageTableViewCell.swift */,
 				636F75131B7E973A00A8C1E8 /* BubbleView.swift */,
 				63CA5CA31B41AF3B008D16A1 /* FilterMenu.swift */,
 				63CA5CA01B3F82F1008D16A1 /* TableViewCell3.swift */,
@@ -205,6 +222,10 @@
 			children = (
 				3BF91B7D1B9269B0005C9EDB /* Onboarding */,
 				3BF3252F1B92522000C606D5 /* Reveal */,
+				636CB16A1B9452FC00674C91 /* ManageViewController.swift */,
+				636CB1681B9452D100674C91 /* FhooderTabBarController.swift */,
+				636CB1661B9452A700674C91 /* FhooderMoreViewController.swift */,
+				636CB1701B94536400674C91 /* OrdersViewController.swift */,
 				636CC8D61B1EEFE90084CCE8 /* TabBarController.swift */,
 				63C830321B0996FB0089CCFF /* MapViewController.swift */,
 				63C830341B0996FB0089CCFF /* ListViewController.swift */,
@@ -395,6 +416,7 @@
 				63C8303D1B0996FB0089CCFF /* LaunchScreen.xib in Resources */,
 				639B461A1B7E927700A001F2 /* BubbleView.xib in Resources */,
 				63C8303A1B0996FB0089CCFF /* Images.xcassets in Resources */,
+				636CB1651B94523300674C91 /* Fhooder.storyboard in Resources */,
 				3BF325331B92533700C606D5 /* Reveal.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -465,13 +487,16 @@
 				63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */,
 				63F70A331B5B763B00A2D618 /* fhooderThree.swift in Sources */,
 				63F70A2F1B5B6F2700A2D618 /* fhooderOne.swift in Sources */,
+				636CB1691B9452D100674C91 /* FhooderTabBarController.swift in Sources */,
 				63F70A411B5B768A00A2D618 /* fhooderTen.swift in Sources */,
 				63F70A2D1B5A3CE200A2D618 /* FinalViewController.swift in Sources */,
 				63F70A391B5B765E00A2D618 /* fhooderSix.swift in Sources */,
 				633376991B582CB400F7D846 /* ConfirmViewController.swift in Sources */,
 				63733FC41B2A60FA009E99CF /* FhooderMessagesViewController.swift in Sources */,
+				636CB1671B9452A700674C91 /* FhooderMoreViewController.swift in Sources */,
 				636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */,
 				636CC8D71B1EEFE90084CCE8 /* TabBarController.swift in Sources */,
+				636CB16B1B9452FC00674C91 /* ManageViewController.swift in Sources */,
 				6363759E1B533A1C00BBE93B /* DirectionViewController.swift in Sources */,
 				63E085CF1B44AB750095C603 /* variables.swift in Sources */,
 				63C830351B0996FB0089CCFF /* ListViewController.swift in Sources */,
@@ -480,6 +505,7 @@
 				63AD61BA1B91A1C200BA1574 /* LoggedOutViewController.swift in Sources */,
 				63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */,
 				63F70A371B5B765300A2D618 /* fhooderFive.swift in Sources */,
+				636CB1711B94536400674C91 /* OrdersViewController.swift in Sources */,
 				63AD61BC1B91A1C200BA1574 /* SignUpViewController.swift in Sources */,
 				63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */,
 				63F70A351B5B764800A2D618 /* fhooderFour.swift in Sources */,
@@ -490,8 +516,10 @@
 				638654131B65A81A000DFC5E /* OrderedViewController.swift in Sources */,
 				63CA5CA51B41AF3B008D16A1 /* FilterMenu.swift in Sources */,
 				63611A6D1B5EFE69004BDDCF /* ListTableViewCell.swift in Sources */,
+				636CB16F1B94530600674C91 /* ManageTableViewCell.swift in Sources */,
 				63CA5CA71B425119008D16A1 /* FhooderViewController.swift in Sources */,
 				6333769B1B5845FD00F7D846 /* RateViewController.swift in Sources */,
+				636CB16E1B94530600674C91 /* ManageCollectionViewCell.swift in Sources */,
 				63AD61BB1B91A1C200BA1574 /* LoginViewController.swift in Sources */,
 				63F70A3D1B5B767500A2D618 /* fhooderEight.swift in Sources */,
 				63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */,
