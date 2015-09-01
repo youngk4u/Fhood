@@ -57,7 +57,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! ManageCollectionViewCell
+        _ = collectionView.cellForItemAtIndexPath(indexPath) as! ManageCollectionViewCell
         
         
     }

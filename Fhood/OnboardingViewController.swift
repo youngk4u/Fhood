@@ -52,8 +52,8 @@ class OnboardingViewController: UIViewController {
             return false
         }
 
-        guard password.characters.count > 2 else {
-            self.showAlert(withMessage: "Please, enter a password with at least 3 characters!")
+        guard password.characters.count > 4 else {
+            self.showAlert(withMessage: "Please, enter a password with at least 5 characters!")
             self.passwordTextField.becomeFirstResponder()
             return false
         }
