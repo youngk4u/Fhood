@@ -26,20 +26,6 @@ struct Router {
         guard let window = UIApplication.sharedApplication().delegate?.window! else { return }
         let rootViewController = self.rootViewController
 
-//        if rootViewController is LaunchViewController,
-//            let currentUser = PFUser.currentUser() where !currentUser.isAuthenticated(),
-//            let token = currentUser.sessionToken
-//        {
-//            PFUser.becomeInBackground(token) { user, error in
-//                print("becomeInBackground ended with user: \(user) and error: \(error)")
-//                if error != nil || user == nil {
-//                    PFUser.logOut()
-//                }
-//
-//                self.route(animated: false)
-//            }
-//        }
-
         if !animated || window.rootViewController == nil {
             return window.rootViewController = rootViewController
         }
