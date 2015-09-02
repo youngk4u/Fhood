@@ -12,34 +12,33 @@ import SWRevealViewController
 
 struct Router {
 
-    static func rootViewController() -> UIViewController? {
-        guard let
-            currentUser = PFUser.currentUser(),
-            token = currentUser.sessionToken,
-            window = UIApplication.sharedApplication().delegate?.window!
-        else {
+    private static var rootViewController: UIViewController {
+        if PFUser.currentUser()?.isAuthenticated() == true {
+            return self.mainViewController
+        } else if PFUser.currentUser() != nil {
+            return self.launchViewController
+        } else {
             return self.onboardingViewController
         }
-
-
-        PFUser.becomeInBackground(token, block: { user, error in
-            print("becomeInBackground ended with user: \(user) and error: \(error)")
-            if error != nil || user == nil {
-                PFUser.logOut()
-            }
-
-            //launchScreenView.dismiss()
-            //self.route(animated: false)
-        })
-
-        return self.launchViewController
     }
 
     static func route(animated animated: Bool) {
-        guard let
-            window = UIApplication.sharedApplication().delegate?.window!,
-            rootViewController = self.rootViewController()
-        else { return }
+        guard let window = UIApplication.sharedApplication().delegate?.window! else { return }
+        let rootViewController = self.rootViewController
+
+//        if rootViewController is LaunchViewController,
+//            let currentUser = PFUser.currentUser() where !currentUser.isAuthenticated(),
+//            let token = currentUser.sessionToken
+//        {
+//            PFUser.becomeInBackground(token) { user, error in
+//                print("becomeInBackground ended with user: \(user) and error: \(error)")
+//                if error != nil || user == nil {
+//                    PFUser.logOut()
+//                }
+//
+//                self.route(animated: false)
+//            }
+//        }
 
         if !animated || window.rootViewController == nil {
             return window.rootViewController = rootViewController
@@ -62,20 +61,20 @@ struct Router {
 
 extension Router {
 
-    private static var onboardingViewController: UIViewController? {
+    private static var onboardingViewController: UIViewController {
         let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
-        return onboardingStoryboard.instantiateInitialViewController()
+        return onboardingStoryboard.instantiateInitialViewController()!
     }
 
-    private static var mainViewController: UIViewController? {
+    private static var mainViewController: UIViewController {
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
         let tabBarController = mainStoryboard.instantiateInitialViewController()
         let accountViewController = revealStoryboard.instantiateInitialViewController()
-        return SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
+        return SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)!
     }
 
     private static var launchViewController: LaunchViewController {
-        return LaunchViewController(nibName: nil, bundle: nil)
+        return LaunchViewController(nibName: "LaunchScreen", bundle: nil)
     }
 }

@@ -20,7 +20,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // Since we are not using any default XIB we have to create the window.
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = Router.rootViewController()
+        Router.route(animated: false)
         self.window?.makeKeyAndVisible()
 
         return true

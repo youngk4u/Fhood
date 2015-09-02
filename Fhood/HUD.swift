@@ -6,7 +6,6 @@
 //  Copyright © 2015 YOUNG&YOUM. All rights reserved.
 //
 
-import Foundation
 import JGProgressHUD
 
 struct HUD {

@@ -26,6 +26,7 @@ final class SignUpViewController: OnboardingViewController {
         HUD.show()
         user.signUpInBackgroundWithBlock { success, error in
             HUD.dismiss()
+            // if error != nil show feedback
             Router.route(animated: true)
         }
     }
