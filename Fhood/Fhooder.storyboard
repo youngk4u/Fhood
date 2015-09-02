@@ -395,7 +395,7 @@
         <scene sceneID="NaA-Lq-LGf">
             <objects>
                 <navigationController id="4fy-Kj-Y4G" userLabel="ManageNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Manage" image="MapWhite" selectedImage="MapCyan" id="jYW-wY-U5O"/>
+                    <tabBarItem key="tabBarItem" title="Manage" image="ManageWhite" selectedImage="ManageCyan" id="jYW-wY-U5O"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="fGg-JM-NEK">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -488,7 +488,7 @@
         <scene sceneID="Vya-l7-5e5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HPW-xm-Q6i" userLabel="FhooderMoreNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="More" image="MoreWhite" selectedImage="MoreCyan" id="Z0y-Jr-pyz"/>
+                    <tabBarItem key="tabBarItem" title="More" image="FhooderMoreWhite" selectedImage="FhooderMoreCyan" id="Z0y-Jr-pyz"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="33z-9Z-Y1P">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -509,7 +509,7 @@
         <scene sceneID="9mw-SE-mNt">
             <objects>
                 <navigationController id="La7-Lf-idz" userLabel="OrdersNavigationController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Orders" image="ListWhite" selectedImage="ListCyan" id="hrg-iU-mnc" userLabel="List"/>
+                    <tabBarItem key="tabBarItem" title="Orders" image="OrdersWhite" selectedImage="OrdersCyan" id="hrg-iU-mnc" userLabel="List"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TpM-MS-Bpw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -532,12 +532,12 @@
     </scenes>
     <resources>
         <image name="4andHalf-Spoon" width="400" height="76"/>
-        <image name="ListCyan" width="30" height="30"/>
-        <image name="ListWhite" width="30" height="30"/>
-        <image name="MapCyan" width="30" height="30"/>
-        <image name="MapWhite" width="30" height="30"/>
-        <image name="MoreCyan" width="30" height="30"/>
-        <image name="MoreWhite" width="30" height="30"/>
+        <image name="FhooderMoreCyan" width="30" height="30"/>
+        <image name="FhooderMoreWhite" width="30" height="30"/>
+        <image name="ManageCyan" width="30" height="30"/>
+        <image name="ManageWhite" width="30" height="30"/>
+        <image name="OrdersCyan" width="30" height="30"/>
+        <image name="OrdersWhite" width="30" height="30"/>
         <image name="fhoodie1" width="228" height="228"/>
     </resources>
 </document>
