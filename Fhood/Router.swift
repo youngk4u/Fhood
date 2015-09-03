@@ -12,37 +12,19 @@ import SWRevealViewController
 
 struct Router {
 
-    private static var onboardingViewController: UIViewController? {
-        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
-        return onboardingStoryboard.instantiateInitialViewController()
-    }
-
-    private static var mainViewController: UIViewController? {
-        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
-        let tabBarController = mainStoryboard.instantiateInitialViewController()
-        let accountViewController = revealStoryboard.instantiateInitialViewController()
-        return SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)
-    }
-
-    static func rootViewController() -> UIViewController? {
-        guard let currentUser = PFUser.currentUser(), token = currentUser.sessionToken else {
+    private static var rootViewController: UIViewController {
+        if PFUser.currentUser()?.isAuthenticated() == true {
+            return self.mainViewController
+        } else if PFUser.currentUser() != nil {
+            return self.launchViewController
+        } else {
             return self.onboardingViewController
         }
-
-        // TODO: Show extended launch
-        PFUser.becomeInBackground(token, block: { user, error in
-            print("becomeInBackground ended with user: \(user) and error: \(error)")
-        })
-
-        return self.mainViewController
     }
 
     static func route(animated animated: Bool) {
-        guard let
-            window = UIApplication.sharedApplication().delegate?.window!,
-            rootViewController = self.rootViewController()
-        else { return }
+        guard let window = UIApplication.sharedApplication().delegate?.window! else { return }
+        let rootViewController = self.rootViewController
 
         if !animated || window.rootViewController == nil {
             return window.rootViewController = rootViewController
@@ -58,5 +40,27 @@ struct Router {
         }, completion: { _ in
             snapshotView.removeFromSuperview()
         })
+    }
+}
+
+// MARK: - View Controllers
+
+extension Router {
+
+    private static var onboardingViewController: UIViewController {
+        let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
+        return onboardingStoryboard.instantiateInitialViewController()!
+    }
+
+    private static var mainViewController: UIViewController {
+        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
+        let tabBarController = mainStoryboard.instantiateInitialViewController()
+        let accountViewController = revealStoryboard.instantiateInitialViewController()
+        return SWRevealViewController(rearViewController: accountViewController, frontViewController: tabBarController)!
+    }
+
+    private static var launchViewController: LaunchViewController {
+        return LaunchViewController(nibName: "LaunchScreen", bundle: nil)
     }
 }

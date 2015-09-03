@@ -12,6 +12,9 @@
 		3B356FD01B93DEE70014AD22 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FCF1B93DEE70014AD22 /* User.swift */; settings = {ASSET_TAGS = (); }; };
 		3B356FD31B93E6A30014AD22 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD21B93E6A30014AD22 /* HUD.swift */; settings = {ASSET_TAGS = (); }; };
 		3B356FD61B93F1170014AD22 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD51B93F1170014AD22 /* Router.swift */; settings = {ASSET_TAGS = (); }; };
+		3B356FDA1B940C240014AD22 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD91B940C240014AD22 /* LaunchViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3BD592611B96A3B5003D26AE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD592601B96A3B5003D26AE /* UIView+Extension.swift */; settings = {ASSET_TAGS = (); }; };
+		3BD592641B96A5F0003D26AE /* LaunchScreenSystem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD592621B96A5F0003D26AE /* LaunchScreenSystem.xib */; settings = {ASSET_TAGS = (); }; };
 		3BF325331B92533700C606D5 /* Reveal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF325321B92533700C606D5 /* Reveal.storyboard */; settings = {ASSET_TAGS = (); }; };
 		3BF91B7F1B926EC5005C9EDB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */; settings = {ASSET_TAGS = (); }; };
 		4B48668B113C843C865D4100 /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -84,6 +87,9 @@
 		3B356FCF1B93DEE70014AD22 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B356FD21B93E6A30014AD22 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		3B356FD51B93F1170014AD22 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		3B356FD91B940C240014AD22 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		3BD592601B96A3B5003D26AE /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		3BD592631B96A5F0003D26AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreenSystem.xib; sourceTree = "<group>"; };
 		3BF325321B92533700C606D5 /* Reveal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reveal.storyboard; sourceTree = "<group>"; };
 		3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -176,6 +182,7 @@
 		3B356FD11B93E6990014AD22 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				3BD592601B96A3B5003D26AE /* UIView+Extension.swift */,
 				3B356FD21B93E6A30014AD22 /* HUD.swift */,
 			);
 			name = Common;
@@ -203,6 +210,7 @@
 				3BF325321B92533700C606D5 /* Reveal.storyboard */,
 				3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */,
 				63C8303B1B0996FB0089CCFF /* LaunchScreen.xib */,
+				3BD592621B96A5F0003D26AE /* LaunchScreenSystem.xib */,
 				639B46191B7E927700A001F2 /* BubbleView.xib */,
 				63C830391B0996FB0089CCFF /* Images.xcassets */,
 			);
@@ -235,6 +243,7 @@
 				636CB16C1B94530600674C91 /* ManageCollectionViewCell.swift */,
 				636CB16D1B94530600674C91 /* ManageTableViewCell.swift */,
 				63CB95231B945714005815E7 /* OrdersTableViewCell.swift */,
+				3B356FD71B93FCB30014AD22 /* LaunchScreenView.swift */,
 				636F75131B7E973A00A8C1E8 /* BubbleView.swift */,
 				63CA5CA31B41AF3B008D16A1 /* FilterMenu.swift */,
 				63CA5CA01B3F82F1008D16A1 /* TableViewCell3.swift */,
@@ -283,6 +292,7 @@
 		3BF91B7D1B9269B0005C9EDB /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				3B356FD91B940C240014AD22 /* LaunchViewController.swift */,
 				63AD61B71B91A1C200BA1574 /* LandingViewController.swift */,
 				3B356FCB1B9275670014AD22 /* OnboardingViewController.swift */,
 				63AD61B81B91A1C200BA1574 /* LoginViewController.swift */,
@@ -442,6 +452,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63C830381B0996FB0089CCFF /* Main.storyboard in Resources */,
+				3BD592641B96A5F0003D26AE /* LaunchScreenSystem.xib in Resources */,
 				63C8303D1B0996FB0089CCFF /* LaunchScreen.xib in Resources */,
 				639B461A1B7E927700A001F2 /* BubbleView.xib in Resources */,
 				3BF91B7F1B926EC5005C9EDB /* Onboarding.storyboard in Resources */,
@@ -517,6 +528,7 @@
 				63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */,
 				63CB95241B945714005815E7 /* OrdersTableViewCell.swift in Sources */,
 				63F70A331B5B763B00A2D618 /* fhooderThree.swift in Sources */,
+				3BD592611B96A3B5003D26AE /* UIView+Extension.swift in Sources */,
 				63F70A2F1B5B6F2700A2D618 /* fhooderOne.swift in Sources */,
 				636CB1691B9452D100674C91 /* FhooderTabBarController.swift in Sources */,
 				63F70A411B5B768A00A2D618 /* fhooderTen.swift in Sources */,
@@ -561,6 +573,7 @@
 				63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */,
 				63F70A3B1B5B766900A2D618 /* fhooderSeven.swift in Sources */,
 				63D8D72E1B25E41C0016D33D /* HistoryViewController.swift in Sources */,
+				3B356FDA1B940C240014AD22 /* LaunchViewController.swift in Sources */,
 				636F75141B7E973A00A8C1E8 /* BubbleView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -584,6 +597,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		3BD592621B96A5F0003D26AE /* LaunchScreenSystem.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BD592631B96A5F0003D26AE /* Base */,
+			);
+			name = LaunchScreenSystem.xib;
+			sourceTree = "<group>";
+		};
 		63C830361B0996FB0089CCFF /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

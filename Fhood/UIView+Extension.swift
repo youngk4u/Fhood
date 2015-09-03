@@ -1,0 +1,31 @@
+//
+//  UIView+Extension.swift
+//  Fhood
+//
+//  Created by Matias Pequeno on 9/1/15.
+//  Copyright © 2015 YOUNG&YOUM. All rights reserved.
+//
+
+import UIKit
+
+private let kDefaultFadeDuration = 0.5
+
+extension UIView {
+
+    /**
+    Animate changes to one or more views using the specified duration, delay, options. Adds defaults and
+    allows for trailing closures. `delay` and `options` parameters are optional.
+
+    :param: duration   The total duration of the animations, measured in seconds.
+    :param: delay      The amount of time (measured in seconds) to wait before beginning the animations.
+    :param: options    A mask of options indicating how you want to perform the animations. For a list of
+                       valid constants, see UIViewAnimationOptions.
+    :param: animations A closure containing the changes to commit to the views. This parameter must not be nil
+    */
+    public class func animate(withDuration duration: NSTimeInterval = kDefaultFadeDuration,
+        delay: NSTimeInterval = 0, options: UIViewAnimationOptions = [], animations: () -> Void)
+    {
+        UIView.animateWithDuration(duration, delay: delay, options: options, animations: animations,
+            completion: nil)
+    }
+}

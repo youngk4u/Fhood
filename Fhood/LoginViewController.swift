@@ -22,6 +22,7 @@ final class LoginViewController: OnboardingViewController {
         HUD.show()
         PFUser.logInWithUsernameInBackground(email, password: password) { user, error in
             HUD.dismiss()
+            // if error != nil show feedback
             Router.route(animated: true)
         }
     }
