@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 import ClosureKit
 
 final class LaunchViewController: UIViewController {
@@ -52,7 +53,8 @@ final class LaunchViewController: UIViewController {
     }
 
     @IBAction private func logoutTapped() {
-        // TODO: logout
-        print("logout!")
+        PFUser.logOutInBackgroundWithBlock { error in
+            Router.route(animated: true)
+        }
     }
 }
