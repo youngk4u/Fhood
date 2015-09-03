@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Parse
 
 final class AccountViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
-    
+
     var array : [String] = ["   History                                           >",
                             "   Photos                                           >",
                             "   Log out", "",""]
@@ -55,12 +56,15 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
     
     func tableView(tableView2: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.selectedRow = indexPath.row
-  
+
         if self.selectedRow == 0 {
             self.performSegueWithIdentifier("toHistoryView", sender: tableView2)
-        }
-        else if self.selectedRow == 1 {
+        } else if self.selectedRow == 1 {
             self.performSegueWithIdentifier("toPhotoView", sender: tableView2)
+        } else if self.selectedRow == 2 {
+            PFUser.logOutInBackgroundWithBlock { error in
+                Router.route(animated: true)
+            }
         }
     }
     
