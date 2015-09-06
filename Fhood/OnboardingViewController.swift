@@ -34,7 +34,7 @@ final class OnboardingViewController: UIViewController {
             guard result?.isCancelled == false else { return }
             guard error == nil, let token = result?.token else {
                 FBSDKLoginManager().logOut()
-                // show error
+                self.showAlert(withMessage: "There was an error logging in to your Facebook account, please try again!")
                 return
             }
 
@@ -100,7 +100,8 @@ final class OnboardingViewController: UIViewController {
         HUD.dismiss()
 
         guard error == nil && user != nil else {
-            //if error != nil show feedback
+            let message = error?.localizedDescription ?? "Something went wrong, please try again!"
+            self.showAlert(withMessage: message)
             return
         }
 
