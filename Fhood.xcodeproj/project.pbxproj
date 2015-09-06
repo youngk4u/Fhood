@@ -243,7 +243,6 @@
 				636CB16C1B94530600674C91 /* ManageCollectionViewCell.swift */,
 				636CB16D1B94530600674C91 /* ManageTableViewCell.swift */,
 				63CB95231B945714005815E7 /* OrdersTableViewCell.swift */,
-				3B356FD71B93FCB30014AD22 /* LaunchScreenView.swift */,
 				636F75131B7E973A00A8C1E8 /* BubbleView.swift */,
 				63CA5CA31B41AF3B008D16A1 /* FilterMenu.swift */,
 				63CA5CA01B3F82F1008D16A1 /* TableViewCell3.swift */,
