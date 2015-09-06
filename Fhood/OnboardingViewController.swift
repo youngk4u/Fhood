@@ -54,8 +54,7 @@ final class OnboardingViewController: UIViewController {
 
         } else {
             let user = PFUser(email: email, password: password)
-            user.signUpInBackgroundWithBlock { [weak self] success, error in
-                HUD.dismiss()
+            user.signUpInBackgroundWithBlock { [weak self] _, error in
                 self?.parseDidAuthenticate(withUser: PFUser.currentUser(), error: error)
             }
         }
@@ -64,12 +63,42 @@ final class OnboardingViewController: UIViewController {
     private func authenticate(withFacebookAccessToken token: FBSDKAccessToken) {
         HUD.show()
         PFFacebookUtils.logInInBackgroundWithAccessToken(token) { [weak self] user, error in
-            HUD.dismiss()
-            self?.parseDidAuthenticate(withUser: user, error: error)
+            guard error == nil, let user = user else {
+                self?.parseDidAuthenticate(withUser: nil, error: error)
+                return
+            }
+
+            // If the user already exists, we just finish authentication and move on
+            if !user.isNew {
+                self?.parseDidAuthenticate(withUser: user, error: error)
+                return
+            }
+
+            // For new users, we grab some extra info and save it
+            let graphParameters = ["fields": "first_name, last_name, email, picture.type(large)"]
+            let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: graphParameters)
+            graphRequest.startWithCompletionHandler { _, result, _ in
+                // if for some reason this fails, we must ask for the user's email separately
+                guard let email = result?["email"] as? String else {
+                    self?.parseDidAuthenticate(withUser: user, error: nil)
+                    return
+                }
+
+                user.username = email
+                user.email = email
+                user["firstName"] = result?["first_name"]
+                user["lastName"] = result?["last_name"]
+                user["pictureUrl"] = result?["picture"]??["data"]??["url"]
+                user.saveInBackgroundWithBlock { _, error  in
+                    self?.parseDidAuthenticate(withUser: user, error: nil)
+                }
+            }
         }
     }
 
     private func parseDidAuthenticate(withUser user: PFUser?, error: NSError?) {
+        HUD.dismiss()
+
         guard error == nil && user != nil else {
             //if error != nil show feedback
             return
