@@ -10,6 +10,7 @@ target :Fhood do
     pod 'FBSDKLoginKit'         , :git => "https://github.com/facebook/facebook-ios-sdk.git", :branch => "release-4.6.0-beta1"
     pod 'JGProgressHUD'
     pod 'Parse'
+    pod 'ParseFacebookUtilsV4'
     pod 'SWRevealViewController', :git => "https://github.com/John-Lluch/SWRevealViewController.git", :branch => "master", :inhibit_warnings => true
     pod 'SnapKit'               , :git => "https://github.com/SnapKit/SnapKit.git", :branch => "swift-2.0"
 end

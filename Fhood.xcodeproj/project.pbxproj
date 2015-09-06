@@ -39,8 +39,6 @@
 		639B461A1B7E927700A001F2 /* BubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639B46191B7E927700A001F2 /* BubbleView.xib */; };
 		63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */; };
 		63AD61BA1B91A1C200BA1574 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B71B91A1C200BA1574 /* LandingViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		63AD61BB1B91A1C200BA1574 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B81B91A1C200BA1574 /* LoginViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		63AD61BC1B91A1C200BA1574 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B91B91A1C200BA1574 /* SignUpViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CD1B2010AA00077377 /* AccountViewController.swift */; };
 		63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CF1B201E9D00077377 /* PaymentViewController.swift */; };
 		63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B4560A1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift */; };
@@ -114,8 +112,6 @@
 		639B46191B7E927700A001F2 /* BubbleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BubbleView.xib; sourceTree = "<group>"; };
 		63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		63AD61B71B91A1C200BA1574 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
-		63AD61B81B91A1C200BA1574 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		63AD61B91B91A1C200BA1574 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		63B329C91B1FECB300077377 /* Fhood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fhood-Bridging-Header.h"; sourceTree = "<group>"; };
 		63B329CD1B2010AA00077377 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		63B329CF1B201E9D00077377 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
@@ -294,8 +290,6 @@
 				3B356FD91B940C240014AD22 /* LaunchViewController.swift */,
 				63AD61B71B91A1C200BA1574 /* LandingViewController.swift */,
 				3B356FCB1B9275670014AD22 /* OnboardingViewController.swift */,
-				63AD61B81B91A1C200BA1574 /* LoginViewController.swift */,
-				63AD61B91B91A1C200BA1574 /* SignUpViewController.swift */,
 			);
 			name = Onboarding;
 			sourceTree = "<group>";
@@ -549,7 +543,6 @@
 				63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */,
 				63F70A371B5B765300A2D618 /* fhooderFive.swift in Sources */,
 				636CB1711B94536400674C91 /* OrdersViewController.swift in Sources */,
-				63AD61BC1B91A1C200BA1574 /* SignUpViewController.swift in Sources */,
 				3B356FCE1B9284500014AD22 /* Constants.swift in Sources */,
 				63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */,
 				63F70A351B5B764800A2D618 /* fhooderFour.swift in Sources */,
@@ -566,7 +559,6 @@
 				63CA5CA71B425119008D16A1 /* FhooderViewController.swift in Sources */,
 				6333769B1B5845FD00F7D846 /* RateViewController.swift in Sources */,
 				636CB16E1B94530600674C91 /* ManageCollectionViewCell.swift in Sources */,
-				63AD61BB1B91A1C200BA1574 /* LoginViewController.swift in Sources */,
 				63F70A3D1B5B767500A2D618 /* fhooderEight.swift in Sources */,
 				3B356FD31B93E6A30014AD22 /* HUD.swift in Sources */,
 				63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */,

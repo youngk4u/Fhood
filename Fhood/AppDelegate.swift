@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import FBSDKCoreKit
+import ParseFacebookUtilsV4
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,8 +26,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
 
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-        FBSDKApplicationDelegate.sharedInstance().application(application,
-            didFinishLaunchingWithOptions: launchOptions)
+        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
 
         return true
     }

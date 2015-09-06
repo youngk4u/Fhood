@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import Parse
+import ParseFacebookUtilsV4
 
-class OnboardingViewController: UIViewController {
+final class OnboardingViewController: UIViewController {
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBInspectable var intentIsLogin: Bool = false
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,11 +23,44 @@ class OnboardingViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
-    func authenticate() {
-        assertionFailure("subclasses must implement")
+    // MARK: - Private functions
+
+    @IBAction private func facebookTapped() {
+        HUD.show()
+
+        PFFacebookUtils.logInInBackgroundWithReadPermissions(Constants.Vendor.FacebookPermissions) { [weak self] user, error in
+            self?.parseDidAuthenticate(withUser: user, error: error)
+        }
     }
 
-    // MARK: - Private functions
+    private func authenticate() {
+        guard let email = self.emailTextField.text, password = self.passwordTextField.text else { return }
+
+        HUD.show()
+
+        if self.intentIsLogin {
+            PFUser.logInWithUsernameInBackground(email, password: password) { [weak self] user, error in
+                self?.parseDidAuthenticate(withUser: user, error: error)
+            }
+
+        } else {
+            let user = PFUser(email: email, password: password)
+            user.signUpInBackgroundWithBlock { [weak self] success, error in
+                self?.parseDidAuthenticate(withUser: PFUser.currentUser(), error: error)
+            }
+        }
+    }
+
+    private func parseDidAuthenticate(withUser user: PFUser?, error: NSError?) {
+        HUD.dismiss()
+
+        guard error == nil && user != nil else {
+            //if error != nil show feedback
+            return
+        }
+
+        Router.route(animated: true)
+    }
 
     private func validateInput() -> Bool {
         guard let email = self.emailTextField.text where !email.isEmpty else {
@@ -81,5 +113,17 @@ extension OnboardingViewController: UITextFieldDelegate {
 
         return true
     }
+}
 
+// MARK: - PFUser private extension
+
+private extension PFUser {
+
+    convenience init(email: String, password: String) {
+        self.init()
+
+        self.username = email
+        self.email = email
+        self.password = password
+    }
 }
