@@ -5,11 +5,13 @@ target :Fhood do
     xcodeproj 'Fhood.xcodeproj'
 
     pod 'Alamofire'             , :git => "https://github.com/Alamofire/Alamofire.git", :branch => "swift-2.0"
-    pod 'SWRevealViewController', :git => "https://github.com/John-Lluch/SWRevealViewController.git", :branch => "master", :inhibit_warnings => true
     pod 'ClosureKit'            , :git => "https://github.com/Reflejo/ClosureKit", :branch => "swift-2.0"
-    pod 'SnapKit'               , :git => "https://github.com/SnapKit/SnapKit.git", :branch => "swift-2.0"
-    pod 'Parse'
+    pod 'FBSDKCoreKit'          , :git => "https://github.com/facebook/facebook-ios-sdk.git", :branch => "release-4.6.0-beta1"
+    pod 'FBSDKLoginKit'         , :git => "https://github.com/facebook/facebook-ios-sdk.git", :branch => "release-4.6.0-beta1"
     pod 'JGProgressHUD'
+    pod 'Parse'
+    pod 'SWRevealViewController', :git => "https://github.com/John-Lluch/SWRevealViewController.git", :branch => "master", :inhibit_warnings => true
+    pod 'SnapKit'               , :git => "https://github.com/SnapKit/SnapKit.git", :branch => "swift-2.0"
 end
 
 post_install do |installer|
