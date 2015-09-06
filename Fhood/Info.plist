@@ -25,6 +25,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>fhood</string>
 				<string>fb515338641949786</string>
 			</array>
 		</dict>

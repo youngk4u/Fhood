@@ -26,10 +26,19 @@ final class OnboardingViewController: UIViewController {
     // MARK: - Private functions
 
     @IBAction private func facebookTapped() {
-        HUD.show()
+        if let token = FBSDKAccessToken.currentAccessToken() {
+            return self.authenticate(withFacebookAccessToken: token)
+        }
 
-        PFFacebookUtils.logInInBackgroundWithReadPermissions(Constants.Vendor.FacebookPermissions) { [weak self] user, error in
-            self?.parseDidAuthenticate(withUser: user, error: error)
+        FBSDKLoginManager().logInWithReadPermissions(Constants.Vendor.FacebookPermissions) { result, error in
+            guard result?.isCancelled == false else { return }
+            guard error == nil, let token = result?.token else {
+                FBSDKLoginManager().logOut()
+                // show error
+                return
+            }
+
+            self.authenticate(withFacebookAccessToken: token)
         }
     }
 
@@ -46,14 +55,21 @@ final class OnboardingViewController: UIViewController {
         } else {
             let user = PFUser(email: email, password: password)
             user.signUpInBackgroundWithBlock { [weak self] success, error in
+                HUD.dismiss()
                 self?.parseDidAuthenticate(withUser: PFUser.currentUser(), error: error)
             }
         }
     }
 
-    private func parseDidAuthenticate(withUser user: PFUser?, error: NSError?) {
-        HUD.dismiss()
+    private func authenticate(withFacebookAccessToken token: FBSDKAccessToken) {
+        HUD.show()
+        PFFacebookUtils.logInInBackgroundWithAccessToken(token) { [weak self] user, error in
+            HUD.dismiss()
+            self?.parseDidAuthenticate(withUser: user, error: error)
+        }
+    }
 
+    private func parseDidAuthenticate(withUser user: PFUser?, error: NSError?) {
         guard error == nil && user != nil else {
             //if error != nil show feedback
             return
