@@ -7,15 +7,14 @@
 //
 
 import UIKit
+import Parse
+import ParseFacebookUtilsV4
 
-class OnboardingViewController: UIViewController {
+final class OnboardingViewController: UIViewController {
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var passwordTextField: UITextField!
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBInspectable var intentIsLogin: Bool = false
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -24,11 +23,89 @@ class OnboardingViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
-    func authenticate() {
-        assertionFailure("subclasses must implement")
+    // MARK: - Private functions
+
+    @IBAction private func facebookTapped() {
+        if let token = FBSDKAccessToken.currentAccessToken() {
+            return self.authenticate(withFacebookAccessToken: token)
+        }
+
+        FBSDKLoginManager().logInWithReadPermissions(Constants.Vendor.FacebookPermissions) { result, error in
+            guard result?.isCancelled == false else { return }
+            guard error == nil, let token = result?.token else {
+                FBSDKLoginManager().logOut()
+                // show error
+                return
+            }
+
+            self.authenticate(withFacebookAccessToken: token)
+        }
     }
 
-    // MARK: - Private functions
+    private func authenticate() {
+        guard let email = self.emailTextField.text, password = self.passwordTextField.text else { return }
+
+        HUD.show()
+
+        if self.intentIsLogin {
+            PFUser.logInWithUsernameInBackground(email, password: password) { [weak self] user, error in
+                self?.parseDidAuthenticate(withUser: user, error: error)
+            }
+
+        } else {
+            let user = PFUser(email: email, password: password)
+            user.signUpInBackgroundWithBlock { [weak self] _, error in
+                self?.parseDidAuthenticate(withUser: PFUser.currentUser(), error: error)
+            }
+        }
+    }
+
+    private func authenticate(withFacebookAccessToken token: FBSDKAccessToken) {
+        HUD.show()
+        PFFacebookUtils.logInInBackgroundWithAccessToken(token) { [weak self] user, error in
+            guard error == nil, let user = user else {
+                self?.parseDidAuthenticate(withUser: nil, error: error)
+                return
+            }
+
+            // If the user already exists, we just finish authentication and move on
+            if !user.isNew {
+                self?.parseDidAuthenticate(withUser: user, error: error)
+                return
+            }
+
+            // For new users, we grab some extra info and save it
+            let graphParameters = ["fields": "first_name, last_name, email, picture.type(large)"]
+            let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: graphParameters)
+            graphRequest.startWithCompletionHandler { _, result, _ in
+                // if for some reason this fails, we must ask for the user's email separately
+                guard let email = result?["email"] as? String else {
+                    self?.parseDidAuthenticate(withUser: user, error: nil)
+                    return
+                }
+
+                user.username = email
+                user.email = email
+                user["firstName"] = result?["first_name"]
+                user["lastName"] = result?["last_name"]
+                user["pictureUrl"] = result?["picture"]??["data"]??["url"]
+                user.saveInBackgroundWithBlock { _, error  in
+                    self?.parseDidAuthenticate(withUser: user, error: nil)
+                }
+            }
+        }
+    }
+
+    private func parseDidAuthenticate(withUser user: PFUser?, error: NSError?) {
+        HUD.dismiss()
+
+        guard error == nil && user != nil else {
+            //if error != nil show feedback
+            return
+        }
+
+        Router.route(animated: true)
+    }
 
     private func validateInput() -> Bool {
         guard let email = self.emailTextField.text where !email.isEmpty else {
@@ -81,5 +158,17 @@ extension OnboardingViewController: UITextFieldDelegate {
 
         return true
     }
+}
 
+// MARK: - PFUser private extension
+
+private extension PFUser {
+
+    convenience init(email: String, password: String) {
+        self.init()
+
+        self.username = email
+        self.email = email
+        self.password = password
+    }
 }

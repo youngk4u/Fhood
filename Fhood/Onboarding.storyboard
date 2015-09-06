@@ -102,7 +102,7 @@
         <!--SignUpViewController-->
         <scene sceneID="2J5-R9-MCd">
             <objects>
-                <viewController id="oKT-aY-WTQ" userLabel="SignUpViewController" customClass="SignUpViewController" customModule="Fhood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="oKT-aY-WTQ" userLabel="SignUpViewController" customClass="OnboardingViewController" customModule="Fhood" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pGT-YE-0Ls"/>
                         <viewControllerLayoutGuide type="bottom" id="Sqn-gP-5yR"/>
@@ -122,6 +122,9 @@
                                 <state key="normal" title="Facebook">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="facebookTapped" destination="oKT-aY-WTQ" eventType="touchUpInside" id="LW2-vI-Z0E"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up with:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCv-ip-m9x">
                                 <rect key="frame" x="20" y="90" width="96" height="21"/>
@@ -189,6 +192,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sign up" id="YCh-KS-A9J"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="intentIsLogin" value="NO"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="emailTextField" destination="yEf-4V-sRe" id="Fyb-4C-FaS"/>
                         <outlet property="passwordTextField" destination="qQN-cv-Yk6" id="qdE-p6-3Pd"/>
@@ -201,7 +207,7 @@
         <!--LoginViewController-->
         <scene sceneID="CK5-0G-ZFq">
             <objects>
-                <viewController id="6zY-CN-1Yh" userLabel="LoginViewController" customClass="LoginViewController" customModule="Fhood" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="6zY-CN-1Yh" userLabel="LoginViewController" customClass="OnboardingViewController" customModule="Fhood" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eaJ-ir-Zf9"/>
                         <viewControllerLayoutGuide type="bottom" id="s4y-GE-wFV"/>
@@ -221,6 +227,9 @@
                                 <state key="normal" title="Facebook">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="facebookTapped" destination="6zY-CN-1Yh" eventType="touchUpInside" id="nh3-zR-m8Z"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Log in with:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWZ-oH-prM">
                                 <rect key="frame" x="20" y="90" width="85" height="21"/>
@@ -281,6 +290,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Log in" id="dvc-H0-b95"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="intentIsLogin" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <connections>
                         <outlet property="emailTextField" destination="GEM-U3-3go" id="Wd8-WZ-0kZ"/>
                         <outlet property="passwordTextField" destination="QL1-T8-gYi" id="zk4-87-okl"/>
