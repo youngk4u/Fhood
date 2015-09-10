@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FhooderTabBarController: UITabBarController {
+final class FhooderTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,5 +24,4 @@ class FhooderTabBarController: UITabBarController {
         UINavigationBar.appearance().barTintColor = UIColor(red: 0/255, green: 255/255, blue: 234/255, alpha: 1)
         UINavigationBar.appearance().backgroundColor = UIColor(red: 0/255, green: 255/255, blue: 234/255, alpha: 1)
     }
-    
 }

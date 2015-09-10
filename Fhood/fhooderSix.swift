@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 func fhooderSix() {
-    
     variables.name = "Vitameatavegamin"
     variables.ratingInString = "4andHalf-Spoon"
     variables.reviews = 13
@@ -31,14 +29,14 @@ func fhooderSix() {
     variables.timeCloseHour = 12
     variables.timeCloseMinute = 0
     variables.timeCloseAmpm = "PM"
-    
+
     variables.itemNames = ["Cold Pressed Juice", "Fresh Squeezed Juice"]
     variables.itemPrices = [5.0, 4.0]
     variables.itemCount = [0, 0]
     variables.itemIngredients = ["Carrots, Oranges.", "Kale, Apple, Carrot.", "Orange.", "Beets, Ginger, Apple."]
-    
+
     variables.fhooderFace = "fhooder6face"
     variables.fhooderFirstName = "Henry"
-    
+
     variables.fhooderPic = "fhooder6"
 }

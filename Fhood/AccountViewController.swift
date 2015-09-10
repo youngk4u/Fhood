@@ -39,21 +39,21 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
     func tableView(tableView2: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.array.count
     }
-    
+
     func tableView(tableView2: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Try to get a cell to reuse
         let cell: UITableViewCell = tableView2.dequeueReusableCellWithIdentifier("Tablecell2", forIndexPath: indexPath)
-        
+
         // Customize cell
         cell.textLabel?.text = self.array[indexPath.row]
         cell.textLabel?.textColor = UIColor.darkGrayColor()
         cell.textLabel?.font = UIFont.systemFontOfSize(15.0)
         // Cell Marginal lines on the left to stretch all the way to the left screen
         cell.layoutMargins = UIEdgeInsetsZero
-        
+
         return cell
     }
-    
+
     func tableView(tableView2: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.selectedRow = indexPath.row
 
@@ -67,15 +67,10 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
             }
         }
     }
-    
+
     func toggleSwitch(sender: UISwitch) {
-        UIView.animateWithDuration(0.5, animations: {
-            if self.joinWindow.alpha == 0 {
-                self.joinWindow.alpha = 1
-            }
-            else {
-                self.joinWindow.alpha = 0
-            }
-        })
+        UIView.animate(withDuration: 0.5) {
+            self.joinWindow.alpha = self.joinWindow.alpha == 0 ? 1 : 0
+        }
     }
 }

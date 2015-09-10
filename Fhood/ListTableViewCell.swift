@@ -22,6 +22,4 @@ final class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var fhooderOpen: UILabel!
     @IBOutlet weak var fhooderClosed: UILabel!
     @IBOutlet weak var fhooderDistance: UILabel!
-    
-    
 }

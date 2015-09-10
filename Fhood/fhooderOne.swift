@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 func fhooderOne() {
-    
     variables.name = "Say Cheese"
     variables.ratingInString = "4-Spoon"
     variables.reviews = 102
@@ -31,15 +29,14 @@ func fhooderOne() {
     variables.timeCloseHour = 4
     variables.timeCloseMinute = 0
     variables.timeCloseAmpm = "PM"
-    
+
     variables.itemNames = ["Grilled Cheese", "Fried Grilled Cheese", "Milk", "Flavoured Milk"]
     variables.itemPrices = [2.0, 3.0, 1.5, 1.75]
     variables.itemCount = [0, 0, 0, 0]
     variables.itemIngredients = ["Wheat bread, Cheese (Swiss, American), Butter.", "Sourdough bread, Cheese (Muenster, Cheddar), Butter.", "Milk", "Milk, Artificial flavoring."]
-    
+
     variables.fhooderFace = "fhooder1face"
     variables.fhooderFirstName = "Stephanie"
-    
+
     variables.fhooderPic = "fhooder1"
-    
 }

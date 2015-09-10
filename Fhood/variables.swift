@@ -40,14 +40,13 @@ struct variables {
     static var orderTimeMinute: Int?
     static var orderTimeAmpm: String?
     static var orderTime: String?
-    
+
     static var itemNames: [String]?
     static var itemPrices: [Double]?
     static var itemCount: [Int]?
     static var totalItemPrice: Double?
     static var itemIngredients: [String]?
-    
+
     static var fhooderFace: String?
     static var fhooderPic: String?
-    
 }

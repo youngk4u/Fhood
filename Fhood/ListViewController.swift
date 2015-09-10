@@ -60,7 +60,6 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
 
-        
         self.TableView.delegate = self
         self.TableView.dataSource = self
         self.TableView.layoutMargins = UIEdgeInsetsZero
@@ -75,10 +74,12 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
     
     func filterAction(sender: AnyObject) {
         if filterMenu == nil {
-            let sections = [FilterMenuSectionInfo(titles: ["Less than $5", "$5 ~ $10", "More than $10"]),
+            let sections = [
+                FilterMenuSectionInfo(titles: ["Less than $5", "$5 ~ $10", "More than $10"]),
                 FilterMenuSectionInfo(titles: ["Highest rated", "Most reviewed"]),
                 FilterMenuSectionInfo(titles: ["Open now", "Reserve"]),
-                FilterMenuSectionInfo(titles: ["Pick up", "Eat in", "Delivery"])]
+                FilterMenuSectionInfo(titles: ["Pick up", "Eat in", "Delivery"])
+            ]
             
             filterMenu = FilterMenu(navigationController: self.navigationController!, sections: sections, delegate: self)
         }
@@ -97,31 +98,22 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
 
         if (section == 1 && subMenu == 1) {
             
-        }
-        else if (section == 1 && subMenu == 2) {
+        } else if (section == 1 && subMenu == 2) {
             
         }
     }
-    
-    
-    
-    
-    
+
     // Table View
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.array.count
     }
-    
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
         // Try to get a cell to reuse
         let cell = tableView.dequeueReusableCellWithIdentifier("Tablecell") as! ListTableViewCell
-        
-        
+
         // Customize cell
         for (var i = 0; i < self.array.count; i++) {
-        
             if indexPath.row == 0 {
                 fhooderOne()
             }
@@ -175,8 +167,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         
         return cell
     }
-    
-    
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         self.selectedRow = indexPath.row
@@ -212,11 +203,6 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
             fhooderTen()
         }
 
-
-
         TableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
-
 }
-

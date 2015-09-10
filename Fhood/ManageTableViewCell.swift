@@ -8,8 +8,6 @@
 
 import UIKit
 
-class ManageTableViewCell: UITableViewCell {
-
-
+final class ManageTableViewCell: UITableViewCell {
 
 }

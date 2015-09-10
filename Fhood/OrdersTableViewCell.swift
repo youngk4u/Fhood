@@ -16,6 +16,4 @@ final class OrdersTableViewCell: UITableViewCell {
     @IBOutlet weak var fhoodieSpoon: UIImageView!
     @IBOutlet weak var fhoodieID: UILabel!
     @IBOutlet weak var pickupCountdown: UILabel!
-    
-
 }

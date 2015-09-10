@@ -8,20 +8,9 @@
 
 import UIKit
 
-class FhooderMoreViewController: UIViewController {
+final class FhooderMoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-       
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-       
-    }
-    
-
-
-
 }

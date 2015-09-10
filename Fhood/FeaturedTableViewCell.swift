@@ -10,7 +10,4 @@ import UIKit
 
 final class FeaturedTableViewCell: UITableViewCell {
 
-
-    
-
 }

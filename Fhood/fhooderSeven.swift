@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 func fhooderSeven() {
-    
     variables.name = "I'm a Bao-ler"
     variables.ratingInString = "4-Spoon"
     variables.reviews = 240
@@ -31,15 +29,14 @@ func fhooderSeven() {
     variables.timeCloseHour = 4
     variables.timeCloseMinute = 0
     variables.timeCloseAmpm = "PM"
-    
+
     variables.itemNames = ["Pork Bun", "Pork Fried Rice", "Jasmine Tea"]
     variables.itemPrices = [4.0, 4.0, 1.5]
     variables.itemCount = [0, 0, 0]
     variables.itemIngredients = ["Bun, Pork, Radish, Cucumber, Lettuce, Oyster Sauce.", "Rice, Oil, Peas, Eggs, Pork, Onion, Green Onion.", "Jasmine Tea."]
-    
+
     variables.fhooderFace = "fhooder7face"
     variables.fhooderFirstName = "Steve"
-    
-    variables.fhooderPic = "fhooder7"
 
+    variables.fhooderPic = "fhooder7"
 }
