@@ -37,15 +37,14 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         self.longitude = -122.419415
         self.latDelta = 0.06
         self.lonDelta = 0.06
-        
+
         self.span = MKCoordinateSpanMake(latDelta, lonDelta)
         self.location = CLLocationCoordinate2DMake(latitude, longitude)
         self.region = MKCoordinateRegionMake(location, span)
         self.Map.setRegion(region, animated: false)
-        
+
         Map.delegate = self
-        
-        
+
         // Put Fhooders on the map
         fhooderOne()
         let obj1 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
@@ -88,8 +87,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         Map.addAnnotation(obj8)
         Map.addAnnotation(obj9)
         Map.addAnnotation(obj10)
-        
-        
+
         // Custom Back button -> Cancel button
         let backItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
@@ -171,8 +169,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
     /*
     func filterAction(sender: AnyObject) {
-        if filterMenu == nil
-        {
+        if filterMenu == nil {
             let sections = [FilterMenuSectionInfo(titles: ["Less than $5", "$5 ~ $10", "More than $10"]),
                 FilterMenuSectionInfo(titles: ["Highest rated", "Most reviewed"]),
                 FilterMenuSectionInfo(titles: ["Open now", "Reserve"]),
@@ -191,9 +188,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     }
     
     func filterMenuViewDidSelect(section: Int, subMenu: Int) {
-        
         print("Did select: \nsection: \(section)\nsubMenu:\(subMenu)")
-        
         if (section == 1 && subMenu == 1) {
     
         }
@@ -201,12 +196,9 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
             
         }
     }
-    
-
 */
 
     func cancelPressed(sender: UIButton)  {
         self.cancelInfo.enabled = false
     }
-
 }

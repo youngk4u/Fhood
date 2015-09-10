@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 func fhooderEight() {
-    
     variables.name = "Rainbow Castle"
     variables.ratingInString = "5-Spoon"
     variables.reviews = 43
@@ -31,14 +29,14 @@ func fhooderEight() {
     variables.timeCloseHour = 3
     variables.timeCloseMinute = 0
     variables.timeCloseAmpm = "AM"
-    
+
     variables.itemNames = ["Slider", "Homemade Fries", "Root Beer"]
     variables.itemPrices = [1.0, 2.0, 1.5]
     variables.itemCount = [0, 0, 0]
     variables.itemIngredients = ["Buns, Ground Beef, Cheddar Cheese, Onions, Salt.", "Potato, Oil.", "Root Beer, Sugar, Water, Flavor."]
-    
+
     variables.fhooderFace = "fhooder8face"
     variables.fhooderFirstName = "Annie"
-    
+
     variables.fhooderPic = "fhooder8"
 }

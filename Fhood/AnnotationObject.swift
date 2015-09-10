@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 
 final class AnnotationObject: NSObject, MKAnnotation  {
-   
+
     //MKAnnotation ->>> Protocol
     let title: String?
     let coordinate: CLLocationCoordinate2D
@@ -23,13 +23,12 @@ final class AnnotationObject: NSObject, MKAnnotation  {
     let open: Bool
     let closed: Bool
     let imageRatingActive: UIImage
+
     var reviewsDescription: String {
         return "\(countReviews) Reviews"
     }
-    
-    
+
     init(title: String, subtitle: String,coordinate: CLLocationCoordinate2D, countReviews: Int, image: UIImage, price: Double, open: Bool, closed: Bool, imageRating: UIImage) {
-            
         self.title = title
         self.coordinate = coordinate
         self.subtitle = subtitle
@@ -39,8 +38,7 @@ final class AnnotationObject: NSObject, MKAnnotation  {
         self.open = open
         self.closed = closed
         self.imageRatingActive = imageRating
+
         super.init()
     }
-    
-    
 }

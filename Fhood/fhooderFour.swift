@@ -8,9 +8,7 @@
 
 import UIKit
 
-
 func fhooderFour() {
-    
     variables.name = "Little Boxes"
     variables.ratingInString = "4-Spoon"
     variables.reviews = 34
@@ -31,14 +29,14 @@ func fhooderFour() {
     variables.timeCloseHour = 6
     variables.timeCloseMinute = 0
     variables.timeCloseAmpm = "PM"
-    
+
     variables.itemNames = ["BBQ Chicken with Mac&Cheese", "Caprese Salad", "Chicken Parmesean", "Meatloaf Lunch", "Salmon Rice", "Steak Breakfast", "Evian Water"]
     variables.itemPrices = [5.0, 4.0, 5.0, 6.0, 6.0, 6.0, 1.5]
     variables.itemCount = [0, 0, 0, 0, 0, 0, 0]
     variables.itemIngredients = ["Chicken, BBQ sauce, Macaronni, Cheese, Milk, Green beans.", "Tomato, Mozzarella, Basil, Balsamic vinegar, Olive oil.", "Chicken, Noodle, Bread crumbs, Oil, Salt, Oregano, Basil, Tomato sauce, Mozzarella cheese, Parmesan cheese.", "Ground beef, Salt, Garlic, Ketchup, Spices, Yams, Green beans", "Brown rice, Salmon, Salt, Lemon, Pepper, Broccoli", "Eggs, Potatoes, Beef, Pepper, Salt", "Water"]
-    
+
     variables.fhooderFace = "fhooder4face"
     variables.fhooderFirstName = "Angela"
-    
+
     variables.fhooderPic = "fhooder4"
 }

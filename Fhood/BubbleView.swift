@@ -21,12 +21,10 @@ final class BubbleView: MKAnnotationView {
     @IBOutlet weak var PriceLabel: UILabel!
     @IBOutlet weak var OpenLabel: UILabel!
     @IBOutlet weak var ClosedLabel: UILabel!
-    
+
     var annotationObj: AnnotationObject?
 
-   
-    func SetUpView(annotation: AnnotationObject)
-    {
+    func SetUpView(annotation: AnnotationObject) {
         self.BubbleView.layer.cornerRadius = 9
         ReviewLabel.text = annotation.reviewsDescription
         TypeLabel.text = annotation.subtitle
@@ -37,6 +35,4 @@ final class BubbleView: MKAnnotationView {
         PriceLabel.text = "$\(annotation.price.description)0"
         SpoonLabel.image = annotation.imageRatingActive
     }
-
-        
 }

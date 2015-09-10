@@ -22,17 +22,14 @@ final class DirectionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.tabBarController?.tabBar.hidden = true
 
         // Animate mylocation and time
-        UIView.animateWithDuration(3, animations: { () -> Void in
-            
+        UIView.animateWithDuration(3, animations: {
             self.myLocation.frame = CGRect(x: 94, y: -100, width: 30, height: 30)
             self.guideLine.frame = CGRect(x: 94, y: 151, width: 30, height: -250)
-            
-        }) { (Bool) -> Void in
-            
+        }) { _ in
             self.distance.text = "                   0 feet"
             self.time.text = "Arrived"
             self.time.textAlignment = NSTextAlignment.Center
@@ -40,7 +37,6 @@ final class DirectionViewController: UIViewController {
             
             self.dimView3.alpha = 0.5
             self.notificationView.alpha = 1
-            
         }
     }
     
@@ -50,8 +46,7 @@ final class DirectionViewController: UIViewController {
     }
 
     @IBAction func segmentControl(sender: AnyObject) {
-        switch sender.selectedSegmentIndex
-        {
+        switch sender.selectedSegmentIndex {
         case 0:
             return
         case 1:

@@ -69,7 +69,6 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         })
     }
 
-
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         super.touchesBegan(touches, withEvent: event)
 
@@ -94,7 +93,6 @@ final class RateViewController: UIViewController, UITextViewDelegate {
             self.dimView.alpha = 0
         })
     }
-    
 
     func onePressed (sender: UIButton!) {
         self.spoonOne.setImage(goodSpoon, forState: UIControlState.Normal)

@@ -8,9 +8,7 @@
 
 import UIKit
 
-
-func fhooderTwo() {
-    
+func fhooderTwo() {    
     variables.name = "Seouldelicious"
     variables.ratingInString = "5-Spoon"
     variables.reviews = 28

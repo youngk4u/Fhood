@@ -9,11 +9,9 @@
 import UIKit
 
 final class OrdersViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
     
     @IBOutlet weak var TableView: UITableView!
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -25,16 +23,13 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         // TableView Delegates
         self.TableView.delegate = self
         self.TableView.dataSource = self
-        
-
     }
 
     // Table View
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
-    
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         // Try to get a cell to reuse
@@ -44,18 +39,11 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         cell.layoutMargins = UIEdgeInsetsZero
 
         // Link Fhoodie information
-        
-        
+
         return cell
     }
-    
-    
-    
+
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-                
         TableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
-    
-
-
 }
