@@ -10,7 +10,9 @@ import UIKit
 import MapKit
 import CoreLocation
 
-final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+private let pinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
+
+final class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
     
     @IBOutlet private var Map: MKMapView!
     @IBOutlet private var cancelInfo: UIButton!
@@ -121,48 +123,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         self.cancelInfo.addTarget(self, action: "cancelPressed:", forControlEvents: UIControlEvents.TouchUpInside)
     }
 
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?{
-        let reuseIdentifier = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
-        
-        if pinView == nil {
-            pinView = BubbleView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            pinView!.canShowCallout = false
-        } else {
-            pinView!.annotation = annotation
-        }
-
-        //Set custom pin image
-        pinView!.image = UIImage(named: "FhooderOn")
-        
-        return pinView
-    }
-    
-    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        performSegueWithIdentifier("fhooderOne", sender: self)
-    }
-
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView){
-        let bubbleView = NSBundle.mainBundle().loadNibNamed("BubbleView", owner: self, options: nil)[0] as? BubbleView
-        let annotationObj = view.annotation as! AnnotationObject
-        bubbleView?.SetUpView(annotationObj)
-        bubbleView?.layer.cornerRadius = 10
-        view.addSubview(bubbleView!)
-        
-        bubbleView?.center = CGPointMake(bubbleView!.bounds.size.width*0.1, -bubbleView!.bounds.size.height*0.53)
-    }
-    
-    /*
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        fhooderOne()
-        performSegueWithIdentifier("fhooderOne", sender: self)
-    }
-    */
-    
-    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        view.subviews.forEach { $0.removeFromSuperview() }
-    }
-
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
@@ -186,7 +146,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         
         filterShown = !filterShown
     }
-    
+
     func filterMenuViewDidSelect(section: Int, subMenu: Int) {
         print("Did select: \nsection: \(section)\nsubMenu:\(subMenu)")
         if (section == 1 && subMenu == 1) {
@@ -200,5 +160,38 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
     func cancelPressed(sender: UIButton)  {
         self.cancelInfo.enabled = false
+    }
+}
+
+// MARK: - MKMapViewDelegate implementation
+
+extension MapViewController: MKMapViewDelegate {
+
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(pinAnnotationReuseIdentifier) ??
+            MKAnnotationView(annotation: annotation, reuseIdentifier: pinAnnotationReuseIdentifier)
+
+        pinView.canShowCallout = false
+        pinView.annotation = annotation
+        pinView.image = UIImage(named: "FhooderOn")
+
+        return pinView
+    }
+
+    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        fhooderOne()
+        performSegueWithIdentifier("fhooderOne", sender: self)
+    }
+
+    func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
+        guard let bubbleView = NSBundle.mainBundle().loadNibNamed("BubbleView", owner: self, options: nil)[0] as? BubbleView else { return }
+        bubbleView.annotation = annotationView.annotation as? AnnotationObject
+        annotationView.addSubview(bubbleView)
+
+        bubbleView.center = CGPointMake(annotationView.bounds.size.width * 0.5, -bubbleView.bounds.size.height * 0.53)
+    }
+
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        view.subviews.forEach { $0.removeFromSuperview() }
     }
 }

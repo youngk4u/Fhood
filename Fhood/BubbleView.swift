@@ -9,8 +9,7 @@
 import UIKit
 import MapKit
 
-final class BubbleView: MKAnnotationView {
-
+final class BubbleView: UIView {
     @IBOutlet weak var BubbleView: UIView!
     @IBOutlet weak var NameLabel: UILabel!
     @IBOutlet weak var ImageLabel: UIImageView!
@@ -22,17 +21,23 @@ final class BubbleView: MKAnnotationView {
     @IBOutlet weak var OpenLabel: UILabel!
     @IBOutlet weak var ClosedLabel: UILabel!
 
-    var annotationObj: AnnotationObject?
+    var annotation: AnnotationObject? {
+        didSet {
+            guard let annotation = self.annotation else { return }
+            self.ReviewLabel.text = annotation.reviewsDescription
+            self.TypeLabel.text = annotation.subtitle
+            self.NameLabel.text = annotation.title
+            self.ImageLabel.image = annotation.image
+            self.OpenLabel.hidden = annotation.open == false
+            self.ClosedLabel.hidden = annotation.closed == false
+            self.PriceLabel.text = String(format: "$%.2f", annotation.price)
+            self.SpoonLabel.image = annotation.imageRatingActive
+        }
+    }
 
-    func SetUpView(annotation: AnnotationObject) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
         self.BubbleView.layer.cornerRadius = 9
-        ReviewLabel.text = annotation.reviewsDescription
-        TypeLabel.text = annotation.subtitle
-        NameLabel.text = annotation.title
-        ImageLabel.image = annotation.image
-        OpenLabel.hidden = !annotation.open
-        ClosedLabel.hidden = !annotation.closed
-        PriceLabel.text = "$\(annotation.price.description)0"
-        SpoonLabel.image = annotation.imageRatingActive
+        self.layer.cornerRadius = 10
     }
 }
