@@ -80,8 +80,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
         
         fhooderTen()
         let obj10 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
-        
+
         self.mapView.addAnnotation(obj1)
         self.mapView.addAnnotation(obj2)
         self.mapView.addAnnotation(obj3)
@@ -93,33 +92,27 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
         self.mapView.addAnnotation(obj9)
         self.mapView.addAnnotation(obj10)
 
-        // Custom Back button -> Cancel button
-        let backItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backItem
-        
         // Search Bar
+        UISearchBar.appearance().backgroundImage = nil // Search Bar with no rim
+        self.navigationItem.titleView = UIBarButtonItem(customView: searchBars).customView
         self.searchBars.delegate = self
-        let navBarButton = UIBarButtonItem(customView: searchBars)
-        self.navigationItem.titleView = navBarButton.customView
         self.searchBars.placeholder = "Sandwich"
-        
-        // Search Bar with no rim
-        UISearchBar.appearance().backgroundImage = nil
 
         // Configure reveal for this view
         let revealController = self.revealViewController()
         revealController.panGestureRecognizer()
         revealController.tapGestureRecognizer()
 
+        // Custom Back button -> Cancel button
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: nil, action: nil)
+
         // Account Icon
-        let accountIcon = UIImage(named: "userCircle2")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
-            target: revealController, action: "revealToggle:")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "userCircle2"),
+            style: UIBarButtonItemStyle.Plain, target: revealController, action: "revealToggle:")
 
         // Filter Icon
-        let filterIcon = UIImage(named: "Filter 2")
-        let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
-        self.navigationItem.rightBarButtonItem = rightBarButton
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Filter 2"),
+            style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
 
         // When Fhooder button pressed, you can tap anywhere to disable the info window
         self.cancelInfo.enabled = false
@@ -189,9 +182,10 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
         self.calloutView.contentView = BubbleView.nibView(withAnnotation: annotationView.annotation as? AnnotationObject)
         self.calloutView.calloutOffset = annotationView.calloutOffset
-        self.calloutView.constrainedInsets = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: self.bottomLayoutGuide.length, right: 0)
         self.calloutView.contentViewInset = UIEdgeInsetsZero
-        self.calloutView.presentCalloutFromRect(annotationView.bounds, inView: annotationView, constrainedToView: self.view, animated: true)
+        self.calloutView.backgroundView = BubbleBackgroundView()
+        self.calloutView.presentCalloutFromRect(annotationView.bounds, inView: annotationView,
+            constrainedToView: self.view, animated: true)
     }
 
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
@@ -205,7 +199,7 @@ extension MapViewController: SMCalloutViewDelegate {
 
     func calloutView(calloutView: SMCalloutView, delayForRepositionWithSize offset: CGSize) -> NSTimeInterval {
         let currentCenter = self.mapView.convertCoordinate(self.mapView.centerCoordinate, toPointToView: self.view)
-        let newCenter = CGPoint(x: currentCenter.x - offset.width, y: currentCenter.x - offset.height)
+        let newCenter = CGPoint(x: currentCenter.x - offset.width, y: currentCenter.y - offset.height)
 
         let centerCoordinate = self.mapView.convertPoint(newCenter, toCoordinateFromView: self.view)
         self.mapView.setCenterCoordinate(centerCoordinate, animated: true)

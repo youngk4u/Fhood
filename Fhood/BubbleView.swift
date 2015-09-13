@@ -43,5 +43,6 @@ final class BubbleView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 8
+        self.backgroundColor = UIColor.clearColor()
     }
 }

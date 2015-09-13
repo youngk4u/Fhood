@@ -48,10 +48,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <animations/>
                             </mapView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="My Location" translatesAutoresizingMaskIntoConstraints="NO" id="dOL-bJ-Fa1" userLabel="MyLocation">
-                                <rect key="frame" x="140" y="191" width="40" height="73"/>
-                                <animations/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geh-qs-NRT" userLabel="cancelInfo">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <animations/>
@@ -82,9 +78,7 @@
                             <constraint firstAttribute="bottom" secondItem="cfn-Zz-BuA" secondAttribute="bottom" id="HFi-xU-Wlg"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="IT7-57-ryv"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="LTq-6n-OfW"/>
-                            <constraint firstAttribute="centerY" secondItem="dOL-bJ-Fa1" secondAttribute="centerY" id="Ot1-4E-6yP"/>
                             <constraint firstAttribute="bottom" secondItem="geh-qs-NRT" secondAttribute="bottom" id="VWw-Oc-8G1"/>
-                            <constraint firstAttribute="centerX" secondItem="dOL-bJ-Fa1" secondAttribute="centerX" id="fXJ-2a-RP0"/>
                             <constraint firstAttribute="trailing" secondItem="cfn-Zz-BuA" secondAttribute="trailing" id="mAI-Fd-BG7"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="100" id="weI-lu-8Wm"/>
                         </constraints>
@@ -2610,7 +2604,6 @@
         <image name="Messages" width="326" height="438"/>
         <image name="MoreCyan" width="30" height="30"/>
         <image name="MoreWhite" width="30" height="30"/>
-        <image name="My Location" width="40" height="73"/>
         <image name="badSpoon" width="256" height="256"/>
         <image name="direction1" width="640" height="1136"/>
         <image name="fhooder1" width="228" height="228"/>
