@@ -26,6 +26,7 @@ PODS:
     - FBSDKCoreKit (~> 4.0)
     - FBSDKLoginKit (~> 4.0)
     - Parse (~> 1.8.2)
+  - SMCalloutView (2.1.2)
   - SnapKit (0.13.0)
   - SWRevealViewController (2.4.0)
 
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - JGProgressHUD
   - Parse
   - ParseFacebookUtilsV4
+  - SMCalloutView (from `https://github.com/nfarina/calloutview.git`, branch `master`)
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `swift-2.0`)
   - SWRevealViewController (from `https://github.com/John-Lluch/SWRevealViewController.git`,
     branch `master`)
@@ -56,6 +58,9 @@ EXTERNAL SOURCES:
   FBSDKLoginKit:
     :branch: release-4.6.0-beta1
     :git: https://github.com/facebook/facebook-ios-sdk.git
+  SMCalloutView:
+    :branch: master
+    :git: https://github.com/nfarina/calloutview.git
   SnapKit:
     :branch: swift-2.0
     :git: https://github.com/SnapKit/SnapKit.git
@@ -76,6 +81,9 @@ CHECKOUT OPTIONS:
   FBSDKLoginKit:
     :commit: 93a74c856a382375947584a8c180f8d4d3fb3bc5
     :git: https://github.com/facebook/facebook-ios-sdk.git
+  SMCalloutView:
+    :commit: 60cad9e2b5383e761d92d388798b9c3d34c71e20
+    :git: https://github.com/nfarina/calloutview.git
   SnapKit:
     :commit: 4f19419528baa3dfaca20e26fea2be410ddc79e2
     :git: https://github.com/SnapKit/SnapKit.git
@@ -92,6 +100,7 @@ SPEC CHECKSUMS:
   JGProgressHUD: a58f62d3afac173d201250c3ba628fe44bd67017
   Parse: 188601c6cd91fae55906badd283b513104a3a8c9
   ParseFacebookUtilsV4: 6e7415146935e1238ebabbee7e5d32d148027b2d
+  SMCalloutView: bb5655f70797b2b01de8d11e97e8454e67220cc6
   SnapKit: 69fe274c71511df89a5591c11437a8b826bfa9eb
   SWRevealViewController: b653f339865208c97be99a24876545f5be0cc4bb
 

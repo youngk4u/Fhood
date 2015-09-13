@@ -9,16 +9,18 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SMCalloutView
 
 private let pinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
 
 final class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet private var Map: MKMapView!
+    @IBOutlet private var mapView: MKMapView!
     @IBOutlet private var cancelInfo: UIButton!
-    
+
     private let locationManager = CLLocationManager()
     private let searchBars = UISearchBar()
+    private let calloutView = SMCalloutView()
 
     private var filterMenu: FilterMenu?
     private var filterShown = false
@@ -33,7 +35,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Map location (San Francisco)
         self.latitude = 37.787212
         self.longitude = -122.419415
@@ -43,9 +45,10 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
         self.span = MKCoordinateSpanMake(latDelta, lonDelta)
         self.location = CLLocationCoordinate2DMake(latitude, longitude)
         self.region = MKCoordinateRegionMake(location, span)
-        self.Map.setRegion(region, animated: false)
 
-        Map.delegate = self
+        self.mapView.setRegion(region, animated: false)
+        self.mapView.delegate = self
+        self.calloutView.delegate = self
 
         // Put Fhooders on the map
         fhooderOne()
@@ -79,20 +82,20 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
         let obj10 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
         
         
-        Map.addAnnotation(obj1)
-        Map.addAnnotation(obj2)
-        Map.addAnnotation(obj3)
-        Map.addAnnotation(obj4)
-        Map.addAnnotation(obj5)
-        Map.addAnnotation(obj6)
-        Map.addAnnotation(obj7)
-        Map.addAnnotation(obj8)
-        Map.addAnnotation(obj9)
-        Map.addAnnotation(obj10)
+        self.mapView.addAnnotation(obj1)
+        self.mapView.addAnnotation(obj2)
+        self.mapView.addAnnotation(obj3)
+        self.mapView.addAnnotation(obj4)
+        self.mapView.addAnnotation(obj5)
+        self.mapView.addAnnotation(obj6)
+        self.mapView.addAnnotation(obj7)
+        self.mapView.addAnnotation(obj8)
+        self.mapView.addAnnotation(obj9)
+        self.mapView.addAnnotation(obj10)
 
         // Custom Back button -> Cancel button
         let backItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        self.navigationItem.backBarButtonItem = backItem
         
         // Search Bar
         self.searchBars.delegate = self
@@ -101,7 +104,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
         self.searchBars.placeholder = "Sandwich"
         
         // Search Bar with no rim
-        UISearchBar.appearance().backgroundImage = UIImage(named: "")
+        UISearchBar.appearance().backgroundImage = nil
 
         // Configure reveal for this view
         let revealController = self.revealViewController()
@@ -184,14 +187,29 @@ extension MapViewController: MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
-        guard let bubbleView = NSBundle.mainBundle().loadNibNamed("BubbleView", owner: self, options: nil)[0] as? BubbleView else { return }
-        bubbleView.annotation = annotationView.annotation as? AnnotationObject
-        annotationView.addSubview(bubbleView)
-
-        bubbleView.center = CGPointMake(annotationView.bounds.size.width * 0.5, -bubbleView.bounds.size.height * 0.53)
+        self.calloutView.contentView = BubbleView.nibView(withAnnotation: annotationView.annotation as? AnnotationObject)
+        self.calloutView.calloutOffset = annotationView.calloutOffset
+        self.calloutView.constrainedInsets = UIEdgeInsets(top: self.topLayoutGuide.length, left: 0, bottom: self.bottomLayoutGuide.length, right: 0)
+        self.calloutView.contentViewInset = UIEdgeInsetsZero
+        self.calloutView.presentCalloutFromRect(annotationView.bounds, inView: annotationView, constrainedToView: self.view, animated: true)
     }
 
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        view.subviews.forEach { $0.removeFromSuperview() }
+        self.calloutView.dismissCalloutAnimated(true)
+    }
+}
+
+// MARK: - SMCalloutViewDelegate implementation
+
+extension MapViewController: SMCalloutViewDelegate {
+
+    func calloutView(calloutView: SMCalloutView, delayForRepositionWithSize offset: CGSize) -> NSTimeInterval {
+        let currentCenter = self.mapView.convertCoordinate(self.mapView.centerCoordinate, toPointToView: self.view)
+        let newCenter = CGPoint(x: currentCenter.x - offset.width, y: currentCenter.x - offset.height)
+
+        let centerCoordinate = self.mapView.convertPoint(newCenter, toCoordinateFromView: self.view)
+        self.mapView.setCenterCoordinate(centerCoordinate, animated: true)
+
+        return kSMCalloutViewRepositionDelayForUIScrollView
     }
 }

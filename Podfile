@@ -13,6 +13,7 @@ target :Fhood do
     pod 'ParseFacebookUtilsV4'
     pod 'SWRevealViewController', :git => "https://github.com/John-Lluch/SWRevealViewController.git", :branch => "master", :inhibit_warnings => true
     pod 'SnapKit'               , :git => "https://github.com/SnapKit/SnapKit.git", :branch => "swift-2.0"
+    pod 'SMCalloutView'         , :git => "https://github.com/nfarina/calloutview.git", :branch => "master"
 end
 
 post_install do |installer|

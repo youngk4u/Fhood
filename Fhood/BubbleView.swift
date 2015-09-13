@@ -7,37 +7,41 @@
 //
 
 import UIKit
-import MapKit
 
 final class BubbleView: UIView {
-    @IBOutlet weak var BubbleView: UIView!
-    @IBOutlet weak var NameLabel: UILabel!
-    @IBOutlet weak var ImageLabel: UIImageView!
-    @IBOutlet weak var TypeLabel: UILabel!
-    @IBOutlet weak var SpoonLabel: UIImageView!
-    @IBOutlet weak var ReviewLabel: UILabel!
-    @IBOutlet weak var PickupLabel: UILabel!
-    @IBOutlet weak var PriceLabel: UILabel!
-    @IBOutlet weak var OpenLabel: UILabel!
-    @IBOutlet weak var ClosedLabel: UILabel!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var typeLabel: UILabel!
+    @IBOutlet private var spoonView: UIImageView!
+    @IBOutlet private var reviewLabel: UILabel!
+    @IBOutlet private var pickupLabel: UILabel!
+    @IBOutlet private var priceLabel: UILabel!
+    @IBOutlet private var openLabel: UILabel!
+    @IBOutlet private var closedLabel: UILabel!
 
     var annotation: AnnotationObject? {
         didSet {
             guard let annotation = self.annotation else { return }
-            self.ReviewLabel.text = annotation.reviewsDescription
-            self.TypeLabel.text = annotation.subtitle
-            self.NameLabel.text = annotation.title
-            self.ImageLabel.image = annotation.image
-            self.OpenLabel.hidden = annotation.open == false
-            self.ClosedLabel.hidden = annotation.closed == false
-            self.PriceLabel.text = String(format: "$%.2f", annotation.price)
-            self.SpoonLabel.image = annotation.imageRatingActive
+            self.reviewLabel.text = annotation.reviewsDescription
+            self.typeLabel.text = annotation.subtitle
+            self.nameLabel.text = annotation.title
+            self.imageView.image = annotation.image
+            self.openLabel.hidden = annotation.open == false
+            self.closedLabel.hidden = annotation.closed == false
+            self.priceLabel.text = String(format: "$%.2f", annotation.price)
+            self.spoonView.image = annotation.imageRatingActive
         }
+    }
+
+    class func nibView(withAnnotation annotation: AnnotationObject?) -> BubbleView {
+        let view = NSBundle.mainBundle().loadNibNamed("BubbleView", owner: self, options: nil)[0]
+        let bubbleView = view as? BubbleView ?? BubbleView()
+        bubbleView.annotation = annotation
+        return bubbleView
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.BubbleView.layer.cornerRadius = 9
-        self.layer.cornerRadius = 10
+        self.layer.cornerRadius = 8
     }
 }
