@@ -9,14 +9,18 @@
 import UIKit
 import MapKit
 import CoreLocation
+import SMCalloutView
 
-final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+private let pinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
+
+final class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
     
-    @IBOutlet private var Map: MKMapView!
+    @IBOutlet private var mapView: MKMapView!
     @IBOutlet private var cancelInfo: UIButton!
-    
+
     private let locationManager = CLLocationManager()
     private let searchBars = UISearchBar()
+    private let calloutView = SMCalloutView()
 
     private var filterMenu: FilterMenu?
     private var filterShown = false
@@ -31,7 +35,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Map location (San Francisco)
         self.latitude = 37.787212
         self.longitude = -122.419415
@@ -41,9 +45,10 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         self.span = MKCoordinateSpanMake(latDelta, lonDelta)
         self.location = CLLocationCoordinate2DMake(latitude, longitude)
         self.region = MKCoordinateRegionMake(location, span)
-        self.Map.setRegion(region, animated: false)
 
-        Map.delegate = self
+        self.mapView.setRegion(region, animated: false)
+        self.mapView.delegate = self
+        self.calloutView.delegate = self
 
         // Put Fhooders on the map
         fhooderOne()
@@ -75,92 +80,43 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         
         fhooderTen()
         let obj10 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
-        
-        Map.addAnnotation(obj1)
-        Map.addAnnotation(obj2)
-        Map.addAnnotation(obj3)
-        Map.addAnnotation(obj4)
-        Map.addAnnotation(obj5)
-        Map.addAnnotation(obj6)
-        Map.addAnnotation(obj7)
-        Map.addAnnotation(obj8)
-        Map.addAnnotation(obj9)
-        Map.addAnnotation(obj10)
 
-        // Custom Back button -> Cancel button
-        let backItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
-        
+        self.mapView.addAnnotation(obj1)
+        self.mapView.addAnnotation(obj2)
+        self.mapView.addAnnotation(obj3)
+        self.mapView.addAnnotation(obj4)
+        self.mapView.addAnnotation(obj5)
+        self.mapView.addAnnotation(obj6)
+        self.mapView.addAnnotation(obj7)
+        self.mapView.addAnnotation(obj8)
+        self.mapView.addAnnotation(obj9)
+        self.mapView.addAnnotation(obj10)
+
         // Search Bar
+        UISearchBar.appearance().backgroundImage = nil // Search Bar with no rim
+        self.navigationItem.titleView = UIBarButtonItem(customView: searchBars).customView
         self.searchBars.delegate = self
-        let navBarButton = UIBarButtonItem(customView: searchBars)
-        self.navigationItem.titleView = navBarButton.customView
         self.searchBars.placeholder = "Sandwich"
-        
-        // Search Bar with no rim
-        UISearchBar.appearance().backgroundImage = UIImage(named: "")
 
         // Configure reveal for this view
         let revealController = self.revealViewController()
         revealController.panGestureRecognizer()
         revealController.tapGestureRecognizer()
 
+        // Custom Back button -> Cancel button
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: nil, action: nil)
+
         // Account Icon
-        let accountIcon = UIImage(named: "userCircle2")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
-            target: revealController, action: "revealToggle:")
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "userCircle2"),
+            style: UIBarButtonItemStyle.Plain, target: revealController, action: "revealToggle:")
 
         // Filter Icon
-        let filterIcon = UIImage(named: "Filter 2")
-        let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
-        self.navigationItem.rightBarButtonItem = rightBarButton
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Filter 2"),
+            style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
 
         // When Fhooder button pressed, you can tap anywhere to disable the info window
         self.cancelInfo.enabled = false
         self.cancelInfo.addTarget(self, action: "cancelPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-    }
-
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView?{
-        let reuseIdentifier = "pin"
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseIdentifier)
-        
-        if pinView == nil {
-            pinView = BubbleView(annotation: annotation, reuseIdentifier: reuseIdentifier)
-            pinView!.canShowCallout = false
-        } else {
-            pinView!.annotation = annotation
-        }
-
-        //Set custom pin image
-        pinView!.image = UIImage(named: "FhooderOn")
-        
-        return pinView
-    }
-    
-    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        performSegueWithIdentifier("fhooderOne", sender: self)
-    }
-
-    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView){
-        let bubbleView = NSBundle.mainBundle().loadNibNamed("BubbleView", owner: self, options: nil)[0] as? BubbleView
-        let annotationObj = view.annotation as! AnnotationObject
-        bubbleView?.SetUpView(annotationObj)
-        bubbleView?.layer.cornerRadius = 10
-        view.addSubview(bubbleView!)
-        
-        bubbleView?.center = CGPointMake(bubbleView!.bounds.size.width*0.1, -bubbleView!.bounds.size.height*0.53)
-    }
-    
-    /*
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        fhooderOne()
-        performSegueWithIdentifier("fhooderOne", sender: self)
-    }
-    */
-    
-    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        view.subviews.forEach { $0.removeFromSuperview() }
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -186,7 +142,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         
         filterShown = !filterShown
     }
-    
+
     func filterMenuViewDidSelect(section: Int, subMenu: Int) {
         print("Did select: \nsection: \(section)\nsubMenu:\(subMenu)")
         if (section == 1 && subMenu == 1) {
@@ -200,5 +156,54 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
     func cancelPressed(sender: UIButton)  {
         self.cancelInfo.enabled = false
+    }
+}
+
+// MARK: - MKMapViewDelegate implementation
+
+extension MapViewController: MKMapViewDelegate {
+
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(pinAnnotationReuseIdentifier) ??
+            MKAnnotationView(annotation: annotation, reuseIdentifier: pinAnnotationReuseIdentifier)
+
+        pinView.canShowCallout = false
+        pinView.annotation = annotation
+        pinView.image = UIImage(named: "FhooderOn")
+
+        return pinView
+    }
+
+    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        fhooderOne()
+        performSegueWithIdentifier("fhooderOne", sender: self)
+    }
+
+    func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
+        self.calloutView.contentView = BubbleView.nibView(withAnnotation: annotationView.annotation as? AnnotationObject)
+        self.calloutView.calloutOffset = annotationView.calloutOffset
+        self.calloutView.contentViewInset = UIEdgeInsetsZero
+        self.calloutView.backgroundView = BubbleBackgroundView()
+        self.calloutView.presentCalloutFromRect(annotationView.bounds, inView: annotationView,
+            constrainedToView: self.view, animated: true)
+    }
+
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
+        self.calloutView.dismissCalloutAnimated(true)
+    }
+}
+
+// MARK: - SMCalloutViewDelegate implementation
+
+extension MapViewController: SMCalloutViewDelegate {
+
+    func calloutView(calloutView: SMCalloutView, delayForRepositionWithSize offset: CGSize) -> NSTimeInterval {
+        let currentCenter = self.mapView.convertCoordinate(self.mapView.centerCoordinate, toPointToView: self.view)
+        let newCenter = CGPoint(x: currentCenter.x - offset.width, y: currentCenter.y - offset.height)
+
+        let centerCoordinate = self.mapView.convertPoint(newCenter, toCoordinateFromView: self.view)
+        self.mapView.setCenterCoordinate(centerCoordinate, animated: true)
+
+        return kSMCalloutViewRepositionDelayForUIScrollView
     }
 }

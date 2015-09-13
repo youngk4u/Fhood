@@ -13,6 +13,7 @@
 		3B356FD31B93E6A30014AD22 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD21B93E6A30014AD22 /* HUD.swift */; settings = {ASSET_TAGS = (); }; };
 		3B356FD61B93F1170014AD22 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD51B93F1170014AD22 /* Router.swift */; settings = {ASSET_TAGS = (); }; };
 		3B356FDA1B940C240014AD22 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD91B940C240014AD22 /* LaunchViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		3BC061291BA600EC000614E8 /* BubbleBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC061281BA600EC000614E8 /* BubbleBackgroundView.swift */; settings = {ASSET_TAGS = (); }; };
 		3BD592611B96A3B5003D26AE /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD592601B96A3B5003D26AE /* UIView+Extension.swift */; settings = {ASSET_TAGS = (); }; };
 		3BD592641B96A5F0003D26AE /* LaunchScreenSystem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD592621B96A5F0003D26AE /* LaunchScreenSystem.xib */; settings = {ASSET_TAGS = (); }; };
 		3BF325331B92533700C606D5 /* Reveal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF325321B92533700C606D5 /* Reveal.storyboard */; settings = {ASSET_TAGS = (); }; };
@@ -86,6 +87,7 @@
 		3B356FD21B93E6A30014AD22 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		3B356FD51B93F1170014AD22 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3B356FD91B940C240014AD22 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
+		3BC061281BA600EC000614E8 /* BubbleBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleBackgroundView.swift; sourceTree = "<group>"; };
 		3BD592601B96A3B5003D26AE /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		3BD592631B96A5F0003D26AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreenSystem.xib; sourceTree = "<group>"; };
 		3BF325321B92533700C606D5 /* Reveal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reveal.storyboard; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				636CB16D1B94530600674C91 /* ManageTableViewCell.swift */,
 				63CB95231B945714005815E7 /* OrdersTableViewCell.swift */,
 				636F75131B7E973A00A8C1E8 /* BubbleView.swift */,
+				3BC061281BA600EC000614E8 /* BubbleBackgroundView.swift */,
 				63CA5CA31B41AF3B008D16A1 /* FilterMenu.swift */,
 				63CA5CA01B3F82F1008D16A1 /* TableViewCell3.swift */,
 				63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */,
@@ -522,6 +525,7 @@
 				63CB95241B945714005815E7 /* OrdersTableViewCell.swift in Sources */,
 				63F70A331B5B763B00A2D618 /* fhooderThree.swift in Sources */,
 				3BD592611B96A3B5003D26AE /* UIView+Extension.swift in Sources */,
+				3BC061291BA600EC000614E8 /* BubbleBackgroundView.swift in Sources */,
 				63F70A2F1B5B6F2700A2D618 /* fhooderOne.swift in Sources */,
 				636CB1691B9452D100674C91 /* FhooderTabBarController.swift in Sources */,
 				63F70A411B5B768A00A2D618 /* fhooderTen.swift in Sources */,
