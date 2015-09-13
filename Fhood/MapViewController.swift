@@ -13,8 +13,8 @@ import SMCalloutView
 
 private let pinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
 
-final class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
-    
+final class MapViewController: UIViewController, UISearchBarDelegate {
+
     @IBOutlet private var mapView: MKMapView!
     @IBOutlet private var cancelInfo: UIButton!
 
@@ -25,10 +25,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
     private var filterMenu: FilterMenu?
     private var filterShown = false
     
-    private var latitude: CLLocationDegrees!
-    private var longitude: CLLocationDegrees!
-    private var latDelta: CLLocationDegrees!
-    private var lonDelta: CLLocationDegrees!
     private var span: MKCoordinateSpan!
     private var location: CLLocationCoordinate2D!
     private var region: MKCoordinateRegion!
@@ -37,18 +33,14 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
         super.viewDidLoad()
 
         // Map location (San Francisco)
-        self.latitude = 37.787212
-        self.longitude = -122.419415
-        self.latDelta = 0.06
-        self.lonDelta = 0.06
+        let sanFranciscoRegion = MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: 37.787212, longitude: -122.419415),
+            span: MKCoordinateSpan(latitudeDelta: 0.06, longitudeDelta: 0.06))
+        self.mapView.setRegion(sanFranciscoRegion, animated: false)
 
-        self.span = MKCoordinateSpanMake(latDelta, lonDelta)
-        self.location = CLLocationCoordinate2DMake(latitude, longitude)
-        self.region = MKCoordinateRegionMake(location, span)
-
-        self.mapView.setRegion(region, animated: false)
         self.mapView.delegate = self
         self.calloutView.delegate = self
+        self.showUserLocation()
 
         // Put Fhooders on the map
         fhooderOne()
@@ -190,6 +182,27 @@ extension MapViewController: MKMapViewDelegate {
 
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
         self.calloutView.dismissCalloutAnimated(true)
+    }
+}
+
+// MARK: - CLLocationManagerDelegate implementation
+
+extension MapViewController: CLLocationManagerDelegate {
+
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        self.showUserLocation()
+    }
+
+    func showUserLocation() {
+        switch CLLocationManager.authorizationStatus() {
+        case .NotDetermined:
+            self.locationManager.requestWhenInUseAuthorization()
+        case .AuthorizedWhenInUse, .AuthorizedAlways:
+            self.mapView.showsUserLocation = true
+            self.mapView.setUserTrackingMode(.None, animated: true)
+        default:
+            self.mapView.showsUserLocation = false
+        }
     }
 }
 
