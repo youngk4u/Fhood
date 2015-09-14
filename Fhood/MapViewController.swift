@@ -18,7 +18,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet private var mapView: MKMapView!
     @IBOutlet private var followUserButton: UIButton!
-    @IBOutlet private var cancelInfo: UIButton!
 
     private let locationManager = CLLocationManager()
     private let searchBars = UISearchBar()
@@ -101,10 +100,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
         // Filter Icon
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Filter 2"),
             style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
-
-        // When Fhooder button pressed, you can tap anywhere to disable the info window
-        self.cancelInfo.enabled = false
-        self.cancelInfo.addTarget(self, action: "cancelPressed:", forControlEvents: UIControlEvents.TouchUpInside)
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -141,10 +136,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
         }
     }
 */
-
-    func cancelPressed(sender: UIButton)  {
-        self.cancelInfo.enabled = false
-    }
 }
 
 // MARK: - MKMapViewDelegate implementation

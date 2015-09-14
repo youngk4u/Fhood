@@ -48,13 +48,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <animations/>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="geh-qs-NRT" userLabel="cancelInfo">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
-                                <animations/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGq-xe-AaS" userLabel="userLocation">
                                 <rect key="frame" x="270" y="410" width="30" height="30"/>
                                 <animations/>
@@ -73,15 +66,11 @@
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="geh-qs-NRT" secondAttribute="trailing" id="18V-up-QvQ"/>
                             <constraint firstAttribute="bottom" secondItem="mGq-xe-AaS" secondAttribute="bottom" constant="15" id="1Dn-8s-Nei"/>
                             <constraint firstAttribute="trailing" secondItem="mGq-xe-AaS" secondAttribute="trailing" constant="20" id="Amc-8H-uvJ"/>
-                            <constraint firstItem="geh-qs-NRT" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" id="Deo-4w-Aud"/>
-                            <constraint firstItem="geh-qs-NRT" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="Fee-JF-M5Y"/>
                             <constraint firstAttribute="bottom" secondItem="cfn-Zz-BuA" secondAttribute="bottom" id="HFi-xU-Wlg"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="IT7-57-ryv"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="LTq-6n-OfW"/>
-                            <constraint firstAttribute="bottom" secondItem="geh-qs-NRT" secondAttribute="bottom" id="VWw-Oc-8G1"/>
                             <constraint firstAttribute="trailing" secondItem="cfn-Zz-BuA" secondAttribute="trailing" id="mAI-Fd-BG7"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="100" id="weI-lu-8Wm"/>
                         </constraints>
@@ -94,7 +83,6 @@
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="7eF-pc-bMp"/>
                     <connections>
-                        <outlet property="cancelInfo" destination="geh-qs-NRT" id="uh7-eX-9ZX"/>
                         <outlet property="followUserButton" destination="mGq-xe-AaS" id="kep-Ob-Kjb"/>
                         <outlet property="mapView" destination="cfn-Zz-BuA" id="AG2-9Q-wTg"/>
                         <segue destination="rMv-LW-4qn" kind="show" identifier="fhooderOne" id="hB1-eo-vqo"/>
