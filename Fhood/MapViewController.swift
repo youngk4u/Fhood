@@ -11,11 +11,13 @@ import MapKit
 import CoreLocation
 import SMCalloutView
 
-private let pinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
+private let kDefaultMapZoom = 13.0
+private let kPinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
 
-final class MapViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate {
-    
+final class MapViewController: UIViewController, UISearchBarDelegate {
+
     @IBOutlet private var mapView: MKMapView!
+    @IBOutlet private var followUserButton: UIButton!
     @IBOutlet private var cancelInfo: UIButton!
 
     private let locationManager = CLLocationManager()
@@ -25,10 +27,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
     private var filterMenu: FilterMenu?
     private var filterShown = false
     
-    private var latitude: CLLocationDegrees!
-    private var longitude: CLLocationDegrees!
-    private var latDelta: CLLocationDegrees!
-    private var lonDelta: CLLocationDegrees!
     private var span: MKCoordinateSpan!
     private var location: CLLocationCoordinate2D!
     private var region: MKCoordinateRegion!
@@ -36,19 +34,9 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Map location (San Francisco)
-        self.latitude = 37.787212
-        self.longitude = -122.419415
-        self.latDelta = 0.06
-        self.lonDelta = 0.06
-
-        self.span = MKCoordinateSpanMake(latDelta, lonDelta)
-        self.location = CLLocationCoordinate2DMake(latitude, longitude)
-        self.region = MKCoordinateRegionMake(location, span)
-
-        self.mapView.setRegion(region, animated: false)
         self.mapView.delegate = self
         self.calloutView.delegate = self
+        self.showUserLocation()
 
         // Put Fhooders on the map
         fhooderOne()
@@ -164,8 +152,10 @@ final class MapViewController: UIViewController, UISearchBarDelegate, CLLocation
 extension MapViewController: MKMapViewDelegate {
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(pinAnnotationReuseIdentifier) ??
-            MKAnnotationView(annotation: annotation, reuseIdentifier: pinAnnotationReuseIdentifier)
+        guard annotation is AnnotationObject else { return nil }
+
+        let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(kPinAnnotationReuseIdentifier) ??
+            MKAnnotationView(annotation: annotation, reuseIdentifier: kPinAnnotationReuseIdentifier)
 
         pinView.canShowCallout = false
         pinView.annotation = annotation
@@ -180,6 +170,8 @@ extension MapViewController: MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
+        guard annotationView.reuseIdentifier == kPinAnnotationReuseIdentifier else { return }
+
         self.calloutView.contentView = BubbleView.nibView(withAnnotation: annotationView.annotation as? AnnotationObject)
         self.calloutView.calloutOffset = annotationView.calloutOffset
         self.calloutView.contentViewInset = UIEdgeInsetsZero
@@ -190,6 +182,31 @@ extension MapViewController: MKMapViewDelegate {
 
     func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
         self.calloutView.dismissCalloutAnimated(true)
+    }
+}
+
+// MARK: - CLLocationManagerDelegate implementation
+
+extension MapViewController: CLLocationManagerDelegate {
+
+    func showUserLocation() {
+        switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedWhenInUse, .AuthorizedAlways:
+            self.followUserButton.hidden = false
+            self.mapView.showsUserLocation = true
+            self.mapView.setUserTrackingMode(.Follow, animated: true)
+        case .NotDetermined:
+            self.locationManager.requestWhenInUseAuthorization()
+            fallthrough
+        default:
+            self.mapView.showsUserLocation = false
+            self.followUserButton.hidden = true
+        }
+    }
+
+    @IBAction private func followUserLocation() {
+        let mode: MKUserTrackingMode = self.mapView.userTrackingMode == .None ? .Follow : .None
+        self.mapView.setUserTrackingMode(mode, animated: true)
     }
 }
 

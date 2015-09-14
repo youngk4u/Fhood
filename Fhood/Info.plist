@@ -67,6 +67,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We'll only use your location to give you directions to pick your order.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreenSystem</string>
 	<key>UIRequiredDeviceCapabilities</key>
