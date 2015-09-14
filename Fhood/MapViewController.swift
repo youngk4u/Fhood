@@ -11,11 +11,13 @@ import MapKit
 import CoreLocation
 import SMCalloutView
 
-private let pinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
+private let kDefaultMapZoom = 13.0
+private let kPinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
 
 final class MapViewController: UIViewController, UISearchBarDelegate {
 
     @IBOutlet private var mapView: MKMapView!
+    @IBOutlet private var followUserButton: UIButton!
     @IBOutlet private var cancelInfo: UIButton!
 
     private let locationManager = CLLocationManager()
@@ -31,12 +33,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Map location (San Francisco)
-        let sanFranciscoRegion = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: 37.787212, longitude: -122.419415),
-            span: MKCoordinateSpan(latitudeDelta: 0.06, longitudeDelta: 0.06))
-        self.mapView.setRegion(sanFranciscoRegion, animated: false)
 
         self.mapView.delegate = self
         self.calloutView.delegate = self
@@ -156,8 +152,10 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
 extension MapViewController: MKMapViewDelegate {
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(pinAnnotationReuseIdentifier) ??
-            MKAnnotationView(annotation: annotation, reuseIdentifier: pinAnnotationReuseIdentifier)
+        guard annotation is AnnotationObject else { return nil }
+
+        let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(kPinAnnotationReuseIdentifier) ??
+            MKAnnotationView(annotation: annotation, reuseIdentifier: kPinAnnotationReuseIdentifier)
 
         pinView.canShowCallout = false
         pinView.annotation = annotation
@@ -172,6 +170,8 @@ extension MapViewController: MKMapViewDelegate {
     }
 
     func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
+        guard annotationView.reuseIdentifier == kPinAnnotationReuseIdentifier else { return }
+
         self.calloutView.contentView = BubbleView.nibView(withAnnotation: annotationView.annotation as? AnnotationObject)
         self.calloutView.calloutOffset = annotationView.calloutOffset
         self.calloutView.contentViewInset = UIEdgeInsetsZero
@@ -189,20 +189,24 @@ extension MapViewController: MKMapViewDelegate {
 
 extension MapViewController: CLLocationManagerDelegate {
 
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        self.showUserLocation()
-    }
-
     func showUserLocation() {
         switch CLLocationManager.authorizationStatus() {
+        case .AuthorizedWhenInUse, .AuthorizedAlways:
+            self.followUserButton.hidden = false
+            self.mapView.showsUserLocation = true
+            self.mapView.setUserTrackingMode(.Follow, animated: true)
         case .NotDetermined:
             self.locationManager.requestWhenInUseAuthorization()
-        case .AuthorizedWhenInUse, .AuthorizedAlways:
-            self.mapView.showsUserLocation = true
-            self.mapView.setUserTrackingMode(.None, animated: true)
+            fallthrough
         default:
             self.mapView.showsUserLocation = false
+            self.followUserButton.hidden = true
         }
+    }
+
+    @IBAction private func followUserLocation() {
+        let mode: MKUserTrackingMode = self.mapView.userTrackingMode == .None ? .Follow : .None
+        self.mapView.setUserTrackingMode(mode, animated: true)
     }
 }
 

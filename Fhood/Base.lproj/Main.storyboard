@@ -55,7 +55,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGq-xe-AaS" userLabel="myLocation">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGq-xe-AaS" userLabel="userLocation">
                                 <rect key="frame" x="270" y="410" width="30" height="30"/>
                                 <animations/>
                                 <constraints>
@@ -65,6 +65,9 @@
                                 <state key="normal" image="pointer">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="followUserLocation" destination="9pv-A4-QxB" eventType="touchUpInside" id="Ogq-9c-IDT"/>
+                                </connections>
                             </button>
                         </subviews>
                         <animations/>
@@ -92,6 +95,7 @@
                     <navigationItem key="navigationItem" id="7eF-pc-bMp"/>
                     <connections>
                         <outlet property="cancelInfo" destination="geh-qs-NRT" id="uh7-eX-9ZX"/>
+                        <outlet property="followUserButton" destination="mGq-xe-AaS" id="kep-Ob-Kjb"/>
                         <outlet property="mapView" destination="cfn-Zz-BuA" id="AG2-9Q-wTg"/>
                         <segue destination="rMv-LW-4qn" kind="show" identifier="fhooderOne" id="hB1-eo-vqo"/>
                     </connections>
