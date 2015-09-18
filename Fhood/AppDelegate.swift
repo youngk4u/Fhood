@@ -27,6 +27,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        
+        /*// Instantiate rootview to test Fhooder Storyboard
+        let storyboard = UIStoryboard(name: "Fhooder", bundle: nil)
+        self.window?.rootViewController = storyboard.instantiateInitialViewController()
+        */
 
         return true
     }

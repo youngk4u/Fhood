@@ -255,12 +255,9 @@
 		3BF3252E1B90377E00C606D5 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				63936A571BA80EB000D90CDF /* Fhooder */,
 				3BF91B7D1B9269B0005C9EDB /* Onboarding */,
 				3BF3252F1B92522000C606D5 /* Reveal */,
-				636CB16A1B9452FC00674C91 /* ManageViewController.swift */,
-				636CB1681B9452D100674C91 /* FhooderTabBarController.swift */,
-				636CB1661B9452A700674C91 /* FhooderMoreViewController.swift */,
-				636CB1701B94536400674C91 /* OrdersViewController.swift */,
 				636CC8D61B1EEFE90084CCE8 /* TabBarController.swift */,
 				63C830321B0996FB0089CCFF /* MapViewController.swift */,
 				63C830341B0996FB0089CCFF /* ListViewController.swift */,
@@ -303,6 +300,17 @@
 				5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		63936A571BA80EB000D90CDF /* Fhooder */ = {
+			isa = PBXGroup;
+			children = (
+				636CB1681B9452D100674C91 /* FhooderTabBarController.swift */,
+				636CB16A1B9452FC00674C91 /* ManageViewController.swift */,
+				636CB1701B94536400674C91 /* OrdersViewController.swift */,
+				636CB1661B9452A700674C91 /* FhooderMoreViewController.swift */,
+			);
+			name = Fhooder;
 			sourceTree = "<group>";
 		};
 		63C830221B0996FB0089CCFF = {
