@@ -321,8 +321,8 @@
                                                         </tableViewCellContentView>
                                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <connections>
-                                                            <outlet property="tableViewImage" destination="aTl-Cy-iO1" id="3Ax-a7-ytE"/>
-                                                            <outlet property="tableViewLabel" destination="y2f-XQ-gbz" id="tkA-21-Myz"/>
+                                                            <outlet property="tableViewImage" destination="aTl-Cy-iO1" id="Ivl-se-3u5"/>
+                                                            <outlet property="tableViewLabel" destination="y2f-XQ-gbz" id="PyD-o6-v6l"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>

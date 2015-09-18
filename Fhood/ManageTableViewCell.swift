@@ -9,5 +9,8 @@
 import UIKit
 
 final class ManageTableViewCell: UITableViewCell {
+        @IBOutlet weak var tableViewLabel: UILabel!
+        @IBOutlet weak var tableViewImage: UIImageView!
+    
 
 }
