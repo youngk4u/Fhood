@@ -93,8 +93,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     var tableCellList : NSArray = ["Reviews", "Photos", "Send messages", "About the Fhooder"]
     var tableCellImage : NSArray = ["reviews", "photos", "messages", "about"]
 
-    // Right insets for Iphone 6 plus = 195.0, Iphone 6 = 234.0, Iphone 5 = 290
-    let sectionInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 234.0)
+    let sectionInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
 
     override func viewDidLoad() {
         super.viewDidLoad()
