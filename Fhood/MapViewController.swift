@@ -16,7 +16,7 @@ private let kPinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
 
 final class MapViewController: UIViewController, UISearchBarDelegate {
 
-    @IBOutlet private var mapView: MKMapView!
+    @IBOutlet private var mapView: MapView!
     @IBOutlet private var followUserButton: UIButton!
 
     private let locationManager = CLLocationManager()
@@ -35,6 +35,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
 
         self.mapView.delegate = self
         self.calloutView.delegate = self
+        self.mapView.calloutView = self.calloutView
         self.showUserLocation()
 
         // Put Fhooders on the map
@@ -155,11 +156,6 @@ extension MapViewController: MKMapViewDelegate {
         return pinView
     }
 
-    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        fhooderOne()
-        performSegueWithIdentifier("fhooderOne", sender: self)
-    }
-
     func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
         guard annotationView.reuseIdentifier == kPinAnnotationReuseIdentifier else { return }
 
@@ -217,5 +213,10 @@ extension MapViewController: SMCalloutViewDelegate {
         self.mapView.setCenterCoordinate(centerCoordinate, animated: true)
 
         return kSMCalloutViewRepositionDelayForUIScrollView
+    }
+
+    func calloutViewClicked(calloutView: SMCalloutView) {
+        fhooderOne()
+        performSegueWithIdentifier("fhooderOne", sender: self)
     }
 }
