@@ -105,6 +105,9 @@ final class OnboardingViewController: UIViewController {
             return
         }
 
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+
         Router.route(animated: true)
     }
 
