@@ -16,9 +16,8 @@ private let kPinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
 
 final class MapViewController: UIViewController, UISearchBarDelegate {
 
-    @IBOutlet private var mapView: MKMapView!
+    @IBOutlet private var mapView: MapView!
     @IBOutlet private var followUserButton: UIButton!
-    @IBOutlet private var cancelInfo: UIButton!
 
     private let locationManager = CLLocationManager()
     private let searchBars = UISearchBar()
@@ -36,6 +35,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
 
         self.mapView.delegate = self
         self.calloutView.delegate = self
+        self.mapView.calloutView = self.calloutView
         self.showUserLocation()
 
         // Put Fhooders on the map
@@ -101,10 +101,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
         // Filter Icon
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Filter 2"),
             style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
-
-        // When Fhooder button pressed, you can tap anywhere to disable the info window
-        self.cancelInfo.enabled = false
-        self.cancelInfo.addTarget(self, action: "cancelPressed:", forControlEvents: UIControlEvents.TouchUpInside)
     }
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
@@ -141,10 +137,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
         }
     }
 */
-
-    func cancelPressed(sender: UIButton)  {
-        self.cancelInfo.enabled = false
-    }
 }
 
 // MARK: - MKMapViewDelegate implementation
@@ -162,11 +154,6 @@ extension MapViewController: MKMapViewDelegate {
         pinView.image = UIImage(named: "FhooderOn")
 
         return pinView
-    }
-
-    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        fhooderOne()
-        performSegueWithIdentifier("fhooderOne", sender: self)
     }
 
     func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
@@ -226,5 +213,10 @@ extension MapViewController: SMCalloutViewDelegate {
         self.mapView.setCenterCoordinate(centerCoordinate, animated: true)
 
         return kSMCalloutViewRepositionDelayForUIScrollView
+    }
+
+    func calloutViewClicked(calloutView: SMCalloutView) {
+        fhooderOne()
+        performSegueWithIdentifier("fhooderOne", sender: self)
     }
 }
