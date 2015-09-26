@@ -146,7 +146,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
             }
             
             self.arrPrice = variables.itemPrices!
-            
+
             cell.fhooderPic.image = UIImage(named: variables.fhooderPic!)
             cell.fhooderPrice.text = formatter.stringFromNumber(arrPrice[0])
             cell.fhooderName.text = variables.name!
@@ -159,7 +159,6 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
             cell.fhooderOpen.hidden = !variables.isOpen!
             cell.fhooderClosed.hidden = !variables.isClosed!
             cell.fhooderDistance.text = "\(variables.distance!) miles"
-            
         }
         
         // Cell Marginal lines on the left to stretch all the way to the left screen

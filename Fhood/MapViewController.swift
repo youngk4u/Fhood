@@ -25,7 +25,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
 
     private var filterMenu: FilterMenu?
     private var filterShown = false
-    
+
     private var span: MKCoordinateSpan!
     private var location: CLLocationCoordinate2D!
     private var region: MKCoordinateRegion!
@@ -35,37 +35,39 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
 
         self.mapView.delegate = self
         self.calloutView.delegate = self
-        self.mapView.calloutView = self.calloutView
+        self.locationManager.delegate = self
         self.showUserLocation()
+
+        self.mapView.calloutView = self.calloutView
 
         // Put Fhooders on the map
         fhooderOne()
         let obj1 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
+
         fhooderTwo()
         let obj2 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
+
         fhooderThree()
         let obj3 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
+
         fhooderFour()
         let obj4 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
+
         fhooderFive()
         let obj5 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
+
         fhooderSix()
         let obj6 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
+
         fhooderSeven()
         let obj7 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
+
         fhooderEight()
         let obj8 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
+
         fhooderNine()
         let obj9 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
-        
+
         fhooderTen()
         let obj10 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
 
@@ -114,26 +116,26 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
                 FilterMenuSectionInfo(titles: ["Highest rated", "Most reviewed"]),
                 FilterMenuSectionInfo(titles: ["Open now", "Reserve"]),
                 FilterMenuSectionInfo(titles: ["Pick up", "Eat in", "Delivery"])]
-            
+
             filterMenu = FilterMenu(navigationController: self.navigationController!, sections: sections, delegate: self)
         }
-        
+
         if filterShown {
             filterMenu?.hide()
         } else {
             filterMenu?.show()
         }
-        
+
         filterShown = !filterShown
     }
 
     func filterMenuViewDidSelect(section: Int, subMenu: Int) {
         print("Did select: \nsection: \(section)\nsubMenu:\(subMenu)")
         if (section == 1 && subMenu == 1) {
-    
+
         }
         else if (section == 1 && subMenu == 2) {
-            
+
         }
     }
 */
@@ -195,7 +197,7 @@ extension MapViewController: CLLocationManagerDelegate {
         }
     }
 
-    @IBAction private func followUserLocation() {
+    @IBAction private func toggleFollowUserLocation() {
         let mode: MKUserTrackingMode = self.mapView.userTrackingMode == .None ? .Follow : .None
         self.mapView.setUserTrackingMode(mode, animated: true)
     }
