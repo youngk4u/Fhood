@@ -52,10 +52,10 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
         
-        // Fhooder open/close time Icon
+        // Fhooder Cooking time Icon
         let fhooderTime = UIImage(named: "FhooderOnIcon2")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: fhooderTime, style: UIBarButtonItemStyle.Plain,
-            target: self, action: nil)
+            target: self, action: "toCookingTimeView")
         
         // TableView Delegate
         self.tableView.delegate = self
@@ -81,6 +81,10 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
 
+    }
+    
+    func toCookingTimeView () {
+        performSegueWithIdentifier("toCookingTime", sender: nil)
     }
 
     // CollectionView
