@@ -37,6 +37,12 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         
         // Cell Marginal lines on the left to stretch all the way to the left screen
         cell.layoutMargins = UIEdgeInsetsZero
+        cell.orderTime.text = "Aug 30th 2015, 2:32 PM"
+        cell.orderNumber.text = String(indexPath.row + 1)
+        cell.userPic.image = UIImage(named:"fhoodie1")
+        cell.userID.text = "fhoodie25"
+        cell.userRating.image = UIImage(named: variables.ratingInString!)
+        cell.pickupCountdown.text = "00:07:52"
 
         // Link Fhoodie information
 

@@ -9,11 +9,12 @@
 import UIKit
 
 final class OrdersTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var orderNumber: UILabel!
+    
     @IBOutlet weak var orderTime: UILabel!
-    @IBOutlet weak var fhoodiePic: UIImageView!
-    @IBOutlet weak var fhoodieSpoon: UIImageView!
-    @IBOutlet weak var fhoodieID: UILabel!
+    @IBOutlet weak var orderNumber: UILabel!
+    @IBOutlet weak var userPic: UIImageView!
+    @IBOutlet weak var userID: UILabel!
+    @IBOutlet weak var userRating: UIImageView!
     @IBOutlet weak var pickupCountdown: UILabel!
+    
 }

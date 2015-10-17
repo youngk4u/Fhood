@@ -279,7 +279,7 @@
                                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gnF-7a-ggn" id="7yl-hB-pFr">
-                                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aTl-Cy-iO1">
@@ -443,7 +443,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNv-bk-ujN" userLabel="scheduleView">
-                                        <rect key="frame" x="40" y="173" width="240" height="232"/>
+                                        <rect key="frame" x="40" y="168" width="240" height="232"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Open Time" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mod-pE-C1I">
                                                 <rect key="frame" x="79" y="28" width="83" height="21"/>
@@ -560,8 +560,8 @@
                                     <constraint firstItem="HdI-KX-jNJ" firstAttribute="centerX" secondItem="K4a-Kg-fbD" secondAttribute="centerX" id="Mbg-51-lie"/>
                                     <constraint firstItem="HdI-KX-jNJ" firstAttribute="leading" secondItem="hY4-uO-BH0" secondAttribute="trailing" constant="14" id="OnB-Dy-gHf"/>
                                     <constraint firstItem="hY4-uO-BH0" firstAttribute="top" secondItem="Qvn-ny-xqk" secondAttribute="bottom" constant="56" id="QUU-aF-uB9"/>
-                                    <constraint firstItem="bNv-bk-ujN" firstAttribute="top" secondItem="dce-AH-vUw" secondAttribute="bottom" constant="20" id="cdA-ls-eIk"/>
                                     <constraint firstItem="dce-AH-vUw" firstAttribute="top" secondItem="Qvn-ny-xqk" secondAttribute="bottom" constant="56" id="d1D-Zr-tsn"/>
+                                    <constraint firstItem="bNv-bk-ujN" firstAttribute="centerY" secondItem="K4a-Kg-fbD" secondAttribute="centerY" id="fN2-Kw-BrK"/>
                                     <constraint firstItem="bNv-bk-ujN" firstAttribute="leading" secondItem="K4a-Kg-fbD" secondAttribute="leading" constant="40" id="gzP-9o-H3G"/>
                                     <constraint firstAttribute="trailing" secondItem="bNv-bk-ujN" secondAttribute="trailing" constant="40" id="h5r-GD-b1r"/>
                                     <constraint firstItem="bNv-bk-ujN" firstAttribute="centerX" secondItem="K4a-Kg-fbD" secondAttribute="centerX" id="mfZ-G9-NKH"/>
@@ -615,7 +615,7 @@
                                         <rect key="frame" x="0.0" y="86" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VLU-N9-cyu" id="fvG-TL-3Tw">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="74.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIx-w4-D2g" userLabel="orderNumber">
@@ -700,12 +700,12 @@
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="fhoodieID" destination="bx9-N8-SRg" id="2GW-80-3hQ"/>
-                                            <outlet property="fhoodiePic" destination="Hxf-DM-5gP" id="uNE-NV-m16"/>
-                                            <outlet property="fhoodieSpoon" destination="gBQ-cf-OQp" id="IGp-MT-kKb"/>
-                                            <outlet property="orderNumber" destination="EIx-w4-D2g" id="9U3-PV-eQQ"/>
-                                            <outlet property="orderTime" destination="wFP-FC-75q" id="N10-re-TPc"/>
-                                            <outlet property="pickupCountdown" destination="Rru-8c-UzH" id="q5Z-ES-J7e"/>
+                                            <outlet property="orderNumber" destination="EIx-w4-D2g" id="4IK-nY-AgW"/>
+                                            <outlet property="orderTime" destination="wFP-FC-75q" id="N95-P5-nz7"/>
+                                            <outlet property="pickupCountdown" destination="Rru-8c-UzH" id="wOS-mh-HpT"/>
+                                            <outlet property="userID" destination="bx9-N8-SRg" id="oK9-tF-TC9"/>
+                                            <outlet property="userPic" destination="Hxf-DM-5gP" id="Tj8-Bj-UT4"/>
+                                            <outlet property="userRating" destination="gBQ-cf-OQp" id="soM-9r-TDe"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -768,10 +768,10 @@
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoreTableViewCell" rowHeight="45" id="caH-4O-zaX">
-                                        <rect key="frame" x="0.0" y="114" width="320" height="45"/>
+                                        <rect key="frame" x="0.0" y="113.5" width="320" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="caH-4O-zaX" id="BLR-ld-0iN">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="44.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </tableViewCellContentView>
