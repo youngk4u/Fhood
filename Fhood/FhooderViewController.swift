@@ -38,9 +38,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     var qtyReceipt : [Int] = []
     var priceReceipt : [Double] = []
 
-    var newTotalItemPrice : Double = 0
-
-    @IBOutlet weak var timePicker: UIDatePicker!
+    var totalItemPrice : Double = 0
 
     @IBOutlet weak var totalPrice: UILabel!
 
@@ -48,7 +46,6 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var dimView: UIView!
-    @IBOutlet weak var receiptView: UIView!
 
     @IBOutlet var detailView: UIView!
     @IBOutlet var detailTitle: UILabel!
@@ -60,35 +57,6 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet var detailBackImage: UIImageView!
     @IBOutlet var detailIngredients: UILabel!
 
-    @IBOutlet weak var dimView2: UIView!
-    @IBOutlet weak var finalView: UIView!
-
-    @IBOutlet weak var totalDue: UILabel!
-    @IBOutlet weak var finalReminder: UILabel!
-
-    @IBOutlet weak var quantityOne: UILabel!
-    @IBOutlet weak var quantityTwo: UILabel!
-    @IBOutlet weak var quantityThree: UILabel!
-    @IBOutlet weak var quantityFour: UILabel!
-    @IBOutlet weak var quantityFive: UILabel!
-    @IBOutlet weak var quantitySix: UILabel!
-    @IBOutlet weak var quantitySeven: UILabel!
-
-    @IBOutlet weak var itemOne: UILabel!
-    @IBOutlet weak var itemTwo: UILabel!
-    @IBOutlet weak var itemThree: UILabel!
-    @IBOutlet weak var itemFour: UILabel!
-    @IBOutlet weak var itemFive: UILabel!
-    @IBOutlet weak var itemSix: UILabel!
-    @IBOutlet weak var itemSeven: UILabel!
-
-    @IBOutlet weak var priceOne: UILabel!
-    @IBOutlet weak var priceTwo: UILabel!
-    @IBOutlet weak var priceThree: UILabel!
-    @IBOutlet weak var priceFour: UILabel!
-    @IBOutlet weak var priceFive: UILabel!
-    @IBOutlet weak var priceSix: UILabel!
-    @IBOutlet weak var priceSeven: UILabel!
 
     var tableCellList : NSArray = ["Reviews", "Photos", "Send messages", "About the Fhooder"]
     var tableCellImage : NSArray = ["reviews", "photos", "messages", "about"]
@@ -146,12 +114,6 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
 
-        // Time Picker
-        self.timePicker.datePickerMode = UIDatePickerMode.Time // use time only
-        let currentDate = NSDate()  // get the current date
-        let newDate = NSDate(timeInterval: (15 * 60), sinceDate: currentDate)  // add 15 minutes
-        self.timePicker.minimumDate = newDate // set the current date/time as a minimum
-        self.timePicker.date = newDate // defaults to current time but shows how to use it.
 
         // Initialize totalItemPrice
         variables.totalItemPrice = 0
@@ -198,7 +160,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let coCell = collectionView.dequeueReusableCellWithReuseIdentifier("collCell", forIndexPath: indexPath) as! CollectionViewCell
 
-        self.newTotalItemPrice = 0
+        self.totalItemPrice = 0
 
         coCell.pinImage.image = UIImage(named: (arrImages.objectAtIndex(indexPath.item) as! String) )
 
@@ -231,10 +193,10 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             self.totalPrice.text = "$0.00"
         } else {
             for var i = 0; i < variables.itemCount!.count; i++ {
-                self.newTotalItemPrice += (Double(arrItemCount[i]) * arrPrice[i])
+                self.totalItemPrice += (Double(arrItemCount[i]) * arrPrice[i])
             }
 
-            variables.totalItemPrice! = self.newTotalItemPrice
+            variables.totalItemPrice! = self.totalItemPrice
             self.totalPrice.text = formatter.stringFromNumber(variables.totalItemPrice!)
 
             self.doneButton.alpha = 1
@@ -248,43 +210,12 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         let i = sender.layer.valueForKey("index") as! Int
 
         self.arrItemCount[i]--
-        self.newTotalItemPrice = 0
-        
-        // Reset the list on the ReceiptView
-        if self.arrItemCount[i] == 0 {
-            self.quantityOne.text = nil
-            self.itemOne.text = nil
-            self.priceOne.text = nil
-        
-            self.quantityTwo.text = nil
-            self.itemTwo.text = nil
-            self.priceTwo.text = nil
-            
-            self.quantityThree.text = nil
-            self.itemThree.text = nil
-            self.priceThree.text = nil
-            
-            self.quantityFour.text = nil
-            self.itemFour.text = nil
-            self.priceFour.text = nil
-            
-            self.quantityFive.text = nil
-            self.itemFive.text = nil
-            self.priceFive.text = nil
-
-            self.quantitySix.text = nil
-            self.itemSix.text = nil
-            self.priceSix.text = nil
-
-            self.quantitySeven.text = nil
-            self.itemSeven.text = nil
-            self.priceSeven.text = nil
-        }
+        self.totalItemPrice = 0
         
         for var i = 0; i < variables.itemCount!.count; i++ {
-            self.newTotalItemPrice += (Double(arrItemCount[i]) * arrPrice[i])
+            self.totalItemPrice += (Double(arrItemCount[i]) * arrPrice[i])
         }
-        variables.totalItemPrice! = self.newTotalItemPrice
+        variables.totalItemPrice! = self.totalItemPrice
 
         self.totalPrice.text = formatter.stringFromNumber(variables.totalItemPrice!)
 
@@ -294,12 +225,12 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let coCell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
 
-        self.newTotalItemPrice = 0
+        self.totalItemPrice = 0
 
         self.selectedImage = indexPath.item
         self.detailStepper.value = Double(self.arrItemCount[indexPath.item])
         self.detailQuantity.text = "\(Int(self.detailStepper.value))"
-        self.detailTitle.text = variables.itemNames![indexPath.item]
+        self.detailTitle.text = "\(arrImages[indexPath.item])"
         self.detailImage.image = UIImage(named: "\(arrImages[indexPath.item])")
         self.detailPrice.text = formatter.stringFromNumber(arrPrice[indexPath.item])
         self.detailIngredients.text = "Ingredients: " + variables.itemIngredients![indexPath.item]
@@ -316,9 +247,9 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             coCell.subtractButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
 
             for var i = 0; i < variables.itemCount!.count; i++ {
-                self.newTotalItemPrice += (Double(arrItemCount[i]) * arrPrice[i])
+                self.totalItemPrice += (Double(arrItemCount[i]) * arrPrice[i])
             }
-            variables.totalItemPrice! = self.newTotalItemPrice
+            variables.totalItemPrice! = self.totalItemPrice
 
             self.totalPrice.text = formatter.stringFromNumber(variables.totalItemPrice!)
             self.doneButton.alpha = 1
@@ -352,56 +283,31 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
     // Done Button
     func donePressed(sender: UIButton) {
-        UIView.animate(withDuration: 0.7) {
-            self.dimView.alpha = 0.7
-            self.receiptView.alpha = 1
-        }
-
-        // Organize the list
+        
+        // Reset arrays for receipt
+        self.itemReceipt = []
+        self.qtyReceipt = []
+        self.priceReceipt = []
+        
+        // Organize the receipt list
         for var i = 0; i < arrImages.count; i++ {
             if arrItemCount[i] != 0 {
-                itemReceipt.append(self.arrImages[i] as! String)
-                qtyReceipt.append(self.arrItemCount[i])
-                priceReceipt.append(self.arrPrice[i])
+                self.itemReceipt.append(self.arrImages[i] as! String)
+                self.qtyReceipt.append(self.arrItemCount[i])
+                self.priceReceipt.append(self.arrPrice[i])
             }
         }
         
-        // Put the order list on the receipt
-        for var x = 0; x < qtyReceipt.count; x++ {
-            if x == 0 && x < qtyReceipt.count {
-                self.quantityOne.text = String("\(qtyReceipt[0])")
-                self.itemOne.text = itemReceipt[0]
-                self.priceOne.text = formatter.stringFromNumber(priceReceipt[0] * Double(qtyReceipt[0]))
-            } else if x == 1 && x < qtyReceipt.count {
-                self.quantityTwo.text = String("\(qtyReceipt[1])")
-                self.itemTwo.text = itemReceipt[1]
-                self.priceTwo.text = formatter.stringFromNumber(priceReceipt[1] * Double(qtyReceipt[1]))
-            } else if x == 2 && x < qtyReceipt.count {
-                self.quantityThree.text = String("\(qtyReceipt[2])")
-                self.itemThree.text = itemReceipt[2]
-                self.priceThree.text = formatter.stringFromNumber(priceReceipt[2] * Double(qtyReceipt[2]))
-            } else if x == 3 && x < qtyReceipt.count {
-                self.quantityFour.text = String("\(qtyReceipt[3])")
-                self.itemFour.text = itemReceipt[3]
-                self.priceFour.text = formatter.stringFromNumber(priceReceipt[3] * Double(qtyReceipt[3]))
-            } else if x == 4 && x < qtyReceipt.count {
-                self.quantityFive.text = String("\(qtyReceipt[4])")
-                self.itemFive.text = itemReceipt[4]
-                self.priceFive.text = formatter.stringFromNumber(priceReceipt[4] * Double(qtyReceipt[4]))
-            } else if x == 5 && x < qtyReceipt.count {
-                self.quantitySix.text = String("\(qtyReceipt[5])")
-                self.itemSix.text = itemReceipt[5]
-                self.priceSix.text = formatter.stringFromNumber(priceReceipt[5] * Double(qtyReceipt[5]))
-            } else if x == 6 && x < qtyReceipt.count {
-                self.quantitySeven.text = String("\(qtyReceipt[6])")
-                self.itemSeven.text = itemReceipt[6]
-                self.priceSeven.text = formatter.stringFromNumber(priceReceipt[6] * Double(qtyReceipt[6]))
-            } else {
-                return
-            }
-        }
-        self.totalDue.text = self.totalPrice.text
+        // Save on fhoodie struct
+        fhoodie.selectedItemNames = self.itemReceipt
+        fhoodie.selectedItemCount = self.qtyReceipt
+        fhoodie.selectedItemPrices = self.priceReceipt
+        fhoodie.selectedTotalItemPrice = self.totalItemPrice
+        
+        performSegueWithIdentifier("toReceiptView", sender: self)
     }
+        
+
 
     @IBAction func detailViewClose(sender: AnyObject) {
         if self.detailBackImage.alpha != 0 {
@@ -418,16 +324,6 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         }
     }
 
-    @IBAction func receiptViewClose(sender: AnyObject) {
-        UIView.animate(withDuration: 0.7) {
-            self.dimView.alpha = 0
-            self.receiptView.alpha = 0
-        }
-
-        self.itemReceipt = []
-        self.qtyReceipt = []
-        self.priceReceipt = []
-    }
 
     // TableView  (iPhone 6 plus: set Width to 414, iPhone 6: 375, iPhone 5/5s: 320)
     func tableView(tableView3: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -465,20 +361,5 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         TableView3.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
-    @IBAction func completeOrder(sender: AnyObject) {
-        self.finalView.layer.cornerRadius = 9
-        self.finalReminder.text = "Would you like to confirm your order?"
-        
-        UIView.animate(withDuration: 0.7) {
-            self.dimView2.alpha = 0.7
-            self.finalView.alpha = 1
-        }
-    }
 
-    @IBAction func finalCancel(sender: AnyObject) {
-        UIView.animate(withDuration: 0.7) {
-            self.dimView2.alpha = 0
-            self.finalView.alpha = 0
-        }
-    }
 }
