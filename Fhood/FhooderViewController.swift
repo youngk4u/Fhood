@@ -21,18 +21,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var openNowOrClose: UILabel!
 
-    var arrImages : NSArray = []
-    var arrPrice : [Double]  = []
-    var formatter = NSNumberFormatter()
-
     @IBOutlet weak var collectionView: UICollectionView!
-
-    var selectedImage : Int = 0
-    var selectedRow2 : Int = 0
-
-    var arrItemCount : [Int] = []
-    var itemSum : Double = 0
-    var quantityLabel : Int = 0
 
     var itemReceipt : [String] = []
     var qtyReceipt : [Int] = []
@@ -41,21 +30,11 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     var totalItemPrice : Double = 0
 
     @IBOutlet weak var totalPrice: UILabel!
-
     @IBOutlet weak var TableView3: UITableView!
-
     @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var dimView: UIView!
-
-    @IBOutlet var detailView: UIView!
-    @IBOutlet var detailTitle: UILabel!
-    @IBOutlet var detailImage: UIImageView!
-    @IBOutlet var detailPrice: UILabel!
-    @IBOutlet var detailQuantity: UILabel!
-    @IBOutlet var detailStepper: UIStepper!
-    @IBOutlet var detailInstructions: UITextField!
-    @IBOutlet var detailBackImage: UIImageView!
-    @IBOutlet var detailIngredients: UILabel!
+    
+    var selectedRow2 : Int = 0
+    var formatter = NSNumberFormatter()
 
 
     var tableCellList : NSArray = ["Reviews", "Photos", "Send messages", "About the Fhooder"]
@@ -65,7 +44,11 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Reload collectionview data
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
+        
+        // Pull data from the selected fhooder
         self.shopName.text = variables.name!
         self.spoonRating.image = UIImage(named: variables.ratingInString!)
         self.reviewCount.text = "\(variables.reviews!) Reviews"
@@ -97,9 +80,6 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             self.openNowOrClose.text = "Closed; Opens at \(variables.timeOpenHour!):\(newOpenMinute) \(variables.timeOpenAmpm!)"
         }
         
-        self.arrImages = variables.itemNames!
-        self.arrPrice = variables.itemPrices!
-        self.arrItemCount = variables.itemCount!
         
         // Logo
         let logo = UIImage(named: "FhoodLogo")
@@ -116,45 +96,24 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
 
         // Initialize totalItemPrice
-        variables.totalItemPrice = 0
+        fhoodie.selectedTotalItemPrice = 0
 
-        // Detail view image tap to see ingredients
-        let tapGesture = UITapGestureRecognizer(target: self, action: "imageFlipped:")
-        self.detailImage.addGestureRecognizer(tapGesture)
-        self.detailImage.userInteractionEnabled = true
-        
-        let tapGestureBack = UITapGestureRecognizer(target: self, action: "imageFlipBack:")
-        self.detailBackImage.addGestureRecognizer(tapGestureBack)
-        self.detailBackImage.userInteractionEnabled = true
 
     }
     
-    // Detail image flip to show ingredients
-    func imageFlipped(gesture: UIGestureRecognizer) {
-        self.detailImage.translatesAutoresizingMaskIntoConstraints = true
-        UIView.transitionFromView(self.detailImage, toView: self.detailBackImage, duration: 1,
-            options: UIViewAnimationOptions.TransitionFlipFromLeft, completion: nil)
-        
-        self.detailBackImage.alpha = 1
-        self.detailIngredients.alpha = 1
+    // Reload collectionview function to use from other controllers
+    func loadList(notification: NSNotification){
+        self.collectionView.reloadData()
     }
     
-    func imageFlipBack(gesture: UIGestureRecognizer) {
-        self.detailBackImage.translatesAutoresizingMaskIntoConstraints = true
-        UIView.transitionFromView(self.detailBackImage, toView: self.detailImage, duration: 1,
-            options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
-
-        self.detailBackImage.alpha = 0
-        self.detailIngredients.alpha = 0
-    }
-
+   
     // CollectionView
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrImages.count
+        return variables.itemNames!.count
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -162,17 +121,17 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
         self.totalItemPrice = 0
 
-        coCell.pinImage.image = UIImage(named: (arrImages.objectAtIndex(indexPath.item) as! String) )
+        coCell.fhoodImage.image = UIImage(named: (variables.itemNames![indexPath.item] ) )
 
-        coCell.foodName.text = arrImages.objectAtIndex(indexPath.item) as? String
+        coCell.foodName.text = variables.itemNames![indexPath.item]
         coCell.foodName.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         coCell.foodName.textColor = UIColor.whiteColor()
 
-        coCell.foodPrice.text = formatter.stringFromNumber(arrPrice[indexPath.item])
+        coCell.foodPrice.text = formatter.stringFromNumber(variables.itemPrices![indexPath.item])
         coCell.foodPrice.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         coCell.foodPrice.textColor = UIColor.whiteColor()
 
-        if self.arrItemCount[indexPath.item] == 0 {
+        if variables.itemCount![indexPath.item] == 0 {
             coCell.foodQuantity.text = ""
             coCell.foodQuantity.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
         
@@ -180,24 +139,24 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             coCell.subtractButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
         } else {
             coCell.foodQuantity.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-            coCell.foodQuantity.text = " x " + "\(Int(arrItemCount[indexPath.item]))"
+            coCell.foodQuantity.text = " x " + "\(Int(variables.itemCount![indexPath.item]))"
             coCell.subtractButton.alpha = 0.8
             coCell.subtractButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         }
 
         coCell.subtractButton.layer.setValue(indexPath.item, forKey: "index")
         coCell.subtractButton.addTarget(self, action: "subtractItem:", forControlEvents: UIControlEvents.TouchUpInside)
-
-        if variables.totalItemPrice == 0 {
+        
+        if fhoodie.isAnythingSelected == false {
             self.doneButton.alpha = 0
             self.totalPrice.text = "$0.00"
         } else {
             for var i = 0; i < variables.itemCount!.count; i++ {
-                self.totalItemPrice += (Double(arrItemCount[i]) * arrPrice[i])
+                self.totalItemPrice += (Double(variables.itemCount![i]) * variables.itemPrices![i])
             }
 
-            variables.totalItemPrice! = self.totalItemPrice
-            self.totalPrice.text = formatter.stringFromNumber(variables.totalItemPrice!)
+            fhoodie.selectedTotalItemPrice! = self.totalItemPrice
+            self.totalPrice.text = formatter.stringFromNumber(fhoodie.selectedTotalItemPrice!)
 
             self.doneButton.alpha = 1
             self.doneButton.addTarget(self, action: "donePressed:", forControlEvents: UIControlEvents.TouchUpInside)
@@ -209,15 +168,15 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     func subtractItem(sender: UIButton) {
         let i = sender.layer.valueForKey("index") as! Int
 
-        self.arrItemCount[i]--
+        variables.itemCount![i]--
         self.totalItemPrice = 0
         
         for var i = 0; i < variables.itemCount!.count; i++ {
-            self.totalItemPrice += (Double(arrItemCount[i]) * arrPrice[i])
+            self.totalItemPrice += (Double(variables.itemCount![i]) * variables.itemPrices![i])
         }
-        variables.totalItemPrice! = self.totalItemPrice
+        fhoodie.selectedTotalItemPrice! = self.totalItemPrice
 
-        self.totalPrice.text = formatter.stringFromNumber(variables.totalItemPrice!)
+        self.totalPrice.text = formatter.stringFromNumber(fhoodie.selectedTotalItemPrice!)
 
         self.collectionView.reloadData()
     }
@@ -226,35 +185,26 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         let coCell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
 
         self.totalItemPrice = 0
+        
+        fhoodie.selectedIndex = indexPath.item
 
-        self.selectedImage = indexPath.item
-        self.detailStepper.value = Double(self.arrItemCount[indexPath.item])
-        self.detailQuantity.text = "\(Int(self.detailStepper.value))"
-        self.detailTitle.text = "\(arrImages[indexPath.item])"
-        self.detailImage.image = UIImage(named: "\(arrImages[indexPath.item])")
-        self.detailPrice.text = formatter.stringFromNumber(arrPrice[indexPath.item])
-        self.detailIngredients.text = "Ingredients: " + variables.itemIngredients![indexPath.item]
+        performSegueWithIdentifier("toDetailView", sender: self)
 
-        UIView.animateWithDuration(0.7, animations: { () -> Void in
-            self.dimView.alpha = 0.7
-            self.detailView.alpha = 1
-        })
-
-        if self.arrItemCount[indexPath.item] != 0 {
+        if variables.itemCount![indexPath.item] != 0 {
             coCell.foodQuantity.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-            coCell.foodQuantity.text = " x " + "\(Int(arrItemCount[indexPath.item]))"
+            coCell.foodQuantity.text = " x " + "\(Int(variables.itemCount![indexPath.item]))"
             coCell.subtractButton.alpha = 0.8
             coCell.subtractButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
 
             for var i = 0; i < variables.itemCount!.count; i++ {
-                self.totalItemPrice += (Double(arrItemCount[i]) * arrPrice[i])
+                self.totalItemPrice += (Double(variables.itemCount![i]) * variables.itemPrices![i])
             }
-            variables.totalItemPrice! = self.totalItemPrice
+            fhoodie.selectedTotalItemPrice! = self.totalItemPrice
 
-            self.totalPrice.text = formatter.stringFromNumber(variables.totalItemPrice!)
+            self.totalPrice.text = formatter.stringFromNumber(fhoodie.selectedTotalItemPrice!)
             self.doneButton.alpha = 1
             self.doneButton.addTarget(self, action: "donePressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        } else if variables.totalItemPrice! == 0 {
+        } else if fhoodie.selectedTotalItemPrice! == 0 {
             self.totalPrice.text = "$0.00"
         }
     }
@@ -271,15 +221,6 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         return sectionInsets
     }
 
-    // Stepper Button
-    @IBAction func stepperPressed(sender: UIStepper) {
-        self.quantityLabel = Int(detailStepper.value)
-        variables.totalItemPrice! = Double(self.quantityLabel)
-        self.arrItemCount[self.selectedImage] = self.quantityLabel
-        self.detailQuantity.text = "\(self.quantityLabel)"
-
-        self.collectionView.reloadData()
-    }
 
     // Done Button
     func donePressed(sender: UIButton) {
@@ -290,11 +231,11 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         self.priceReceipt = []
         
         // Organize the receipt list
-        for var i = 0; i < arrImages.count; i++ {
-            if arrItemCount[i] != 0 {
-                self.itemReceipt.append(self.arrImages[i] as! String)
-                self.qtyReceipt.append(self.arrItemCount[i])
-                self.priceReceipt.append(self.arrPrice[i])
+        for var i = 0; i < variables.itemNames!.count; i++ {
+            if variables.itemCount![i] != 0 {
+                self.itemReceipt.append(variables.itemNames![i])
+                self.qtyReceipt.append(variables.itemCount![i])
+                self.priceReceipt.append(variables.itemPrices![i])
             }
         }
         
@@ -307,22 +248,6 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         performSegueWithIdentifier("toReceiptView", sender: self)
     }
         
-
-
-    @IBAction func detailViewClose(sender: AnyObject) {
-        if self.detailBackImage.alpha != 0 {
-            UIView.transitionFromView(self.detailBackImage, toView: self.detailImage, duration: 0.5,
-                options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
-
-            self.detailBackImage.alpha = 0
-            self.detailIngredients.alpha = 0
-        }
-
-        UIView.animate(withDuration: 0.7) {
-            self.dimView.alpha = 0
-            self.detailView.alpha = 0
-        }
-    }
 
 
     // TableView  (iPhone 6 plus: set Width to 414, iPhone 6: 375, iPhone 5/5s: 320)

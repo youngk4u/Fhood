@@ -10,7 +10,7 @@ import UIKit
 
 final class CollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var pinImage: UIImageView!
+    @IBOutlet weak var fhoodImage: UIImageView!
     
     @IBOutlet weak var foodName: UILabel!
     @IBOutlet weak var foodPrice: UILabel!

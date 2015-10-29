@@ -26,9 +26,11 @@ struct fhoodie {
     static var fhoodiePhoneNum: String?
     
     static var selectedShopName: String?
+    static var selectedIndex: Int?
     static var selectedItemNames: [String]?
     static var selectedItemPrices: [Double]?
     static var selectedItemCount: [Int]?
+    static var isAnythingSelected: Bool?
     static var selectedTotalItemPrice: Double?
     
 }
