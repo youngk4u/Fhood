@@ -10,7 +10,9 @@ import UIKit
 
 class ReceiptViewController: UIViewController {
     
-    @IBOutlet weak var totalDue: UILabel!
+    @IBOutlet weak var subTotal: UILabel!
+    @IBOutlet weak var taxesAndFees: UILabel!
+    @IBOutlet weak var TotalAmountDue: UILabel!
     
     @IBOutlet weak var quantityOne: UILabel!
     @IBOutlet weak var quantityTwo: UILabel!
@@ -83,7 +85,11 @@ class ReceiptViewController: UIViewController {
             }
         }
         
-        self.totalDue.text = formatter.stringFromNumber(fhoodie.selectedTotalItemPrice!)
+        // Stripe fee (2.9% + 30 cents) and taxes (7.1% - Stripe) added to every order
+        self.subTotal.text = formatter.stringFromNumber(fhoodie.selectedTotalItemPrice!)
+        self.taxesAndFees.text = formatter.stringFromNumber(fhoodie.selectedTotalItemPrice! * 0.1 + 0.3)
+        fhoodie.totalDue = fhoodie.selectedTotalItemPrice! + fhoodie.selectedTotalItemPrice! * 0.1 + 0.3
+        self.TotalAmountDue.text = formatter.stringFromNumber(fhoodie.totalDue!)
 
 
     
@@ -95,6 +101,18 @@ class ReceiptViewController: UIViewController {
         self.timePicker.date = newDate // defaults to current time but shows how to use it.
 
     }
+    
+    @IBAction func completeOrder(sender: AnyObject) {
+        let alert = UIAlertController(title: "Confirm your order", message:"The total amount of \(self.TotalAmountDue.text!) will be charged to your account. Would you like to proceed?", preferredStyle: .Alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .Default) { _ in}
+        let proceed = UIAlertAction(title: "Proceed", style: .Default) { (action: UIAlertAction!) -> () in
+            self.performSegueWithIdentifier("toOrderedView", sender: self)
+        }
+        alert.addAction(cancel)
+        alert.addAction(proceed)
+        self.presentViewController(alert, animated: true){}
+    }
+    
 
     // Close receipt
     @IBAction func closeReceiptView(sender: AnyObject) {

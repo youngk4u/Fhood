@@ -27,8 +27,6 @@ final class RateViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var dimView: UIView!
-    
     @IBOutlet weak var tellCommentLabel: UILabel!
     
     override func viewDidLoad() {
@@ -64,7 +62,6 @@ final class RateViewController: UIViewController, UITextViewDelegate {
             self.tellCommentLabel.textColor = UIColor.whiteColor()
             self.commentBox.textColor = UIColor.blackColor()
             self.commentBox.backgroundColor = UIColor.whiteColor()
-            self.dimView.alpha = 0.8
             self.view.layoutIfNeeded()
         })
     }
@@ -90,7 +87,6 @@ final class RateViewController: UIViewController, UITextViewDelegate {
             self.bottomConstraint.constant = 60
             self.tellCommentLabel.textColor = UIColor.darkGrayColor()
             self.commentBox.textColor = UIColor.blackColor()
-            self.dimView.alpha = 0
         })
     }
 

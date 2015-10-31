@@ -32,5 +32,6 @@ struct fhoodie {
     static var selectedItemCount: [Int]?
     static var isAnythingSelected: Bool?
     static var selectedTotalItemPrice: Double?
+    static var totalDue: Double?
     
 }

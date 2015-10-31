@@ -9,7 +9,7 @@
 import Foundation
 import MessageUI
 
-let textMessageRecipients = ["1-800-123-4567"] // for pre-populating the recipients list (optional, depending on your needs)
+let textMessageRecipients = ["(323) 382-2288"] // Young's phone for now
 
 class MessageComposer: NSObject, MFMessageComposeViewControllerDelegate {
     

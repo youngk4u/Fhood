@@ -18,6 +18,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var fhooderDistance: UILabel!
     @IBOutlet weak var pickupSign: UILabel!
     @IBOutlet weak var eatinSign: UILabel!
+    @IBOutlet weak var deliverySign: UILabel!
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var openNowOrClose: UILabel!
 
@@ -41,6 +42,9 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     var tableCellImage : NSArray = ["reviews", "photos", "messages", "about"]
 
     let sectionInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
+    
+    // Create Message Composer
+    let messageComposer = MessageComposer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +61,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         self.fhooderDistance.text = "(\(variables.distance!) miles)"
         self.pickupSign.hidden = !variables.pickup!
         self.eatinSign.hidden = !variables.eatin!
+        self.deliverySign.hidden = !variables.delivery!
         self.phoneNumber.text = variables.phoneNum!
 
         var newOpenMinute: String
@@ -90,12 +95,16 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         self.TableView3.delegate = self
         self.TableView3.dataSource = self
         self.TableView3.layoutMargins = UIEdgeInsetsZero
+        
+        // No lines between table cells
+        self.TableView3.separatorStyle = UITableViewCellSeparatorStyle.None
 
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
 
 
-        // Initialize totalItemPrice
+        // Initialize fhoodie variables
+        fhoodie.isAnythingSelected = false
         fhoodie.selectedTotalItemPrice = 0
 
 
@@ -107,6 +116,8 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     }
     
    
+    
+    
     // CollectionView
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
@@ -115,7 +126,8 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return variables.itemNames!.count
     }
-
+    
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let coCell = collectionView.dequeueReusableCellWithReuseIdentifier("collCell", forIndexPath: indexPath) as! CollectionViewCell
 
@@ -161,10 +173,11 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             self.doneButton.alpha = 1
             self.doneButton.addTarget(self, action: "donePressed:", forControlEvents: UIControlEvents.TouchUpInside)
         }
-
         return coCell
     }
 
+    
+    // Subtract icon function
     func subtractItem(sender: UIButton) {
         let i = sender.layer.valueForKey("index") as! Int
 
@@ -175,12 +188,18 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             self.totalItemPrice += (Double(variables.itemCount![i]) * variables.itemPrices![i])
         }
         fhoodie.selectedTotalItemPrice! = self.totalItemPrice
-
+        
+        if fhoodie.selectedTotalItemPrice! == 0 {
+            fhoodie.isAnythingSelected = false
+        }
+        
         self.totalPrice.text = formatter.stringFromNumber(fhoodie.selectedTotalItemPrice!)
 
         self.collectionView.reloadData()
     }
 
+    
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let coCell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
 
@@ -221,6 +240,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         return sectionInsets
     }
 
+    
 
     // Done Button
     func donePressed(sender: UIButton) {
@@ -250,6 +270,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         
 
 
+    
     // TableView  (iPhone 6 plus: set Width to 414, iPhone 6: 375, iPhone 5/5s: 320)
     func tableView(tableView3: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -272,13 +293,29 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
     func tableView(tableView3: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.selectedRow2 = indexPath.row
-
+        
         if self.selectedRow2 == 0 {
             self.performSegueWithIdentifier("toFhooderReviewsView", sender: TableView3)
         } else if self.selectedRow2 == 1 {
             self.performSegueWithIdentifier("toFhooderPhotosView", sender: TableView3)
         } else if self.selectedRow2 == 2 {
-            self.performSegueWithIdentifier("toFhooderMessageView", sender: TableView3)
+            // Make sure the device can send text messages
+            if (messageComposer.canSendText()) {
+                // Obtain a configured MFMessageComposeViewController
+                let messageComposeVC = messageComposer.configuredMessageComposeViewController()
+                
+                // Present the configured MFMessageComposeViewController instance
+                // Note that the dismissal of the VC will be handled by the messageComposer instance,
+                // since it implements the appropriate delegate call-back
+                presentViewController(messageComposeVC, animated: true, completion: nil)
+            } else {
+                // Let the user know if his/her device isn't able to send text messages
+                let alert = UIAlertController(title: "Cannot Send Text Message", message:"Your device is not able to send text messages", preferredStyle: .Alert)
+                let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+                alert.addAction(action)
+                self.presentViewController(alert, animated: true){}
+                
+            }
         } else if self.selectedRow2 == 3 {
             self.performSegueWithIdentifier("toAboutFhooderView", sender: TableView3)
         }

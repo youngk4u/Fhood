@@ -37,7 +37,6 @@
 		636CC8D71B1EEFE90084CCE8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636CC8D61B1EEFE90084CCE8 /* TabBarController.swift */; };
 		636F75141B7E973A00A8C1E8 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75131B7E973A00A8C1E8 /* BubbleView.swift */; };
 		636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */; };
-		63733FC41B2A60FA009E99CF /* FhooderMessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63733FC31B2A60FA009E99CF /* FhooderMessagesViewController.swift */; };
 		6382F0991BDF23EE002C9C6B /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0981BDF23EE002C9C6B /* ReceiptViewController.swift */; };
 		6382F09B1BDF7007002C9C6B /* fhoodie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F09A1BDF7007002C9C6B /* fhoodie.swift */; };
 		6382F09D1BE0ABC0002C9C6B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F09C1BE0ABC0002C9C6B /* DetailViewController.swift */; };
@@ -120,7 +119,6 @@
 		636CC8D61B1EEFE90084CCE8 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		636F75131B7E973A00A8C1E8 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationObject.swift; sourceTree = "<group>"; };
-		63733FC31B2A60FA009E99CF /* FhooderMessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FhooderMessagesViewController.swift; sourceTree = "<group>"; };
 		6382F0981BDF23EE002C9C6B /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		6382F09A1BDF7007002C9C6B /* fhoodie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhoodie.swift; sourceTree = "<group>"; };
 		6382F09C1BE0ABC0002C9C6B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -291,7 +289,6 @@
 				6363759D1B533A1C00BBE93B /* DirectionViewController.swift */,
 				63CA5CA61B425119008D16A1 /* FhooderViewController.swift */,
 				6382F09C1BE0ABC0002C9C6B /* DetailViewController.swift */,
-				63733FC31B2A60FA009E99CF /* FhooderMessagesViewController.swift */,
 				6382F0981BDF23EE002C9C6B /* ReceiptViewController.swift */,
 			);
 			name = Controllers;
@@ -569,7 +566,6 @@
 				63F70A2D1B5A3CE200A2D618 /* FinalViewController.swift in Sources */,
 				63F70A391B5B765E00A2D618 /* fhooderSix.swift in Sources */,
 				633376991B582CB400F7D846 /* ConfirmViewController.swift in Sources */,
-				63733FC41B2A60FA009E99CF /* FhooderMessagesViewController.swift in Sources */,
 				636CB1671B9452A700674C91 /* FhooderMoreViewController.swift in Sources */,
 				636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */,
 				3B356FD61B93F1170014AD22 /* Router.swift in Sources */,

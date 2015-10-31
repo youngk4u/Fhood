@@ -45,16 +45,5 @@ final class DirectionViewController: UIViewController {
         self.navigationController?.navigationBarHidden = true
     }
 
-    @IBAction func segmentControl(sender: AnyObject) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            return
-        case 1:
-            performSegueWithIdentifier("toMessagesView", sender: self)
-        case 2:
-            performSegueWithIdentifier("toMainView", sender: self)
-        default:
-            break
-        }
-    }
+
 }

@@ -28,7 +28,7 @@ final class ConfirmViewController: UIViewController {
         
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
-        totalPriceLabel.text = self.formatter.stringFromNumber(variables.totalItemPrice!)
+        totalPriceLabel.text = self.formatter.stringFromNumber(fhoodie.totalDue!)
         
         self.welcomeSign.text = "Welcome to \(variables.name!)!"
         
