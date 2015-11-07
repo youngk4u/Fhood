@@ -33,7 +33,14 @@ func fhooderTwo() {
     variables.itemNames = ["Bibimbap (Eat in)", "Bibimbap (To go)", "Gimbap", "Water"]
     variables.itemPrices = [7.0, 5.0, 3.0, 1.5]
     variables.itemCount = [0, 0, 0, 0]
+    variables.itemPrefernce = [[1,0,1,0,1,1,1,0], [1,0,1,0,1,1,1,0], [1,0,1,1,1,1,1,0], [0,0,0,0,0,0,0,0]]
+    variables.itemDescription = ["Traditional Korean style dish with seasoned vegetables, beef, and a classic Korean red pepper paste.  Finished off with an egg.", "Traditional Korean style dish with seasoned vegetables, beef, and a classic Korean red pepper paste.  Finished off with an egg.(Dining in)", "A classic on the go Korean favorite. Rice, beef, egg, assorted pickled vegetables all rolled up in a sheet of laver seaweed. Sprinkled with sesame seeds.", "Refreshing evian water"]
     variables.itemIngredients = ["Rice, Carrot, Beef, Spinach, Mushrooms, Mung bean sprouts, Sesame oil, Red pepper paste, Egg, Cucumber.", "Rice, Carrot, Beef, Spinach, Mushrooms, Mung bean sprouts, Sesame oil, Red pepper paste, Egg, Cucumber.", "Rice, Sea weed, Beef, Carrot, Pickled radish, Sesame seeds, Egg", "Water"]
+    
+    
+    variables.dailyQuantity = [0,0,0,0,0,0,0]
+    variables.maxOrderLimit = [0,0,0,0,0,0,0]
+    variables.timeInterval = [0,0,0,0,0,0,0]
     
     variables.fhooderFace = "fhooder2face"
     variables.fhooderFirstName = "Mi-Son"

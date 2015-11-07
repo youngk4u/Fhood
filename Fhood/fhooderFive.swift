@@ -33,7 +33,13 @@ func fhooderFive() {
     variables.itemNames = ["Rice Ball Bento Set", "Donkatsu Bento", "Salmon Bento", "Special Bento", "Ramune", "Iced Green Tea", "Japanese Dinner (Eat in)"]
     variables.itemPrices = [6.0, 6.0, 6.0, 6.0, 2.0, 1.5, 12.0]
     variables.itemCount = [0, 0, 0, 0, 0, 0, 0]
+    variables.itemPrefernce = [[1,0,1,0,0,0,1,0], [1,0,0,1,1,0,1,0], [1,0,1,1,1,0,1,0], [1,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,0],[1,0,0,0,0,0,0,0],[1,0,0,0,0,0,0,0]]
+    variables.itemDescription = ["Japanese Onigiri(rice ball) combo with Tsukune set. They say in Japan, 'Life is like a box of Onigiri bento' cause you'll never guess what kind of deliciousness is hidden inside", "Organic pork cutlet fried in clean vegetable oil with delicious noodle will definitely give you the energy you need for the day", "If you are health conscious (like me) this omega-3 enriching bento with brown rice and tasty Japanese pickles will satisfy your taste buds and give you peace of mind as well", "Cuteness plus deliciousness equals this bento. If you grew up in Japan this is the bento your loving mom will make you once awhile.", "Ramune, ramune, ramune... That ball of death won't be easy to pop but once you do, your mouth will enjoy tremendously.", "Ah~ the green tea.  It'll calm your mind and body", "Irashaimaseng!  Please come and join us with this special Japanese dinner set just like the ones you'd experience in Kyoto"]
     variables.itemIngredients = ["Rice, Seaweed, Ume Plum, Pickled Cucumber, Gobo Root, Egg, Tomato, Chicken Balls, Sweet Potato, Black Sesame, Soy Sauce, Sugar.", "Pork, Panko Flakes, Rice, Potato, Mayonnaise, Soy Sauce, Noodle, Black Sesame, Soy Sauce.", "Salmon, Brown Rice, Umeboshi, Eggs, Green Onion, Gobo Root, Chinese Broccoli", "Rice, Seaweed, Eggs, Hot Dog Weiner, Fish Cake. Umeboshi", "Sugar, Water, Flavor, Carbon", "Green Tea, Water", "Rice, Mackerel, Egg, Soy Sauce, Cucumber, Carrot, Chinese Cabbage, Potato, Green Onion, Bonito, Tofu, Lettuce, Corn, Broccoli, Sugar, Salt"]
+    
+    variables.dailyQuantity = [0,0,0,0,0,0,0]
+    variables.maxOrderLimit = [0,0,0,0,0,0,0]
+    variables.timeInterval = [0,0,0,0,0,0,0]
 
     variables.fhooderFace = "fhooder5face"
     variables.fhooderFirstName = "Aiko"

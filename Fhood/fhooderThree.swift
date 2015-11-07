@@ -30,10 +30,17 @@ func fhooderThree() {
     variables.timeCloseMinute = 0
     variables.timeCloseAmpm = "PM"
 
-    variables.itemNames = ["Hand Drip Coffee", "Expresso", "Bagel", "Honey Yogurt Parfait", "Macaron"]
+    variables.itemNames = ["Hand Drip Coffee", "Espresso", "Bagel", "Honey Yogurt Parfait", "Macaron"]
     variables.itemPrices = [3.0, 2.0, 1.0, 3.0, 3.0]
     variables.itemCount = [0, 0, 0, 0, 0]
+    variables.itemPrefernce = [[1,1,1,1,1,1,0,0], [1,1,1,1,1,1,1,0], [1,1,0,0,0,1,0,0], [0,0,1,1,1,1,0,0],[0,0,0,0,0,0,0,0]]
+    variables.itemDescription = ["Slow hand dripped coffee made to order", "Concentrated fragrant coffee with Indonesian light beans", "Homemade bagels just like granpa used to make.  Chewy and delicious", "Healthy and delicious greek yogurt topped with crunchy granola and blueberries", "Macarons made from scratch featuring various flavors that change daily"]
     variables.itemIngredients = ["Coffee (Ethiopian dark beans), Water.", "Coffee (Indonesian light beans), Water.", "Wheat flour, Water, Salt, Sesame seeds.", "Greek yogurt, Honey, Blue berries, Granola.", "Almond flour, Sugar, Egg whites, Creme of tartar, Salt, Food coloring"]
+    
+    
+    variables.dailyQuantity = [0,0,0,0,0,0,0]
+    variables.maxOrderLimit = [0,0,0,0,0,0,0]
+    variables.timeInterval = [0,0,0,0,0,0,0]
 
     variables.fhooderFace = "fhooder3face"
     variables.fhooderFirstName = "Craig"

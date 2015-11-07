@@ -37,6 +37,9 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Reload collectionview data
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
+        
         // Configure reveal for this view
         let revealController = self.revealViewController()
         revealController?.panGestureRecognizer()
@@ -83,6 +86,11 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
 
     }
     
+    // Reload collectionview function to use from other controllers
+    func loadList(notification: NSNotification){
+        self.collectionView.reloadData()
+    }
+    
     func toCookingTimeView () {
         performSegueWithIdentifier("toCookingTime", sender: nil)
     }
@@ -109,15 +117,30 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         cell.foodPrice.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         cell.foodPrice.textColor = UIColor.whiteColor()
         
-        cell.foodQuantity.text = ""
-        cell.foodQuantity.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        cell.foodQuantity.textColor = UIColor.whiteColor()
+        if variables.dailyQuantity![indexPath.item] == 0 {
+            cell.foodQuantity.alpha = 0
+            cell.orderPerMin.alpha = 0
+            cell.foodQuantity.text = ""
+            cell.orderPerMin.text = ""
+        } else {
+            cell.foodQuantity.alpha = 1
+            cell.orderPerMin.alpha = 1
+            cell.foodQuantity.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+            cell.orderPerMin.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+            cell.foodQuantity.text = "Daily Qty: " + "\(Int(variables.dailyQuantity![indexPath.item]))"
+            cell.orderPerMin.text = "\(variables.maxOrderLimit![indexPath.item]) per \(variables.timeInterval![indexPath.item]) minutes"
+        }
+
         
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        collectionView.cellForItemAtIndexPath(indexPath) as! ManageCollectionViewCell
+        
+        variables.itemIndex = indexPath.item
+        
+        performSegueWithIdentifier("toItemDetailView", sender: self)
+        
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,

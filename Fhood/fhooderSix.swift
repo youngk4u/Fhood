@@ -33,7 +33,13 @@ func fhooderSix() {
     variables.itemNames = ["Cold Pressed Juice", "Fresh Squeezed Juice"]
     variables.itemPrices = [5.0, 4.0]
     variables.itemCount = [0, 0]
-    variables.itemIngredients = ["Carrots, Oranges.", "Kale, Apple, Carrot.", "Orange.", "Beets, Ginger, Apple."]
+    variables.itemPrefernce = [[1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1]]
+    variables.itemDescription = ["We pick the freshest organic fruits and vegitables every day", "Vitamins and minerals for your body and mind"]
+    variables.itemIngredients = ["Carrots, Oranges.", "Kale, Apple, Carrot."]
+    
+    variables.dailyQuantity = [0,0,0,0,0,0,0]
+    variables.maxOrderLimit = [0,0,0,0,0,0,0]
+    variables.timeInterval = [0,0,0,0,0,0,0]
 
     variables.fhooderFace = "fhooder6face"
     variables.fhooderFirstName = "Henry"

@@ -17,8 +17,22 @@ final class DetailViewController: UIViewController {
     @IBOutlet var detailPrice: UILabel!
     @IBOutlet var detailQuantity: UILabel!
     @IBOutlet var detailStepper: UIStepper!
-    @IBOutlet var detailInstructions: UITextField!
+    @IBOutlet var detailPreference: UIView!
+    var preferenceSet: [String] = ["Aorganic", "Bvegan", "Cglutenfree", "Dnutsfree", "Esoyfree", "Fmsgfree", "Gdairyfree", "Hlowsodium"]
+    
+    @IBOutlet var imageOne: UIImageView!
+    @IBOutlet var imageTwo: UIImageView!
+    @IBOutlet var imageThree: UIImageView!
+    @IBOutlet var imageFour: UIImageView!
+    @IBOutlet var imageFive: UIImageView!
+    @IBOutlet var imageSix: UIImageView!
+    @IBOutlet var imageSeven: UIImageView!
+    @IBOutlet var imageEight: UIImageView!
+    
+    @IBOutlet var detailDescription: UILabel!
     @IBOutlet var detailIngredients: UILabel!
+    
+    @IBOutlet var detailInstructions: UITextField!
     
     var quantityLabel : Int = 0
     var formatter = NSNumberFormatter()
@@ -37,9 +51,52 @@ final class DetailViewController: UIViewController {
         self.detailTitle.text = variables.itemNames![fhoodie.selectedIndex!]
         self.detailImage.image = UIImage(named: variables.itemNames![fhoodie.selectedIndex!])
         self.detailPrice.text = formatter.stringFromNumber(variables.itemPrices![fhoodie.selectedIndex!])
+        self.detailDescription.text = "Description: " + variables.itemDescription![fhoodie.selectedIndex!]
         self.detailIngredients.text = "Ingredients: " + variables.itemIngredients![fhoodie.selectedIndex!]
 
+        // Set the prefernece images sorted
+        for var i = 0; i < 8; i++ {
+            
+            if variables.itemPrefernce![fhoodie.selectedIndex!][i] == 0 {
+                self.preferenceSet[i] = ""
+            }
+        }
         
+        self.preferenceSet.sortInPlace { (a, b) -> Bool in
+            if a.isEmpty {
+                return false
+            } else if b.isEmpty {
+                return true
+            } else {
+                return a.localizedCaseInsensitiveCompare(b) == .OrderedAscending
+            }
+        }
+        
+        if self.preferenceSet[0] != "" {
+            self.imageOne.image = UIImage(named: self.preferenceSet[0])
+        }
+        if self.preferenceSet[1] != "" {
+            self.imageTwo.image = UIImage(named: self.preferenceSet[1])
+        }
+        if self.preferenceSet[2] != "" {
+            self.imageThree.image = UIImage(named: self.preferenceSet[2])
+        }
+        if self.preferenceSet[3] != "" {
+            self.imageFour.image = UIImage(named: self.preferenceSet[3])
+        }
+        if self.preferenceSet[4] != "" {
+            self.imageFive.image = UIImage(named: self.preferenceSet[4])
+        }
+        if self.preferenceSet[5] != "" {
+            self.imageSix.image = UIImage(named: self.preferenceSet[5])
+        }
+        if self.preferenceSet[6] != "" {
+            self.imageSeven.image = UIImage(named: self.preferenceSet[6])
+        }
+        if self.preferenceSet[7] != "" {
+            self.imageEight.image = UIImage(named: self.preferenceSet[7])
+        }
+
         
         // Detail view image tap to see ingredients
         let tapGesture = UITapGestureRecognizer(target: self, action: "imageFlipped:")
@@ -59,6 +116,8 @@ final class DetailViewController: UIViewController {
             options: UIViewAnimationOptions.TransitionFlipFromLeft, completion: nil)
         
         self.detailBackImage.alpha = 1
+        self.detailPreference.alpha = 1
+        self.detailDescription.alpha = 1
         self.detailIngredients.alpha = 1
     }
     
@@ -68,6 +127,8 @@ final class DetailViewController: UIViewController {
             options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
         
         self.detailBackImage.alpha = 0
+        self.detailPreference.alpha = 0
+        self.detailDescription.alpha = 0
         self.detailIngredients.alpha = 0
     }
 

@@ -33,7 +33,13 @@ func fhooderSeven() {
     variables.itemNames = ["Pork Bun", "Pork Fried Rice", "Jasmine Tea"]
     variables.itemPrices = [4.0, 4.0, 1.5]
     variables.itemCount = [0, 0, 0]
+    variables.itemPrefernce = [[1,0,0,1,1,0,1,0], [0,0,1,1,0,0,1,0], [0,0,0,0,0,0,0,0]]
+    variables.itemDescription = ["Homemade Cha siu bao with fresh cucumber.  Very delicious!", "Taiwanese style pork fried rice.", "Jasmine tea in a bottle."]
     variables.itemIngredients = ["Bun, Pork, Radish, Cucumber, Lettuce, Oyster Sauce.", "Rice, Oil, Peas, Eggs, Pork, Onion, Green Onion.", "Jasmine Tea."]
+    
+    variables.dailyQuantity = [0,0,0,0,0,0,0]
+    variables.maxOrderLimit = [0,0,0,0,0,0,0]
+    variables.timeInterval = [0,0,0,0,0,0,0]
 
     variables.fhooderFace = "fhooder7face"
     variables.fhooderFirstName = "Steve"

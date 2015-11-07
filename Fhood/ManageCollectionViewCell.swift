@@ -13,5 +13,6 @@ final class ManageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var foodName: UILabel!
     @IBOutlet weak var foodPrice: UILabel!
     @IBOutlet weak var foodQuantity: UILabel!
+    @IBOutlet weak var orderPerMin: UILabel!
     @IBOutlet weak var foodImage: UIImageView!
 }

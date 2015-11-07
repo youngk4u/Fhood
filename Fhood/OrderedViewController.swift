@@ -10,7 +10,7 @@ import UIKit
 
 final class OrderedViewController: UIViewController {
 
-    @IBOutlet weak var PickupTimer: UINavigationBar!
+
     @IBOutlet weak var orderedTime: UILabel!
     @IBOutlet weak var orderStatus: UILabel!
     @IBOutlet weak var fhooderName: UILabel!
@@ -54,6 +54,7 @@ final class OrderedViewController: UIViewController {
     @IBOutlet weak var priceSeven: UILabel!
     var priceArray: [String] = ["","","","","","",""]
     
+    @IBOutlet var navbar: UINavigationBar!
     
     // Create Message Composer
     let messageComposer = MessageComposer()
@@ -61,6 +62,16 @@ final class OrderedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Timer
+        let attributes = [
+            NSForegroundColorAttributeName: UIColor.blackColor(),
+            NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 25)!
+        ]
+        self.navbar.titleTextAttributes = attributes
+        self.navbar.topItem?.title = "00:07:52"
+
+        
+        //Hide tab bar
         self.tabBarController?.tabBar.hidden = true
         
         //self.orderTime.text = "Ordered at \(fhoodie.orderedTime)"
@@ -110,11 +121,6 @@ final class OrderedViewController: UIViewController {
         self.total.text = self.totalPassed
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.navigationBarHidden = true
-        
-    }
     
     @IBAction func messageFhooder(sender: AnyObject) {
         

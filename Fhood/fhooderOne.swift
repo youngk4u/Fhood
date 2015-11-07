@@ -33,7 +33,14 @@ func fhooderOne() {
     variables.itemNames = ["Grilled Cheese", "Fried Grilled Cheese", "Milk", "Flavoured Milk"]
     variables.itemPrices = [2.0, 3.0, 1.5, 1.75]
     variables.itemCount = [0, 0, 0, 0]
+    variables.itemPrefernce = [[1,0,0,1,1,1,0,0], [1,0,0,1,1,1,0,0], [0,0,0,1,1,0,0,1], [0,0,0,1,1,0,0,1]]
+    variables.itemDescription = ["Gooey Swiss and American Cheese layered between  two slices of crisp butter grilled wheat bread.", "Melted Muenster and Cheddar sandwiched between deliciously crisp grilled sourdough.", "Deliciously refreshing lowfat milk", "Yummy flavored milk available in 3 flavors: strawberry, chocolate, and banana"]
     variables.itemIngredients = ["Wheat bread, Cheese (Swiss, American), Butter.", "Sourdough bread, Cheese (Muenster, Cheddar), Butter.", "Milk", "Milk, Artificial flavoring."]
+    
+    
+    variables.dailyQuantity = [0,0,0,0,0,0,0]
+    variables.maxOrderLimit = [0,0,0,0,0,0,0]
+    variables.timeInterval = [0,0,0,0,0,0,0]
 
     variables.fhooderFace = "fhooder1face"
     variables.fhooderFirstName = "Stephanie"

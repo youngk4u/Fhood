@@ -45,7 +45,15 @@ struct variables {
     static var itemPrices: [Double]?
     static var itemCount: [Int]?
     static var totalItemPrice: Double?
+    static var itemPrefernce: [[Int]]?
+    static var itemDescription: [String]?
     static var itemIngredients: [String]?
+    
+    static var itemIndex: Int?
+    static var dailyQuantity: [Int]?
+    static var maxOrderLimit: [Int]?
+    static var timeInterval: [Int]?
+    
 
     static var fhooderFace: String?
     static var fhooderPic: String?

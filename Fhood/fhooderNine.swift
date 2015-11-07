@@ -33,7 +33,13 @@ func fhooderNine() {
     variables.itemNames = ["Shrimp Sandwich", "Strawberry Lemonade"]
     variables.itemPrices = [5.0, 2.0]
     variables.itemCount = [0, 0]
+    variables.itemPrefernce = [[1,0,0,1,0,1,0,0],[0,0,0,0,0,0,0,0]]
+    variables.itemDescription = ["Crispy fried breaded shrimp with our secret sauce will make you feel like you're back in Louisiana.", "Fresh squeezed homemade lemonade with sweet crushed strawberries." ]
     variables.itemIngredients = ["Shrimp, Bread, Cayenne Pepper, Mayonnaise, Lettuce.", "Lemon, Water, Strawberry, Sugar."]
+    
+    variables.dailyQuantity = [0,0,0,0,0,0,0]
+    variables.maxOrderLimit = [0,0,0,0,0,0,0]
+    variables.timeInterval = [0,0,0,0,0,0,0]
 
     variables.fhooderFace = "fhooder9face"
     variables.fhooderFirstName = "Ike"

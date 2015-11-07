@@ -33,7 +33,13 @@ func fhooderTen() {
     variables.itemNames = ["Chicken and Rice", "Soda"]
     variables.itemPrices = [5.0, 1.5]
     variables.itemCount = [0, 0]
+    variables.itemPrefernce = [[1,0,0,1,1,1,0,0], [0,0,0,0,0,0,0,0]]
+    variables.itemDescription = ["Just like you had in the big apple; grilled chicken shawarma on rice with our special yogurt sauce.  Truly addictive.", "Choose between Coke, Sprite, Diet Coke, bottle water"]
     variables.itemIngredients = ["Chicken, Spices, Rice, Tahini, Pita bread, Lettuce, Yogurt sauce.", "Sugar, Water, Artificial flavor"]
+    
+    variables.dailyQuantity = [0,0,0,0,0,0,0]
+    variables.maxOrderLimit = [0,0,0,0,0,0,0]
+    variables.timeInterval = [0,0,0,0,0,0,0]
 
     variables.fhooderFace = "fhooder10face"
     variables.fhooderFirstName = "Sheila"
