@@ -19,11 +19,11 @@ final class RateViewController: UIViewController, UITextViewDelegate {
     let goodSpoon = UIImage(named: "goodSpoon")
     let badSpoon = UIImage(named: "badSpoon")
     
+    @IBOutlet weak var thanks: UILabel!
     @IBOutlet weak var fhooderImage: UIImageView!
     @IBOutlet weak var fhooderName: UILabel!
     
     @IBOutlet weak var commentBox: UITextView!
-    //@IBOutlet weak var commentBox: UITextField! = nil
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
@@ -58,10 +58,14 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.view.layoutIfNeeded()
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            self.bottomConstraint.constant = 320
+            self.bottomConstraint.constant = 250
             self.tellCommentLabel.textColor = UIColor.whiteColor()
             self.commentBox.textColor = UIColor.blackColor()
             self.commentBox.backgroundColor = UIColor.whiteColor()
+            self.thanks.alpha = 0
+            self.fhooderImage.alpha = 0
+            self.fhooderName.alpha = 0
+            self.view.backgroundColor = UIColor.darkGrayColor()
             self.view.layoutIfNeeded()
         })
     }
@@ -84,9 +88,13 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.commentBox.resignFirstResponder()
         
         UIView.animateWithDuration(0.5, animations: { () -> Void in
-            self.bottomConstraint.constant = 60
+            self.bottomConstraint.constant = 40
             self.tellCommentLabel.textColor = UIColor.darkGrayColor()
             self.commentBox.textColor = UIColor.blackColor()
+            self.thanks.alpha = 1
+            self.fhooderImage.alpha = 1
+            self.fhooderName.alpha = 1
+            self.view.backgroundColor = UIColor.whiteColor()
         })
     }
 

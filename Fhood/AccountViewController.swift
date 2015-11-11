@@ -9,24 +9,47 @@
 import UIKit
 import Parse
 
-final class AccountViewController: UIViewController, UITableViewDelegate, UITableViewDataSource  {
+final class AccountViewController: UIViewController  {
 
-    var array : [String] = ["   History                                           >",
-                            "   Photos                                           >",
-                            "   Log out", "",""]
-    var selectedRow = -1
+
     
     @IBOutlet weak var fhooderSwitch: UISwitch!
-    @IBOutlet weak var tableView2: UITableView!
     @IBOutlet weak var joinWindow: UIView!
     @IBOutlet weak var signUpButton: UIButton!
 
+    @IBOutlet var fhoodiePic: UIImageView!
+    @IBOutlet var fhoodiePicBG: UIImageView!
+    @IBOutlet var fhoodieName: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView2.delegate = self
-        self.tableView2.dataSource = self
-        self.tableView2.layoutMargins = UIEdgeInsetsZero
+        
+        // Get first name from Parse
+        if PFUser.currentUser()?.objectForKey("firstName") != nil {
+            self.fhoodieName.text = "\(PFUser.currentUser()!.objectForKey("firstName")!)"
+        }
+        else{
+        self.fhoodieName.text = PFUser.currentUser()?.username
+        }
+        
+        // Get picture from Facebook(Parse)
+        if PFUser.currentUser()?.objectForKey("pictureUrl") != nil {
+            if let picURL = NSURL(string: "\(PFUser.currentUser()!.objectForKey("pictureUrl")!)") {
+                if let data = NSData(contentsOfURL: picURL) {
+                    self.fhoodiePic.image = UIImage(data: data)
+                    self.fhoodiePicBG.image = UIImage(data: data)
+                    
+                    // Back ground styling
+                    let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Light)
+                    let blurView = UIVisualEffectView(effect: lightBlur)
+                    blurView.frame = self.view.bounds
+                    self.fhoodiePicBG.addSubview(blurView)
+                }
+            }
+        }
+        
+
         
         // Connect to switch function
         self.fhooderSwitch.addTarget(self, action: "toggleSwitch:", forControlEvents: UIControlEvents.ValueChanged)
@@ -36,37 +59,21 @@ final class AccountViewController: UIViewController, UITableViewDelegate, UITabl
         self.signUpButton.layer.cornerRadius = 5
     }
 
-    func tableView(tableView2: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.array.count
-    }
-
-    func tableView(tableView2: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        // Try to get a cell to reuse
-        let cell: UITableViewCell = tableView2.dequeueReusableCellWithIdentifier("Tablecell2", forIndexPath: indexPath)
-
-        // Customize cell
-        cell.textLabel?.text = self.array[indexPath.row]
-        cell.textLabel?.textColor = UIColor.darkGrayColor()
-        cell.textLabel?.font = UIFont.systemFontOfSize(15.0)
-        // Cell Marginal lines on the left to stretch all the way to the left screen
-        cell.layoutMargins = UIEdgeInsetsZero
-
-        return cell
-    }
-
-    func tableView(tableView2: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.selectedRow = indexPath.row
-
-        if self.selectedRow == 0 {
-            self.performSegueWithIdentifier("toHistoryView", sender: tableView2)
-        } else if self.selectedRow == 1 {
-            self.performSegueWithIdentifier("toPhotoView", sender: tableView2)
-        } else if self.selectedRow == 2 {
+    @IBAction func logOutButton(sender: AnyObject) {
+        
+        let alert = UIAlertController(title: "", message:"Are you sure you want to log out?", preferredStyle: .Alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .Default) { _ in}
+        let logout = UIAlertAction(title: "Log out", style: .Default) { (action: UIAlertAction!) -> () in
             PFUser.logOutInBackgroundWithBlock { error in
                 Router.route(animated: true)
             }
         }
+        alert.addAction(cancel)
+        alert.addAction(logout)
+        self.presentViewController(alert, animated: true){}
+        
     }
+    
 
     func toggleSwitch(sender: UISwitch) {
         UIView.animate(withDuration: 0.5) {
