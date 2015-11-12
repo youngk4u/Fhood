@@ -40,6 +40,18 @@ final class AccountViewController: UIViewController  {
                     self.fhoodiePic.image = UIImage(data: data)
                     self.fhoodiePicBG.image = UIImage(data: data)
                     
+                    // Profile pic becomes round with white border
+                    let image = UIImageView(image: self.fhoodiePic.image)
+                    self.fhoodiePic.image = nil // Get rid of the duplicate
+                    image.frame = CGRectMake(0, 0, 80, 80)
+                    image.layer.borderWidth = 1.5
+                    image.layer.masksToBounds = false
+                    image.layer.borderColor = UIColor.whiteColor().CGColor
+                    image.layer.cornerRadius = 13
+                    image.layer.cornerRadius = image.frame.size.height/2
+                    image.clipsToBounds = true
+                    self.fhoodiePic.addSubview(image)
+                    
                     // Back ground styling
                     let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Light)
                     let blurView = UIVisualEffectView(effect: lightBlur)

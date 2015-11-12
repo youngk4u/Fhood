@@ -45,6 +45,7 @@
 		63A523B71BD9AC5E000D1557 /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A523B61BD9AC5E000D1557 /* MessageComposer.swift */; };
 		63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */; };
 		63AD61BA1B91A1C200BA1574 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B71B91A1C200BA1574 /* LandingViewController.swift */; };
+		63AF7C711BF47BA500DAFB94 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF7C701BF47BA500DAFB94 /* SettingsViewController.swift */; };
 		63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CD1B2010AA00077377 /* AccountViewController.swift */; };
 		63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CF1B201E9D00077377 /* PaymentViewController.swift */; };
 		63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B4560A1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift */; };
@@ -127,6 +128,7 @@
 		63A523B61BD9AC5E000D1557 /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
 		63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		63AD61B71B91A1C200BA1574 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		63AF7C701BF47BA500DAFB94 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		63B329C91B1FECB300077377 /* Fhood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fhood-Bridging-Header.h"; sourceTree = "<group>"; };
 		63B329CD1B2010AA00077377 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		63B329CF1B201E9D00077377 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 				63B329CD1B2010AA00077377 /* AccountViewController.swift */,
 				63D8D72D1B25E41C0016D33D /* HistoryViewController.swift */,
 				63B329CF1B201E9D00077377 /* PaymentViewController.swift */,
+				63AF7C701BF47BA500DAFB94 /* SettingsViewController.swift */,
 			);
 			name = Reveal;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63AF7C711BF47BA500DAFB94 /* SettingsViewController.swift in Sources */,
 				630609E11B0AFC5B00DAA7B4 /* MoreViewController.swift in Sources */,
 				63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */,
 				63CB95241B945714005815E7 /* OrdersTableViewCell.swift in Sources */,
