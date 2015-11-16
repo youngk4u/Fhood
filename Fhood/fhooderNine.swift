@@ -31,7 +31,7 @@ func fhooderNine() {
     variables.timeCloseAmpm = "AM"
 
     variables.itemNames = ["Shrimp Sandwich", "Strawberry Lemonade"]
-    variables.itemPrices = [5.0, 2.0]
+    variables.itemPrices = [4.99, 1.99]
     variables.itemCount = [0, 0]
     variables.itemPrefernce = [[1,0,0,1,0,1,0,0],[0,0,0,0,0,0,0,0]]
     variables.itemDescription = ["Crispy fried breaded shrimp with our secret sauce will make you feel like you're back in Louisiana.", "Fresh squeezed homemade lemonade with sweet crushed strawberries." ]

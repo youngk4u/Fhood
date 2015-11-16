@@ -31,7 +31,7 @@ func fhooderThree() {
     variables.timeCloseAmpm = "PM"
 
     variables.itemNames = ["Hand Drip Coffee", "Espresso", "Bagel", "Honey Yogurt Parfait", "Macaron"]
-    variables.itemPrices = [3.0, 2.0, 1.0, 3.0, 3.0]
+    variables.itemPrices = [2.99, 1.99, 0.99, 2.99, 2.99]
     variables.itemCount = [0, 0, 0, 0, 0]
     variables.itemPrefernce = [[1,1,1,1,1,1,0,0], [1,1,1,1,1,1,1,0], [1,1,0,0,0,1,0,0], [0,0,1,1,1,1,0,0],[0,0,0,0,0,0,0,0]]
     variables.itemDescription = ["Slow hand dripped coffee made to order", "Concentrated fragrant coffee with Indonesian light beans", "Homemade bagels just like granpa used to make.  Chewy and delicious", "Healthy and delicious greek yogurt topped with crunchy granola and blueberries", "Macarons made from scratch featuring various flavors that change daily"]

@@ -41,7 +41,7 @@ final class DetailViewController: UIViewController {
         
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(white: 0, alpha: 0.8)
+        //self.view.backgroundColor = UIColor(white: 0, alpha: 0.8)
         
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
@@ -49,6 +49,8 @@ final class DetailViewController: UIViewController {
         self.detailStepper.value = Double(variables.itemCount![fhoodie.selectedIndex!])
         self.detailQuantity.text = "\(Int(self.detailStepper.value))"
         self.detailTitle.text = variables.itemNames![fhoodie.selectedIndex!]
+        self.detailTitle.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        self.detailTitle.textColor = UIColor.whiteColor()
         self.detailImage.image = UIImage(named: variables.itemNames![fhoodie.selectedIndex!])
         self.detailPrice.text = formatter.stringFromNumber(variables.itemPrices![fhoodie.selectedIndex!])
         self.detailDescription.text = "Description: " + variables.itemDescription![fhoodie.selectedIndex!]

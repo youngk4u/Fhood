@@ -31,7 +31,7 @@ func fhooderEight() {
     variables.timeCloseAmpm = "AM"
 
     variables.itemNames = ["Slider", "Homemade Fries", "Root Beer"]
-    variables.itemPrices = [1.0, 2.0, 1.5]
+    variables.itemPrices = [0.99, 1.99, 1.49]
     variables.itemCount = [0, 0, 0]
     variables.itemPrefernce = [[1,0,0,1,1,1,0,0], [1,1,1,0,0,1,0,0], [0,0,0,0,0,0,0,0]]
     variables.itemDescription = ["Delicious handmade beef patties topped with melted cheddar cheese and chopped onions.  So good you can't eat just one.", "Thick cut fries made from fresh Idaho potatoes.", "Bundaberg's classic root beer"]

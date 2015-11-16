@@ -31,7 +31,7 @@ func fhooderFour() {
     variables.timeCloseAmpm = "PM"
 
     variables.itemNames = ["BBQ Chicken with Mac&Cheese", "Caprese Salad", "Chicken Parmesean", "Meatloaf Lunch", "Salmon Rice", "Steak Breakfast", "Evian Water"]
-    variables.itemPrices = [5.0, 4.0, 5.0, 6.0, 6.0, 6.0, 1.5]
+    variables.itemPrices = [4.99, 3.99, 4.99, 5.99, 5.99, 5.99, 1.49]
     variables.itemCount = [0, 0, 0, 0, 0, 0, 0]
     variables.itemPrefernce = [[1,0,0,1,1,1,0,0], [1,1,1,1,1,1,0,1], [1,0,0,1,0,1,0,0], [0,0,1,1,0,1,1,0],[1,0,1,1,1,1,1,1],[1,0,1,1,1,1,1,0],[0,0,0,0,0,0,0,0]]
     variables.itemDescription = ["Grilled chicken glazed in a homemade BBQ marinade, with decadent mac and cheese and spring green beans", "Fresh mozzarella and tomato slices topped with fragrant basil and drizzled with balsamiv vinegar and olive oil.  An Italian favorite.", "Breaded chicken covered in homemade tomato sauce topped with a delicious layer of mozzarella cheese.", "Just like mom used to make.  USDA choice ground beef seasoned to perfection, with mashed sweet potatoes and sautéed green beans on the side.", "Seasoned Alaskan wild caught salmon  on a bed of brown rice with sautéed broccoli stalks. Healthy and delicious.", "Fluffy scrambled eggs, homefried potatoes, and savory USDA choice steak", "Bottled water"]

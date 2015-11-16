@@ -31,7 +31,7 @@ func fhooderTen() {
     variables.timeCloseAmpm = "PM"
 
     variables.itemNames = ["Chicken and Rice", "Soda"]
-    variables.itemPrices = [5.0, 1.5]
+    variables.itemPrices = [4.99, 1.49]
     variables.itemCount = [0, 0]
     variables.itemPrefernce = [[1,0,0,1,1,1,0,0], [0,0,0,0,0,0,0,0]]
     variables.itemDescription = ["Just like you had in the big apple; grilled chicken shawarma on rice with our special yogurt sauce.  Truly addictive.", "Choose between Coke, Sprite, Diet Coke, bottle water"]

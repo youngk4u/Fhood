@@ -31,7 +31,7 @@ func fhooderSix() {
     variables.timeCloseAmpm = "PM"
 
     variables.itemNames = ["Cold Pressed Juice", "Fresh Squeezed Juice"]
-    variables.itemPrices = [5.0, 4.0]
+    variables.itemPrices = [4.99, 3.99]
     variables.itemCount = [0, 0]
     variables.itemPrefernce = [[1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1]]
     variables.itemDescription = ["We pick the freshest organic fruits and vegitables every day", "Vitamins and minerals for your body and mind"]
