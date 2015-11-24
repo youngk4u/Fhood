@@ -46,4 +46,5 @@ func fhooderOne() {
     variables.fhooderFirstName = "Stephanie"
 
     variables.fhooderPic = "fhooder1"
+    variables.fhooderAboutMe = "Welcome to my e-shop!  I love comfort food, just like my grandma used to make.  My specialty is the grilled cheese sandwich.  I hope you enjoy my cooking and feel free to drop me a line!"
 }

@@ -45,4 +45,5 @@ func fhooderNine() {
     variables.fhooderFirstName = "Ike"
 
     variables.fhooderPic = "fhooder9"
+    variables.fhooderAboutMe = "Growing up in New Orleans, cajun food was an important part of my life.  The fried shrimp sandwich recipe is straight from my mom, and I’m excited that others will get to taste her delicious cooking through me."
 }

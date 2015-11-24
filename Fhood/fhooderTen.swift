@@ -45,4 +45,5 @@ func fhooderTen() {
     variables.fhooderFirstName = "Sheila"
 
     variables.fhooderPic = "fhooder10"
+    variables.fhooderAboutMe = "Hi, I’m Sheila, and welcome to my page!  As a student in New York, I was lucky enough to have access to some great halal food, and thus started my passion for halal cooking!  My specialty is chicken shawerma but I hope to add more items as time progresses."
 }

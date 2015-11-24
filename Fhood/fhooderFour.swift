@@ -45,4 +45,5 @@ func fhooderFour() {
     variables.fhooderFirstName = "Angela"
 
     variables.fhooderPic = "fhooder4"
+    variables.fhooderAboutMe = "Hello friends! I grew up on a farm in Wisconsin so I know the value of fresh and healthy food.  I love cooking fresh and healthy meals for friends and family, and think this is a great opportunity for me to share some quality cooking with the rest of you out there.  I use quality ingredients because I’ve always believed that you are what you eat.  So eat healthy people! And enjoy!"
 }

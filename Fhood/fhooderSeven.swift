@@ -45,4 +45,5 @@ func fhooderSeven() {
     variables.fhooderFirstName = "Steve"
 
     variables.fhooderPic = "fhooder7"
+    variables.fhooderAboutMe = "Secret family recipes from a certified Bao ninja!  I learned how to make my food from my dad, and he from his dad before him.  One day my dream is to open up a chain of Bao-ler eateries, and this is my first step towards that goal.  Seriously though, my Bao’s are that good. Eat, drink, and be happy!"
 }

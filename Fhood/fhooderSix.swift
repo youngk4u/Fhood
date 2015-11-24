@@ -45,4 +45,5 @@ func fhooderSix() {
     variables.fhooderFirstName = "Henry"
 
     variables.fhooderPic = "fhooder6"
+    variables.fhooderAboutMe = "Did you know most of us do not eat enough vegetables and fruit throughout the day?  We are so busy running around that we have to eat convenient foods that are usually bad for us.  My goal is to change that through my fresh squeezed juices.  I used to go to the local juice bar nearby everyday, until i realized it was breaking my bank.  I figured others go through what I went through, so I wanted to offer people quality juices at an affordable price.  Because we all deserve to have healthy options."
 }

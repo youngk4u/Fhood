@@ -46,4 +46,5 @@ func fhooderTwo() {
     variables.fhooderFirstName = "Mi-Son"
     
     variables.fhooderPic = "fhooder2"
+    variables.fhooderAboutMe = "I’m originally from Korea living in San Francisco, and want to share my culture’s cuisine with my neighbors!"
 }

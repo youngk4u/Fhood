@@ -4,7 +4,7 @@ use_frameworks!
 target :Fhood do
     xcodeproj 'Fhood.xcodeproj'
 
-    pod 'Alamofire'             , :git => "https://github.com/Alamofire/Alamofire.git", :branch => "swift-2.0"
+    pod 'Alamofire'             , :git => "https://github.com/Alamofire/Alamofire.git"
     pod 'ClosureKit'            , :git => "https://github.com/Reflejo/ClosureKit", :branch => "swift-2.0"
     pod 'FBSDKCoreKit'          , :git => "https://github.com/facebook/facebook-ios-sdk.git", :branch => "release-4.6.0-beta1"
     pod 'FBSDKLoginKit'         , :git => "https://github.com/facebook/facebook-ios-sdk.git", :branch => "release-4.6.0-beta1"

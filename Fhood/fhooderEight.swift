@@ -45,4 +45,6 @@ func fhooderEight() {
     variables.fhooderFirstName = "Annie"
 
     variables.fhooderPic = "fhooder8"
+    variables.fhooderAboutMe = "Hi! I’m Annie, and I’m originally from Witchita Kansas.  I grew up eating a certain famous square shaped burger and since I moved to San Francisco, haven’t been able to find a good substitute.  Lucky for me I have a recipe that tastes just as good as the original!  It’s my pleasure to bring a little piece of the midwest to the west coast.  Thanks for dropping by and I look forward to serving you!"
+
 }

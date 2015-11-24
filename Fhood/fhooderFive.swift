@@ -45,4 +45,5 @@ func fhooderFive() {
     variables.fhooderFirstName = "Aiko"
 
     variables.fhooderPic = "fhooder5"
+    variables.fhooderAboutMe = "I started out making bentos for my kids, and they were so popular with their friends at school that I wanted to start sharing my food with others.  A bento is a japanese style packed lunch usually in a wooden lunchbox. I grew up in Japan so the bento is an important part of a busy life, bringing nourishment on the go.  Thank you for dropping by my store, and I look forward to serving you one of my carefully crafted bentos!"
 }

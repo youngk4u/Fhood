@@ -19,6 +19,9 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Reload tableView data
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"loadSettings", object: nil)
+                
         let nav = self.navigationController?.navigationBar
         
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
@@ -27,6 +30,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+    }
+    
+    // Reload tableView function to use from other controllers
+    func loadList(notification: NSNotification){
+        self.tableView.reloadData()
     }
 
     @IBAction func closeSettings(sender: AnyObject) {

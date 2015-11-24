@@ -19,7 +19,8 @@
 		3BD592641B96A5F0003D26AE /* LaunchScreenSystem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BD592621B96A5F0003D26AE /* LaunchScreenSystem.xib */; };
 		3BF325331B92533700C606D5 /* Reveal.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF325321B92533700C606D5 /* Reveal.storyboard */; };
 		3BF91B7F1B926EC5005C9EDB /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */; };
-		4B48668B113C843C865D4100 /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4B48668B113C843C865D4100 /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */; };
+		6301DF761C02988100314323 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6301DF751C02988100314323 /* PhotoViewController.swift */; };
 		630306C21BD8694D002C5B0F /* CancelOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630306C11BD8694D002C5B0F /* CancelOrdersViewController.swift */; };
 		630609DF1B0AFC4400DAA7B4 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630609DE1B0AFC4400DAA7B4 /* FeaturedViewController.swift */; };
 		630609E11B0AFC5B00DAA7B4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630609E01B0AFC5B00DAA7B4 /* MoreViewController.swift */; };
@@ -108,6 +109,7 @@
 		3BF325321B92533700C606D5 /* Reveal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reveal.storyboard; sourceTree = "<group>"; };
 		3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
 		5375D2D72D37953E50C8C6F7 /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6301DF751C02988100314323 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		630306C11BD8694D002C5B0F /* CancelOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelOrdersViewController.swift; sourceTree = "<group>"; };
 		630609DE1B0AFC4400DAA7B4 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		630609E01B0AFC5B00DAA7B4 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				63936FDD1BF6B49700970926 /* EmailViewController.swift */,
 				63936FDF1BF6B4CA00970926 /* PhoneNumberViewController.swift */,
 				631DD3471BFA5F4E006C5BBF /* PromoViewController.swift */,
+				6301DF751C02988100314323 /* PhotoViewController.swift */,
 			);
 			name = Reveal;
 			sourceTree = "<group>";
@@ -634,6 +637,7 @@
 				3B356FDA1B940C240014AD22 /* LaunchViewController.swift in Sources */,
 				636F75141B7E973A00A8C1E8 /* BubbleView.swift in Sources */,
 				63A523B71BD9AC5E000D1557 /* MessageComposer.swift in Sources */,
+				6301DF761C02988100314323 /* PhotoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -720,6 +724,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -759,6 +764,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;

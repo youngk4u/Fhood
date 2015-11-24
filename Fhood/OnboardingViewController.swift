@@ -44,7 +44,7 @@ final class OnboardingViewController: UIViewController {
 
     private func authenticate() {
         guard let email = self.emailTextField.text, password = self.passwordTextField.text else { return }
-
+        
         HUD.show()
 
         if self.intentIsLogin {
@@ -54,6 +54,7 @@ final class OnboardingViewController: UIViewController {
 
         } else {
             let user = PFUser(email: email, password: password)
+            
             user.signUpInBackgroundWithBlock { [weak self] _, error in
                 self?.parseDidAuthenticate(withUser: PFUser.currentUser(), error: error)
             }
@@ -174,5 +175,6 @@ private extension PFUser {
         self.username = email
         self.email = email
         self.password = password
+        
     }
 }

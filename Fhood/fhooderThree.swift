@@ -46,4 +46,5 @@ func fhooderThree() {
     variables.fhooderFirstName = "Craig"
 
     variables.fhooderPic = "fhooder3"
+    variables.fhooderAboutMe = "There’s nothing i love more than a great cup of joe.  I hand roast all the beans used to make my  coffee.  Try it yourself and taste the difference! Starbucks who?!?"
 }

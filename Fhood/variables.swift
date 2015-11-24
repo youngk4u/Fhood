@@ -57,4 +57,5 @@ struct variables {
 
     static var fhooderFace: String?
     static var fhooderPic: String?
+    static var fhooderAboutMe: String?
 }
