@@ -38,7 +38,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         super.viewDidLoad()
         
         // Reload collectionview data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList2:",name:"load2", object: nil)
         
         // Configure reveal for this view
         let revealController = self.revealViewController()
@@ -87,7 +87,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     // Reload collectionview function to use from other controllers
-    func loadList(notification: NSNotification){
+    func loadList2(notification: NSNotification){
         self.collectionView.reloadData()
     }
     
@@ -105,7 +105,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collCell", forIndexPath: indexPath) as! ManageCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collCell2", forIndexPath: indexPath) as! ManageCollectionViewCell
         
         cell.foodImage.image = UIImage(named: (arrImages.objectAtIndex(indexPath.item) as! String) )
         
@@ -131,12 +131,13 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
             cell.orderPerMin.text = "\(variables.maxOrderLimit![indexPath.item]) per \(variables.timeInterval![indexPath.item]) minutes"
         }
 
-        
+        print(variables.name)
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
+        print(variables.name)
         variables.itemIndex = indexPath.item
         
         performSegueWithIdentifier("toItemDetailView", sender: self)

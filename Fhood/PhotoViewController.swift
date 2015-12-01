@@ -51,7 +51,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func cameraButton(sender: UIButton) {
         
         // Check if the device has a camera
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
             
             // Device has a camera, now create the image picker controller
             let imagePicker:UIImagePickerController = UIImagePickerController()
@@ -66,7 +66,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func libraryButton(sender: UIButton) {
         
         // Check if the device has a photo library
-        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.PhotoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
             
             // Device has a photo library
             let imagePicker:UIImagePickerController = UIImagePickerController()

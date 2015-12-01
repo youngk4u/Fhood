@@ -25,8 +25,7 @@
             <string>HelveticaNeue-Thin</string>
             <string>HelveticaNeue-Thin</string>
             <string>HelveticaNeue-Thin</string>
-            <string>HelveticaNeue-Light</string>
-            <string>HelveticaNeue-Light</string>
+            <string>HelveticaNeue-Thin</string>
             <string>HelveticaNeue-Thin</string>
             <string>HelveticaNeue-Thin</string>
         </mutableArray>
@@ -898,7 +897,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="9va-Ze-Sru"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="20"/>
                                 <state key="normal" title="Take a new photo">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </state>
@@ -913,7 +912,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="4N4-pg-yoB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="20"/>
                                 <state key="normal" title="Select from photo library">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 </state>
@@ -1159,7 +1158,7 @@
         <!--Become A Fhooder-->
         <scene sceneID="ibe-Jv-cOo">
             <objects>
-                <viewController title="Become A Fhooder" id="TXl-f2-XS1" sceneMemberID="viewController">
+                <viewController title="Become A Fhooder" id="TXl-f2-XS1" customClass="SignUpViewController" customModule="Fhood" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gmn-FY-LYq"/>
                         <viewControllerLayoutGuide type="bottom" id="RCj-Ua-0ZL"/>
@@ -1167,8 +1166,30 @@
                     <view key="view" contentMode="scaleToFill" id="c56-qk-EPh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Isy-Y2-309">
+                                <rect key="frame" x="60" y="234" width="200" height="100"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="hhm-ys-LxM"/>
+                                    <constraint firstAttribute="height" constant="100" id="pDg-qz-8NK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="30"/>
+                                <state key="normal" title="Fhooder">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="toFhooder:" destination="TXl-f2-XS1" eventType="touchUpInside" id="RCr-AT-jTU"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Isy-Y2-309" firstAttribute="centerY" secondItem="c56-qk-EPh" secondAttribute="centerY" id="KHp-GK-fw5"/>
+                            <constraint firstItem="Isy-Y2-309" firstAttribute="centerX" secondItem="c56-qk-EPh" secondAttribute="centerX" id="g3u-B0-wao"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="yf4-W2-M3C"/>
                 </viewController>

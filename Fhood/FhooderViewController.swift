@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 final class FhooderViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource  {
     

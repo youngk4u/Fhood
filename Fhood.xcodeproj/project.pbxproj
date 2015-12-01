@@ -25,8 +25,11 @@
 		630609DF1B0AFC4400DAA7B4 /* FeaturedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630609DE1B0AFC4400DAA7B4 /* FeaturedViewController.swift */; };
 		630609E11B0AFC5B00DAA7B4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630609E01B0AFC5B00DAA7B4 /* MoreViewController.swift */; };
 		631DD3481BFA5F4E006C5BBF /* PromoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631DD3471BFA5F4E006C5BBF /* PromoViewController.swift */; };
+		63331AF91C0A842C00C4E44A /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63331AF81C0A842C00C4E44A /* AddItemViewController.swift */; };
+		63331AFB1C0C08B300C4E44A /* NutritionalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63331AFA1C0C08B300C4E44A /* NutritionalInfoCell.swift */; };
 		633376991B582CB400F7D846 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633376981B582CB400F7D846 /* ConfirmViewController.swift */; };
 		6333769B1B5845FD00F7D846 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6333769A1B5845FD00F7D846 /* RateViewController.swift */; };
+		634F3BB61C062A5F00344A09 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634F3BB51C062A5F00344A09 /* SignUpViewController.swift */; };
 		63611A6D1B5EFE69004BDDCF /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63611A6C1B5EFE69004BDDCF /* ListTableViewCell.swift */; };
 		6363759E1B533A1C00BBE93B /* DirectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6363759D1B533A1C00BBE93B /* DirectionViewController.swift */; };
 		636CB1651B94523300674C91 /* Fhooder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 636CB1641B94523300674C91 /* Fhooder.storyboard */; };
@@ -114,8 +117,11 @@
 		630609DE1B0AFC4400DAA7B4 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		630609E01B0AFC5B00DAA7B4 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		631DD3471BFA5F4E006C5BBF /* PromoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromoViewController.swift; sourceTree = "<group>"; };
+		63331AF81C0A842C00C4E44A /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		63331AFA1C0C08B300C4E44A /* NutritionalInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionalInfoCell.swift; sourceTree = "<group>"; };
 		633376981B582CB400F7D846 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
 		6333769A1B5845FD00F7D846 /* RateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
+		634F3BB51C062A5F00344A09 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		63611A6C1B5EFE69004BDDCF /* ListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		6363759D1B533A1C00BBE93B /* DirectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DirectionViewController.swift; sourceTree = "<group>"; };
 		636CB1641B94523300674C91 /* Fhooder.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Fhooder.storyboard; sourceTree = "<group>"; };
@@ -282,6 +288,7 @@
 				63CA5CA01B3F82F1008D16A1 /* TableViewCell3.swift */,
 				63A523B61BD9AC5E000D1557 /* MessageComposer.swift */,
 				63BAF1991BF609AB005EAC92 /* SettingsTableViewCell.swift */,
+				63331AFA1C0C08B300C4E44A /* NutritionalInfoCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -313,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				63B329CD1B2010AA00077377 /* AccountViewController.swift */,
+				634F3BB51C062A5F00344A09 /* SignUpViewController.swift */,
 				63D8D72D1B25E41C0016D33D /* HistoryViewController.swift */,
 				63B329CF1B201E9D00077377 /* PaymentViewController.swift */,
 				63AF7C701BF47BA500DAFB94 /* SettingsViewController.swift */,
@@ -354,6 +362,7 @@
 				636CB1661B9452A700674C91 /* FhooderMoreViewController.swift */,
 				630306C11BD8694D002C5B0F /* CancelOrdersViewController.swift */,
 				63CA0CB01BDAE9B6000BCF45 /* ItemDetailViewController.swift */,
+				63331AF81C0A842C00C4E44A /* AddItemViewController.swift */,
 			);
 			name = Fhooder;
 			sourceTree = "<group>";
@@ -573,6 +582,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				634F3BB61C062A5F00344A09 /* SignUpViewController.swift in Sources */,
 				631DD3481BFA5F4E006C5BBF /* PromoViewController.swift in Sources */,
 				63AF7C711BF47BA500DAFB94 /* SettingsViewController.swift in Sources */,
 				630609E11B0AFC5B00DAA7B4 /* MoreViewController.swift in Sources */,
@@ -613,6 +623,7 @@
 				6382F09D1BE0ABC0002C9C6B /* DetailViewController.swift in Sources */,
 				63F70A311B5B720C00A2D618 /* fhooderTwo.swift in Sources */,
 				3B356FCC1B9275670014AD22 /* OnboardingViewController.swift in Sources */,
+				63331AFB1C0C08B300C4E44A /* NutritionalInfoCell.swift in Sources */,
 				63F70A3F1B5B768000A2D618 /* fhooderNine.swift in Sources */,
 				63BAF19A1BF609AB005EAC92 /* SettingsTableViewCell.swift in Sources */,
 				630609DF1B0AFC4400DAA7B4 /* FeaturedViewController.swift in Sources */,
@@ -629,6 +640,7 @@
 				3BB130D91BB720B7009204D5 /* MapView.swift in Sources */,
 				63936FE01BF6B4CA00970926 /* PhoneNumberViewController.swift in Sources */,
 				63F70A3D1B5B767500A2D618 /* fhooderEight.swift in Sources */,
+				63331AF91C0A842C00C4E44A /* AddItemViewController.swift in Sources */,
 				3B356FD31B93E6A30014AD22 /* HUD.swift in Sources */,
 				63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */,
 				63CA0CB11BDAE9B6000BCF45 /* ItemDetailViewController.swift in Sources */,

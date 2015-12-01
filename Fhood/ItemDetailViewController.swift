@@ -208,7 +208,7 @@ class ItemDetailViewController: UIViewController {
             
         }
         else {
-            NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("load2", object: nil)
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }

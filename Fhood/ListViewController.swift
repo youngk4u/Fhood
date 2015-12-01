@@ -38,7 +38,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         self.searchBars.placeholder = "Sandwich"
         
         // Search Bar with no rim
-        UISearchBar.appearance().backgroundImage = UIImage(named: "")
+        UISearchBar.appearance().backgroundImage = nil
 
         // Configure reveal for this view
         let revealController = self.revealViewController()
