@@ -1,16 +1,16 @@
 //
-//  PhotoViewController.swift
+//  FoodPhotoViewController.swift
 //  Fhood
 //
-//  Created by YOUNG on 11/22/15.
+//  Created by YOUNG on 12/1/15.
 //  Copyright © 2015 YOUNG&YOUM. All rights reserved.
 //
 
 import UIKit
-import Parse
 
-class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FoodPhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var saveButton: UIBarButtonItem!
     
@@ -19,32 +19,8 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Profile photo"
         self.saveButton.enabled = false
         
-        // Get picture from file(Parse)
-        if PFUser.currentUser()?.objectForKey("profilePhoto") != nil {
-            let userImageFile = PFUser.currentUser()!["profilePhoto"] as! PFFile
-            userImageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData?, error: NSError?) -> Void in
-                if error == nil {
-                    if let imageData = imageData {
-                        self.imageView.image = UIImage(data:imageData)
-                    }
-                }
-            }
-        }
-        else {
-            // Get picture from Facebook(Parse)
-            if PFUser.currentUser()?.objectForKey("pictureUrl") != nil {
-                if let picURL = NSURL(string: "\(PFUser.currentUser()!.objectForKey("pictureUrl")!)") {
-                    if let data = NSData(contentsOfURL: picURL) {
-                        self.imageView.image = UIImage(data: data)
-                        
-                    }
-                }
-            }
-        }
 
     }
 
@@ -61,8 +37,10 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             
             self.presentViewController(imagePicker, animated: true, completion: nil)
         }
-    }
 
+    }
+    
+    
     @IBAction func libraryButton(sender: UIButton) {
         
         // Check if the device has a photo library
@@ -87,19 +65,19 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
         self.saveButton.enabled = true
         
     }
-
+    
     @IBAction func photoSaveButton(sender: UIBarButtonItem) {
         
         if self.imageView.image != nil {
-            let imageData = imageView.image!.lowestQualityJPEGNSData
-            let imageFile = PFFile(name:"profile.png", data:imageData)
-            
-            let user = PFUser.currentUser()
-            user!["profilePhoto"] = imageFile
-            user!.saveInBackground()
-            
-            NSNotificationCenter.defaultCenter().postNotificationName("loadSettings", object: nil)
-            NSNotificationCenter.defaultCenter().postNotificationName("loadProfileViewPic", object: nil)
+//            let imageData = imageView.image!.lowestQualityJPEGNSData
+//
+//            let imageFile = PFFile(name:"profile.png", data:imageData)
+//            
+//            let user = PFUser.currentUser()
+//            user!["profilePhoto"] = imageFile
+//            user!.saveInBackground()
+//            
+//            NSNotificationCenter.defaultCenter().postNotificationName("loadProfileViewPic", object: nil)
             
             let alert = UIAlertController(title: "", message:"Your new photo has been saved!", preferredStyle: .Alert)
             let saved = UIAlertAction(title: "Ok!", style: .Default) { _ in}
@@ -111,6 +89,12 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             self.dismissViewControllerAnimated(true, completion: nil)
         }
     }
+    
+    
+    @IBAction func closeView(sender: AnyObject) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
 
+    
 }
 

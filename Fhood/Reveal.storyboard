@@ -886,6 +886,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dp3-bX-Qci">
                                 <rect key="frame" x="0.0" y="64" width="320" height="320"/>
                                 <animations/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dp3-bX-Qci" secondAttribute="height" multiplier="320:320" id="Hq4-LJ-CNb"/>
                                 </constraints>

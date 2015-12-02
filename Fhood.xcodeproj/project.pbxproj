@@ -50,6 +50,8 @@
 		63936FDE1BF6B49700970926 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63936FDD1BF6B49700970926 /* EmailViewController.swift */; };
 		63936FE01BF6B4CA00970926 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63936FDF1BF6B4CA00970926 /* PhoneNumberViewController.swift */; };
 		639B461A1B7E927700A001F2 /* BubbleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 639B46191B7E927700A001F2 /* BubbleView.xib */; };
+		639C07E51C0DBA1C00850681 /* FoodPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639C07E41C0DBA1C00850681 /* FoodPhotoViewController.swift */; };
+		639C07E71C0DBC7B00850681 /* DescriptionIngredientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 639C07E61C0DBC7B00850681 /* DescriptionIngredientsViewController.swift */; };
 		63A523B71BD9AC5E000D1557 /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A523B61BD9AC5E000D1557 /* MessageComposer.swift */; };
 		63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */; };
 		63AD61BA1B91A1C200BA1574 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B71B91A1C200BA1574 /* LandingViewController.swift */; };
@@ -142,6 +144,8 @@
 		63936FDD1BF6B49700970926 /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmailViewController.swift; sourceTree = "<group>"; };
 		63936FDF1BF6B4CA00970926 /* PhoneNumberViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneNumberViewController.swift; sourceTree = "<group>"; };
 		639B46191B7E927700A001F2 /* BubbleView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BubbleView.xib; sourceTree = "<group>"; };
+		639C07E41C0DBA1C00850681 /* FoodPhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodPhotoViewController.swift; sourceTree = "<group>"; };
+		639C07E61C0DBC7B00850681 /* DescriptionIngredientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionIngredientsViewController.swift; sourceTree = "<group>"; };
 		63A523B61BD9AC5E000D1557 /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
 		63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		63AD61B71B91A1C200BA1574 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +367,8 @@
 				630306C11BD8694D002C5B0F /* CancelOrdersViewController.swift */,
 				63CA0CB01BDAE9B6000BCF45 /* ItemDetailViewController.swift */,
 				63331AF81C0A842C00C4E44A /* AddItemViewController.swift */,
+				639C07E41C0DBA1C00850681 /* FoodPhotoViewController.swift */,
+				639C07E61C0DBC7B00850681 /* DescriptionIngredientsViewController.swift */,
 			);
 			name = Fhooder;
 			sourceTree = "<group>";
@@ -610,6 +616,7 @@
 				6363759E1B533A1C00BBE93B /* DirectionViewController.swift in Sources */,
 				63E085CF1B44AB750095C603 /* variables.swift in Sources */,
 				63936FDE1BF6B49700970926 /* EmailViewController.swift in Sources */,
+				639C07E71C0DBC7B00850681 /* DescriptionIngredientsViewController.swift in Sources */,
 				63C830351B0996FB0089CCFF /* ListViewController.swift in Sources */,
 				63C830311B0996FB0089CCFF /* AppDelegate.swift in Sources */,
 				63CA5CA11B3F82F1008D16A1 /* TableViewCell3.swift in Sources */,
@@ -631,6 +638,7 @@
 				63EF67021BD1EFDB0068D531 /* OrdersDetailViewController.swift in Sources */,
 				3B356FD01B93DEE70014AD22 /* User.swift in Sources */,
 				638654131B65A81A000DFC5E /* OrderedViewController.swift in Sources */,
+				639C07E51C0DBA1C00850681 /* FoodPhotoViewController.swift in Sources */,
 				63CA5CA51B41AF3B008D16A1 /* FilterMenu.swift in Sources */,
 				63611A6D1B5EFE69004BDDCF /* ListTableViewCell.swift in Sources */,
 				636CB16F1B94530600674C91 /* ManageTableViewCell.swift in Sources */,

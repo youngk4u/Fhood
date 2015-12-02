@@ -131,13 +131,11 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
             cell.orderPerMin.text = "\(variables.maxOrderLimit![indexPath.item]) per \(variables.timeInterval![indexPath.item]) minutes"
         }
 
-        print(variables.name)
         return cell
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        print(variables.name)
         variables.itemIndex = indexPath.item
         
         performSegueWithIdentifier("toItemDetailView", sender: self)

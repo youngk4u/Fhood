@@ -78,19 +78,23 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
         
-        // Create a button bar for the number pad
-        let keyboardDoneButtonView = UIToolbar()
-        keyboardDoneButtonView.sizeToFit()
-        
-        // Setup the buttons to be put in the system.
-        let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("doneButton") )
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
-        item.tintColor = UIColor.blackColor()
-        let toolbarButtons = [flexibleSpace, item, flexibleSpace]
-        
-        //Put the buttons into the ToolBar and display the tool bar
-        keyboardDoneButtonView.setItems(toolbarButtons, animated: false)
-        priceTextfield.inputAccessoryView = keyboardDoneButtonView
+        if textField == self.priceTextfield {
+            
+            // Create a button bar for the number pad
+            let keyboardDoneButtonView = UIToolbar()
+            keyboardDoneButtonView.sizeToFit()
+            
+            // Setup the buttons to be put in the system.
+            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("doneButton") )
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
+            item.tintColor = UIColor.blackColor()
+            let toolbarButtons = [flexibleSpace, item, flexibleSpace]
+            
+            //Put the buttons into the ToolBar and display the tool bar
+            keyboardDoneButtonView.setItems(toolbarButtons, animated: false)
+            textField.inputAccessoryView = keyboardDoneButtonView
+            
+        }
         
         return true
     }
@@ -100,16 +104,45 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
     }
     
     
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        
+
+        if textField == self.priceTextfield {
+            
+            // Construct the text that will be in the field if this change is accepted
+            let oldText = textField.text! as NSString
+            var newText = oldText.stringByReplacingCharactersInRange(range, withString: string) as String!
+            var newTextString = String(newText)
+            
+            let digits = NSCharacterSet.decimalDigitCharacterSet()
+            var digitText = ""
+            for c in newTextString.unicodeScalars {
+                if digits.longCharacterIsMember(c.value) {
+                    digitText.append(c)
+                }
+            }
+            
+            let formatter = NSNumberFormatter()
+            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
+            formatter.locale = NSLocale(localeIdentifier: "en_US")
+            let numberFromField = (NSString(string: digitText).doubleValue)/100
+            newText = formatter.stringFromNumber(numberFromField)
+            
+            textField.text = newText
+            
+            return false
+        }
+        
+        return true
+    }
+    
+    
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
     
-    override func touchesBegan(touches: Set<UITouch>?, withEvent event: UIEvent?)
-    {
-        self.view.endEditing(true)
-    }
     
     
     // TableView
