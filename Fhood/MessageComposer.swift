@@ -11,7 +11,7 @@ import MessageUI
 
 let textMessageRecipients = ["(323) 382-2288"] // Young's phone for now
 
-class MessageComposer: NSObject, MFMessageComposeViewControllerDelegate {
+final class MessageComposer: NSObject, MFMessageComposeViewControllerDelegate {
     
     // A wrapper function to indicate whether or not a text message can be sent from the user's device
     func canSendText() -> Bool {

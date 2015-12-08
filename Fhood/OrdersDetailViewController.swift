@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrdersDetailViewController: UIViewController {
+final class OrdersDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()

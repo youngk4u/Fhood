@@ -14,7 +14,12 @@ struct Router {
 
     private static var rootViewController: UIViewController {
         if PFUser.currentUser()?.isAuthenticated() == true {
-            return self.mainViewController
+            if variables.fhooderSignedIn == true {
+                return self.fhooderViewController
+            }
+            else {
+                return self.mainViewController
+            }
         } else if PFUser.currentUser() != nil {
             return self.launchViewController
         } else {
@@ -50,6 +55,14 @@ extension Router {
     private static var onboardingViewController: UIViewController {
         let onboardingStoryboard = UIStoryboard(name: "Onboarding", bundle: nil)
         return onboardingStoryboard.instantiateInitialViewController()!
+    }
+    
+    private static var fhooderViewController: UIViewController {
+        let fhooderStoryboard = UIStoryboard(name: "Fhooder", bundle: nil)
+        let revealStoryboard = UIStoryboard(name: "Reveal", bundle: nil)
+        let ManageController = fhooderStoryboard.instantiateInitialViewController()!
+        let accountViewController = revealStoryboard.instantiateInitialViewController()
+        return SWRevealViewController(rearViewController: accountViewController, frontViewController: ManageController)!
     }
 
     private static var mainViewController: UIViewController {

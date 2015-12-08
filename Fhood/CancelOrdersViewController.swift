@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CancelOrdersViewController: UIViewController {
+final class CancelOrdersViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

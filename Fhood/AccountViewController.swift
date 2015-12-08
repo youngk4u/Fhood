@@ -16,6 +16,7 @@ final class AccountViewController: UIViewController  {
     @IBOutlet weak var fhooderSwitch: UISwitch!
     @IBOutlet weak var joinWindow: UIView!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet var signupMessage: UILabel!
 
     @IBOutlet var fhoodiePic: UIImageView!
     @IBOutlet var fhoodiePicBG: UIImageView!
@@ -35,7 +36,21 @@ final class AccountViewController: UIViewController  {
         // Make join window and sign up button round
         self.joinWindow.layer.cornerRadius = 5
         self.signUpButton.layer.cornerRadius = 5
+        
+    
+        if variables.fhooderSignedIn == true {
+            self.fhooderSwitch.on = true
+        }
+        else {
+            self.fhooderSwitch.on = false
+        }
+        
+
+        
     }
+    
+
+    
     
     
     // Reload Picture and name to reload from other controllers
@@ -117,6 +132,7 @@ final class AccountViewController: UIViewController  {
         let cancel = UIAlertAction(title: "Cancel", style: .Default) { _ in}
         let logout = UIAlertAction(title: "Log out", style: .Default) { (action: UIAlertAction!) -> () in
             PFUser.logOutInBackgroundWithBlock { error in
+                variables.fhooderSignedIn = false
                 Router.route(animated: true)
             }
         }
@@ -126,10 +142,59 @@ final class AccountViewController: UIViewController  {
         
     }
     
-
-    func toggleSwitch(sender: UISwitch) {
+    // Animate join window for toggle switch
+    func animate () {
         UIView.animate(withDuration: 0.5) {
             self.joinWindow.alpha = self.joinWindow.alpha == 0 ? 1 : 0
+        }
+    }
+
+    func toggleSwitch(sender: UISwitch) {
+        
+        
+        if PFUser.currentUser()?.objectForKey("isFhooder") != nil {
+            
+            let fhooder = PFUser.currentUser()!.objectForKey("isFhooder")
+            
+            if self.fhooderSwitch.on == true {
+                
+                if fhooder != nil {
+                    
+                    if fhooder as! NSObject == true {
+                            variables.fhooderSignedIn = true
+                            Router.route(animated: true)
+                    }
+                    else {
+                        animate()
+                    }
+                    
+                }
+                else {
+                    animate()
+                }
+            }
+            else {
+                if fhooder as! NSObject == false {
+                    animate()
+                }
+                else {
+                    variables.fhooderSignedIn = false
+                    Router.route(animated: true)
+                }
+            }
+        }
+        else {
+            if PFUser.currentUser()?.objectForKey("applied") != nil {
+                let didApplied = PFUser.currentUser()!.objectForKey("applied") as! Bool
+                if didApplied {
+                    self.signUpButton.hidden = true
+                    self.signupMessage.text = "You've already submitted your application. One of our representatives will contact you shortly!"
+                }
+            }
+            else {
+                self.signUpButton.hidden = false
+            }
+            animate()
         }
     }
 }

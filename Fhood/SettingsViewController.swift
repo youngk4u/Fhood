@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class SettingsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
     

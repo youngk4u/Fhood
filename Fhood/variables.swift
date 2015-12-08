@@ -58,4 +58,6 @@ struct variables {
     static var fhooderFace: String?
     static var fhooderPic: String?
     static var fhooderAboutMe: String?
+    
+    static var fhooderSignedIn: Bool = false
 }

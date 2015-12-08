@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+final class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var saveButton: UIBarButtonItem!
@@ -99,7 +99,7 @@ class PhotoViewController: UIViewController, UIImagePickerControllerDelegate, UI
             user!.saveInBackground()
             
             NSNotificationCenter.defaultCenter().postNotificationName("loadSettings", object: nil)
-            NSNotificationCenter.defaultCenter().postNotificationName("loadProfileViewPic", object: nil)
+            NSNotificationCenter.defaultCenter().postNotificationName("loadProfileView", object: nil)
             
             let alert = UIAlertController(title: "", message:"Your new photo has been saved!", preferredStyle: .Alert)
             let saved = UIAlertAction(title: "Ok!", style: .Default) { _ in}

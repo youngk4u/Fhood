@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CookingTimeViewController: UIViewController {
+final class CookingTimeViewController: UIViewController {
 
     @IBOutlet weak var cookingSwitch: UISwitch!
     @IBOutlet weak var openTimeButton: UIButton!

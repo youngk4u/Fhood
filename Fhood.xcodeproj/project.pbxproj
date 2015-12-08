@@ -55,6 +55,7 @@
 		63A523B71BD9AC5E000D1557 /* MessageComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A523B61BD9AC5E000D1557 /* MessageComposer.swift */; };
 		63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */; };
 		63AD61BA1B91A1C200BA1574 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AD61B71B91A1C200BA1574 /* LandingViewController.swift */; };
+		63AF75511C14DAA0004E9A85 /* AboutMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF75501C14DAA0004E9A85 /* AboutMeViewController.swift */; };
 		63AF7C711BF47BA500DAFB94 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AF7C701BF47BA500DAFB94 /* SettingsViewController.swift */; };
 		63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CD1B2010AA00077377 /* AccountViewController.swift */; };
 		63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CF1B201E9D00077377 /* PaymentViewController.swift */; };
@@ -74,6 +75,7 @@
 		63CB95241B945714005815E7 /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CB95231B945714005815E7 /* OrdersTableViewCell.swift */; };
 		63D8D72E1B25E41C0016D33D /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D8D72D1B25E41C0016D33D /* HistoryViewController.swift */; };
 		63E085CF1B44AB750095C603 /* variables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E085CE1B44AB750095C603 /* variables.swift */; };
+		63E5CA161C13D99100D33B25 /* AddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63E5CA151C13D99100D33B25 /* AddressViewController.swift */; };
 		63EF67021BD1EFDB0068D531 /* OrdersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF67011BD1EFDB0068D531 /* OrdersDetailViewController.swift */; };
 		63F547481BC751B600299899 /* CookingTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F547471BC751B600299899 /* CookingTimeViewController.swift */; };
 		63F70A2D1B5A3CE200A2D618 /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A2C1B5A3CE200A2D618 /* FinalViewController.swift */; };
@@ -149,6 +151,7 @@
 		63A523B61BD9AC5E000D1557 /* MessageComposer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposer.swift; sourceTree = "<group>"; };
 		63A97FF81B3C1FDA00EEDF58 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		63AD61B71B91A1C200BA1574 /* LandingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
+		63AF75501C14DAA0004E9A85 /* AboutMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutMeViewController.swift; sourceTree = "<group>"; };
 		63AF7C701BF47BA500DAFB94 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		63B329C91B1FECB300077377 /* Fhood-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Fhood-Bridging-Header.h"; sourceTree = "<group>"; };
 		63B329CD1B2010AA00077377 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 		63CB95231B945714005815E7 /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
 		63D8D72D1B25E41C0016D33D /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		63E085CE1B44AB750095C603 /* variables.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = variables.swift; sourceTree = "<group>"; };
+		63E5CA151C13D99100D33B25 /* AddressViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressViewController.swift; sourceTree = "<group>"; };
 		63EF67011BD1EFDB0068D531 /* OrdersDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersDetailViewController.swift; sourceTree = "<group>"; };
 		63F547471BC751B600299899 /* CookingTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookingTimeViewController.swift; sourceTree = "<group>"; };
 		63F70A2C1B5A3CE200A2D618 /* FinalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
@@ -324,7 +328,6 @@
 			isa = PBXGroup;
 			children = (
 				63B329CD1B2010AA00077377 /* AccountViewController.swift */,
-				634F3BB51C062A5F00344A09 /* SignUpViewController.swift */,
 				63D8D72D1B25E41C0016D33D /* HistoryViewController.swift */,
 				63B329CF1B201E9D00077377 /* PaymentViewController.swift */,
 				63AF7C701BF47BA500DAFB94 /* SettingsViewController.swift */,
@@ -333,6 +336,9 @@
 				63936FDF1BF6B4CA00970926 /* PhoneNumberViewController.swift */,
 				631DD3471BFA5F4E006C5BBF /* PromoViewController.swift */,
 				6301DF751C02988100314323 /* PhotoViewController.swift */,
+				63E5CA151C13D99100D33B25 /* AddressViewController.swift */,
+				63AF75501C14DAA0004E9A85 /* AboutMeViewController.swift */,
+				634F3BB51C062A5F00344A09 /* SignUpViewController.swift */,
 			);
 			name = Reveal;
 			sourceTree = "<group>";
@@ -595,6 +601,7 @@
 				63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */,
 				63CB95241B945714005815E7 /* OrdersTableViewCell.swift in Sources */,
 				63F70A331B5B763B00A2D618 /* fhooderThree.swift in Sources */,
+				63E5CA161C13D99100D33B25 /* AddressViewController.swift in Sources */,
 				3BD592611B96A3B5003D26AE /* UIView+Extension.swift in Sources */,
 				3BC061291BA600EC000614E8 /* BubbleBackgroundView.swift in Sources */,
 				6382F0991BDF23EE002C9C6B /* ReceiptViewController.swift in Sources */,
@@ -621,6 +628,7 @@
 				63C830311B0996FB0089CCFF /* AppDelegate.swift in Sources */,
 				63CA5CA11B3F82F1008D16A1 /* TableViewCell3.swift in Sources */,
 				63AD61BA1B91A1C200BA1574 /* LandingViewController.swift in Sources */,
+				63AF75511C14DAA0004E9A85 /* AboutMeViewController.swift in Sources */,
 				63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */,
 				63F70A371B5B765300A2D618 /* fhooderFive.swift in Sources */,
 				636CB1711B94536400674C91 /* OrdersViewController.swift in Sources */,

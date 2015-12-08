@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ReceiptViewController: UIViewController {
+final class ReceiptViewController: UIViewController {
     
     @IBOutlet weak var fhooderName: UILabel!
     

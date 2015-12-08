@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
+final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var textField: UITextField!
     @IBOutlet var bottomSave: NSLayoutConstraint!

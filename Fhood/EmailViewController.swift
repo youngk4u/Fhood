@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class EmailViewController: UIViewController, UITextFieldDelegate {
+final class EmailViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet var emailTextField: UITextField!
     @IBOutlet var bottomSave: NSLayoutConstraint!

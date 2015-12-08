@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DescriptionIngredientsViewController: UIViewController, UITextViewDelegate {
+final class DescriptionIngredientsViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet var textView: UITextView!
     

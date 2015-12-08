@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ItemDetailViewController: UIViewController {
+final class ItemDetailViewController: UIViewController {
     
     
     @IBOutlet var detailView: UIView!

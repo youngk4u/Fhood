@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell {
+final class SettingsTableViewCell: UITableViewCell {
 
     @IBOutlet var cellIcon: UIImageView!
     @IBOutlet var cellName: UILabel!

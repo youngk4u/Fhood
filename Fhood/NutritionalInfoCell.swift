@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NutritionalInfoCell: UITableViewCell {
+final class NutritionalInfoCell: UITableViewCell {
 
     @IBOutlet var questionLabel: UILabel!
     @IBOutlet var answerSegment: UISegmentedControl!

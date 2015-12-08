@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PromoViewController: UIViewController {
+final class PromoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

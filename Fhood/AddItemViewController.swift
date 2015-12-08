@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
+final class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var scrollViewHeight: NSLayoutConstraint!
     
@@ -46,7 +46,7 @@ class AddItemViewController: UIViewController, UITextFieldDelegate, UITableViewD
         // iPhone 6+/6s+ = 736
         // iPhone 6/6s   = 667
         // iPhone 5/5s   = 568
-        self.scrollViewHeight.constant = 568
+        self.scrollViewHeight.constant = 736
         
         // Textfield Delegate
         self.menuNameTextfield.delegate = self
