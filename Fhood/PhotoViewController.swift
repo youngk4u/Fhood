@@ -6,6 +6,7 @@
 //  Copyright © 2015 YOUNG&YOUM. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import Parse
 
@@ -87,10 +88,39 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
         self.saveButton.enabled = true
         
     }
+    
+    
+    // Crops image to square
+    func cropToSquare(image: UIImage) -> UIImage {
+        var positionX: CGFloat = 0.0
+        var positionY: CGFloat = 0.0
+        var width: CGFloat = image.size.width
+        var height: CGFloat = image.size.height
+        
+        if width > height {
+            //Landscape
+            positionX = -((height - width) / 2.0)
+            width = height
+        }
+        else if width < height {
+            //Portrait
+            positionY = ((height - width) / 2.0)
+            height = width
+        }
+        else{
+            //Already Square
+        }
+        
+        let cropSquare = CGRectMake(positionX, positionY, width, height)
+        let imageRef = CGImageCreateWithImageInRect(image.CGImage, cropSquare)
+        return UIImage(CGImage: imageRef!, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)
+    }
+    
 
     @IBAction func photoSaveButton(sender: UIBarButtonItem) {
         
         if self.imageView.image != nil {
+            self.imageView.image = self.cropToSquare(self.imageView.image!)
             let imageData = imageView.image!.lowestQualityJPEGNSData
             let imageFile = PFFile(name:"profile.png", data:imageData)
             

@@ -54,36 +54,36 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
         
         // Pull data from the selected fhooder
-        self.shopName.text = variables.name!
-        self.spoonRating.image = UIImage(named: variables.ratingInString!)
-        self.reviewCount.text = "\(variables.reviews!) Reviews"
-        self.restaurantType.text = "\(variables.foodType![0]), \(variables.foodType![1]), \(variables.foodType![2])"
-        self.fhooderAddress.text = variables.address
-        self.fhooderDistance.text = "(\(variables.distance!) miles)"
-        self.pickupSign.hidden = !variables.pickup!
-        self.eatinSign.hidden = !variables.eatin!
-        self.deliverySign.hidden = !variables.delivery!
-        self.phoneNumber.text = variables.phoneNum!
+        self.shopName.text = Fhooder.shopName!
+        self.spoonRating.image = UIImage(named: Fhooder.ratingInString!)
+        self.reviewCount.text = "\(Fhooder.reviews!) Reviews"
+        self.restaurantType.text = "\(Fhooder.foodTypeOne!), \(Fhooder.foodTypeTwo!), \(Fhooder.foodTypeThree!)"
+        self.fhooderAddress.text = Fhooder.address
+        self.fhooderDistance.text = "(\(Fhooder.distance!) miles)"
+        self.pickupSign.hidden = !Fhooder.pickup!
+        self.eatinSign.hidden = !Fhooder.eatin!
+        self.deliverySign.hidden = !Fhooder.delivery!
+        self.phoneNumber.text = Fhooder.phoneNum!
 
         var newOpenMinute: String
         var newCloseMinute: String
 
-        if variables.timeOpenMinute < 10 {
-            newOpenMinute = "0\(String(variables.timeOpenMinute!))"
+        if Fhooder.timeOpenMinute < 10 {
+            newOpenMinute = "0\(String(Fhooder.timeOpenMinute!))"
         } else {
-            newOpenMinute = String(variables.timeOpenMinute!)
+            newOpenMinute = String(Fhooder.timeOpenMinute!)
         }
         
-        if variables.timeCloseMinute < 10 {
-            newCloseMinute = "0\(String(variables.timeCloseMinute!))"
+        if Fhooder.timeCloseMinute < 10 {
+            newCloseMinute = "0\(String(Fhooder.timeCloseMinute!))"
         } else {
-            newCloseMinute = String(variables.timeCloseMinute!)
+            newCloseMinute = String(Fhooder.timeCloseMinute!)
         }
         
-        if variables.isOpen == true {
-            self.openNowOrClose.text = "Open Now; Closes at \(variables.timeCloseHour!):\(newCloseMinute) \(variables.timeCloseAmpm!)"
+        if Fhooder.isOpen == true {
+            self.openNowOrClose.text = "Open Now; Closes at \(Fhooder.timeCloseHour!):\(newCloseMinute) \(Fhooder.timeCloseAmpm!)"
         } else {
-            self.openNowOrClose.text = "Closed; Opens at \(variables.timeOpenHour!):\(newOpenMinute) \(variables.timeOpenAmpm!)"
+            self.openNowOrClose.text = "Closed; Opens at \(Fhooder.timeOpenHour!):\(newOpenMinute) \(Fhooder.timeOpenAmpm!)"
         }
         
         
@@ -125,7 +125,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return variables.itemNames!.count
+        return Fhooder.itemNames!.count
     }
     
     
@@ -134,17 +134,17 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
         self.totalItemPrice = 0
 
-        coCell.fhoodImage.image = UIImage(named: (variables.itemNames![indexPath.item] ) )
+        coCell.fhoodImage.image = UIImage(named: (Fhooder.itemNames![indexPath.item] ) )
 
-        coCell.foodName.text = variables.itemNames![indexPath.item]
+        coCell.foodName.text = Fhooder.itemNames![indexPath.item]
         coCell.foodName.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         coCell.foodName.textColor = UIColor.whiteColor()
 
-        coCell.foodPrice.text = formatter.stringFromNumber(variables.itemPrices![indexPath.item])
+        coCell.foodPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![indexPath.item])
         coCell.foodPrice.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         coCell.foodPrice.textColor = UIColor.whiteColor()
 
-        if variables.itemCount![indexPath.item] == 0 {
+        if Fhooder.itemCount![indexPath.item] == 0 {
             coCell.foodQuantity.text = ""
             coCell.foodQuantity.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
         
@@ -152,7 +152,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             coCell.subtractButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.0)
         } else {
             coCell.foodQuantity.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-            coCell.foodQuantity.text = " x " + "\(Int(variables.itemCount![indexPath.item]))"
+            coCell.foodQuantity.text = " x " + "\(Int(Fhooder.itemCount![indexPath.item]))"
             coCell.subtractButton.alpha = 0.8
             coCell.subtractButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         }
@@ -164,8 +164,8 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             self.doneButton.alpha = 0
             self.totalPrice.text = "$0.00"
         } else {
-            for var i = 0; i < variables.itemCount!.count; i++ {
-                self.totalItemPrice += (Double(variables.itemCount![i]) * variables.itemPrices![i])
+            for var i = 0; i < Fhooder.itemCount!.count; i++ {
+                self.totalItemPrice += (Double(Fhooder.itemCount![i]) * Fhooder.itemPrices![i])
             }
 
             fhoodie.selectedTotalItemPrice! = self.totalItemPrice
@@ -182,11 +182,11 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     func subtractItem(sender: UIButton) {
         let i = sender.layer.valueForKey("index") as! Int
 
-        variables.itemCount![i]--
+        Fhooder.itemCount![i]--
         self.totalItemPrice = 0
         
-        for var i = 0; i < variables.itemCount!.count; i++ {
-            self.totalItemPrice += (Double(variables.itemCount![i]) * variables.itemPrices![i])
+        for var i = 0; i < Fhooder.itemCount!.count; i++ {
+            self.totalItemPrice += (Double(Fhooder.itemCount![i]) * Fhooder.itemPrices![i])
         }
         fhoodie.selectedTotalItemPrice! = self.totalItemPrice
         
@@ -210,14 +210,14 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
         performSegueWithIdentifier("toDetailView", sender: self)
 
-        if variables.itemCount![indexPath.item] != 0 {
+        if Fhooder.itemCount![indexPath.item] != 0 {
             coCell.foodQuantity.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-            coCell.foodQuantity.text = " x " + "\(Int(variables.itemCount![indexPath.item]))"
+            coCell.foodQuantity.text = " x " + "\(Int(Fhooder.itemCount![indexPath.item]))"
             coCell.subtractButton.alpha = 0.8
             coCell.subtractButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
 
-            for var i = 0; i < variables.itemCount!.count; i++ {
-                self.totalItemPrice += (Double(variables.itemCount![i]) * variables.itemPrices![i])
+            for var i = 0; i < Fhooder.itemCount!.count; i++ {
+                self.totalItemPrice += (Double(Fhooder.itemCount![i]) * Fhooder.itemPrices![i])
             }
             fhoodie.selectedTotalItemPrice! = self.totalItemPrice
 
@@ -252,11 +252,11 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         self.priceReceipt = []
         
         // Organize the receipt list
-        for var i = 0; i < variables.itemNames!.count; i++ {
-            if variables.itemCount![i] != 0 {
-                self.itemReceipt.append(variables.itemNames![i])
-                self.qtyReceipt.append(variables.itemCount![i])
-                self.priceReceipt.append(variables.itemPrices![i])
+        for var i = 0; i < Fhooder.itemNames!.count; i++ {
+            if Fhooder.itemCount![i] != 0 {
+                self.itemReceipt.append(Fhooder.itemNames![i])
+                self.qtyReceipt.append(Fhooder.itemCount![i])
+                self.priceReceipt.append(Fhooder.itemPrices![i])
             }
         }
         

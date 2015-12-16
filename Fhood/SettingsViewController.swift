@@ -91,6 +91,22 @@ final class SettingsViewController: UIViewController, UITableViewDataSource, UIT
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 
+    @IBAction func logOut(sender: UIButton) {
+        
+        let alert = UIAlertController(title: "", message:"Are you sure you want to log out?", preferredStyle: .Alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .Default) { _ in}
+        let logout = UIAlertAction(title: "Log out", style: .Default) { (action: UIAlertAction!) -> () in
+            PFUser.logOutInBackgroundWithBlock { error in
+                Fhooder.fhooderSignedIn = false
+                Router.route(animated: true)
+            }
+        }
+        alert.addAction(cancel)
+        alert.addAction(logout)
+        self.presentViewController(alert, animated: true){}
+        
+        
+    }
 
 
 }

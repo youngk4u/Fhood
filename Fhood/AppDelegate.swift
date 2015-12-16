@@ -17,6 +17,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        
         // Initiailize Vendor modules like Parse, Stripe, etc.
         self.loadVendorLibraries()
 

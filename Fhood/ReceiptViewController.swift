@@ -55,7 +55,7 @@ final class ReceiptViewController: UIViewController {
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
         
-        self.fhooderName.text = variables.name!
+        self.fhooderName.text = Fhooder.shopName!
 
         // Put the order list on the receipt
         for var x = 0; x < fhoodie.selectedItemCount!.count; x++ {

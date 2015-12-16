@@ -66,8 +66,8 @@ class AddressViewController: UIViewController, UITextFieldDelegate, UIPickerView
             self.cityAddressTextField.textColor = UIColor.blackColor()
             self.cityAddress = self.cityAddressTextField.text
         }
-        if PFUser.currentUser()?.objectForKey("state") != nil {
-            self.stateAddressTextField.text = "\(PFUser.currentUser()!.objectForKey("state")!)"
+        if PFUser.currentUser()?.objectForKey("stateProvince") != nil {
+            self.stateAddressTextField.text = "\(PFUser.currentUser()!.objectForKey("stateProvince")!)"
             self.stateAddressTextField.textColor = UIColor.blackColor()
             self.stateAddress = self.stateAddressTextField.text
         }
@@ -192,7 +192,7 @@ class AddressViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 user!["city"] = self.cityAddressTextField.text
             }
             if self.stateAddressTextField.text != "" {
-                user!["state"] = self.stateAddressTextField.text
+                user!["stateProvince"] = self.stateAddressTextField.text
             }
             if self.zipAddressTextField.text != "" {
                 user!["zip"] = self.zipAddressTextField.text

@@ -10,6 +10,10 @@ import UIKit
 
 final class DescriptionIngredientsViewController: UIViewController, UITextViewDelegate {
 
+    
+    @IBOutlet var navBar: UINavigationBar!
+    var navTitle: String?
+
     @IBOutlet var textView: UITextView!
     
     let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
@@ -17,8 +21,16 @@ final class DescriptionIngredientsViewController: UIViewController, UITextViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navBar.topItem?.title = navTitle
         
         self.textView.becomeFirstResponder()
+        
+        if navTitle == "Description" {
+            self.textView.text = Fhooder.descriptionText
+        }
+        else if navTitle == "Ingredients" {
+            self.textView.text = Fhooder.ingredientsText
+        }
         
     }
     
@@ -27,13 +39,15 @@ final class DescriptionIngredientsViewController: UIViewController, UITextViewDe
         
         self.textView.resignFirstResponder()
         
-        let alert = UIAlertController(title: "", message:"Your description/ingredients has been saved!", preferredStyle: .Alert)
-        let saved = UIAlertAction(title: "Nice!", style: .Default) { _ in}
-        alert.addAction(saved)
-        rootViewController.presentViewController(alert, animated: true, completion: nil)
+        if navTitle == "Description" {
+            Fhooder.descriptionText = self.textView.text
+        }
+        else if navTitle == "Ingredients" {
+            Fhooder.ingredientsText = self.textView.text
+        }
         
         // Reload tableview from previous controller
-        //NSNotificationCenter.defaultCenter().postNotificationName("loadSettings", object: nil)
+        NSNotificationCenter.defaultCenter().postNotificationName("loadInfoView", object: nil)
         
         dismissViewControllerAnimated(true, completion: nil)
 

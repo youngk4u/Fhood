@@ -14,7 +14,7 @@ struct Router {
 
     private static var rootViewController: UIViewController {
         if PFUser.currentUser()?.isAuthenticated() == true {
-            if variables.fhooderSignedIn == true {
+            if Fhooder.fhooderSignedIn == true {
                 return self.fhooderViewController
             }
             else {

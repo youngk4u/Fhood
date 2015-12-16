@@ -1,0 +1,35 @@
+//
+//  AboutFhooderViewController.swift
+//  Fhood
+//
+//  Created by YOUNG on 12/16/15.
+//  Copyright © 2015 YOUNG&YOUM. All rights reserved.
+//
+
+import UIKit
+
+class AboutFhooderViewController: UIViewController {
+
+    @IBOutlet var fhooderPic: UIImageView!
+    @IBOutlet var aboutMeText: UITextView!
+    @IBOutlet var fhooderName: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.title = "About me"
+        
+        let image = UIImageView(image: Fhooder.fhooderPicture)
+        image.frame = CGRectMake(0, 0, 80, 80)
+        image.layer.masksToBounds = false
+        image.layer.cornerRadius = 13
+        image.layer.cornerRadius = image.frame.size.height/2
+        image.clipsToBounds = true
+        
+        self.fhooderPic.addSubview(image)
+        self.aboutMeText.text = Fhooder.fhooderAboutMe
+        self.fhooderName.text = Fhooder.fhooderFirstName
+    }
+    
+
+}

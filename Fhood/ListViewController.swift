@@ -145,20 +145,20 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
                 fhooderTen()
             }
             
-            self.arrPrice = variables.itemPrices!
+            self.arrPrice = Fhooder.itemPrices!
 
-            cell.fhooderPic.image = UIImage(named: variables.fhooderPic!)
+            cell.fhooderPic.image = UIImage(named: Fhooder.fhooderPic!)
             cell.fhooderPrice.text = formatter.stringFromNumber(arrPrice[0])
-            cell.fhooderName.text = variables.name!
-            cell.fhooderSpoon.image = UIImage(named: variables.ratingInString!)
-            cell.fhooderReview.text = "\(variables.reviews!) Reviews"
-            cell.fhooderPickup.hidden = !variables.pickup!
-            cell.fhooderEatin.hidden = !variables.eatin!
-            cell.fhooderDelivery.hidden = !variables.delivery!
-            cell.fhooderType.text = "\(variables.foodType![0]), \(variables.foodType![1]), \(variables.foodType![2])"
-            cell.fhooderOpen.hidden = !variables.isOpen!
-            cell.fhooderClosed.hidden = !variables.isClosed!
-            cell.fhooderDistance.text = "\(variables.distance!) miles"
+            cell.fhooderName.text = Fhooder.shopName!
+            cell.fhooderSpoon.image = UIImage(named: Fhooder.ratingInString!)
+            cell.fhooderReview.text = "\(Fhooder.reviews!) Reviews"
+            cell.fhooderPickup.hidden = !Fhooder.pickup!
+            cell.fhooderEatin.hidden = !Fhooder.eatin!
+            cell.fhooderDelivery.hidden = !Fhooder.delivery!
+            cell.fhooderType.text = "\(Fhooder.foodTypeOne!), \(Fhooder.foodTypeTwo!), \(Fhooder.foodTypeThree!)"
+            cell.fhooderOpen.hidden = !Fhooder.isOpen!
+            cell.fhooderClosed.hidden = !Fhooder.isClosed!
+            cell.fhooderDistance.text = "\(Fhooder.distance!) miles"
         }
         
         // Cell Marginal lines on the left to stretch all the way to the left screen

@@ -50,8 +50,8 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.spoonFive.addTarget(self, action: "fivePressed:", forControlEvents: UIControlEvents.TouchUpInside)
         
         
-        self.fhooderImage.image = UIImage(named: variables.fhooderPic!)
-        self.fhooderName.text = variables.name!
+        self.fhooderImage.image = UIImage(named: Fhooder.fhooderPic!)
+        self.fhooderName.text = Fhooder.shopName!
     }
     
     func textViewDidBeginEditing(textView: UITextView) {

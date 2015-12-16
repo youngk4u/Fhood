@@ -9,42 +9,44 @@
 import UIKit
 
 func fhooderThree() {
-    variables.name = "Coffee met Bagel"
-    variables.ratingInString = "3andHalf-Spoon"
-    variables.reviews = 58
-    variables.foodType = ["Coffee", "Cafe", "Bagel"]
-    variables.address = "881 Turk St, San Francisco, CA 94102"
-    variables.fhooderLatitude = 37.781480
-    variables.fhooderLongitude = -122.423640
-    variables.distance = 0.6
-    variables.pickup = true
-    variables.eatin = true
-    variables.delivery = false
-    variables.phoneNum = "(415) 754-2985"
-    variables.isOpen = true
-    variables.isClosed = false
-    variables.timeOpenHour = 9
-    variables.timeOpenMinute = 0
-    variables.timeOpenAmpm = "AM"
-    variables.timeCloseHour = 2
-    variables.timeCloseMinute = 0
-    variables.timeCloseAmpm = "PM"
+    Fhooder.shopName = "Coffee met Bagel"
+    Fhooder.ratingInString = "3andHalf-Spoon"
+    Fhooder.reviews = 58
+    Fhooder.foodTypeOne = "Coffee"
+    Fhooder.foodTypeTwo = "Cafe"
+    Fhooder.foodTypeThree = "Bagel"
+    Fhooder.address = "881 Turk St, San Francisco, CA 94102"
+    Fhooder.fhooderLatitude = 37.781480
+    Fhooder.fhooderLongitude = -122.423640
+    Fhooder.distance = 0.6
+    Fhooder.pickup = true
+    Fhooder.eatin = true
+    Fhooder.delivery = false
+    Fhooder.phoneNum = "(415) 754-2985"
+    Fhooder.isOpen = true
+    Fhooder.isClosed = false
+    Fhooder.timeOpenHour = 9
+    Fhooder.timeOpenMinute = 0
+    Fhooder.timeOpenAmpm = "AM"
+    Fhooder.timeCloseHour = 2
+    Fhooder.timeCloseMinute = 0
+    Fhooder.timeCloseAmpm = "PM"
 
-    variables.itemNames = ["Hand Drip Coffee", "Espresso", "Bagel", "Honey Yogurt Parfait", "Macaron"]
-    variables.itemPrices = [2.99, 1.99, 0.99, 2.99, 2.99]
-    variables.itemCount = [0, 0, 0, 0, 0]
-    variables.itemPrefernce = [[1,1,1,1,1,1,0,0], [1,1,1,1,1,1,1,0], [1,1,0,0,0,1,0,0], [0,0,1,1,1,1,0,0],[0,0,0,0,0,0,0,0]]
-    variables.itemDescription = ["Slow hand dripped coffee made to order", "Concentrated fragrant coffee with Indonesian light beans", "Homemade bagels just like granpa used to make.  Chewy and delicious", "Healthy and delicious greek yogurt topped with crunchy granola and blueberries", "Macarons made from scratch featuring various flavors that change daily"]
-    variables.itemIngredients = ["Coffee (Ethiopian dark beans), Water.", "Coffee (Indonesian light beans), Water.", "Wheat flour, Water, Salt, Sesame seeds.", "Greek yogurt, Honey, Blue berries, Granola.", "Almond flour, Sugar, Egg whites, Creme of tartar, Salt, Food coloring"]
+    Fhooder.itemNames = ["Hand Drip Coffee", "Espresso", "Bagel", "Honey Yogurt Parfait", "Macaron"]
+    Fhooder.itemPrices = [2.99, 1.99, 0.99, 2.99, 2.99]
+    Fhooder.itemCount = [0, 0, 0, 0, 0]
+    Fhooder.itemPrefernce = [[1,1,1,1,1,1,0,0], [1,1,1,1,1,1,1,0], [1,1,0,0,0,1,0,0], [0,0,1,1,1,1,0,0],[0,0,0,0,0,0,0,0]]
+    Fhooder.itemDescription = ["Slow hand dripped coffee made to order", "Concentrated fragrant coffee with Indonesian light beans", "Homemade bagels just like granpa used to make.  Chewy and delicious", "Healthy and delicious greek yogurt topped with crunchy granola and blueberries", "Macarons made from scratch featuring various flavors that change daily"]
+    Fhooder.itemIngredients = ["Coffee (Ethiopian dark beans), Water.", "Coffee (Indonesian light beans), Water.", "Wheat flour, Water, Salt, Sesame seeds.", "Greek yogurt, Honey, Blue berries, Granola.", "Almond flour, Sugar, Egg whites, Creme of tartar, Salt, Food coloring"]
     
     
-    variables.dailyQuantity = [0,0,0,0,0,0,0]
-    variables.maxOrderLimit = [0,0,0,0,0,0,0]
-    variables.timeInterval = [0,0,0,0,0,0,0]
+    Fhooder.dailyQuantity = [0,0,0,0,0,0,0]
+    Fhooder.maxOrderLimit = [0,0,0,0,0,0,0]
+    Fhooder.timeInterval = [0,0,0,0,0,0,0]
 
-    variables.fhooderFace = "fhooder3face"
-    variables.fhooderFirstName = "Craig"
+    Fhooder.fhooderFace = "fhooder3face"
+    Fhooder.fhooderFirstName = "Craig"
 
-    variables.fhooderPic = "fhooder3"
-    variables.fhooderAboutMe = "There’s nothing i love more than a great cup of joe.  I hand roast all the beans used to make my  coffee.  Try it yourself and taste the difference! Starbucks who?!?"
+    Fhooder.fhooderPic = "fhooder3"
+    Fhooder.fhooderAboutMe = "There’s nothing i love more than a great cup of joe.  I hand roast all the beans used to make my  coffee.  Try it yourself and taste the difference! Starbucks who?!?"
 }

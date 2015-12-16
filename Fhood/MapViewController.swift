@@ -42,34 +42,34 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
 
         // Put Fhooders on the map
         fhooderOne()
-        let obj1 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj1 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
         fhooderTwo()
-        let obj2 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj2 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
         fhooderThree()
-        let obj3 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj3 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
         fhooderFour()
-        let obj4 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj4 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
         fhooderFive()
-        let obj5 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj5 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
         fhooderSix()
-        let obj6 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj6 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
         fhooderSeven()
-        let obj7 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj7 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
         fhooderEight()
-        let obj8 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj8 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
         fhooderNine()
-        let obj9 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj9 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
        // fhooderTen()
-        let obj10 = AnnotationObject(title: variables.name!, subtitle: variables.foodType![0], coordinate: CLLocationCoordinate2D(latitude: variables.fhooderLatitude!, longitude: variables.fhooderLongitude!), countReviews: variables.reviews!, image: UIImage(named: variables.fhooderPic!)!, price: variables.itemPrices![0], open: variables.isOpen!, closed: variables.isClosed!, imageRating: UIImage(named: variables.ratingInString!)!)
+        let obj10 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
 
         self.mapView.addAnnotation(obj1)
         self.mapView.addAnnotation(obj2)

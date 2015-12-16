@@ -30,7 +30,7 @@ final class CookingTimeViewController: UIViewController {
         self.scheduleView.layer.cornerRadius = 7
         
         // Initializing the switch
-        if variables.isOpen == true {
+        if Fhooder.isOpen == true {
             self.cookingSwitch.on = true
             self.scheduleView.alpha = 1
         }
@@ -45,15 +45,15 @@ final class CookingTimeViewController: UIViewController {
     // Switch function for the cooking time on/off
     func switchState (Switch: UISwitch) {
         if Switch.on {
-            variables.isOpen = true
-            variables.isClosed = false
+            Fhooder.isOpen = true
+            Fhooder.isClosed = false
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.scheduleView.alpha = 1
                 })
         }
         else {
-            variables.isClosed = true
-            variables.isOpen = false
+            Fhooder.isClosed = true
+            Fhooder.isOpen = false
             UIView.animateWithDuration(0.3, animations: { () -> Void in
                 self.scheduleView.alpha = 0
             })

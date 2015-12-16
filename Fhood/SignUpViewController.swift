@@ -64,27 +64,21 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     var statePicker: UIPickerView!
     let statePickerValues = ["", "AL","AK","AZ","AR","CA","CO","CT","DE","FL","GA","HI","ID","IL", "IN","IA","KS","KY","LA","ME","MD","MA","MI","MN","MS","MO","MT","NE","NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA","RI","SC","SD","TN","TX","UT","VT","VA","WA","WV","WI","WY"]
-
+    
+    let foodType = ["", "American", "Argentinian", "Asian", "BBQ", "Bagels", "Bakery", "Bento", "Brazilian", "Breakfast", "Californian", "Calzones", "Cantonese", "Caribbean", "Cheesesteaks", "Chicken", "Chinese", "Coffee", "Cold Pressed", "Crepes", "Cuban", "Deli", "Dessert", "Dim Sum", "Diner", "Dinner", "Eclectic", "Empanadas", "European", "Fish and Chips", "French", "Fusion", "German", "Gluten-Free", "Greek", "Grill", "Grilled Cheese", "Gyro", "Halal", "Hamburgers", "Hawaiian", "Healthy", "Hoagies", "Hot Dogs", "Ice Cream", "Indian", "Indonesian", "Italian", "Japanese", "Kids Menu", "Korean", "Kosher", "Kosher-Style", "Late Night", "Latin American", "Lebanese", "Lemonade", "Low Carb", "Low Fat", "Lunch", "Mandarin", "Meatloaf", "Mediterranean", "Mexican", "Middle Eastern", "Mini Sliders", "New American", "Noodles", "Organic", "Pasta", "Persian", "Peruvian", "Pitas", "Pizza", "Pork Buns", "Potato", "Pub Food", "Ribs", "Rice Bowl", "Russian", "Salads", "Sandwiches", "Seafood", "Smoothies and Juices", "Soul Food", "Soup", "Steak", "Subs", "Sushi", "Shawarma", "Szechwan", "Tapas", "Tea", "Thai", "Vegan", "Vegetarian", "Vietnamese", "Water", "Wings", "Wraps", "Other"]
+    
     var foodTypeOnePicker: UIPickerView!
-    let foodTypeOnePickerValues = ["", "Chinese", "Japanese", "Korean"]
-    
+    var foodTypeOnePickerValues : [String]!
     var foodTypeTwoPicker: UIPickerView!
-    let foodTypeTwoPickerValues = ["", "Sandwich", "Rice", "Burgers"]
-
+    var foodTypeTwoPickerValues : [String]!
     var foodTypeThreePicker: UIPickerView!
-    let foodTypeThreePickerValues = ["", "Fried Rice", "Gimbap", "Salmon Rice"]
-    
+    var foodTypeThreePickerValues : [String]!
     
     let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
     
     
     
     
-    func loadProfile(notification: NSNotification){
-        loadProfilePic()
-        loadAboutMe()
-    }
-
     
     
     override func viewDidLoad() {
@@ -106,7 +100,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         // iPhone 6+/6s+ = 736 - 64
         // iPhone 6/6s   = 667 - 64
         // iPhone 5/5s   = 568 - 64
-        self.scrollViewHeight.constant = 736 - 64
+        self.scrollViewHeight.constant = 667 - 64
         
         // Textfield Delegate
         self.firstNameTextfield.delegate = self
@@ -133,12 +127,15 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         self.foodTypeOneTextfield.inputView = self.foodTypeOnePicker
         self.foodTypeOneTextfield.text = ""
+        self.foodTypeOnePickerValues = self.foodType
         
         self.foodTypeTwoTextfield.inputView = self.foodTypeTwoPicker
         self.foodTypeTwoTextfield.text = ""
+        self.foodTypeTwoPickerValues = self.foodType
         
         self.foodTypeThreeTextfield.inputView = self.foodTypeThreePicker
         self.foodTypeThreeTextfield.text = ""
+        self.foodTypeThreePickerValues = self.foodType
         
         
         // Load data from parse
@@ -168,6 +165,13 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
 
         
     }
+    
+    
+    func loadProfile(notification: NSNotification){
+        loadProfilePic()
+        loadAboutMe()
+    }
+    
 
     func loadProfilePic() {
         // Get picture from file(Parse)
@@ -220,7 +224,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     func loadAddress() {
-        if PFUser.currentUser()?.objectForKey("streetAddress") != nil && PFUser.currentUser()?.objectForKey("city") != nil && PFUser.currentUser()?.objectForKey("state") != nil && PFUser.currentUser()?.objectForKey("zip") != nil && PFUser.currentUser()?.objectForKey("country") != nil {
+        if PFUser.currentUser()?.objectForKey("streetAddress") != nil && PFUser.currentUser()?.objectForKey("city") != nil && PFUser.currentUser()?.objectForKey("stateProvince") != nil && PFUser.currentUser()?.objectForKey("zip") != nil && PFUser.currentUser()?.objectForKey("country") != nil {
             self.streetAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("streetAddress")!)"
             self.streetAdd = self.streetAddressTextfield.text
             
@@ -231,7 +235,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             self.cityAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("city")!)"
             self.cityAdd = self.cityAddressTextfield.text
             
-            self.stateAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("state")!)"
+            self.stateAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("stateProvince")!)"
             self.stateAdd = self.stateAddressTextfield.text
             
             self.zipAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("zip")!)"
@@ -268,6 +272,9 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             textField.text = textField.text?.capitalizedString
         }
         else if textField == self.lastNameTextfield {
+            textField.text = textField.text?.capitalizedString
+        }
+        else if textField == self.nameOfShopTextfield {
             textField.text = textField.text?.capitalizedString
         }
         self.view.endEditing(true)
@@ -483,6 +490,8 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     @IBAction func typeOfFhooderSegment(sender: AnyObject) {
         
+        self.view.endEditing(true)
+        
         switch typeOfFhooderSegment.selectedSegmentIndex {
         case 0:
             self.certified = false
@@ -507,7 +516,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             
             let user = PFUser.currentUser()
             
-            
+            // Make a new object under Fhooder class in Parse
             let applicant = PFObject(className: "Fhooder")
             applicant["firstName"] = self.firstNameTextfield.text
             applicant["lastName"] = self.lastNameTextfield.text
@@ -523,7 +532,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["streetAddress"] = self.streetAddressTextfield.text
             applicant["unitAddress"] = self.aptAddressTextfield.text
             applicant["city"] = self.cityAddressTextfield.text
-            applicant["state"] = self.stateAddressTextfield.text
+            applicant["stateProvince"] = self.stateAddressTextfield.text
             applicant["zip"] = self.zipAddressTextfield.text
             
             applicant["shopName"] = self.nameOfShopTextfield.text
@@ -536,6 +545,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["certified"] = self.certified
             
             applicant["status"] = "Pending"
+            applicant["userID"] = PFUser.currentUser()?.objectId
             
             
             applicant.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
@@ -543,13 +553,14 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
                     
                     self.view.endEditing(true)
                     
+                    user!["fhooder"] = applicant
                     user!["applied"] = true
                     
                     do {
                         try user!.save()
                     }
                     catch {
-                            let alert = UIAlertController(title: "", message:"There was an erro!", preferredStyle: .Alert)
+                            let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .Alert)
                             let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
                             alert.addAction(error)
                             self.rootViewController.presentViewController(alert, animated: true, completion: nil)
@@ -561,7 +572,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
                     let saved = UIAlertAction(title: "Ok!", style: .Default) { _ in}
                     alert.addAction(saved)
                     self.rootViewController.presentViewController(alert, animated: true, completion: nil)
-                    variables.fhooderSignedIn = false
+                    Fhooder.fhooderSignedIn = false
                     Router.route(animated: true)
 
                 }

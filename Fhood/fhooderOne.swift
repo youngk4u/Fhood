@@ -9,42 +9,44 @@
 import UIKit
 
 func fhooderOne() {
-    variables.name = "Say Cheese"
-    variables.ratingInString = "4-Spoon"
-    variables.reviews = 102
-    variables.foodType = ["Sandwich", "Artisan sandwich", "Grilled cheese"]
-    variables.address = "1170 Geary St, San Francisco, CA 94109"
-    variables.fhooderLatitude = 37.785513
-    variables.fhooderLongitude = -122.422624
-    variables.distance = 0.3
-    variables.pickup = true
-    variables.eatin = false
-    variables.delivery = false
-    variables.phoneNum = "(415) 541-8731"
-    variables.isOpen = true
-    variables.isClosed = false
-    variables.timeOpenHour = 12
-    variables.timeOpenMinute = 0
-    variables.timeOpenAmpm = "PM"
-    variables.timeCloseHour = 4
-    variables.timeCloseMinute = 0
-    variables.timeCloseAmpm = "PM"
+    Fhooder.shopName = "Say Cheese"
+    Fhooder.ratingInString = "4-Spoon"
+    Fhooder.reviews = 102
+    Fhooder.foodTypeOne = "Sandwich"
+    Fhooder.foodTypeTwo = "Gluten-Free"
+    Fhooder.foodTypeThree = "Grilled cheese"
+    Fhooder.address = "1170 Geary St, San Francisco, CA 94109"
+    Fhooder.fhooderLatitude = 37.785513
+    Fhooder.fhooderLongitude = -122.422624
+    Fhooder.distance = 0.3
+    Fhooder.pickup = true
+    Fhooder.eatin = false
+    Fhooder.delivery = false
+    Fhooder.phoneNum = "(415) 541-8731"
+    Fhooder.isOpen = true
+    Fhooder.isClosed = false
+    Fhooder.timeOpenHour = 12
+    Fhooder.timeOpenMinute = 0
+    Fhooder.timeOpenAmpm = "PM"
+    Fhooder.timeCloseHour = 4
+    Fhooder.timeCloseMinute = 0
+    Fhooder.timeCloseAmpm = "PM"
 
-    variables.itemNames = ["Grilled Cheese", "Fried Grilled Cheese", "Milk", "Flavoured Milk"]
-    variables.itemPrices = [1.99, 2.99, 1.49, 1.75]
-    variables.itemCount = [0, 0, 0, 0]
-    variables.itemPrefernce = [[1,0,0,1,1,1,0,0], [1,0,0,1,1,1,0,0], [0,0,0,1,1,0,0,1], [0,0,0,1,1,0,0,1]]
-    variables.itemDescription = ["Gooey Swiss and American Cheese layered between  two slices of crisp butter grilled wheat bread.", "Melted Muenster and Cheddar sandwiched between deliciously crisp grilled sourdough.", "Deliciously refreshing lowfat milk", "Yummy flavored milk available in 3 flavors: strawberry, chocolate, and banana"]
-    variables.itemIngredients = ["Wheat bread, Cheese (Swiss, American), Butter.", "Sourdough bread, Cheese (Muenster, Cheddar), Butter.", "Milk", "Milk, Artificial flavoring."]
+    Fhooder.itemNames = ["Grilled Cheese", "Fried Grilled Cheese", "Milk", "Flavoured Milk"]
+    Fhooder.itemPrices = [1.99, 2.99, 1.49, 1.75]
+    Fhooder.itemCount = [0, 0, 0, 0]
+    Fhooder.itemPrefernce = [[1,0,1,1,1,1,0,0], [1,0,1,1,1,1,0,0], [0,0,0,1,1,0,0,1], [0,0,0,1,1,0,0,1]]
+    Fhooder.itemDescription = ["Gooey Swiss and American Cheese layered between two slices of crisp butter grilled gluten free bread.", "Melted Muenster and Cheddar sandwiched between deliciously crisp grilled gluten free bread.", "Deliciously refreshing lowfat milk", "Yummy flavored milk available in 3 flavors: strawberry, chocolate, and banana"]
+    Fhooder.itemIngredients = ["Gluten free bread, Cheese (Swiss, American), Butter.", "Gluten free bread, Cheese (Muenster, Cheddar), Butter.", "Milk", "Milk, Artificial flavoring."]
     
     
-    variables.dailyQuantity = [0,0,0,0,0,0,0]
-    variables.maxOrderLimit = [0,0,0,0,0,0,0]
-    variables.timeInterval = [0,0,0,0,0,0,0]
+    Fhooder.dailyQuantity = [0,0,0,0,0,0,0]
+    Fhooder.maxOrderLimit = [0,0,0,0,0,0,0]
+    Fhooder.timeInterval = [0,0,0,0,0,0,0]
 
-    variables.fhooderFace = "fhooder1face"
-    variables.fhooderFirstName = "Stephanie"
+    Fhooder.fhooderFace = "fhooder1face"
+    Fhooder.fhooderFirstName = "Stephanie"
 
-    variables.fhooderPic = "fhooder1"
-    variables.fhooderAboutMe = "Welcome to my e-shop!  I love comfort food, just like my grandma used to make.  My specialty is the grilled cheese sandwich.  I hope you enjoy my cooking and feel free to drop me a line!"
+    Fhooder.fhooderPic = "fhooder1"
+    Fhooder.fhooderAboutMe = "Welcome to my e-shop!  I love comfort food, just like my grandma used to make.  My specialty is the grilled cheese sandwich.  I hope you enjoy my cooking and feel free to drop me a line!"
 }

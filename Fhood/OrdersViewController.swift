@@ -43,7 +43,7 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         cell.orderNumber.text = String(indexPath.row + 1)
         cell.userPic.image = UIImage(named:"fhoodie1")
         cell.userID.text = "fhoodie25"
-        cell.userRating.image = UIImage(named: variables.ratingInString!)
+        cell.userRating.image = UIImage(named: Fhooder.ratingInString!)
         cell.pickupCountdown.text = "00:07:52"
 
         return cell

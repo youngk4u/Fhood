@@ -2,18 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "location-marker-md-small.png"
+      "filename" : "History-Map2-1-1.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "location-marker-md.png"
+      "filename" : "History-Map2-1.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "location-marker-md@3x.png"
+      "filename" : "History-Map2.png",
+      "scale" : "3x"
     }
   ],
   "info" : {

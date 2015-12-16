@@ -22,6 +22,7 @@ final class AccountViewController: UIViewController  {
     @IBOutlet var fhoodiePicBG: UIImageView!
     @IBOutlet var fhoodieName: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,18 +39,15 @@ final class AccountViewController: UIViewController  {
         self.signUpButton.layer.cornerRadius = 5
         
     
-        if variables.fhooderSignedIn == true {
+        if Fhooder.fhooderSignedIn == true {
             self.fhooderSwitch.on = true
         }
         else {
             self.fhooderSwitch.on = false
         }
         
-
         
     }
-    
-
     
     
     
@@ -74,6 +72,7 @@ final class AccountViewController: UIViewController  {
                 (imageData: NSData?, error: NSError?) -> Void in
                 if error == nil {
                     if let imageData = imageData {
+                        
                         self.fhoodiePic.image = UIImage(data:imageData)
                         self.fhoodiePicBG.image = UIImage(data: imageData)
                         
@@ -126,21 +125,7 @@ final class AccountViewController: UIViewController  {
     }
 
     
-    @IBAction func logOutButton(sender: AnyObject) {
-        
-        let alert = UIAlertController(title: "", message:"Are you sure you want to log out?", preferredStyle: .Alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .Default) { _ in}
-        let logout = UIAlertAction(title: "Log out", style: .Default) { (action: UIAlertAction!) -> () in
-            PFUser.logOutInBackgroundWithBlock { error in
-                variables.fhooderSignedIn = false
-                Router.route(animated: true)
-            }
-        }
-        alert.addAction(cancel)
-        alert.addAction(logout)
-        self.presentViewController(alert, animated: true){}
-        
-    }
+
     
     // Animate join window for toggle switch
     func animate () {
@@ -148,7 +133,8 @@ final class AccountViewController: UIViewController  {
             self.joinWindow.alpha = self.joinWindow.alpha == 0 ? 1 : 0
         }
     }
-
+    
+    
     func toggleSwitch(sender: UISwitch) {
         
         
@@ -161,9 +147,10 @@ final class AccountViewController: UIViewController  {
                 if fhooder != nil {
                     
                     if fhooder as! NSObject == true {
-                            variables.fhooderSignedIn = true
-                            Router.route(animated: true)
+                        Fhooder.fhooderSignedIn = true
+                        Router.route(animated: true)
                     }
+
                     else {
                         animate()
                     }
@@ -178,7 +165,7 @@ final class AccountViewController: UIViewController  {
                     animate()
                 }
                 else {
-                    variables.fhooderSignedIn = false
+                    Fhooder.fhooderSignedIn = false
                     Router.route(animated: true)
                 }
             }
@@ -197,4 +184,5 @@ final class AccountViewController: UIViewController  {
             animate()
         }
     }
+    
 }

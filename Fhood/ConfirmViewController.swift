@@ -30,9 +30,9 @@ final class ConfirmViewController: UIViewController {
         self.formatter.numberStyle = .CurrencyStyle
         totalPriceLabel.text = self.formatter.stringFromNumber(fhoodie.totalDue!)
         
-        self.welcomeSign.text = "Welcome to \(variables.name!)!"
+        self.welcomeSign.text = "Welcome to \(Fhooder.shopName!)!"
         
-        self.fhooderFace.image = UIImage(named: variables.fhooderFace!)
-        self.fhooderFaceName.text = variables.fhooderFirstName!
+        self.fhooderFace.image = UIImage(named: Fhooder.fhooderFace!)
+        self.fhooderFaceName.text = Fhooder.fhooderFirstName!
     }
 }

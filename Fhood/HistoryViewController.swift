@@ -12,5 +12,19 @@ final class HistoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let nav = self.navigationController?.navigationBar
+        
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
+        
+        self.title = "History"
+    }
+    
+    
+    
+    
+    
+    @IBAction func cancelButton(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

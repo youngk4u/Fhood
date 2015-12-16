@@ -127,8 +127,8 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     func loadAddress() {
         // Get address from Parse 
-        if PFUser.currentUser()?.objectForKey("streetAddress") != nil && PFUser.currentUser()?.objectForKey("city") != nil && PFUser.currentUser()?.objectForKey("state") != nil && PFUser.currentUser()?.objectForKey("zip") != nil && PFUser.currentUser()?.objectForKey("country") != nil {
-            self.addressButton.setTitle("\(PFUser.currentUser()!.objectForKey("city")!)" + ", " + "\(PFUser.currentUser()!.objectForKey("state")!)" + ", " + "\(PFUser.currentUser()!.objectForKey("country")!)", forState: .Normal)
+        if PFUser.currentUser()?.objectForKey("streetAddress") != nil && PFUser.currentUser()?.objectForKey("city") != nil && PFUser.currentUser()?.objectForKey("stateProvince") != nil && PFUser.currentUser()?.objectForKey("zip") != nil && PFUser.currentUser()?.objectForKey("country") != nil {
+            self.addressButton.setTitle("\(PFUser.currentUser()!.objectForKey("city")!)" + ", " + "\(PFUser.currentUser()!.objectForKey("stateProvince")!)" + ", " + "\(PFUser.currentUser()!.objectForKey("country")!)", forState: .Normal)
             self.addressButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         }
     }

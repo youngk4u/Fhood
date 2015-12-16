@@ -46,20 +46,20 @@ final class DetailViewController: UIViewController {
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
         
-        self.detailStepper.value = Double(variables.itemCount![fhoodie.selectedIndex!])
+        self.detailStepper.value = Double(Fhooder.itemCount![fhoodie.selectedIndex!])
         self.detailQuantity.text = "\(Int(self.detailStepper.value))"
-        self.detailTitle.text = variables.itemNames![fhoodie.selectedIndex!]
+        self.detailTitle.text = Fhooder.itemNames![fhoodie.selectedIndex!]
         self.detailTitle.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         self.detailTitle.textColor = UIColor.whiteColor()
-        self.detailImage.image = UIImage(named: variables.itemNames![fhoodie.selectedIndex!])
-        self.detailPrice.text = formatter.stringFromNumber(variables.itemPrices![fhoodie.selectedIndex!])
-        self.detailDescription.text = "Description: " + variables.itemDescription![fhoodie.selectedIndex!]
-        self.detailIngredients.text = "Ingredients: " + variables.itemIngredients![fhoodie.selectedIndex!]
+        self.detailImage.image = UIImage(named: Fhooder.itemNames![fhoodie.selectedIndex!])
+        self.detailPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![fhoodie.selectedIndex!])
+        self.detailDescription.text = "Description: " + Fhooder.itemDescription![fhoodie.selectedIndex!]
+        self.detailIngredients.text = "Ingredients: " + Fhooder.itemIngredients![fhoodie.selectedIndex!]
 
         // Set the prefernece images sorted
         for var i = 0; i < 8; i++ {
             
-            if variables.itemPrefernce![fhoodie.selectedIndex!][i] == 0 {
+            if Fhooder.itemPrefernce![fhoodie.selectedIndex!][i] == 0 {
                 self.preferenceSet[i] = ""
             }
         }
@@ -138,12 +138,12 @@ final class DetailViewController: UIViewController {
     // Stepper Button
     @IBAction func stepperPressed(sender: UIStepper) {
         self.quantityLabel = Int(self.detailStepper.value)
-        variables.itemCount![fhoodie.selectedIndex!] = self.quantityLabel
+        Fhooder.itemCount![fhoodie.selectedIndex!] = self.quantityLabel
         self.detailQuantity.text = "\(self.quantityLabel)"
     }
 
     @IBAction func detailViewClose(sender: AnyObject) {
-        if variables.itemCount![fhoodie.selectedIndex!] != 0 {
+        if Fhooder.itemCount![fhoodie.selectedIndex!] != 0 {
             fhoodie.isAnythingSelected = true
         }
         NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)

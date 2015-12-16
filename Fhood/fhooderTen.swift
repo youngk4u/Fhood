@@ -9,41 +9,43 @@
 import UIKit
 
 func fhooderTen() {
-    variables.name = "53rd N 6th"
-    variables.ratingInString = "5-Spoon"
-    variables.reviews = 94
-    variables.foodType = ["Halal", "Shawarma", "Chicken and rice"]
-    variables.address = "677 Linden St, San Francisco, CA 94102"
-    variables.fhooderLatitude = 37.775535
-    variables.fhooderLongitude = -122.428874
-    variables.distance = 1.6
-    variables.pickup = true
-    variables.eatin = false
-    variables.delivery = false
-    variables.phoneNum = "(415) 289-4897"
-    variables.isOpen = true
-    variables.isClosed = false
-    variables.timeOpenHour = 11
-    variables.timeOpenMinute = 0
-    variables.timeOpenAmpm = "AM"
-    variables.timeCloseHour = 8
-    variables.timeCloseMinute = 0
-    variables.timeCloseAmpm = "PM"
+    Fhooder.shopName = "53rd N 6th"
+    Fhooder.ratingInString = "5-Spoon"
+    Fhooder.reviews = 94
+    Fhooder.foodTypeOne = "Halal"
+    Fhooder.foodTypeTwo = "Shawarma"
+    Fhooder.foodTypeThree = "Chicken and rice"
+    Fhooder.address = "677 Linden St, San Francisco, CA 94102"
+    Fhooder.fhooderLatitude = 37.775535
+    Fhooder.fhooderLongitude = -122.428874
+    Fhooder.distance = 1.6
+    Fhooder.pickup = true
+    Fhooder.eatin = false
+    Fhooder.delivery = false
+    Fhooder.phoneNum = "(415) 289-4897"
+    Fhooder.isOpen = true
+    Fhooder.isClosed = false
+    Fhooder.timeOpenHour = 11
+    Fhooder.timeOpenMinute = 0
+    Fhooder.timeOpenAmpm = "AM"
+    Fhooder.timeCloseHour = 8
+    Fhooder.timeCloseMinute = 0
+    Fhooder.timeCloseAmpm = "PM"
 
-    variables.itemNames = ["Chicken and Rice", "Soda"]
-    variables.itemPrices = [4.99, 1.49]
-    variables.itemCount = [0, 0]
-    variables.itemPrefernce = [[1,0,0,1,1,1,0,0], [0,0,0,0,0,0,0,0]]
-    variables.itemDescription = ["Just like you had in the big apple; grilled chicken shawarma on rice with our special yogurt sauce.  Truly addictive.", "Choose between Coke, Sprite, Diet Coke, bottle water"]
-    variables.itemIngredients = ["Chicken, Spices, Rice, Tahini, Pita bread, Lettuce, Yogurt sauce.", "Sugar, Water, Artificial flavor"]
+    Fhooder.itemNames = ["Chicken and Rice", "Soda"]
+    Fhooder.itemPrices = [4.99, 1.49]
+    Fhooder.itemCount = [0, 0]
+    Fhooder.itemPrefernce = [[1,0,0,1,1,1,0,0], [0,0,0,0,0,0,0,0]]
+    Fhooder.itemDescription = ["Just like you had in the big apple; grilled chicken shawarma on rice with our special yogurt sauce.  Truly addictive.", "Choose between Coke, Sprite, Diet Coke, bottle water"]
+    Fhooder.itemIngredients = ["Chicken, Spices, Rice, Tahini, Pita bread, Lettuce, Yogurt sauce.", "Sugar, Water, Artificial flavor"]
     
-    variables.dailyQuantity = [0,0,0,0,0,0,0]
-    variables.maxOrderLimit = [0,0,0,0,0,0,0]
-    variables.timeInterval = [0,0,0,0,0,0,0]
+    Fhooder.dailyQuantity = [0,0,0,0,0,0,0]
+    Fhooder.maxOrderLimit = [0,0,0,0,0,0,0]
+    Fhooder.timeInterval = [0,0,0,0,0,0,0]
 
-    variables.fhooderFace = "fhooder10face"
-    variables.fhooderFirstName = "Sheila"
+    Fhooder.fhooderFace = "fhooder10face"
+    Fhooder.fhooderFirstName = "Sheila"
 
-    variables.fhooderPic = "fhooder10"
-    variables.fhooderAboutMe = "Hi, I’m Sheila, and welcome to my page!  As a student in New York, I was lucky enough to have access to some great halal food, and thus started my passion for halal cooking!  My specialty is chicken shawerma but I hope to add more items as time progresses."
+    Fhooder.fhooderPic = "fhooder10"
+    Fhooder.fhooderAboutMe = "Hi, I’m Sheila, and welcome to my page!  As a student in New York, I was lucky enough to have access to some great halal food, and thus started my passion for halal cooking!  My specialty is chicken shawerma but I hope to add more items as time progresses."
 }

@@ -75,8 +75,8 @@ final class OrderedViewController: UIViewController {
         self.tabBarController?.tabBar.hidden = true
         
         //self.orderTime.text = "Ordered at \(fhoodie.orderedTime)"
-        self.fhooderName.text = variables.name!
-        self.address.text = variables.address!
+        self.fhooderName.text = Fhooder.shopName!
+        self.address.text = Fhooder.address!
         
         
         //Passing values from previous View Controller

@@ -55,17 +55,17 @@ final class ItemDetailViewController: UIViewController {
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
         
-        self.detailTitle.text = variables.itemNames![variables.itemIndex!]
-        self.detailImage.image = UIImage(named: variables.itemNames![variables.itemIndex!])
-        self.detailPrice.text = formatter.stringFromNumber(variables.itemPrices![variables.itemIndex!])
-        self.detailDescription.text = "Description: " + variables.itemDescription![variables.itemIndex!]
-        self.detailIngredients.text = "Ingredients: " + variables.itemIngredients![variables.itemIndex!]
+        self.detailTitle.text = Fhooder.itemNames![Fhooder.itemIndex!]
+        self.detailImage.image = Fhooder.itemPics![Fhooder.itemIndex!]
+        self.detailPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![Fhooder.itemIndex!])
+        self.detailDescription.text = "Description: " + Fhooder.itemDescription![Fhooder.itemIndex!]
+        self.detailIngredients.text = "Ingredients: " + Fhooder.itemIngredients![Fhooder.itemIndex!]
         
         
         // Set the prefernece images sorted
         for var i = 0; i < 8; i++ {
             
-            if variables.itemPrefernce![variables.itemIndex!][i] == 0 {
+            if Fhooder.itemPreferences![Fhooder.itemIndex!][i] == false {
                 self.preferenceSet[i] = ""
             }
         }
@@ -106,15 +106,15 @@ final class ItemDetailViewController: UIViewController {
         }
 
         
-        self.quantityAmount = variables.dailyQuantity![variables.itemIndex!]
-        self.dailyQtyStepper.value = Double(variables.dailyQuantity![variables.itemIndex!])
+        self.quantityAmount = Fhooder.dailyQuantity![Fhooder.itemIndex!]
+        self.dailyQtyStepper.value = Double(Fhooder.dailyQuantity![Fhooder.itemIndex!])
         self.dailyQty.text = "\(Int(self.dailyQtyStepper.value))"
         
-        self.maxOrderLimitAmount = variables.maxOrderLimit![variables.itemIndex!]
-        self.maxOrderLimitStepper.value = Double((variables.maxOrderLimit![variables.itemIndex!]))
+        self.maxOrderLimitAmount = Fhooder.maxOrderLimit![Fhooder.itemIndex!]
+        self.maxOrderLimitStepper.value = Double((Fhooder.maxOrderLimit![Fhooder.itemIndex!]))
         self.maxOrderLimit.text = "\(Int(self.maxOrderLimitStepper.value))"
         
-        self.timeIntervalAmount = variables.timeInterval![variables.itemIndex!]
+        self.timeIntervalAmount = Fhooder.timeInterval![Fhooder.itemIndex!]
         self.timeIntervalStepper.value = Double(self.timeIntervalAmount / 5)
         self.timeInterval.text = "\(Int(self.timeIntervalStepper.value) * 5) Min"
         
@@ -159,20 +159,20 @@ final class ItemDetailViewController: UIViewController {
 
     @IBAction func dailyQtyStepperPressed(sender: UIStepper) {
         self.quantityAmount = Int(self.dailyQtyStepper.value)
-        variables.dailyQuantity![variables.itemIndex!] = self.quantityAmount
+        Fhooder.dailyQuantity![Fhooder.itemIndex!] = self.quantityAmount
         self.dailyQty.text = "\(self.quantityAmount)"
         
     }
     
     @IBAction func maxOrderLimitStepperPressed(sender: UIStepper) {
         self.maxOrderLimitAmount = Int(self.maxOrderLimitStepper.value)
-        variables.maxOrderLimit![variables.itemIndex!] = self.maxOrderLimitAmount
+        Fhooder.maxOrderLimit![Fhooder.itemIndex!] = self.maxOrderLimitAmount
         self.maxOrderLimit.text = "\(self.maxOrderLimitAmount)"
     }
     
     @IBAction func timeIntervalStepperPressed(sender: UIStepper) {
         self.timeIntervalAmount = Int(self.timeIntervalStepper.value)
-        variables.timeInterval![variables.itemIndex!] = self.timeIntervalAmount * 5
+        Fhooder.timeInterval![Fhooder.itemIndex!] = self.timeIntervalAmount * 5
         self.timeInterval.text = "\(self.timeIntervalAmount * 5) Min"
 
     }

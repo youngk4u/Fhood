@@ -8,8 +8,10 @@
 
 import UIKit
 
-final class PromoViewController: UIViewController {
+final class PromoViewController: UIViewController, UITextFieldDelegate {
 
+    @IBOutlet var textField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,9 +21,17 @@ final class PromoViewController: UIViewController {
 
         self.title = "Promotions"
        
+        self.textField.delegate = self
+        
     }
 
     @IBAction func closePromo(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return true
     }
 }
