@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.1.3)
+  - Alamofire (3.1.4)
   - Bolts (1.5.0):
     - Bolts/AppLinks (= 1.5.0)
     - Bolts/Tasks (= 1.5.0)
@@ -7,39 +7,33 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.5.0)
   - ClosureKit (0.0.1)
-  - FBSDKCoreKit (4.6.0-beta1):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc (= 4.6.0-beta1)
-    - FBSDKCoreKit/no-arc (= 4.6.0-beta1)
-  - FBSDKCoreKit/arc (4.6.0-beta1):
-    - Bolts (~> 1.1)
-  - FBSDKCoreKit/no-arc (4.6.0-beta1):
-    - Bolts (~> 1.1)
-    - FBSDKCoreKit/arc
-  - FBSDKLoginKit (4.6.0-beta1):
+  - FBSDKCoreKit (4.9.0-beta2):
+    - Bolts (~> 1.5)
+  - FBSDKLoginKit (4.9.0-beta2):
     - FBSDKCoreKit
   - JGProgressHUD (1.3.1)
-  - Parse (1.8.5):
-    - Bolts/Tasks (>= 1.2.2)
-  - ParseFacebookUtilsV4 (1.8.5):
-    - Bolts/Tasks (>= 1.2.2)
-    - FBSDKCoreKit (~> 4.0)
-    - FBSDKLoginKit (~> 4.0)
-    - Parse (~> 1.8.4)
+  - Parse (1.11.0):
+    - Bolts/Tasks (~> 1.5)
+  - ParseFacebookUtilsV4 (1.10.0):
+    - Bolts/Tasks (>= 1.5)
+    - FBSDKCoreKit (~> 4.9.0-beta)
+    - FBSDKLoginKit (~> 4.9.0-beta)
+    - FBSDKTVOSKit (~> 4.9.0-beta)
+    - Parse (~> 1.11)
   - SMCalloutView (2.1.2)
   - SnapKit (0.13.0)
   - SWRevealViewController (2.4.0)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`)
-  - ClosureKit (from `https://github.com/Reflejo/ClosureKit`, branch `swift-2.0`)
+  - ClosureKit (from `https://github.com/Reflejo/ClosureKit`)
   - FBSDKCoreKit (from `https://github.com/facebook/facebook-ios-sdk.git`, branch
-    `release-4.6.0-beta1`)
+    `release-4.9.0-beta`)
   - FBSDKLoginKit (from `https://github.com/facebook/facebook-ios-sdk.git`, branch
-    `release-4.6.0-beta1`)
-  - JGProgressHUD
-  - Parse
-  - ParseFacebookUtilsV4
+    `release-4.9.0-beta`)
+  - JGProgressHUD (from `https://github.com/JonasGessner/JGProgressHUD.git`)
+  - Parse (from `https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git`)
+  - ParseFacebookUtilsV4 (from `https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git`)
   - SMCalloutView (from `https://github.com/nfarina/calloutview.git`, branch `master`)
   - SnapKit (from `https://github.com/SnapKit/SnapKit.git`, branch `swift-2.0`)
   - SWRevealViewController (from `https://github.com/John-Lluch/SWRevealViewController.git`,
@@ -49,14 +43,19 @@ EXTERNAL SOURCES:
   Alamofire:
     :git: https://github.com/Alamofire/Alamofire.git
   ClosureKit:
-    :branch: swift-2.0
     :git: https://github.com/Reflejo/ClosureKit
   FBSDKCoreKit:
-    :branch: release-4.6.0-beta1
+    :branch: release-4.9.0-beta
     :git: https://github.com/facebook/facebook-ios-sdk.git
   FBSDKLoginKit:
-    :branch: release-4.6.0-beta1
+    :branch: release-4.9.0-beta
     :git: https://github.com/facebook/facebook-ios-sdk.git
+  JGProgressHUD:
+    :git: https://github.com/JonasGessner/JGProgressHUD.git
+  Parse:
+    :git: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git
+  ParseFacebookUtilsV4:
+    :git: https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git
   SMCalloutView:
     :branch: master
     :git: https://github.com/nfarina/calloutview.git
@@ -69,17 +68,26 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Alamofire:
-    :commit: 268a22bff9d660ecd1af260906aa2eb72d261894
+    :commit: baaecbf3ac41832d8f44e14f982cf8d66b93380e
     :git: https://github.com/Alamofire/Alamofire.git
   ClosureKit:
-    :commit: 58c6a6ccbbd971a964114ba6568d761d4fafa8cb
+    :commit: f69ce3a76006385d1ccdfabbaa0bcb6d1cd6988c
     :git: https://github.com/Reflejo/ClosureKit
   FBSDKCoreKit:
-    :commit: 93a74c856a382375947584a8c180f8d4d3fb3bc5
+    :commit: 09b27bccb80115b16670345849480e0f87f99d31
     :git: https://github.com/facebook/facebook-ios-sdk.git
   FBSDKLoginKit:
-    :commit: 93a74c856a382375947584a8c180f8d4d3fb3bc5
+    :commit: 09b27bccb80115b16670345849480e0f87f99d31
     :git: https://github.com/facebook/facebook-ios-sdk.git
+  JGProgressHUD:
+    :commit: 01dfbc2c3400d80e165f66d03e816b72f9ef3fff
+    :git: https://github.com/JonasGessner/JGProgressHUD.git
+  Parse:
+    :commit: e377d72d6921614e4dd6e495d838ca6bd3c11588
+    :git: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git
+  ParseFacebookUtilsV4:
+    :commit: d4e53b70d9debc8c7e92cedbf2fcaf8f7de4e34c
+    :git: https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git
   SMCalloutView:
     :commit: aaf3b11dc9dee1bc34b8877aebbc23208aa36a35
     :git: https://github.com/nfarina/calloutview.git
@@ -91,14 +99,14 @@ CHECKOUT OPTIONS:
     :git: https://github.com/John-Lluch/SWRevealViewController.git
 
 SPEC CHECKSUMS:
-  Alamofire: 9f93b56389e48def9220dd57d1f44b1927229a5a
+  Alamofire: fbc829692f351fa1d8a31dd75fd7f7f56fea31fb
   Bolts: 722ab9a4f8b50fc4ed1b9998a5a7a2b3f16d80b4
   ClosureKit: 68911cc45bdbf13b2a150066f729fb223bfd71a3
-  FBSDKCoreKit: abce8d2d6f556110c8ef5fcf4edc44e9be83da2f
-  FBSDKLoginKit: 665bfffd13045b60f29287f9642432668c7d2e98
+  FBSDKCoreKit: d49cbf69741e3c5732166ec9ff4cbd9b288dd53e
+  FBSDKLoginKit: a618a263380fea47f5acde002910d304497c5d74
   JGProgressHUD: 153053a21d81208cb5f659691996bcefce6a9885
-  Parse: 17ad8e0677ed682f7f00503860fcda0f4eb74168
-  ParseFacebookUtilsV4: cc51857cf984c6fc743e7f17c2ddebdb6f02f963
+  Parse: 886af46a0a677402f6374bb97ac212e795f70afe
+  ParseFacebookUtilsV4: 3cd2d2d69653bad40c8c58131b935c353a0f3f15
   SMCalloutView: bb5655f70797b2b01de8d11e97e8454e67220cc6
   SnapKit: 69fe274c71511df89a5591c11437a8b826bfa9eb
   SWRevealViewController: b653f339865208c97be99a24876545f5be0cc4bb

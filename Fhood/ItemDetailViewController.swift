@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 final class ItemDetailViewController: UIViewController {
     
@@ -56,7 +57,7 @@ final class ItemDetailViewController: UIViewController {
         self.formatter.numberStyle = .CurrencyStyle
         
         self.detailTitle.text = Fhooder.itemNames![Fhooder.itemIndex!]
-        self.detailImage.image = Fhooder.itemPics![Fhooder.itemIndex!]
+        self.detailImage.image = Fhooder.itemPic!
         self.detailPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![Fhooder.itemIndex!])
         self.detailDescription.text = "Description: " + Fhooder.itemDescription![Fhooder.itemIndex!]
         self.detailIngredients.text = "Ingredients: " + Fhooder.itemIngredients![Fhooder.itemIndex!]
@@ -180,9 +181,6 @@ final class ItemDetailViewController: UIViewController {
     
     
     @IBAction func itemDetailViewClose(sender: AnyObject) {
-//        if variables.itemCount![fhoodie.selectedIndex!] != 0 {
-//            fhoodie.isAnythingSelected = true
-//        }
         
         if self.maxOrderLimitAmount > self.quantityAmount {
             
@@ -208,8 +206,32 @@ final class ItemDetailViewController: UIViewController {
             
         }
         else {
-            NSNotificationCenter.defaultCenter().postNotificationName("load2", object: nil)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            
+            let query = PFQuery(className: "Items")
+            let ID = Fhooder.itemID![Fhooder.itemIndex!]
+            
+            query.getObjectInBackgroundWithId(ID) { (stock: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                }
+                else if let stock = stock {
+                    stock["dailyQuantity"] = Fhooder.dailyQuantity![Fhooder.itemIndex!]
+                    stock["maxOrderLimit"] = Fhooder.maxOrderLimit![Fhooder.itemIndex!]
+                    stock["timeInterval"] = Fhooder.timeInterval![Fhooder.itemIndex!]
+                    
+                    stock.saveInBackgroundWithBlock({ (success, error) -> Void in
+                        if success {
+                           NSNotificationCenter.defaultCenter().postNotificationName("load2", object: nil)
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                            
+                        }
+                        else {
+                            print("error")
+                        }
+                    })
+                }
+            }
+            
         }
     }
 

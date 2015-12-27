@@ -9,67 +9,70 @@
 import Foundation
 
 struct Fhooder {
+    
+    static var objectID: String? = ""
+    static var shopName: String? = ""
+    static var fhooderFirstName: String? = ""
+    static var fhooderLastName: String? = ""
+    static var rating: Double? = 0
+    static var ratingInString: String? = ""
+    static var reviews: Int? = 0
+    static var foodTypeOne: String? = ""
+    static var foodTypeTwo: String? = ""
+    static var foodTypeThree: String? = ""
+    static var address: String? = ""
+    static var fhooderLatitude: Double? = 0
+    static var fhooderLongitude: Double? = 0
+    static var distance: Double? = 0
+    static var servingMethod: [Bool]? = []
+    static var pickup: Bool? = false
+    static var eatin: Bool? = false
+    static var delivery: Bool? = false
+    static var phoneNum: String? = ""
+    static var isOpen: Bool? = false
+    static var isClosed: Bool? = true
+    static var timeOpenHour: Int? = 0
+    static var timeOpenMinute: Int? = 0
+    static var timeOpenAmpm: String? = ""
+    static var timeCloseHour: Int? = 0
+    static var timeCloseMinute: Int? = 0
+    static var timeCloseAmpm: String? = ""
+    static var timeReserveHour: Int? = 0
+    static var timeReserveMinute: Int? = 0
+    static var timeReserveAmpm: String? = ""
+    static var orderTimeHour: Int? = 0
+    static var orderTimeMinute: Int? = 0
+    static var orderTimeAmpm: String? = ""
+    static var orderTime: String? = ""
 
-    static var shopName: String? = nil
-    static var fhooderFirstName: String? = nil
-    static var fhooderLastName: String? = nil
-    static var rating: Double? = nil
-    static var ratingInString: String? = nil
-    static var reviews: Int? = nil
-    static var foodTypeOne: String? = nil
-    static var foodTypeTwo: String? = nil
-    static var foodTypeThree: String? = nil
-    static var address: String? = nil
-    static var fhooderLatitude: Double? = nil
-    static var fhooderLongitude: Double? = nil
-    static var distance: Double? = nil
-    static var servingMethod: [Bool]? = nil
-    static var pickup: Bool? = nil
-    static var eatin: Bool? = nil
-    static var delivery: Bool? = nil
-    static var phoneNum: String? = nil
-    static var isOpen: Bool? = nil
-    static var isClosed: Bool? = nil
-    static var timeOpenHour: Int? = nil
-    static var timeOpenMinute: Int? = nil
-    static var timeOpenAmpm: String? = nil
-    static var timeCloseHour: Int? = nil
-    static var timeCloseMinute: Int? = nil
-    static var timeCloseAmpm: String? = nil
-    static var timeReserveHour: Int? = nil
-    static var timeReserveMinute: Int? = nil
-    static var timeReserveAmpm: String? = nil
-    static var orderTimeHour: Int? = nil
-    static var orderTimeMinute: Int? = nil
-    static var orderTimeAmpm: String? = nil
-    static var orderTime: String? = nil
-
-    static var itemNames: [String]? = nil
-    static var itemPics: [UIImage]? = nil
-    static var itemPrices: [Double]? = nil
-    static var itemCount: [Int]? = nil
-    static var totalItemPrice: Double? = nil
+    static var itemNames: [String]? = []
+    static var itemPrice: Double? = 0
+    static var itemID: [String]? = []
+    static var itemPics: [UIImage]? = []
+    static var itemPrices: [Double]? = []
+    static var itemCount: [Int]? = []
+    static var totalItemPrice: Double? = 0
     // "organic", "vegan", "glutenfree", "nutsfree", "soyfree", "msgfree", "dairyfree", "lowsodium"
-    static var itemPrefernce: [[Int]]? = nil
-    static var itemPreferences: [[Bool]]? = nil
+    static var itemPrefernce: [[Int]]? = [[]]
+    static var itemPreferences: [[Bool]]? = [[]]
     static var itemDescription: [String]? = []
     static var descriptionText: String? = ""
     static var itemIngredients: [String]? = []
     static var ingredientsText: String? = ""
-    static var itemCuisineType: String? = nil
+    static var itemCuisineType: String? = ""
     
-    static var itemPic: UIImage?
+    static var itemPic: UIImage? = nil
     
     static var itemIndex: Int? = 0
-    static var dailyQuantity: [Int]? = nil
-    static var maxOrderLimit: [Int]? = nil
-    static var timeInterval: [Int]? = nil
+    static var dailyQuantity: [Int]? = []
+    static var maxOrderLimit: [Int]? = []
+    static var timeInterval: [Int]? = []
     
 
-    static var fhooderFace: String? = nil
-    static var fhooderPic: String? = nil
+    static var fhooderFace: String? = ""
+    static var fhooderPic: String? = ""
     static var fhooderPicture: UIImage? = nil
-    static var fhooderAboutMe: String? = nil
+    static var fhooderAboutMe: String? = ""
     
     static var fhooderSignedIn: Bool = false
 }

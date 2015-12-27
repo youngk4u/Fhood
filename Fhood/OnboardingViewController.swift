@@ -30,7 +30,9 @@ final class OnboardingViewController: UIViewController {
             return self.authenticate(withFacebookAccessToken: token)
         }
 
-        FBSDKLoginManager().logInWithReadPermissions(Constants.Vendor.FacebookPermissions) { result, error in
+
+        FBSDKLoginManager().logInWithReadPermissions(Constants.Vendor.FacebookPermissions, fromViewController: self) { (result, error) -> Void in
+      
             guard result?.isCancelled == false else { return }
             guard error == nil, let token = result?.token else {
                 FBSDKLoginManager().logOut()

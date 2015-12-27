@@ -24,6 +24,21 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var openNowOrClose: UILabel!
 
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    var itemPictures : [UIImage] = []
+    var arrItemNames : [String] = []
+    var arrPrice : [Double]  = []
+    var arrDecriptions : [String] = []
+    var arrIngredients : [String] = []
+    var arrPreference : [[Bool]] = []
+    var arrItemCount : [Int] = []
+    var arrItemID : [String] = []
+    var arrMaxOrderLimit : [Int] = []
+    var arrTimeInterval : [Int] = []
+    var aboutFhooder : String = ""
+    var fhooderPic : UIImage?
+    var fhooderFirstName : String?
+
 
     var itemReceipt : [String] = []
     var qtyReceipt : [Int] = []
@@ -39,7 +54,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     var formatter = NSNumberFormatter()
 
 
-    var tableCellList : NSArray = ["Reviews", "Photos", "Send messages", "About the Fhooder"]
+    var tableCellList : NSArray = ["Reviews", "Photos", "Send request", "About the Fhooder"]
     var tableCellImage : NSArray = ["reviews", "photos", "messages", "about"]
 
     let sectionInsets = UIEdgeInsets(top: 0.0, left: 10.0, bottom: 0.0, right: 10.0)
@@ -53,17 +68,11 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         // Reload collectionview data
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
         
-        // Pull data from the selected fhooder
-        self.shopName.text = Fhooder.shopName!
-        self.spoonRating.image = UIImage(named: Fhooder.ratingInString!)
-        self.reviewCount.text = "\(Fhooder.reviews!) Reviews"
-        self.restaurantType.text = "\(Fhooder.foodTypeOne!), \(Fhooder.foodTypeTwo!), \(Fhooder.foodTypeThree!)"
-        self.fhooderAddress.text = Fhooder.address
-        self.fhooderDistance.text = "(\(Fhooder.distance!) miles)"
-        self.pickupSign.hidden = !Fhooder.pickup!
-        self.eatinSign.hidden = !Fhooder.eatin!
-        self.deliverySign.hidden = !Fhooder.delivery!
-        self.phoneNumber.text = Fhooder.phoneNum!
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList2:",name:"load2", object: nil)
+        
+        
+        NSNotificationCenter.defaultCenter().postNotificationName("load2", object: nil)
+        
 
         var newOpenMinute: String
         var newCloseMinute: String
@@ -113,7 +122,163 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     
     // Reload collectionview function to use from other controllers
     func loadList(notification: NSNotification){
+        
         self.collectionView.reloadData()
+    }
+    
+    func loadList2(notification: NSNotification){
+        
+        HUD.show()
+        
+        Fhooder.itemPics = []
+        
+        self.arrItemNames = []
+        self.arrPrice = []
+        self.itemPictures = []
+        self.arrDecriptions = []
+        self.arrIngredients = []
+        self.arrPreference = []
+        self.arrItemCount = []
+        self.arrMaxOrderLimit = []
+        self.arrTimeInterval = []
+        self.arrItemID = []
+        self.pickupSign.hidden = true
+        self.eatinSign.hidden = true
+        self.deliverySign.hidden = true
+        
+            let query = PFQuery(className: "Fhooder")
+            let id = (Fhooder.objectID)! as String
+            query.getObjectInBackgroundWithId(id) { (fhooder: PFObject?, error: NSError?) -> Void in
+                if error == nil && fhooder != nil {
+                    
+                    // fhooder information pulled
+                    
+                    
+                    self.shopName.text = fhooder!.valueForKey("shopName")! as? String
+                    let userImageFile = fhooder!.valueForKey("profilePic") as! PFFile
+                    userImageFile.getDataInBackgroundWithBlock {
+                        (imageData: NSData?, error: NSError?) -> Void in
+                        if error == nil {
+                            if let imageData = imageData {
+                                self.fhooderPic = UIImage(data:imageData)
+                            }
+                        }
+                    }
+                    
+                    // If it has apt or bldg number
+                    var unit : String?
+                    if fhooder?.valueForKey("unitAddress") != nil {
+                        unit = fhooder!.valueForKey("unitAddress")! as? String
+                        if unit != "" {
+                            unit = unit! + ", "
+                            
+                            self.fhooderAddress.text = "\(fhooder!.valueForKey("streetAddress")!), \(unit)\(fhooder!.valueForKey("city")!), \(fhooder!.valueForKey("stateProvince")!) \(fhooder!.valueForKey("zip")!)"
+                        }
+                    }
+                    self.fhooderAddress.text =  "\(fhooder!.valueForKey("streetAddress")!), \(fhooder!.valueForKey("city")!), \(fhooder!.valueForKey("stateProvince")!) \(fhooder!.valueForKey("zip")!)"
+                    
+                    self.phoneNumber.text = fhooder!.valueForKey("phone") as? String
+                    self.restaurantType.text = "\(fhooder!.valueForKey("foodTypeOne")!), \(fhooder!.valueForKey("foodTypeTwo")!), \(fhooder!.valueForKey("foodTypeThree")!)"
+                    self.aboutFhooder = (fhooder!.valueForKey("shopDescription") as? String)!
+                    self.fhooderFirstName = (fhooder!.valueForKey("firstName") as? String)!
+                    
+                    let relation = fhooder!.relationForKey("items")
+                    let query2 = relation.query()
+                    
+                    query2.orderByAscending("createdAt")
+                    query2.findObjectsInBackgroundWithBlock({ (items: [PFObject]?, error2: NSError?) -> Void in
+                        if error2 == nil && items != nil {
+                            for item in items! {
+                                let pic = item["photo"] as! PFFile
+                                
+                                
+                                do {
+                                    let picData : NSData = try pic.getData()
+                                    //pic.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                                    //if (error == nil) {
+                                    let picture = UIImage(data: picData)
+                                    let name = item["itemName"] as! String
+                                    let price = item["price"] as! Double
+                                    let servingMethod = item["servingMethod"] as! [Bool]
+                                    let description = item["description"] as! String
+                                    let ingredient = item["ingredients"] as! String
+                                    let prefOne = item["organic"] as! Bool
+                                    let prefTwo = item["vegan"] as! Bool
+                                    let prefThree = item["glutenFree"] as! Bool
+                                    let prefFour = item["nutFree"] as! Bool
+                                    let prefFive = item["soyFree"] as! Bool
+                                    let prefSix = item["msgFree"] as! Bool
+                                    let prefSeven = item["dairyFree"] as! Bool
+                                    let prefEight = item["lowSodium"] as! Bool
+                                    let itemCount = item["dailyQuantity"] as! Int
+                                    let maxLimit = item["maxOrderLimit"] as! Int
+                                    let timeInterval = item["timeInterval"] as! Int
+                                    
+                                    self.itemPictures.append(picture!)
+                                    Fhooder.itemPics = self.itemPictures
+                                    
+                                    if servingMethod[0] == true {
+                                        self.pickupSign.hidden = false
+                                    }
+                                    if servingMethod[1] == true {
+                                        self.eatinSign.hidden = false
+                                    }
+                                    if servingMethod[2] == true {
+                                        self.deliverySign.hidden = false
+                                    }
+                                    
+                                    
+                                    self.arrItemNames.append(name)
+                                    Fhooder.itemNames = self.arrItemNames
+                                    
+                                    self.arrPrice.append(price)
+                                    Fhooder.itemPrices = self.arrPrice
+                                    
+                                    self.arrDecriptions.append(description)
+                                    Fhooder.itemDescription = self.arrDecriptions
+                                    
+                                    self.arrIngredients.append(ingredient)
+                                    Fhooder.itemIngredients = self.arrIngredients
+                                    
+                                    self.arrPreference.append([prefOne, prefTwo, prefThree, prefFour, prefFive, prefSix, prefSeven, prefEight])
+                                    Fhooder.itemPreferences = self.arrPreference
+                                    
+                                    self.arrItemCount.append(itemCount)
+                                    Fhooder.dailyQuantity = self.arrItemCount
+                                    Fhooder.itemCount = Fhooder.dailyQuantity
+                                    
+                                    self.arrMaxOrderLimit.append(maxLimit)
+                                    Fhooder.maxOrderLimit = self.arrMaxOrderLimit
+                                    
+                                    self.arrTimeInterval.append(timeInterval)
+                                    Fhooder.timeInterval = self.arrTimeInterval
+                                    
+                                    var itemID : String = ""
+                                    itemID = item.objectId!
+                                    self.arrItemID.append(itemID)
+                                    Fhooder.itemID = self.arrItemID
+                                    
+                                    self.collectionView.reloadData()
+                                    
+                                }
+                                catch {
+                                    print("error")
+                                }
+                                
+                            }
+                            
+                        }
+                        
+                    })
+                    
+                }
+                
+                
+            }
+        
+        HUD.dismiss()
+        
+
     }
     
    
@@ -125,7 +290,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     }
 
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return Fhooder.itemNames!.count
+        return arrItemNames.count
     }
     
     
@@ -134,13 +299,13 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
         self.totalItemPrice = 0
 
-        coCell.fhoodImage.image = UIImage(named: (Fhooder.itemNames![indexPath.item] ) )
+        coCell.fhoodImage.image = self.itemPictures[indexPath.item]
 
-        coCell.foodName.text = Fhooder.itemNames![indexPath.item]
+        coCell.foodName.text = arrItemNames[indexPath.item]
         coCell.foodName.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         coCell.foodName.textColor = UIColor.whiteColor()
 
-        coCell.foodPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![indexPath.item])
+        coCell.foodPrice.text = formatter.stringFromNumber(arrPrice[indexPath.item])
         coCell.foodPrice.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         coCell.foodPrice.textColor = UIColor.whiteColor()
 

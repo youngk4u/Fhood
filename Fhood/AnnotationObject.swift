@@ -12,6 +12,7 @@ import MapKit
 final class AnnotationObject: NSObject, MKAnnotation  {
 
     //MKAnnotation ->>> Protocol
+    let objectID: String?
     let title: String?
     let coordinate: CLLocationCoordinate2D
     let subtitle: String?
@@ -28,7 +29,9 @@ final class AnnotationObject: NSObject, MKAnnotation  {
         return "\(countReviews) Reviews"
     }
 
-    init(title: String, subtitle: String,coordinate: CLLocationCoordinate2D, countReviews: Int, image: UIImage, price: Double, open: Bool, closed: Bool, imageRating: UIImage) {
+    init(objectID: String, title: String, subtitle: String,coordinate: CLLocationCoordinate2D, countReviews: Int, image: UIImage, price: Double, open: Bool, closed: Bool, imageRating: UIImage) {
+        
+        self.objectID = objectID
         self.title = title
         self.coordinate = coordinate
         self.subtitle = subtitle

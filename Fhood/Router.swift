@@ -13,7 +13,7 @@ import SWRevealViewController
 struct Router {
 
     private static var rootViewController: UIViewController {
-        if PFUser.currentUser()?.isAuthenticated() == true {
+        if PFUser.currentUser()?.authenticated == true {
             if Fhooder.fhooderSignedIn == true {
                 return self.fhooderViewController
             }

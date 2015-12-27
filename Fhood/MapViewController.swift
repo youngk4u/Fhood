@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 import MapKit
 import CoreLocation
 import SMCalloutView
@@ -14,7 +15,7 @@ import SMCalloutView
 private let kDefaultMapZoom = 13.0
 private let kPinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
 
-final class MapViewController: UIViewController, UISearchBarDelegate {
+final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate {
 
     @IBOutlet private var mapView: MapView!
     @IBOutlet private var followUserButton: UIButton!
@@ -29,6 +30,8 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
     private var span: MKCoordinateSpan!
     private var location: CLLocationCoordinate2D!
     private var region: MKCoordinateRegion!
+    
+    var annotationDictionary = [String : AnnotationObject]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,48 +42,57 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
         self.showUserLocation()
 
         self.mapView.calloutView = self.calloutView
+        
 
-        // Put Fhooders on the map
-        fhooderOne()
-        let obj1 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-        fhooderTwo()
-        let obj2 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-        fhooderThree()
-        let obj3 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-        fhooderFour()
-        let obj4 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-        fhooderFive()
-        let obj5 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-        fhooderSix()
-        let obj6 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-        fhooderSeven()
-        let obj7 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-        fhooderEight()
-        let obj8 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-        fhooderNine()
-        let obj9 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-       // fhooderTen()
-        let obj10 = AnnotationObject(title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: UIImage(named: Fhooder.fhooderPic!)!, price: Fhooder.itemPrices![0], open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-
-        self.mapView.addAnnotation(obj1)
-        self.mapView.addAnnotation(obj2)
-        self.mapView.addAnnotation(obj3)
-        self.mapView.addAnnotation(obj4)
-        self.mapView.addAnnotation(obj5)
-        self.mapView.addAnnotation(obj6)
-        self.mapView.addAnnotation(obj7)
-        self.mapView.addAnnotation(obj8)
-        self.mapView.addAnnotation(obj9)
-        self.mapView.addAnnotation(obj10)
+        //Put Fhooders on the map
+        
+        PFGeoPoint.geoPointForCurrentLocationInBackground { (point: PFGeoPoint?, error: NSError?) -> Void in
+            if error == nil {
+                
+                let query = PFQuery(className: "Fhooder")
+                query.limit = 10
+                query.whereKey("location", nearGeoPoint: point!, withinKilometers: 10.0)
+                query.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+                    if (error == nil) {
+                        
+                        for object in objects! {
+                            
+                            let geolocation = object.valueForKey("location")!
+                            let picFile = object.valueForKey("itemPic") as? PFFile
+                            
+                            picFile?.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                                if error == nil {
+                                    if let imageData = imageData {
+                                    Fhooder.objectID = object.valueForKey("objectId") as? String
+                                    Fhooder.itemPic = UIImage(data: imageData)
+                                    Fhooder.itemPrice = object.valueForKey("itemPrice") as? Double
+                                    
+                                    Fhooder.shopName = object.valueForKey("shopName")! as? String
+                                    Fhooder.foodTypeOne = "\(object.valueForKey("foodTypeOne")!)"
+                                    
+                                    Fhooder.fhooderLatitude = geolocation.latitude
+                                    Fhooder.fhooderLongitude = geolocation.longitude
+                                    Fhooder.reviews = object.valueForKey("ratings")! as? Int
+                                    Fhooder.isOpen = true
+                                    Fhooder.isClosed = false
+                                    Fhooder.ratingInString = "no-Spoon"
+                                    
+                                    
+                                    let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
+                                    
+                                    self.mapView.addAnnotation(annotation)
+                                        
+                                    }
+                                }
+                            })
+                            
+                        }
+                    }
+                })
+            }
+        }
+        
+        
 
         // Search Bar
         UISearchBar.appearance().backgroundImage = nil // Search Bar with no rim
@@ -103,7 +115,14 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
         // Filter Icon
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Filter 2"),
             style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
+        
+        
+        
     }
+
+
+    
+  
 
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
@@ -139,11 +158,10 @@ final class MapViewController: UIViewController, UISearchBarDelegate {
         }
     }
 */
-}
+
 
 // MARK: - MKMapViewDelegate implementation
 
-extension MapViewController: MKMapViewDelegate {
 
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is AnnotationObject else { return nil }
@@ -161,6 +179,9 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
         guard annotationView.reuseIdentifier == kPinAnnotationReuseIdentifier else { return }
 
+        let anno = annotationView.annotation as? AnnotationObject
+        Fhooder.objectID = anno!.objectID
+        
         self.calloutView.contentView = BubbleView.nibView(withAnnotation: annotationView.annotation as? AnnotationObject)
         self.calloutView.calloutOffset = annotationView.calloutOffset
         self.calloutView.contentViewInset = UIEdgeInsetsZero
@@ -213,12 +234,13 @@ extension MapViewController: SMCalloutViewDelegate {
 
         let centerCoordinate = self.mapView.convertPoint(newCenter, toCoordinateFromView: self.view)
         self.mapView.setCenterCoordinate(centerCoordinate, animated: true)
-
         return kSMCalloutViewRepositionDelayForUIScrollView
     }
 
+
     func calloutViewClicked(calloutView: SMCalloutView) {
-        fhooderOne()
-        performSegueWithIdentifier("fhooderOne", sender: self)
+    
+        performSegueWithIdentifier("fhooderDetail", sender: self)
+    
     }
 }

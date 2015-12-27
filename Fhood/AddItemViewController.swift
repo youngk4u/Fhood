@@ -356,10 +356,6 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         
         NSNotificationCenter.defaultCenter().postNotificationName("loadInfoView", object: nil)
         
-        print(Fhooder.itemNames!)
-        print(self.currentItemIndex)
-        print(self.answerArray)
-        
         Fhooder.descriptionText = ""
         Fhooder.ingredientsText = ""
         
@@ -385,21 +381,44 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
                 let fhooderID = (PFUser.currentUser()!.valueForKey("fhooder")?.objectId)! as String
                 let fhooder = PFQuery(className: "Fhooder")
                 fhooder.getObjectInBackgroundWithId(fhooderID, block: { (fhooder, error) -> Void in
-
+                    
+                    // If there's no item set the picture and price in Parse Fhooder class so it'll show on the map
+                    var itemPicExist : Bool = true
+                    if fhooder!["itemPic"] != nil {
+                        itemPicExist = true
+                    }
+                    else {
+                        itemPicExist = false
+                    }
             
                     let item = PFObject(className: "Items")
                     item["itemName"] = self.menuNameTextfield.text!.capitalizedString
                     
                     let imageData = self.toPhotoButton.imageView!.image?.lowestQualityJPEGNSData
                     let imageFile = PFFile(name: "item.png", data: imageData!)
-                    item["photo"] = imageFile
+                    if itemPicExist == true {
+                        item["photo"] = imageFile
+                    }
+                    else {
+                        item["photo"] = imageFile
+                        fhooder!["itemPic"] = imageFile
+                    }
+                    
+                    
                     
                     item["servingMethod"] = [self.pickupBtnState, self.eatInBtnState, self.deliveryBtnState]
                     
                     let priceInString = self.priceTextfield.text!
                     let priceString = String(priceInString.characters.dropFirst())
                     let priceNumber = Double(priceString)
-                    item["price"] = priceNumber
+                    
+                    if itemPicExist == true {
+                        item["price"] = priceNumber
+                    }
+                    else {
+                        item["price"] = priceNumber
+                        fhooder!["itemPrice"] = priceNumber
+                    }
                     
                     item["description"] = self.descriptionTextfield.text!
                     item["ingredients"] = self.ingredientsTextfield.text!
@@ -412,6 +431,9 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
                     item["msgFree"] = self.answerArray[5]
                     item["dairyFree"] = self.answerArray[6]
                     item["lowSodium"] = self.answerArray[7]
+                    item["dailyQuantity"] = 0
+                    item["maxOrderLimit"] = 0
+                    item["timeInterval"] = 0
                     
                     
                     Fhooder.itemNames?.append(self.menuNameTextfield.text!)

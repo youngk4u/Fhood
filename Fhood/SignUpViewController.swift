@@ -535,6 +535,24 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["stateProvince"] = self.stateAddressTextfield.text
             applicant["zip"] = self.zipAddressTextfield.text
             
+            let address = "\(self.streetAddressTextfield.text), \(self.cityAddressTextfield.text), \(self.stateAddressTextfield.text), \(self.zipAddressTextfield.text), USA"
+            let geocoder = CLGeocoder()
+            
+            geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
+                if ((error) != nil) {
+                    
+                    let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .Alert)
+                    let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
+                    alert.addAction(error)
+
+                }
+                if let placemark = placemarks?.first {
+                    let coordinates: CLLocationCoordinate2D = placemark.location!.coordinate
+                    let geolocation = PFGeoPoint(latitude: coordinates.latitude, longitude: coordinates.longitude)
+                    applicant["location"] = geolocation
+                }
+                })
+            
             applicant["shopName"] = self.nameOfShopTextfield.text
             applicant["shopDescription"] = self.shopDescription
             
@@ -546,6 +564,8 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             
             applicant["status"] = "Pending"
             applicant["userID"] = PFUser.currentUser()?.objectId
+            
+            applicant["ratings"] = 0
             
             
             applicant.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in

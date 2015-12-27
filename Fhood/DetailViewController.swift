@@ -51,7 +51,7 @@ final class DetailViewController: UIViewController {
         self.detailTitle.text = Fhooder.itemNames![fhoodie.selectedIndex!]
         self.detailTitle.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         self.detailTitle.textColor = UIColor.whiteColor()
-        self.detailImage.image = UIImage(named: Fhooder.itemNames![fhoodie.selectedIndex!])
+        self.detailImage.image = Fhooder.itemPics![fhoodie.selectedIndex!]
         self.detailPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![fhoodie.selectedIndex!])
         self.detailDescription.text = "Description: " + Fhooder.itemDescription![fhoodie.selectedIndex!]
         self.detailIngredients.text = "Ingredients: " + Fhooder.itemIngredients![fhoodie.selectedIndex!]
@@ -59,7 +59,7 @@ final class DetailViewController: UIViewController {
         // Set the prefernece images sorted
         for var i = 0; i < 8; i++ {
             
-            if Fhooder.itemPrefernce![fhoodie.selectedIndex!][i] == 0 {
+            if Fhooder.itemPreferences![fhoodie.selectedIndex!][i] == false {
                 self.preferenceSet[i] = ""
             }
         }

@@ -26,7 +26,6 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var tableView: UITableView!
     
-    var itemPicture : UIImage?
     var itemPictures : [UIImage] = []
     var arrItemNames : [String] = []
     var arrPrice : [Double]  = []
@@ -34,6 +33,9 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     var arrIngredients : [String] = []
     var arrPreference : [[Bool]] = []
     var arrItemCount : [Int] = []
+    var arrItemID : [String] = []
+    var arrMaxOrderLimit : [Int] = []
+    var arrTimeInterval : [Int] = []
     var aboutFhooder : String = ""
     var fhooderPic : UIImage?
     var fhooderFirstName : String?
@@ -59,6 +61,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         
         
         NSNotificationCenter.defaultCenter().postNotificationName("load1", object: nil)
+        
         
         // Configure reveal for this view
         let revealController = self.revealViewController()
@@ -91,7 +94,6 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         self.formatter.numberStyle = .CurrencyStyle
         
         self.addButton.addTarget(self, action: "segueToAddItemView", forControlEvents: UIControlEvents.TouchUpInside)
-        
 
 
     }
@@ -112,13 +114,13 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
             Fhooder.ingredientsText = ""
             performSegueWithIdentifier("toAddItemView", sender: self)
         }
-        
     }
     
     
     // Reload Parse function to use from other controllers
     func loadList1(notification: NSNotification){
         
+        Fhooder.itemPics = []
         
         self.arrItemNames = []
         self.arrPrice = []
@@ -126,6 +128,10 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         self.arrDecriptions = []
         self.arrIngredients = []
         self.arrPreference = []
+        self.arrItemCount = []
+        self.arrMaxOrderLimit = []
+        self.arrTimeInterval = []
+        self.arrItemID = []
         self.pickupSign.hidden = true
         self.eatinSign.hidden = true
         self.deliverySign.hidden = true
@@ -170,80 +176,94 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
                     
                     let relation = fhooder!.relationForKey("items")
                     let query2 = relation.query()
-                    query2?.orderByAscending("createdAt")
                     
-                    query2!.findObjectsInBackgroundWithBlock({ (items: [PFObject]?, error2: NSError?) -> Void in
-                        
+                    query2.orderByAscending("createdAt")
+                    query2.findObjectsInBackgroundWithBlock({ (items: [PFObject]?, error2: NSError?) -> Void in
                         if error2 == nil && items != nil {
-                            var index = items!.count
-                            let index2 = 0
                             for item in items! {
-                                let name = item["itemName"] as! String
-                                let price = item["price"] as! Double
                                 let pic = item["photo"] as! PFFile
-                                pic.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
-                                    if (error == nil) {
-                                        self.itemPicture = UIImage(data: imageData!)
-                                        print(self.itemPicture!)
-                                        self.itemPictures.append(self.itemPicture!)
-                                        print(index)
-                                        let counter = self.arrItemNames.count - 1
-                                        if index == counter {
-                                            NSNotificationCenter.defaultCenter().postNotificationName("load2", object: nil)
-                                            print("here")
+                                
+                                
+                                do {
+                                    let picData : NSData = try pic.getData()
+                                //pic.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                                    //if (error == nil) {
+                                        let picture = UIImage(data: picData)
+                                        let name = item["itemName"] as! String
+                                        let price = item["price"] as! Double
+                                        let servingMethod = item["servingMethod"] as! [Bool]
+                                        let description = item["description"] as! String
+                                        let ingredient = item["ingredients"] as! String
+                                        let prefOne = item["organic"] as! Bool
+                                        let prefTwo = item["vegan"] as! Bool
+                                        let prefThree = item["glutenFree"] as! Bool
+                                        let prefFour = item["nutFree"] as! Bool
+                                        let prefFive = item["soyFree"] as! Bool
+                                        let prefSix = item["msgFree"] as! Bool
+                                        let prefSeven = item["dairyFree"] as! Bool
+                                        let prefEight = item["lowSodium"] as! Bool
+                                        let itemCount = item["dailyQuantity"] as! Int
+                                        let maxLimit = item["maxOrderLimit"] as! Int
+                                        let timeInterval = item["timeInterval"] as! Int
+                                        
+                                        self.itemPictures.append(picture!)
+                                        
+                                        if servingMethod[0] == true {
+                                            self.pickupSign.hidden = false
                                         }
-                                        index++
-                                    }
-                                })
-                                
-                                let servingMethod = item["servingMethod"]
-                                let description = item["description"] as! String
-                                let ingredient = item["ingredients"] as! String
-                                let prefOne = item["organic"] as! Bool
-                                let prefTwo = item["vegan"] as! Bool
-                                let prefThree = item["glutenFree"] as! Bool
-                                let prefFour = item["nutFree"] as! Bool
-                                let prefFive = item["soyFree"] as! Bool
-                                let prefSix = item["msgFree"] as! Bool
-                                let prefSeven = item["dairyFree"] as! Bool
-                                let prefEight = item["lowSodium"] as! Bool
-                                
-                                if index != 0 && index2 != index {
+                                        if servingMethod[1] == true {
+                                            self.eatinSign.hidden = false
+                                        }
+                                        if servingMethod[2] == true {
+                                            self.deliverySign.hidden = false
+                                        }
+
+                                        
+                                        self.arrItemNames.append(name)
+                                        self.arrPrice.append(price)
+                                        self.arrDecriptions.append(description)
+                                        self.arrIngredients.append(ingredient)
+                                        self.arrPreference.append([prefOne, prefTwo, prefThree, prefFour, prefFive, prefSix, prefSeven, prefEight])
+                                        
+                                        self.arrItemCount.append(itemCount)
+                                        Fhooder.dailyQuantity = self.arrItemCount
+                                        
+                                        self.arrMaxOrderLimit.append(maxLimit)
+                                        Fhooder.maxOrderLimit = self.arrMaxOrderLimit
+                                        
+                                        self.arrTimeInterval.append(timeInterval)
+                                        Fhooder.timeInterval = self.arrTimeInterval
+                                        
+                                        var itemID : String = ""
+                                        itemID = item.objectId!
+                                        self.arrItemID.append(itemID)
+                                        Fhooder.itemID = self.arrItemID
+
+                                        self.collectionView.reloadData()
                                     
-                                    if servingMethod[0] as! Bool == true {
-                                        self.pickupSign.hidden = false
-                                    }
-                                    if servingMethod[1] as! Bool == true {
-                                        self.eatinSign.hidden = false
-                                    }
-                                    if servingMethod[2] as! Bool == true {
-                                        self.deliverySign.hidden = false
-                                    }
-                                    
-                                    self.arrItemNames.append(name)
-                                    self.arrPrice.append(price)
-                                    self.arrDecriptions.append(description)
-                                    self.arrIngredients.append(ingredient)
-                                    self.arrPreference.append([prefOne, prefTwo, prefThree, prefFour, prefFive, prefSix, prefSeven, prefEight])
-                                    print(self.arrItemNames)
-                                    index--
                                 }
+                                catch {
+                                    print("error")
+                                }
+                                
                             }
+                            
                         }
+                        
                     })
+                                        
                 }
                 else {
                     
                 }
             }
         }
-        
     }
+    
     
     
     // Reload collectionview function to use from other controllers
     func loadList2(notification: NSNotification){
-        
         self.collectionView.reloadData()
     }
     
@@ -268,7 +288,8 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("collCell2", forIndexPath: indexPath) as! ManageCollectionViewCell
         
-        cell.foodImage.image = itemPictures[indexPath.item]
+        cell.foodImage.image = self.itemPictures[indexPath.item]
+        
         
         cell.foodName.text = arrItemNames[indexPath.item]
         cell.foodName.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -299,13 +320,14 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         
         Fhooder.itemIndex = indexPath.item
         
-        Fhooder.itemPics = self.itemPictures
+        Fhooder.itemPic = self.itemPictures[indexPath.item]
         Fhooder.itemNames = self.arrItemNames
         Fhooder.itemPrices = self.arrPrice
         Fhooder.itemDescription = self.arrDecriptions
         Fhooder.itemIngredients = self.arrIngredients
         Fhooder.itemPreferences = self.arrPreference
-        
+        Fhooder.itemID = self.arrItemID
+                
         performSegueWithIdentifier("toItemDetailView", sender: self)
         
     }

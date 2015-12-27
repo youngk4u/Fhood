@@ -26,6 +26,16 @@ final class BubbleView: UIView {
             self.typeLabel.text = annotation.subtitle
             self.nameLabel.text = annotation.title
             self.imageView.image = annotation.image
+            
+            let image = UIImageView(image: self.imageView.image)
+            self.imageView.image = nil
+            image.frame = CGRectMake(0, 0, 58, 58)
+            image.layer.masksToBounds = false
+            image.layer.cornerRadius = 13
+            image.layer.cornerRadius = image.frame.size.height/2
+            image.clipsToBounds = true
+            self.imageView.addSubview(image)
+            
             self.openLabel.hidden = annotation.open == false
             self.closedLabel.hidden = annotation.closed == false
             self.priceLabel.text = String(format: "$%.2f", annotation.price)
