@@ -66,6 +66,17 @@
                                     <action selector="toggleFollowUserLocation" destination="9pv-A4-QxB" eventType="touchUpInside" id="RUn-o5-gPv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjx-0Z-axY">
+                                <rect key="frame" x="93.5" y="410" width="133.5" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2Xy-fR-uAy"/>
+                                    <constraint firstAttribute="width" constant="134" id="sGE-w9-3iE"/>
+                                </constraints>
+                                <state key="normal" image="reload"/>
+                                <connections>
+                                    <action selector="reloadAnno:" destination="9pv-A4-QxB" eventType="touchUpInside" id="1y2-mK-rIv"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -74,7 +85,9 @@
                             <constraint firstAttribute="bottom" secondItem="cfn-Zz-BuA" secondAttribute="bottom" id="HFi-xU-Wlg"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="IT7-57-ryv"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="LTq-6n-OfW"/>
+                            <constraint firstItem="jjx-0Z-axY" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="QRh-Cn-8LL"/>
                             <constraint firstAttribute="trailing" secondItem="cfn-Zz-BuA" secondAttribute="trailing" id="mAI-Fd-BG7"/>
+                            <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="jjx-0Z-axY" secondAttribute="bottom" constant="15" id="qRD-0y-XfQ"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="100" id="weI-lu-8Wm"/>
                         </constraints>
                         <variation key="default">
@@ -88,6 +101,7 @@
                     <connections>
                         <outlet property="followUserButton" destination="mGq-xe-AaS" id="kep-Ob-Kjb"/>
                         <outlet property="mapView" destination="cfn-Zz-BuA" id="AG2-9Q-wTg"/>
+                        <outlet property="reloadAnnotationsButton" destination="jjx-0Z-axY" id="YHN-8h-yqa"/>
                         <segue destination="rMv-LW-4qn" kind="show" identifier="fhooderDetail" id="hB1-eo-vqo"/>
                     </connections>
                 </viewController>
@@ -2766,6 +2780,7 @@
         <image name="myLocation2" width="40" height="40"/>
         <image name="phone" width="30" height="30"/>
         <image name="pointer" width="511" height="511"/>
+        <image name="reload" width="200" height="45"/>
         <image name="shopping" width="24" height="24"/>
         <image name="subtractSmallWhite" width="20" height="20"/>
         <image name="upArrow" width="50" height="30"/>
