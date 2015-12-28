@@ -32,6 +32,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     private var userLoc: CLLocation!
     
     private var mapChangedFromUserInteraction = false
+    private var zoomWithinMiles: Double = 2.5
     
     @IBOutlet var reloadAnnotationsButton: UIButton!
 
@@ -74,6 +75,15 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         
         
     }
+    
+    func zoomedWithinMiles() -> Double {
+        
+        // zoomed out or zoomed in latitude times constant 35.7 shows annotations in zoomed area
+        let lat = self.mapView.region.span.latitudeDelta
+        let withinMiles = lat * 35.7
+        
+        return withinMiles
+    }
 
 
     func reloadAnnotations() {
@@ -88,7 +98,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                 
                 let query = PFQuery(className: "Fhooder")
                 query.limit = 10
-                query.whereKey("location", nearGeoPoint: point!, withinMiles: 2.5)
+                query.whereKey("location", nearGeoPoint: point!, withinMiles: self.zoomWithinMiles)
                 query.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
                     if (error == nil) {
                         
@@ -235,10 +245,12 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         
         mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
         
+        
         if (mapChangedFromUserInteraction) {
             
-            self.location = mapView.centerCoordinate
+            self.zoomWithinMiles = self.zoomedWithinMiles()
             
+            self.location = mapView.centerCoordinate
             let centre = mapView.centerCoordinate as CLLocationCoordinate2D
             
             let getLat: CLLocationDegrees = centre.latitude
@@ -253,6 +265,9 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     }
     
 }
+
+
+
 
 // MARK: - CLLocationManagerDelegate implementation
 

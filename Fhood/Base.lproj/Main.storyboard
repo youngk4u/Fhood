@@ -67,10 +67,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jjx-0Z-axY">
-                                <rect key="frame" x="93.5" y="410" width="133.5" height="30"/>
+                                <rect key="frame" x="85.5" y="405" width="150" height="35"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="2Xy-fR-uAy"/>
-                                    <constraint firstAttribute="width" constant="134" id="sGE-w9-3iE"/>
+                                    <constraint firstAttribute="height" constant="35" id="2Xy-fR-uAy"/>
+                                    <constraint firstAttribute="width" constant="150" id="sGE-w9-3iE"/>
                                 </constraints>
                                 <state key="normal" image="reload"/>
                                 <connections>
