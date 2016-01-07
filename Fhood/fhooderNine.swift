@@ -35,7 +35,6 @@ func fhooderNine() {
     //"Shrimp Sandwich", "Strawberry Lemonade"
     Fhooder.itemNames = []
     Fhooder.itemPrices = [4.99, 1.99]
-    Fhooder.itemCount = [0, 0]
     Fhooder.itemPrefernce = [[1,0,0,1,0,1,0,0],[0,0,0,0,0,0,0,0]]
     Fhooder.itemDescription = ["Crispy fried breaded shrimp with our secret sauce will make you feel like you're back in Louisiana.", "Fresh squeezed homemade lemonade with sweet crushed strawberries." ]
     Fhooder.itemIngredients = ["Shrimp, Bread, Cayenne Pepper, Mayonnaise, Lettuce.", "Lemon, Water, Strawberry, Sugar."]

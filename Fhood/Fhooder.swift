@@ -50,7 +50,6 @@ struct Fhooder {
     static var itemID: [String]? = []
     static var itemPics: [UIImage]? = []
     static var itemPrices: [Double]? = []
-    static var itemCount: [Int]? = []
     static var totalItemPrice: Double? = 0
     // "organic", "vegan", "glutenfree", "nutsfree", "soyfree", "msgfree", "dairyfree", "lowsodium"
     static var itemPrefernce: [[Int]]? = [[]]

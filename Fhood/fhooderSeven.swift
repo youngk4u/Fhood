@@ -34,7 +34,6 @@ func fhooderSeven() {
 
     Fhooder.itemNames = ["Pork Bun", "Pork Fried Rice", "Jasmine Tea"]
     Fhooder.itemPrices = [3.99, 3.99, 1.49]
-    Fhooder.itemCount = [0, 0, 0]
     Fhooder.itemPrefernce = [[1,0,0,1,1,0,1,0], [0,0,1,1,0,0,1,0], [0,0,0,0,0,0,0,0]]
     Fhooder.itemDescription = ["Homemade Cha siu bao with fresh cucumber.  Very delicious!", "Taiwanese style pork fried rice.", "Jasmine tea in a bottle."]
     Fhooder.itemIngredients = ["Bun, Pork, Radish, Cucumber, Lettuce, Oyster Sauce.", "Rice, Oil, Peas, Eggs, Pork, Onion, Green Onion.", "Jasmine Tea."]

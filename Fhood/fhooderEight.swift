@@ -34,7 +34,6 @@ func fhooderEight() {
 
     Fhooder.itemNames = ["Slider", "Homemade Fries", "Root Beer"]
     Fhooder.itemPrices = [0.99, 1.99, 1.49]
-    Fhooder.itemCount = [0, 0, 0]
     Fhooder.itemPrefernce = [[1,0,0,1,1,1,0,0], [1,1,1,0,0,1,0,0], [0,0,0,0,0,0,0,0]]
     Fhooder.itemDescription = ["Delicious handmade beef patties topped with melted cheddar cheese and chopped onions.  So good you can't eat just one.", "Thick cut fries made from fresh Idaho potatoes.", "Bundaberg's classic root beer"]
     Fhooder.itemIngredients = ["Buns, Ground Beef, Cheddar Cheese, Onions, Salt.", "Potato, Oil.", "Root Beer, Sugar, Water, Flavor."]

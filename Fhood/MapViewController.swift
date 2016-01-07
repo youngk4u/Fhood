@@ -120,12 +120,11 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                                         Fhooder.fhooderLatitude = geolocation.latitude
                                         Fhooder.fhooderLongitude = geolocation.longitude
                                         Fhooder.reviews = object.valueForKey("ratings")! as? Int
-                                        Fhooder.isOpen = true
-                                        Fhooder.isClosed = false
+                                        Fhooder.isOpen = object.valueForKey("isOpen")! as? Bool
                                         Fhooder.ratingInString = "no-Spoon"
                                         
                                         
-                                        let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, closed: Fhooder.isClosed!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
+                                        let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
                                         
                                         self.mapView.addAnnotation(annotation)
                                         
@@ -203,10 +202,12 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(kPinAnnotationReuseIdentifier) ??
             MKAnnotationView(annotation: annotation, reuseIdentifier: kPinAnnotationReuseIdentifier)
 
+        
+        pinView.image = UIImage(named: "FhooderOn")
+        
         pinView.canShowCallout = false
         pinView.annotation = annotation
-        pinView.image = UIImage(named: "FhooderOn")
-
+        
         return pinView
     }
 

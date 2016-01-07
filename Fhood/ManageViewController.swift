@@ -53,11 +53,16 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        HUD.show()
+        
         // Reload Parse data
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList1:",name:"load1", object: nil)
         
         // Reload collectionview data
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList2:",name:"load2", object: nil)
+        
+        // Reload open/closed data
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList3:",name:"load3", object: nil)
         
         
         NSNotificationCenter.defaultCenter().postNotificationName("load1", object: nil)
@@ -95,6 +100,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         
         self.addButton.addTarget(self, action: "segueToAddItemView", forControlEvents: UIControlEvents.TouchUpInside)
 
+        HUD.dismiss()
 
     }
     
@@ -145,7 +151,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
                     
                     // fhooder information pulled
                     
-                    
+                    Fhooder.objectID = fhooder?.objectId
                     self.shopName.text = fhooder!.valueForKey("shopName")! as? String
                     let userImageFile = fhooder!.valueForKey("profilePic") as! PFFile
                     userImageFile.getDataInBackgroundWithBlock {
@@ -173,6 +179,8 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
                     self.restaurantType.text = "\(fhooder!.valueForKey("foodTypeOne")!), \(fhooder!.valueForKey("foodTypeTwo")!), \(fhooder!.valueForKey("foodTypeThree")!)"
                     self.aboutFhooder = (fhooder!.valueForKey("shopDescription") as? String)!
                     self.fhooderFirstName = (fhooder!.valueForKey("firstName") as? String)!
+                    Fhooder.isOpen = (fhooder!.valueForKey("isOpen") as? Bool)!
+                    NSNotificationCenter.defaultCenter().postNotificationName("load3", object: nil)
                     
                     let relation = fhooder!.relationForKey("items")
                     let query2 = relation.query()
@@ -267,7 +275,17 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         self.collectionView.reloadData()
     }
     
-    
+    // Reload shop open/close status
+    func loadList3(notification: NSNotification){
+        if Fhooder.isOpen == true {
+            self.openNowOrClose.text = "OPEN NOW"
+            self.openNowOrClose.textColor = UIColor(red: 0.0/255.0, green: 200.0/255.0, blue: 0.0/255.0, alpha: 1)
+        }
+        else {
+            self.openNowOrClose.text = "CLOSED"
+            self.openNowOrClose.textColor = UIColor.redColor()
+        }
+    }
     
     
     func toCookingTimeView () {

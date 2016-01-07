@@ -34,7 +34,6 @@ func fhooderOne() {
 
     Fhooder.itemNames = ["Grilled Cheese", "Fried Grilled Cheese", "Milk", "Flavoured Milk"]
     Fhooder.itemPrices = [1.99, 2.99, 1.49, 1.75]
-    Fhooder.itemCount = [0, 0, 0, 0]
     Fhooder.itemPrefernce = [[1,0,1,1,1,1,0,0], [1,0,1,1,1,1,0,0], [0,0,0,1,1,0,0,1], [0,0,0,1,1,0,0,1]]
     Fhooder.itemDescription = ["Gooey Swiss and American Cheese layered between two slices of crisp butter grilled gluten free bread.", "Melted Muenster and Cheddar sandwiched between deliciously crisp grilled gluten free bread.", "Deliciously refreshing lowfat milk", "Yummy flavored milk available in 3 flavors: strawberry, chocolate, and banana"]
     Fhooder.itemIngredients = ["Gluten free bread, Cheese (Swiss, American), Butter.", "Gluten free bread, Cheese (Muenster, Cheddar), Butter.", "Milk", "Milk, Artificial flavoring."]

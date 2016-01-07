@@ -34,7 +34,6 @@ func fhooderThree() {
 
     Fhooder.itemNames = ["Hand Drip Coffee", "Espresso", "Bagel", "Honey Yogurt Parfait", "Macaron"]
     Fhooder.itemPrices = [2.99, 1.99, 0.99, 2.99, 2.99]
-    Fhooder.itemCount = [0, 0, 0, 0, 0]
     Fhooder.itemPrefernce = [[1,1,1,1,1,1,0,0], [1,1,1,1,1,1,1,0], [1,1,0,0,0,1,0,0], [0,0,1,1,1,1,0,0],[0,0,0,0,0,0,0,0]]
     Fhooder.itemDescription = ["Slow hand dripped coffee made to order", "Concentrated fragrant coffee with Indonesian light beans", "Homemade bagels just like granpa used to make.  Chewy and delicious", "Healthy and delicious greek yogurt topped with crunchy granola and blueberries", "Macarons made from scratch featuring various flavors that change daily"]
     Fhooder.itemIngredients = ["Coffee (Ethiopian dark beans), Water.", "Coffee (Indonesian light beans), Water.", "Wheat flour, Water, Salt, Sesame seeds.", "Greek yogurt, Honey, Blue berries, Granola.", "Almond flour, Sugar, Egg whites, Creme of tartar, Salt, Food coloring"]

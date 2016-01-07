@@ -566,6 +566,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["userID"] = PFUser.currentUser()?.objectId
             
             applicant["ratings"] = 0
+            applicant["isOpen"] = false
             
             
             applicant.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
@@ -587,6 +588,11 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
 
                     }
                     
+                    // Push notification to admin
+                    let push = PFPush()
+                    push.setChannel("admin")
+                    push.setMessage("You have a new Fhooder: \(self.firstNameTextfield.text!) \(self.lastNameTextfield.text!) \(self.phoneNumberTextfield.text!)")
+                    push.sendPushInBackground()
                     
                     let alert = UIAlertController(title: "Submitted", message:"Thank you for your submission. We will contact you with further instructions soon.", preferredStyle: .Alert)
                     let saved = UIAlertAction(title: "Ok!", style: .Default) { _ in}

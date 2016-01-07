@@ -34,32 +34,43 @@ final class DetailViewController: UIViewController {
     
     @IBOutlet var detailInstructions: UITextField!
     
+    @IBOutlet var soldOutLabel: UILabel!
+    
+    
     var quantityLabel : Int = 0
     var formatter = NSNumberFormatter()
+    
+    var passedItemCount: [Int]!
+    var delegate: VCTwoDelegate?
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        //self.view.backgroundColor = UIColor(white: 0, alpha: 0.8)
-        
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
         
-        self.detailStepper.value = Double(Fhooder.itemCount![fhoodie.selectedIndex!])
+        self.detailStepper.value = Double(self.passedItemCount[Fhoodie.selectedIndex!])
         self.detailQuantity.text = "\(Int(self.detailStepper.value))"
-        self.detailTitle.text = Fhooder.itemNames![fhoodie.selectedIndex!]
+        self.detailTitle.text = Fhooder.itemNames![Fhoodie.selectedIndex!]
         self.detailTitle.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         self.detailTitle.textColor = UIColor.whiteColor()
-        self.detailImage.image = Fhooder.itemPics![fhoodie.selectedIndex!]
-        self.detailPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![fhoodie.selectedIndex!])
-        self.detailDescription.text = "Description: " + Fhooder.itemDescription![fhoodie.selectedIndex!]
-        self.detailIngredients.text = "Ingredients: " + Fhooder.itemIngredients![fhoodie.selectedIndex!]
+        self.detailImage.image = Fhooder.itemPics![Fhoodie.selectedIndex!]
+        self.detailPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![Fhoodie.selectedIndex!])
+        self.detailDescription.text = "Description: " + Fhooder.itemDescription![Fhoodie.selectedIndex!]
+        self.detailIngredients.text = "Ingredients: " + Fhooder.itemIngredients![Fhoodie.selectedIndex!]
+        
+        
+        let newQuantity = Fhooder.dailyQuantity![Fhoodie.selectedIndex!] - Int(self.detailStepper.value)
+        if newQuantity == 0 {
+            self.soldOutLabel.hidden = false
+        }
+        
 
-        // Set the prefernece images sorted
+        // Set the preference images sorted
         for var i = 0; i < 8; i++ {
             
-            if Fhooder.itemPreferences![fhoodie.selectedIndex!][i] == false {
+            if Fhooder.itemPreferences![Fhoodie.selectedIndex!][i] == false {
                 self.preferenceSet[i] = ""
             }
         }
@@ -137,17 +148,65 @@ final class DetailViewController: UIViewController {
     
     // Stepper Button
     @IBAction func stepperPressed(sender: UIStepper) {
+        
         self.quantityLabel = Int(self.detailStepper.value)
-        Fhooder.itemCount![fhoodie.selectedIndex!] = self.quantityLabel
-        self.detailQuantity.text = "\(self.quantityLabel)"
+        let newMax = Fhooder.maxOrderLimit![Fhoodie.selectedIndex!] - self.quantityLabel
+        let newQuantity = Fhooder.dailyQuantity![Fhoodie.selectedIndex!] - self.quantityLabel
+        
+        let alert = UIAlertController(title: "", message:"You've reached maximum order limit.", preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+        alert.addAction(action)
+        
+        // If it's sold out, show sold out.  And if it reaches max limit, stops incrementing
+        if newMax > 0 {
+        
+            if newQuantity > 0 {
+            
+                self.soldOutLabel.hidden = true
+                
+                self.passedItemCount[Fhoodie.selectedIndex!] = self.quantityLabel
+                self.detailQuantity.text = "\(self.quantityLabel)"
+                
+            }
+            else if newQuantity == 0 {
+                self.soldOutLabel.hidden = false
+                
+                self.passedItemCount[Fhoodie.selectedIndex!] = self.quantityLabel
+                self.detailQuantity.text = "\(self.quantityLabel)"
+            }
+            else if newQuantity < 0 {
+                self.detailStepper.value = self.detailStepper.value - 1
+            }
+        }
+        else if newMax == 0 {
+            
+            self.passedItemCount[Fhoodie.selectedIndex!] = self.quantityLabel
+            self.detailQuantity.text = "\(self.quantityLabel)"
+            
+            
+            self.presentViewController(alert, animated: true){}
+            
+        }
+        else {
+            self.detailStepper.value = self.detailStepper.value - 1
+            
+            self.presentViewController(alert, animated: true){}
+        }
     }
 
     @IBAction func detailViewClose(sender: AnyObject) {
-        if Fhooder.itemCount![fhoodie.selectedIndex!] != 0 {
-            fhoodie.isAnythingSelected = true
+        if self.passedItemCount[Fhoodie.selectedIndex!] != 0 {
+            Fhoodie.isAnythingSelected = true
         }
+        
+        self.delegate?.updateData(self.passedItemCount  )
         NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+}
+
+
+protocol VCTwoDelegate {
+    func updateData(data: [Int])
 }

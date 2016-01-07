@@ -17,4 +17,7 @@ final class CollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var subtractButton: UIButton!
     @IBOutlet weak var foodQuantity: UILabel!
+    
+    @IBOutlet var soldOutLabel: UILabel!
+    
 }

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3B356FCC1B9275670014AD22 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FCB1B9275670014AD22 /* OnboardingViewController.swift */; };
 		3B356FCE1B9284500014AD22 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FCD1B9284500014AD22 /* Constants.swift */; };
-		3B356FD01B93DEE70014AD22 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FCF1B93DEE70014AD22 /* User.swift */; };
 		3B356FD31B93E6A30014AD22 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD21B93E6A30014AD22 /* HUD.swift */; };
 		3B356FD61B93F1170014AD22 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD51B93F1170014AD22 /* Router.swift */; };
 		3B356FDA1B940C240014AD22 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B356FD91B940C240014AD22 /* LaunchViewController.swift */; };
@@ -44,7 +43,7 @@
 		636F75141B7E973A00A8C1E8 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75131B7E973A00A8C1E8 /* BubbleView.swift */; };
 		636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */; };
 		6382F0991BDF23EE002C9C6B /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0981BDF23EE002C9C6B /* ReceiptViewController.swift */; };
-		6382F09B1BDF7007002C9C6B /* fhoodie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F09A1BDF7007002C9C6B /* fhoodie.swift */; };
+		6382F09B1BDF7007002C9C6B /* Fhoodie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F09A1BDF7007002C9C6B /* Fhoodie.swift */; };
 		6382F09D1BE0ABC0002C9C6B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F09C1BE0ABC0002C9C6B /* DetailViewController.swift */; };
 		638654131B65A81A000DFC5E /* OrderedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638654121B65A81A000DFC5E /* OrderedViewController.swift */; };
 		63936FDC1BF6B0CC00970926 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63936FDB1BF6B0CC00970926 /* ProfileViewController.swift */; };
@@ -106,7 +105,6 @@
 		2C5C1754B724B459109316E4 /* Pods-Fhood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.debug.xcconfig"; sourceTree = "<group>"; };
 		3B356FCB1B9275670014AD22 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		3B356FCD1B9284500014AD22 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3B356FCF1B93DEE70014AD22 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B356FD21B93E6A30014AD22 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		3B356FD51B93F1170014AD22 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		3B356FD91B940C240014AD22 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
@@ -141,7 +139,7 @@
 		636F75131B7E973A00A8C1E8 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationObject.swift; sourceTree = "<group>"; };
 		6382F0981BDF23EE002C9C6B /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
-		6382F09A1BDF7007002C9C6B /* fhoodie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhoodie.swift; sourceTree = "<group>"; };
+		6382F09A1BDF7007002C9C6B /* Fhoodie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fhoodie.swift; sourceTree = "<group>"; };
 		6382F09C1BE0ABC0002C9C6B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		638654121B65A81A000DFC5E /* OrderedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedViewController.swift; sourceTree = "<group>"; };
 		63936FDB1BF6B0CC00970926 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -264,7 +262,6 @@
 		3BF3252C1B9036A400C606D5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3B356FCF1B93DEE70014AD22 /* User.swift */,
 				636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */,
 				63E085CE1B44AB750095C603 /* Fhooder.swift */,
 				63F70A2E1B5B6F2700A2D618 /* fhooderOne.swift */,
@@ -277,7 +274,7 @@
 				63F70A3C1B5B767500A2D618 /* fhooderEight.swift */,
 				63F70A3E1B5B768000A2D618 /* fhooderNine.swift */,
 				63F70A401B5B768A00A2D618 /* fhooderTen.swift */,
-				6382F09A1BDF7007002C9C6B /* fhoodie.swift */,
+				6382F09A1BDF7007002C9C6B /* Fhoodie.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -493,6 +490,14 @@
 					63C8302A1B0996FB0089CCFF = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = Z3A283N666;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					63C830411B0996FB0089CCFF = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -619,7 +624,7 @@
 				636CB1671B9452A700674C91 /* FhooderMoreViewController.swift in Sources */,
 				636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */,
 				3B356FD61B93F1170014AD22 /* Router.swift in Sources */,
-				6382F09B1BDF7007002C9C6B /* fhoodie.swift in Sources */,
+				6382F09B1BDF7007002C9C6B /* Fhoodie.swift in Sources */,
 				636CC8D71B1EEFE90084CCE8 /* TabBarController.swift in Sources */,
 				630306C21BD8694D002C5B0F /* CancelOrdersViewController.swift in Sources */,
 				63936FDC1BF6B0CC00970926 /* ProfileViewController.swift in Sources */,
@@ -648,7 +653,6 @@
 				630609DF1B0AFC4400DAA7B4 /* FeaturedViewController.swift in Sources */,
 				63C830331B0996FB0089CCFF /* MapViewController.swift in Sources */,
 				63EF67021BD1EFDB0068D531 /* OrdersDetailViewController.swift in Sources */,
-				3B356FD01B93DEE70014AD22 /* User.swift in Sources */,
 				638654131B65A81A000DFC5E /* OrderedViewController.swift in Sources */,
 				639C07E51C0DBA1C00850681 /* FoodPhotoViewController.swift in Sources */,
 				63CA5CA51B41AF3B008D16A1 /* FilterMenu.swift in Sources */,
@@ -736,6 +740,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -760,6 +765,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -782,6 +788,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -799,6 +806,7 @@
 				INFOPLIST_FILE = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -811,12 +819,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Fhood/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fhood;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Fhood/Fhood-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -829,12 +839,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Fhood/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.fhood;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Fhood/Fhood-Bridging-Header.h";
 			};
 			name = Release;

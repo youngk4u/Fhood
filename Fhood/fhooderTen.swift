@@ -34,7 +34,6 @@ func fhooderTen() {
 
     Fhooder.itemNames = ["Chicken and Rice", "Soda"]
     Fhooder.itemPrices = [4.99, 1.49]
-    Fhooder.itemCount = [0, 0]
     Fhooder.itemPrefernce = [[1,0,0,1,1,1,0,0], [0,0,0,0,0,0,0,0]]
     Fhooder.itemDescription = ["Just like you had in the big apple; grilled chicken shawarma on rice with our special yogurt sauce.  Truly addictive.", "Choose between Coke, Sprite, Diet Coke, bottle water"]
     Fhooder.itemIngredients = ["Chicken, Spices, Rice, Tahini, Pita bread, Lettuce, Yogurt sauce.", "Sugar, Water, Artificial flavor"]

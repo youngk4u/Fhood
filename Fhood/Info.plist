@@ -69,6 +69,11 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We'll only use your location to give you directions to pick your order.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreenSystem</string>
 	<key>UIRequiredDeviceCapabilities</key>

@@ -147,10 +147,8 @@ final class AccountViewController: UIViewController  {
                 if fhooder != nil {
                     
                     if fhooder as! NSObject == true {
-                        HUD.show(withText: "Loading")
                         Fhooder.fhooderSignedIn = true
                         Router.route(animated: true)
-                        HUD.dismiss(afterDelay: 2)
                     }
 
                     else {

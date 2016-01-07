@@ -1,5 +1,5 @@
 //
-//  fhoodie.swift
+//  Fhoodie.swift
 //  Fhood
 //
 //  Created by Young-hu Kim on 10/27/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct fhoodie {
+struct Fhoodie {
     
     static var fhoodieID: Int?
     static var fhoodiePic: String?
@@ -29,7 +29,8 @@ struct fhoodie {
     static var selectedIndex: Int?
     static var selectedItemNames: [String]?
     static var selectedItemPrices: [Double]?
-    static var selectedItemCount: [Int]?
+    static var selectedItemCount: [Int]? = [0, 0, 0, 0, 0, 0, 0]
+    static var selectedItemObjectId: [String]?
     static var isAnythingSelected: Bool?
     static var selectedTotalItemPrice: Double?
     static var totalDue: Double?

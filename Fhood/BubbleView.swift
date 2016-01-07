@@ -17,7 +17,6 @@ final class BubbleView: UIView {
     @IBOutlet private var pickupLabel: UILabel!
     @IBOutlet private var priceLabel: UILabel!
     @IBOutlet private var openLabel: UILabel!
-    @IBOutlet private var closedLabel: UILabel!
 
     var annotation: AnnotationObject? {
         didSet {
@@ -36,8 +35,15 @@ final class BubbleView: UIView {
             image.clipsToBounds = true
             self.imageView.addSubview(image)
             
-            self.openLabel.hidden = annotation.open == false
-            self.closedLabel.hidden = annotation.closed == false
+            if annotation.open == true {
+                self.openLabel.text = "Open"
+                self.openLabel.textColor = UIColor.greenColor()
+            }
+            else {
+                self.openLabel.text = "Closed"
+                self.openLabel.textColor = UIColor.redColor()
+            }
+            
             self.priceLabel.text = String(format: "$%.2f", annotation.price)
             self.spoonView.image = annotation.imageRatingActive
         }

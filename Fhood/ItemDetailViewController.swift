@@ -47,6 +47,8 @@ final class ItemDetailViewController: UIViewController {
     var timeIntervalAmount : Int = 0
     
     var formatter = NSNumberFormatter()
+    
+    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,6 +180,117 @@ final class ItemDetailViewController: UIViewController {
 
     }
     
+    @IBAction func deleteItem(sender: UIButton) {
+        
+        let alert = UIAlertController(title: "Delete item", message:"Are you sure you want to delete this item?", preferredStyle: .Alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .Default) { _ in}
+        let proceed = UIAlertAction(title: "Delete", style: .Default) { (action: UIAlertAction!) -> () in
+
+            
+            HUD.show()
+            
+            let query = PFQuery(className: "Items")
+            let ID = Fhooder.itemID![Fhooder.itemIndex!]
+            
+            query.getObjectInBackgroundWithId(ID, block: { (item: PFObject?, error: NSError?) -> Void in
+                if error != nil {
+                    print(error)
+                }
+                else {
+                    
+                    let query2 = PFQuery(className: "Fhooder")
+                    let ID2 = Fhooder.objectID!
+                    
+                    // If this is the only item, delete itemPic and itemPrice from Parse Fhooder class
+                    if Fhooder.itemIndex == 0 && Fhooder.itemNames?.count == 1 {
+                    
+                        query2.getObjectInBackgroundWithId(ID2, block: { (fhooder: PFObject?, error2: NSError?) -> Void in
+                            
+                            if error2 == nil {
+                                fhooder?.removeObjectForKey("itemPic")
+                                fhooder?.removeObjectForKey("itemPrice")
+                                
+                                fhooder?.saveInBackground()
+                                
+                                item?.deleteInBackground()
+                                
+                                HUD.dismiss()
+                                    
+                                NSNotificationCenter.defaultCenter().postNotificationName("load1", object: nil)
+                                
+                                
+                                let alert2 = UIAlertController(title: "", message:"You have no items. Please add some ;)", preferredStyle: .Alert)
+                                let saved2 = UIAlertAction(title: "Ok!", style: .Default) { _ in}
+                                alert2.addAction(saved2)
+                                self.rootViewController.presentViewController(alert2, animated: true, completion: nil)
+                                Fhooder.fhooderSignedIn = false
+                                Router.route(animated: true)
+                                
+                            }
+                        })
+                    }
+                    else if Fhooder.itemIndex == 0 {
+                        
+                        let ID3 = Fhooder.itemID![1]
+                        
+                        query.getObjectInBackgroundWithId(ID3, block: { (item2: PFObject?, error3: NSError?) -> Void in
+                            if error3 == nil {
+                                
+                                query2.getObjectInBackgroundWithId(ID2, block: { (fhooder: PFObject?, error2: NSError?) -> Void in
+                                    
+                                    if error2 == nil {
+                                        
+                                        fhooder!["itemPic"] = item2!["photo"] as? PFFile
+                                        fhooder!["itemPrice"] = item2!["price"] as? Double
+                                        
+                                        fhooder?.saveInBackground()
+                                        
+                                        item?.deleteInBackground()
+                                        
+                                        HUD.dismiss()
+                                        
+                                        
+                                        NSNotificationCenter.defaultCenter().postNotificationName("load1", object: nil)
+                                        
+                                        let alert2 = UIAlertController(title: "", message:"Item has been deleted.", preferredStyle: .Alert)
+                                        let saved2 = UIAlertAction(title: "Ok!", style: .Default) { _ in}
+                                        alert2.addAction(saved2)
+                                        self.rootViewController.presentViewController(alert2, animated: true, completion: nil)
+                                        self.dismissViewControllerAnimated(true, completion: nil)
+                                    }
+                                })
+                            }
+                            
+                        })
+                        
+                    }
+                    else {
+                        item?.deleteInBackground()
+                        
+                        HUD.dismiss()
+                        
+                        
+                        let alert2 = UIAlertController(title: "", message:"Item has been deleted.", preferredStyle: .Alert)
+                        let saved2 = UIAlertAction(title: "Ok!", style: .Default) { _ in}
+                        alert2.addAction(saved2)
+                        NSNotificationCenter.defaultCenter().postNotificationName("load1", object: nil)
+                        self.rootViewController.presentViewController(alert2, animated: true, completion: nil)
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+                    
+                    
+                }
+                
+            })
+            
+            
+        }
+        alert.addAction(cancel)
+        alert.addAction(proceed)
+        self.presentViewController(alert, animated: true){}
+        
+        
+    }
     
     
     @IBAction func itemDetailViewClose(sender: AnyObject) {

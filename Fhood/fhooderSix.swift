@@ -34,7 +34,6 @@ func fhooderSix() {
 
     Fhooder.itemNames = ["Cold Pressed Juice", "Fresh Squeezed Juice"]
     Fhooder.itemPrices = [4.99, 3.99]
-    Fhooder.itemCount = [0, 0]
     Fhooder.itemPrefernce = [[1,1,1,1,1,1,1,1], [1,1,1,1,1,1,1,1]]
     Fhooder.itemDescription = ["We pick the freshest organic fruits and vegitables every day", "Vitamins and minerals for your body and mind"]
     Fhooder.itemIngredients = ["Carrots, Oranges.", "Kale, Apple, Carrot."]

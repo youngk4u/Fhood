@@ -52,12 +52,6 @@
                     <fontDescription key="fontDescription" type="system" pointSize="9"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Closed" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DB5-Hy-toV">
-                    <rect key="frame" x="153" y="61" width="46" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.91015625" colorSpace="calibratedRGB"/>
             <nil key="simulatedStatusBarMetrics"/>
@@ -65,7 +59,6 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="closedLabel" destination="DB5-Hy-toV" id="Cen-Yo-n9o"/>
                 <outlet property="imageView" destination="llX-jh-P4l" id="bx3-H4-8Yd"/>
                 <outlet property="nameLabel" destination="BtA-BN-6kq" id="gF3-dH-Kyj"/>
                 <outlet property="openLabel" destination="571-b6-EKE" id="Hwa-cG-e6S"/>

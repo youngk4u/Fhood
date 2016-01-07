@@ -35,7 +35,6 @@ func fhooderTwo() {
     Fhooder.itemNames = ["Bibimbap (Eat in)", "Bibimbap (To go)", "Gimbap", "Water"]
     Fhooder.itemPrices = [6.99, 4.99, 2.99, 1.49]
     Fhooder.itemPics = [UIImage(named: "Bibimbap (Eat in)")!, UIImage(named: "Bibimbap (To go)")!, UIImage(named: "Gimbap")!, (UIImage(named: "Water"))!]
-    Fhooder.itemCount = [0, 0, 0, 0]
     Fhooder.itemPrefernce = [[1,0,1,0,1,1,1,0], [1,0,1,0,1,1,1,0], [1,0,1,1,1,1,1,0], [0,0,0,0,0,0,0,0]]
     Fhooder.itemDescription = ["Traditional Korean style dish with seasoned vegetables, beef, and a classic Korean red pepper paste.  Finished off with an egg.", "Traditional Korean style dish with seasoned vegetables, beef, and a classic Korean red pepper paste.  Finished off with an egg.(Dining in)", "A classic on the go Korean favorite. Rice, beef, egg, assorted pickled vegetables all rolled up in a sheet of laver seaweed. Sprinkled with sesame seeds.", "Refreshing evian water"]
     Fhooder.itemIngredients = ["Rice, Carrot, Beef, Spinach, Mushrooms, Mung bean sprouts, Sesame oil, Red pepper paste, Egg, Cucumber.", "Rice, Carrot, Beef, Spinach, Mushrooms, Mung bean sprouts, Sesame oil, Red pepper paste, Egg, Cucumber.", "Rice, Sea weed, Beef, Carrot, Pickled radish, Sesame seeds, Egg", "Water"]
