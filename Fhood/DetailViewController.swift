@@ -153,10 +153,6 @@ final class DetailViewController: UIViewController {
         let newMax = Fhooder.maxOrderLimit![Fhoodie.selectedIndex!] - self.quantityLabel
         let newQuantity = Fhooder.dailyQuantity![Fhoodie.selectedIndex!] - self.quantityLabel
         
-        let alert = UIAlertController(title: "", message:"You've reached maximum order limit.", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "OK", style: .Default) { _ in}
-        alert.addAction(action)
-        
         // If it's sold out, show sold out.  And if it reaches max limit, stops incrementing
         if newMax > 0 {
         
@@ -183,13 +179,13 @@ final class DetailViewController: UIViewController {
             self.passedItemCount[Fhoodie.selectedIndex!] = self.quantityLabel
             self.detailQuantity.text = "\(self.quantityLabel)"
             
-            
-            self.presentViewController(alert, animated: true){}
-            
         }
         else {
             self.detailStepper.value = self.detailStepper.value - 1
             
+            let alert = UIAlertController(title: "", message:"You've reached maximum order limit.", preferredStyle: .Alert)
+            let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+            alert.addAction(action)
             self.presentViewController(alert, animated: true){}
         }
     }
