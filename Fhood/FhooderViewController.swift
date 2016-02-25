@@ -158,6 +158,8 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                     
                     
                     self.shopName.text = fhooder!.valueForKey("shopName")! as? String
+                    Fhooder.shopName = self.shopName.text
+                    
                     let userImageFile = fhooder!.valueForKey("profilePic") as! PFFile
                     userImageFile.getDataInBackgroundWithBlock {
                         (imageData: NSData?, error: NSError?) -> Void in

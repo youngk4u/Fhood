@@ -46,6 +46,11 @@ final class ReceiptViewController: UIViewController {
 
     @IBOutlet weak var timePicker: UIDatePicker!
     
+    var currentDate: NSDate!
+    var newDate: NSDate!
+    var newDate2: NSDate!
+    var closeDate: NSDate!
+    
     var formatter = NSNumberFormatter()
     
     override func viewDidLoad() {
@@ -120,14 +125,72 @@ final class ReceiptViewController: UIViewController {
         Fhoodie.totalDue = Fhoodie.selectedTotalItemPrice! + Fhoodie.selectedTotalItemPrice! * 0.1 + 0.3
         self.totalAmountDue.text = formatter.stringFromNumber(Fhoodie.totalDue!)
 
+        
+        
+        let query = PFQuery(className: "Fhooder")
+        query.getObjectInBackgroundWithId(Fhooder.objectID!) { (fhooder: PFObject?, error: NSError?) -> Void in
+            if error == nil && fhooder != nil {
+                
+                
+                // Time Picker
+                self.timePicker.datePickerMode = UIDatePickerMode.Time // use time only
+                
+                var openTime : String!
+                var closeTime : String!
+                
+                openTime = fhooder!.valueForKey("openTime") as? String
+                closeTime = fhooder!.valueForKey("closeTime") as? String
+                
+                // Get open time and close time from Parse
+                if  openTime == "Now" {
+                    self.currentDate = NSDate()
+                }
+                else {
+                    
+                    let timeFormatter = NSDateFormatter()
+                    timeFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+                    timeFormatter.dateFormat = "hh:mm a"
+                    
+                    let time = timeFormatter.dateFromString(openTime)
+                    self.currentDate = time
+                    
+                    self.newDate = NSDate(timeInterval: (15 * 60), sinceDate: self.currentDate)  // add 15 minutes
 
-    
-        // Time Picker
-        self.timePicker.datePickerMode = UIDatePickerMode.Time // use time only
-        let currentDate = NSDate()  // get the current date
-        let newDate = NSDate(timeInterval: (15 * 60), sinceDate: currentDate)  // add 15 minutes
-        self.timePicker.minimumDate = newDate // set the current date/time as a minimum
-        self.timePicker.date = newDate // defaults to current time but shows how to use it.
+                    self.timePicker.minimumDate = self.newDate // set the current date/time as a minimum
+                }
+                
+                if  closeTime == "Later" {
+                    
+                }
+                else {
+                    
+                    let timeFormatter = NSDateFormatter()
+                    timeFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+                    timeFormatter.dateFormat = "hh:mm a"
+                    
+                    let time = timeFormatter.dateFromString(closeTime)
+                    self.closeDate = time
+                    
+                    self.newDate2 = NSDate(timeInterval: (5 * 60), sinceDate: self.closeDate)
+                    self.timePicker.maximumDate = self.newDate2
+
+                }
+                
+                
+                let compareResult = self.newDate.compare(NSDate())
+                
+                if compareResult == NSComparisonResult.OrderedAscending {
+                    self.timePicker.date = self.newDate // defaults to current time but shows how to use it.
+                }
+                else {
+                    self.timePicker.date = NSDate()
+                }
+
+            }
+            
+        }
+        
+        
 
     }
     
