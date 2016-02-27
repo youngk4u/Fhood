@@ -144,6 +144,8 @@ final class ReceiptViewController: UIViewController {
                 // Get open time and close time from Parse
                 if  openTime == "Now" {
                     self.currentDate = NSDate()
+                    self.newDate = NSDate(timeInterval: (15 * 60), sinceDate: self.currentDate)
+                    self.timePicker.minimumDate = self.newDate
                 }
                 else {
                     
@@ -157,6 +159,17 @@ final class ReceiptViewController: UIViewController {
                     self.newDate = NSDate(timeInterval: (15 * 60), sinceDate: self.currentDate)  // add 15 minutes
 
                     self.timePicker.minimumDate = self.newDate // set the current date/time as a minimum
+                    
+                    
+                    let compareResult = self.newDate.compare(NSDate())
+                    
+                    if compareResult == NSComparisonResult.OrderedAscending {
+                        self.timePicker.date = self.newDate // defaults to current time but shows how to use it.
+                    }
+                    else {
+                        self.timePicker.date = NSDate()
+                    }
+                    
                 }
                 
                 if  closeTime == "Later" {
@@ -175,23 +188,11 @@ final class ReceiptViewController: UIViewController {
                     self.timePicker.maximumDate = self.newDate2
 
                 }
-                
-                
-                let compareResult = self.newDate.compare(NSDate())
-                
-                if compareResult == NSComparisonResult.OrderedAscending {
-                    self.timePicker.date = self.newDate // defaults to current time but shows how to use it.
-                }
-                else {
-                    self.timePicker.date = NSDate()
-                }
 
             }
             
         }
         
-        
-
     }
     
     @IBAction func completeOrder(sender: AnyObject) {
@@ -212,6 +213,15 @@ final class ReceiptViewController: UIViewController {
                 order["fhooderId"] = fhooderID
                 order["itemsId"] = Fhoodie.selectedItemObjectId!
                 order["itemQty"] = Fhoodie.selectedItemCount!
+                order["pickupTime"] = self.timePicker.date
+                order["orderStatus"] = "Made"
+                
+                let acl = PFACL()
+                acl.publicReadAccess = true
+                acl.publicWriteAccess = true
+                
+                order.ACL = acl
+                
                 
                 order.saveInBackgroundWithBlock({ (success: Bool, error2: NSError?) -> Void in
                     if success {

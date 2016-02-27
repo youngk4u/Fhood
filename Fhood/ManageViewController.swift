@@ -39,6 +39,8 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     var aboutFhooder : String = ""
     var fhooderPic : UIImage?
     var fhooderFirstName : String?
+    var badgeCount : Int = 0
+    var timer : NSTimer?
     
     var formatter = NSNumberFormatter()
     
@@ -66,7 +68,6 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         
         
         NSNotificationCenter.defaultCenter().postNotificationName("load1", object: nil)
-        
         
         // Configure reveal for this view
         let revealController = self.revealViewController()
@@ -103,6 +104,57 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         HUD.dismiss()
 
     }
+    
+    func isOpen (notification: NSNotification) {
+        
+        
+    
+    }
+    
+    
+    func ordersQuery () {
+        
+        if Fhooder.isOpen == true {
+        
+            let user = PFUser.currentUser()!
+            let query = PFQuery(className: "Fhooder")
+            let id = (user.valueForKey("fhooder")?.objectId)! as String
+            query.getObjectInBackgroundWithId(id) { (fhooder, error) -> Void in
+                
+                if error == nil && fhooder != nil {
+                    
+                    let relation = fhooder!.relationForKey("orders")
+                    let query2 = relation.query()
+                    
+                    query2.orderByAscending("createdAt")
+                    query2.findObjectsInBackgroundWithBlock({ (orders: [PFObject]?, error2: NSError?) -> Void in
+                        if error2 == nil && orders != nil {
+                            
+                            self.badgeCount = 0
+                            
+                            for order in orders! {
+                                
+                                let orderStatus = order["orderStatus"] as! String
+                    
+                                if orderStatus == "Made" {
+                                    self.badgeCount = self.badgeCount + 1
+                                    
+                                    let tabItem = self.tabBarController!.tabBar.items?[1]
+                                    if self.badgeCount != 0 {
+                                        tabItem!.badgeValue = String(self.badgeCount)
+                                    }
+                                }
+                                
+                            }
+                
+                        }
+                    })
+                    
+                }
+            }
+        }
+    }
+    
     
     func segueToAddItemView () {
         
@@ -284,6 +336,15 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         else {
             self.openNowOrClose.text = "CLOSED"
             self.openNowOrClose.textColor = UIColor.redColor()
+        }
+        
+        
+        // If shop is opened timer goes off to get notified with new orders
+        if Fhooder.isOpen == true {
+            self.timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: ("ordersQuery"), userInfo: nil, repeats: true)
+        }
+        else {
+            self.timer = nil
         }
     }
     

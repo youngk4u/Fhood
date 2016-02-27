@@ -363,8 +363,8 @@
 		63936A571BA80EB000D90CDF /* Fhooder */ = {
 			isa = PBXGroup;
 			children = (
-				63F547471BC751B600299899 /* CookingTimeViewController.swift */,
 				636CB1681B9452D100674C91 /* FhooderTabBarController.swift */,
+				63F547471BC751B600299899 /* CookingTimeViewController.swift */,
 				636CB16A1B9452FC00674C91 /* ManageViewController.swift */,
 				636CB1701B94536400674C91 /* OrdersViewController.swift */,
 				63EF67011BD1EFDB0068D531 /* OrdersDetailViewController.swift */,

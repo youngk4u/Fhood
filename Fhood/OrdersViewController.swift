@@ -23,6 +23,9 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         // TableView Delegates
         self.TableView.delegate = self
         self.TableView.dataSource = self
+        
+        self.navigationController!.tabBarItem.badgeValue = nil
+        
     }
 
     // Table View

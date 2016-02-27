@@ -149,6 +149,7 @@ final class AccountViewController: UIViewController  {
                     if fhooder as! NSObject == true {
                         Fhooder.fhooderSignedIn = true
                         Router.route(animated: true)
+                        
                     }
 
                     else {
@@ -165,7 +166,25 @@ final class AccountViewController: UIViewController  {
                     animate()
                 }
                 else {
+                    
                     Fhooder.fhooderSignedIn = false
+                    Fhooder.isOpen = false
+                    
+                    // Turn off the badge notification timer
+                    NSNotificationCenter.defaultCenter().postNotificationName("load3", object: nil)
+                    
+                    
+                    let query = PFQuery(className: "Fhooder")
+                    query.getObjectInBackgroundWithId(Fhooder.objectID!) { (fhooder: PFObject?, error: NSError?) -> Void in
+                        if error == nil && fhooder != nil {
+                            
+                            fhooder!["isOpen"] = Fhooder.isOpen
+                            fhooder?.saveInBackground()
+                            
+                        }
+                        
+                        
+                    }
                     Router.route(animated: true)
                 }
             }
