@@ -67,7 +67,7 @@ final class BubbleBackgroundView: SMCalloutBackgroundView {
 
     private func sharedInit() {
         dispatch_once(&BubbleBackgroundView.initOnceToken) {
-            let calloutArrow = SMCalloutBackgroundView.performSelector("embeddedImageNamed:", withObject: "CalloutArrow")
+            let calloutArrow = SMCalloutBackgroundView.performSelector(Selector("embeddedImageNamed:"), withObject: "CalloutArrow")
             guard let arrowImage = calloutArrow?.takeUnretainedValue() as? UIImage else {
                 return assertionFailure("arrow couldn't be created")
             }

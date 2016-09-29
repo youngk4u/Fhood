@@ -66,7 +66,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         
         
         // Reload data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadInfo:",name:"loadInfoView", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddItemViewController.loadInfo(_:)),name:"loadInfoView", object: nil)
         
         // Textfield Delegate
         self.menuNameTextfield.delegate = self
@@ -133,7 +133,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
             keyboardDoneButtonView.sizeToFit()
             
             // Setup the buttons to be put in the system.
-            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("doneButton") )
+            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddItemViewController.doneButton) )
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
             item.tintColor = UIColor.blackColor()
             let toolbarButtons = [flexibleSpace, item, flexibleSpace]
@@ -154,8 +154,8 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddItemViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddItemViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     
@@ -252,7 +252,6 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     }
     
     
-    
     // TableView
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
@@ -265,7 +264,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         cell.questionLabel.text = self.questionArray[indexPath.row]
         
         cell.answerSegment.layer.setValue(indexPath.row, forKey: "index")
-        cell.answerSegment.addTarget(self, action: "segment:", forControlEvents: .ValueChanged)
+        cell.answerSegment.addTarget(self, action: #selector(AddItemViewController.segment(_:)), forControlEvents: .ValueChanged)
         cell.answerSegment.selectedSegmentIndex = 2
         
         // Make the insets to zero

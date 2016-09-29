@@ -67,11 +67,11 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
         // Account Icon
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "userCircle2"),
-            style: UIBarButtonItemStyle.Plain, target: revealController, action: "revealToggle:")
+                                                                style: UIBarButtonItemStyle.Plain, target: revealController, action: #selector(revealController.revealToggle))
 
         // Filter Icon
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Filter 2"),
-            style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
+                                                                 style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapViewController.filterAction))
         
         
     }
@@ -89,8 +89,10 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     func reloadAnnotations() {
         
         //Put Fhooders on the map
-        PFGeoPoint.geoPointForCurrentLocationInBackground { (var point: PFGeoPoint?, error: NSError?) -> Void in
+        PFGeoPoint.geoPointForCurrentLocationInBackground { ( point: PFGeoPoint?, error: NSError?) -> Void in
             if error == nil {
+                
+                var point = PFGeoPoint()
                 
                 if self.userLoc != nil {
                     point = PFGeoPoint(location: self.userLoc)
@@ -98,7 +100,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                 
                 let query = PFQuery(className: "Fhooder")
                 query.limit = 10
-                query.whereKey("location", nearGeoPoint: point!, withinMiles: self.zoomWithinMiles)
+                query.whereKey("location", nearGeoPoint: point, withinMiles: self.zoomWithinMiles)
                 query.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
                     if (error == nil) {
                         
@@ -146,8 +148,9 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         searchBar.resignFirstResponder()
     }
 
-    /*
+    
     func filterAction(sender: AnyObject) {
+        /*
         if filterMenu == nil {
             let sections = [FilterMenuSectionInfo(titles: ["Less than $5", "$5 ~ $10", "More than $10"]),
                 FilterMenuSectionInfo(titles: ["Highest rated", "Most reviewed"]),
@@ -163,7 +166,8 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
             filterMenu?.show()
         }
 
-        filterShown = !filterShown
+        filterShown = !filte_ rShown
+        */
     }
 
     func filterMenuViewDidSelect(section: Int, subMenu: Int) {
@@ -171,11 +175,10 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         if (section == 1 && subMenu == 1) {
 
         }
-        else if (section == 1 && subMenu == 2) {
+        else if (section == 1 && subMenu ==  2) {
 
         }
     }
-*/
 
 
     

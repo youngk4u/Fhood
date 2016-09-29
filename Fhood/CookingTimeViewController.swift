@@ -68,7 +68,7 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
         
         }
         
-        self.cookingSwitch.addTarget(self, action: "switchState:", forControlEvents: UIControlEvents.ValueChanged)
+        self.cookingSwitch.addTarget(self, action: #selector(CookingTimeViewController.switchState(_:)), forControlEvents: UIControlEvents.ValueChanged)
        
     }
     
@@ -156,7 +156,7 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
             dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
             openTextfield.text = dateFormatter.stringFromDate(newDate)
             
-            datePickerView.addTarget(self, action: Selector("datePickerValueChanged:"), forControlEvents: UIControlEvents.ValueChanged)
+            datePickerView.addTarget(self, action: #selector(CookingTimeViewController.datePickerValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         }
         else if textField == self.closeTextfield {
             
@@ -189,7 +189,7 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
             UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
                 self.view.frame.origin.y -= 100
             })
-            datePickerView.addTarget(self, action: Selector("datePickerValueChanged2:"), forControlEvents: UIControlEvents.ValueChanged)
+            datePickerView.addTarget(self, action: #selector(CookingTimeViewController.datePickerValueChanged2(_:)), forControlEvents: UIControlEvents.ValueChanged)
         }
         return true
     }
@@ -202,8 +202,8 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
         
         if sender == closeTextfield {
         // Setup the buttons to be put in the system.
-            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("pickerDoneButton2") )
-            let item2 = UIBarButtonItem(title: "Later", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("laterButton") )
+            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CookingTimeViewController.pickerDoneButton2) )
+            let item2 = UIBarButtonItem(title: "Later", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CookingTimeViewController.laterButton) )
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
             item.tintColor = UIColor.blackColor()
             let toolbarButtons = [flexibleSpace, item, flexibleSpace, item2]
@@ -212,8 +212,8 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
             sender.inputAccessoryView = keyboardDoneButtonView
         }
         else {
-            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("pickerDoneButton") )
-            let item2 = UIBarButtonItem(title: "Now", style: UIBarButtonItemStyle.Plain, target: self, action: Selector("nowButton"))
+            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CookingTimeViewController.pickerDoneButton) )
+            let item2 = UIBarButtonItem(title: "Now", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CookingTimeViewController.nowButton))
             let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
             item.tintColor = UIColor.blackColor()
             let toolbarButtons = [flexibleSpace, item, flexibleSpace, item2]

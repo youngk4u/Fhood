@@ -57,7 +57,7 @@ final class ItemDetailViewController: UIViewController {
         
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
-        
+      
         self.detailTitle.text = Fhooder.itemNames![Fhooder.itemIndex!]
         self.detailImage.image = Fhooder.itemPic!
         self.detailPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![Fhooder.itemIndex!])
@@ -66,7 +66,7 @@ final class ItemDetailViewController: UIViewController {
         
         
         // Set the prefernece images sorted
-        for var i = 0; i < 8; i++ {
+        for i in 0 ..< 8 {
             
             if Fhooder.itemPreferences![Fhooder.itemIndex!][i] == false {
                 self.preferenceSet[i] = ""
@@ -80,7 +80,7 @@ final class ItemDetailViewController: UIViewController {
                 return true
             } else {
                 return a.localizedCaseInsensitiveCompare(b) == .OrderedAscending
-            }
+           }
         }
         
         if self.preferenceSet[0] != "" {
@@ -125,11 +125,11 @@ final class ItemDetailViewController: UIViewController {
         
         
         // Detail view image tap to see ingredients
-        let tapGesture = UITapGestureRecognizer(target: self, action: "imageFlipped:")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ItemDetailViewController.imageFlipped(_:)))
         self.detailImage.addGestureRecognizer(tapGesture)
         self.detailImage.userInteractionEnabled = true
         
-        let tapGestureBack = UITapGestureRecognizer(target: self, action: "imageFlipBack:")
+        let tapGestureBack = UITapGestureRecognizer(target: self, action: #selector(ItemDetailViewController.imageFlipBack(_:)))
         self.detailBackImage.addGestureRecognizer(tapGestureBack)
         self.detailBackImage.userInteractionEnabled = true
 
@@ -325,7 +325,6 @@ final class ItemDetailViewController: UIViewController {
             
             query.getObjectInBackgroundWithId(ID) { (stock: PFObject?, error: NSError?) -> Void in
                 if error != nil {
-                    print(error)
                 }
                 else if let stock = stock {
                     stock["dailyQuantity"] = Fhooder.dailyQuantity![Fhooder.itemIndex!]
@@ -336,7 +335,6 @@ final class ItemDetailViewController: UIViewController {
                         if success {
                            NSNotificationCenter.defaultCenter().postNotificationName("load2", object: nil)
                             self.dismissViewControllerAnimated(true, completion: nil)
-                            
                         }
                         else {
                             print("error")

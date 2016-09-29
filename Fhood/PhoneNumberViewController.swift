@@ -36,7 +36,8 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PhoneNumberViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        
     }
 
     

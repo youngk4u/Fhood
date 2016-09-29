@@ -88,7 +88,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         
         // Reload data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadProfile:",name:"loadProfileView", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpViewController.loadProfile(_:)),name:"loadProfileView", object: nil)
         
         
         self.statePicker = UIPickerView()
@@ -262,8 +262,8 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     
@@ -576,6 +576,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
                     
                     user!["fhooder"] = applicant
                     user!["applied"] = true
+                    user!["fhooderId"] = applicant.objectId
                     
                     do {
                         try user!.save()

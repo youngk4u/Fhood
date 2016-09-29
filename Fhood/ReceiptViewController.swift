@@ -24,7 +24,7 @@ final class ReceiptViewController: UIViewController {
     @IBOutlet weak var quantityFive: UILabel!
     @IBOutlet weak var quantitySix: UILabel!
     @IBOutlet weak var quantitySeven: UILabel!
-    var quantityArray: [Int] = [0,0,0,0,0,0,0]
+    var quantityArray: [Int] = []
     
     @IBOutlet weak var itemOne: UILabel!
     @IBOutlet weak var itemTwo: UILabel!
@@ -43,13 +43,15 @@ final class ReceiptViewController: UIViewController {
     @IBOutlet weak var priceSix: UILabel!
     @IBOutlet weak var priceSeven: UILabel!
     var priceTextArray: [String] = ["","","","","","",""]
-
+    var priceArrayDouble: [Double] = [0.0,0.0,0.0,0.0,0.0,0.0,0.0]
+    
     @IBOutlet weak var timePicker: UIDatePicker!
     
     var currentDate: NSDate!
     var newDate: NSDate!
     var newDate2: NSDate!
     var closeDate: NSDate!
+    var userImageFile: PFFile!
     
     var formatter = NSNumberFormatter()
     
@@ -61,55 +63,55 @@ final class ReceiptViewController: UIViewController {
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
         
-        self.fhooderName.text = Fhooder.shopName!
-
         // Put the order list on the receipt
-        for var x = 0; x < Fhoodie.selectedItemCount!.count; x++ {
+        for x in 0 ..< Fhoodie.selectedItemCount!.count {
+            
             if x == 0 && x < Fhoodie.selectedItemCount!.count {
                 self.quantityOne.text = String("\(Fhoodie.selectedItemCount![0])")
-                self.quantityArray[0] = Fhoodie.selectedItemCount![0]
+                self.quantityArray.append(Fhoodie.selectedItemCount![0])
                 self.itemOne.text = Fhoodie.selectedItemNames![0]
+                print(self.itemNameArray[0])
                 self.itemNameArray[0] = Fhoodie.selectedItemNames![0]
                 self.priceOne.text = formatter.stringFromNumber(Fhoodie.selectedItemPrices![0] * Double(Fhoodie.selectedItemCount![0]))
                 self.priceTextArray[0] = self.priceOne.text!
             } else if x == 1 && x < Fhoodie.selectedItemCount!.count {
                 self.quantityTwo.text = String("\(Fhoodie.selectedItemCount![1])")
-                self.quantityArray[1] = Fhoodie.selectedItemCount![1]
+                self.quantityArray.append(Fhoodie.selectedItemCount![1])
                 self.itemTwo.text = Fhoodie.selectedItemNames![1]
                 self.itemNameArray[1] = Fhoodie.selectedItemNames![1]
                 self.priceTwo.text = formatter.stringFromNumber(Fhoodie.selectedItemPrices![1] * Double(Fhoodie.selectedItemCount![1]))
                 self.priceTextArray[1] = self.priceTwo.text!
             } else if x == 2 && x < Fhoodie.selectedItemCount!.count {
                 self.quantityThree.text = String("\(Fhoodie.selectedItemCount![2])")
-                self.quantityArray[2] = Fhoodie.selectedItemCount![2]
+                self.quantityArray.append(Fhoodie.selectedItemCount![2])
                 self.itemThree.text = Fhoodie.selectedItemNames![2]
                 self.itemNameArray[2] = Fhoodie.selectedItemNames![2]
                 self.priceThree.text = formatter.stringFromNumber(Fhoodie.selectedItemPrices![2] * Double(Fhoodie.selectedItemCount![2]))
                 self.priceTextArray[2] = self.priceThree.text!
             } else if x == 3 && x < Fhoodie.selectedItemCount!.count {
                 self.quantityFour.text = String("\(Fhoodie.selectedItemCount![3])")
-                self.quantityArray[3] = Fhoodie.selectedItemCount![3]
+                self.quantityArray.append(Fhoodie.selectedItemCount![3])
                 self.itemFour.text = Fhoodie.selectedItemNames![3]
                 self.itemNameArray[3] = Fhoodie.selectedItemNames![3]
                 self.priceFour.text = formatter.stringFromNumber(Fhoodie.selectedItemPrices![3] * Double(Fhoodie.selectedItemCount![3]))
                 self.priceTextArray[3] = self.priceFour.text!
             } else if x == 4 && x < Fhoodie.selectedItemCount!.count {
                 self.quantityFive.text = String("\(Fhoodie.selectedItemCount![4])")
-                self.quantityArray[4] = Fhoodie.selectedItemCount![4]
+                self.quantityArray.append(Fhoodie.selectedItemCount![4])
                 self.itemFive.text = Fhoodie.selectedItemNames![4]
                 self.itemNameArray[4] = Fhoodie.selectedItemNames![4]
                 self.priceFive.text = formatter.stringFromNumber(Fhoodie.selectedItemPrices![4] * Double(Fhoodie.selectedItemCount![4]))
                 self.priceTextArray[4] = self.priceFive.text!
             } else if x == 5 && x < Fhoodie.selectedItemCount!.count {
                 self.quantitySix.text = String("\(Fhoodie.selectedItemCount![5])")
-                self.quantityArray[5] = Fhoodie.selectedItemCount![5]
+                self.quantityArray.append(Fhoodie.selectedItemCount![5])
                 self.itemSix.text = Fhoodie.selectedItemNames![5]
                 self.itemNameArray[5] = Fhoodie.selectedItemNames![5]
                 self.priceSix.text = formatter.stringFromNumber(Fhoodie.selectedItemPrices![5] * Double(Fhoodie.selectedItemCount![5]))
                 self.priceTextArray[5] = self.priceSix.text!
             } else if x == 6 && x < Fhoodie.selectedItemCount!.count {
                 self.quantitySeven.text = String("\(Fhoodie.selectedItemCount![6])")
-                self.quantityArray[6] = Fhoodie.selectedItemCount![6]
+                self.quantityArray.append(Fhoodie.selectedItemCount![6])
                 self.itemSeven.text = Fhoodie.selectedItemNames![6]
                 self.itemNameArray[6] = Fhoodie.selectedItemNames![6]
                 self.priceSeven.text = formatter.stringFromNumber(Fhoodie.selectedItemPrices![6] * Double(Fhoodie.selectedItemCount![6]))
@@ -117,6 +119,7 @@ final class ReceiptViewController: UIViewController {
             } else {
                 return
             }
+            
         }
         
         // Stripe fee (2.9% + 30 cents) and taxes (7.1% - Stripe) added to every order
@@ -195,6 +198,31 @@ final class ReceiptViewController: UIViewController {
         
     }
     
+    
+    func pushNotification () {
+        
+        let uQuery = PFUser.query()!
+        uQuery.whereKey("fhooderId", equalTo: Fhooder.objectID!)
+        
+        let iQuery = PFInstallation.query()!
+        iQuery.whereKey("user", matchesQuery: uQuery)
+        
+        let push : PFPush = PFPush()
+        push.setQuery(iQuery)
+        
+        let pushData : NSDictionary = NSDictionary(objects: ["You've got an order!", "ordered", "1"], forKeys: ["alert", "type", "number"])
+        push.setData(pushData as [NSObject : AnyObject])
+        
+        do {
+            try push.sendPush()
+        } catch {
+            print("Push didn't work")
+        }
+        
+
+    }
+    
+    
     @IBAction func completeOrder(sender: AnyObject) {
         let alert = UIAlertController(title: "Confirm your order", message:"The total amount of \(self.totalAmountDue.text!) will be charged to your account. Would you like to proceed?", preferredStyle: .Alert)
         let cancel = UIAlertAction(title: "Cancel", style: .Default) { _ in}
@@ -208,13 +236,22 @@ final class ReceiptViewController: UIViewController {
             
             user?.getObjectInBackgroundWithId(userID, block: { (user: PFObject?, error: NSError?) -> Void in
                 
+                if PFUser.currentUser()!.objectForKey("profilePhoto") != nil {
+                    self.userImageFile = PFUser.currentUser()!["profilePhoto"] as? PFFile
+                }
+                
+                let userName = PFUser.currentUser()!.objectForKey("firstName")
                 let order = PFObject(className: "Orders")
+                order["userPic"] = self.userImageFile
+                order["userName"] = userName
                 order["userId"] = userID
                 order["fhooderId"] = fhooderID
                 order["itemsId"] = Fhoodie.selectedItemObjectId!
                 order["itemQty"] = Fhoodie.selectedItemCount!
                 order["pickupTime"] = self.timePicker.date
                 order["orderStatus"] = "Made"
+                order["itemNames"] = self.itemNameArray as [String]
+                order["itemPrices"] = self.priceArrayDouble as [Double]
                 
                 let acl = PFACL()
                 acl.publicReadAccess = true
@@ -225,6 +262,10 @@ final class ReceiptViewController: UIViewController {
                 
                 order.saveInBackgroundWithBlock({ (success: Bool, error2: NSError?) -> Void in
                     if success {
+                        
+                        print(order.objectId)
+                        Fhoodie.fhoodieOrderID = order.objectId
+                        print(Fhoodie.fhoodieOrderID)
                         
                         let relation = user?.relationForKey("orders")
                         relation!.addObject(order)
@@ -272,7 +313,7 @@ final class ReceiptViewController: UIViewController {
                                                 item.saveInBackground()
                                                 
                                                 if i < ((Fhoodie.selectedItemObjectId?.count)! - 1) {
-                                                    i++
+                                                    i += 1
                                                 }
                                             }
                                         }
@@ -293,6 +334,8 @@ final class ReceiptViewController: UIViewController {
                     }
                     
                 })
+                
+                self.pushNotification()
                 
             })
             

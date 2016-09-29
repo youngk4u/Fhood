@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 final class ConfirmViewController: UIViewController {
 
@@ -32,7 +33,12 @@ final class ConfirmViewController: UIViewController {
         
         self.welcomeSign.text = "Welcome to \(Fhooder.shopName!)!"
         
-        self.fhooderFace.image = UIImage(named: Fhooder.fhooderFace!)
+        self.fhooderFace.image = Fhooder.fhooderPicture!
         self.fhooderFaceName.text = Fhooder.fhooderFirstName!
     }
+    
+
+    
+    
+    
 }

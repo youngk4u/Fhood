@@ -68,7 +68,7 @@ final class DetailViewController: UIViewController {
         
 
         // Set the preference images sorted
-        for var i = 0; i < 8; i++ {
+        for i in 0 ..< 8 {
             
             if Fhooder.itemPreferences![Fhoodie.selectedIndex!][i] == false {
                 self.preferenceSet[i] = ""
@@ -112,11 +112,11 @@ final class DetailViewController: UIViewController {
 
         
         // Detail view image tap to see ingredients
-        let tapGesture = UITapGestureRecognizer(target: self, action: "imageFlipped:")
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.imageFlipped(_:)))
         self.detailImage.addGestureRecognizer(tapGesture)
         self.detailImage.userInteractionEnabled = true
         
-        let tapGestureBack = UITapGestureRecognizer(target: self, action: "imageFlipBack:")
+        let tapGestureBack = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.imageFlipBack(_:)))
         self.detailBackImage.addGestureRecognizer(tapGestureBack)
         self.detailBackImage.userInteractionEnabled = true
         
