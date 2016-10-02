@@ -27,12 +27,12 @@ final class AccountViewController: UIViewController  {
         super.viewDidLoad()
         
         // Reload data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadInfo:",name:"loadSettings", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AccountViewController.loadInfo(_:)),name:"loadSettings", object: nil)
         
         loadPicAndName()
                 
         // Connect to switch function
-        self.fhooderSwitch.addTarget(self, action: "toggleSwitch:", forControlEvents: UIControlEvents.ValueChanged)
+        self.fhooderSwitch.addTarget(self, action: #selector(AccountViewController.toggleSwitch(_:)), forControlEvents: UIControlEvents.ValueChanged)
     
         // Make join window and sign up button round
         self.joinWindow.layer.cornerRadius = 5
@@ -106,7 +106,7 @@ final class AccountViewController: UIViewController  {
                         // Profile pic becomes round with white border
                         let image = UIImageView(image: self.fhoodiePic.image)
                         self.fhoodiePic.image = nil // Get rid of the duplicate
-                        image.frame = CGRectMake(0, 0, 80, 80)
+                        image.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
                         image.layer.masksToBounds = false
                         image.layer.cornerRadius = 13
                         image.layer.cornerRadius = image.frame.size.height/2
@@ -148,7 +148,7 @@ final class AccountViewController: UIViewController  {
                     
                     if fhooder as! NSObject == true {
                         Fhooder.fhooderSignedIn = true
-                        Router.route(animated: true)
+                        Router.route(true)
                         
                     }
 
@@ -167,25 +167,31 @@ final class AccountViewController: UIViewController  {
                 }
                 else {
                     
-                    Fhooder.fhooderSignedIn = false
-                    Fhooder.isOpen = false
-                    
-                    // Turn off the badge notification timer
-                    NSNotificationCenter.defaultCenter().postNotificationName("load3", object: nil)
-                    
-                    
-                    let query = PFQuery(className: "Fhooder")
-                    query.getObjectInBackgroundWithId(Fhooder.objectID!) { (fhooder: PFObject?, error: NSError?) -> Void in
-                        if error == nil && fhooder != nil {
-                            
-                            fhooder!["isOpen"] = Fhooder.isOpen
-                            fhooder?.saveInBackground()
-                            
-                        }
+                    if Fhooder.isOpen == true {
                         
+                        let alert = UIAlertController(title: "Wait", message: "You have to close the shop before you shop!", preferredStyle: UIAlertControllerStyle.Alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        
+                        self.fhooderSwitch.on = true
                         
                     }
-                    Router.route(animated: true)
+                    else {
+                        Fhooder.fhooderSignedIn = false
+                            
+                        let query = PFQuery(className: "Fhooder")
+                        query.getObjectInBackgroundWithId(Fhooder.objectID!) { (fhooder: PFObject?, error: NSError?) -> Void in
+                            if error == nil && fhooder != nil {
+                                
+                                fhooder!["isOpen"] = Fhooder.isOpen
+                                fhooder?.saveInBackground()
+                                
+                            }
+                        }
+                        
+                    Router.route(true)
+                        
+                    }
                 }
             }
         }

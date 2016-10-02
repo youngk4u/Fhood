@@ -29,7 +29,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var textFieldCloseButton: UIButton!
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
+    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[0].rootViewController!
     
     var kbHeight: CGFloat!
     
@@ -37,7 +37,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
                 
         // Reload data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadProfile:",name:"loadProfileView", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.loadProfile(_:)),name:"loadProfileView", object: nil)
         
         // Navigation bar appearance
         let nav = self.navigationController?.navigationBar
@@ -69,8 +69,8 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func loadProfile(notification: NSNotification){

@@ -16,7 +16,7 @@ final class DescriptionIngredientsViewController: UIViewController, UITextViewDe
 
     @IBOutlet var textView: UITextView!
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
+    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[0].rootViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()

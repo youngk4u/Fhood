@@ -10,8 +10,9 @@ import Foundation
 
 struct Fhoodie {
     
-    static var fhoodieID: Int?
+    static var fhoodieID: String?
     static var fhoodiePic: String?
+    static var fhoodiePhoto: UIImage?
     
     static var fhoodieFirstName: String?
     static var fhoodieLastName: String?
@@ -31,6 +32,7 @@ struct Fhoodie {
     static var selectedItemPrices: [Double]?
     static var selectedItemCount: [Int]? = [0, 0, 0, 0, 0, 0, 0]
     static var selectedItemObjectId: [String]?
+    static var fhoodieOrderID: String?
     static var isAnythingSelected: Bool?
     static var selectedTotalItemPrice: Double?
     static var totalDue: Double?

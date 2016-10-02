@@ -34,7 +34,7 @@ final class BubbleBackgroundView: SMCalloutBackgroundView {
 
             let layer = CALayer()
             layer.frame = self.bounds
-            layer.contents = maskImage.CGImage
+            layer.contents = maskImage!.CGImage
             return layer
         }
         set { }
@@ -67,7 +67,7 @@ final class BubbleBackgroundView: SMCalloutBackgroundView {
 
     private func sharedInit() {
         dispatch_once(&BubbleBackgroundView.initOnceToken) {
-            let calloutArrow = SMCalloutBackgroundView.performSelector("embeddedImageNamed:", withObject: "CalloutArrow")
+            let calloutArrow = SMCalloutBackgroundView.performSelector(Selector("embeddedImageNamed:"), withObject: "CalloutArrow")
             guard let arrowImage = calloutArrow?.takeUnretainedValue() as? UIImage else {
                 return assertionFailure("arrow couldn't be created")
             }
@@ -102,12 +102,12 @@ private extension UIImage {
 
         let imageRect = CGRect(origin: CGPointZero, size: self.size)
         let context = UIGraphicsGetCurrentContext()
-        CGContextTranslateCTM(context, 0, self.size.height)
-        CGContextScaleCTM(context, 1, -1)
-        CGContextClipToMask(context, imageRect, self.CGImage)
+        CGContextTranslateCTM(context!, 0, self.size.height)
+        CGContextScaleCTM(context!, 1, -1)
+        CGContextClipToMask(context!, imageRect, self.CGImage!)
         color.setFill()
-        CGContextFillRect(context, imageRect)
+        CGContextFillRect(context!, imageRect)
 
-        return UIGraphicsGetImageFromCurrentImageContext()
+        return UIGraphicsGetImageFromCurrentImageContext()!
     }
 }

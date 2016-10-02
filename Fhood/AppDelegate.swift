@@ -10,9 +10,11 @@ import UIKit
 import Parse
 import FBSDKCoreKit
 import ParseFacebookUtilsV4
+import UserNotifications
+
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate {
+final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
 
@@ -34,8 +36,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             // "content_available" was used to trigger a background push (introduced in iOS 7).
             // In that case, we skip tracking here to avoid double counting the app-open.
             
-            let preBackgroundPush = !application.respondsToSelector("backgroundRefreshStatus")
-            let oldPushHandlerOnly = !self.respondsToSelector("application:didReceiveRemoteNotification:fetchCompletionHandler:")
+            let preBackgroundPush = !application.respondsToSelector(Selector("backgroundRefreshStatus"))
+            let oldPushHandlerOnly = !self.respondsToSelector(#selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
             var noPushPayload = false;
             if let options = launchOptions {
                 noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
@@ -45,17 +47,41 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
-        let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-        let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-        application.registerUserNotificationSettings(settings)
+        let center = UNUserNotificationCenter.currentNotificationCenter()
+        center.delegate = self
+        
+        center.requestAuthorizationWithOptions([.Sound, .Alert, .Badge]) { (granted, error) in
+            
+        }
+        
         application.registerForRemoteNotifications()
-
-
         
         
-        // Since we are not using any default XIB we have to create the window.
+//        let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
+//        let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
+//        application.registerUserNotificationSettings(settings)
+//        application.registerForRemoteNotifications()
+
+
+        if PFUser.currentUser() != nil {
+            let user = PFUser.currentUser()!
+            let query = PFQuery(className: "Fhooder")
+            let id = (user.valueForKey("fhooder")?.objectId)! as String
+            query.getObjectInBackgroundWithId(id) { (fhooder: PFObject?, error: NSError?) -> Void in
+                if error == nil && fhooder != nil {
+                    let openStatus = fhooder!["isOpen"] as! Bool
+                    if openStatus == true {
+                        Fhooder.fhooderSignedIn = true
+                        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                        Router.route(false)
+                        self.window?.makeKeyAndVisible()
+                    }
+                }
+            }
+        }
+    
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        Router.route(animated: false)
+        Router.route(false)
         self.window?.makeKeyAndVisible()
 
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
@@ -69,10 +95,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Push Notifications
     //--------------------------------------
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+    
+//    func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+//        
+//        UIApplication.sharedApplication().registerForRemoteNotifications()
+//    }
+    
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceTok deviceToken: NSData) {
         let installation = PFInstallation.currentInstallation()
-        installation.setDeviceTokenFromData(deviceToken)
-        installation.saveInBackground()
+        installation!.setDeviceTokenFromData(deviceToken)
+        installation!.saveInBackground()
         
         PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
             if succeeded {
@@ -95,6 +128,25 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         PFPush.handlePush(userInfo)
         if application.applicationState == UIApplicationState.Inactive {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+        } else {
+            
+            let id = userInfo["type"] as? String
+            if id == "ordered" || id == "fhoodieCancelled" {
+                
+                let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Fhooder", bundle: nil)
+                let orderViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("FhooderTabController") as! FhooderTabBarController
+                orderViewController.selectedIndex = 1
+                self.window?.rootViewController = orderViewController
+            }
+            else if id == "fhooderCancelled" {
+                
+                let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let orderViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("orderViewController")
+                orderViewController.performSegueWithIdentifier("unwindToViewController", sender: self)
+            }
+            
+            PFPush.handlePush(userInfo)
+            NSNotificationCenter.defaultCenter().postNotificationName("OrderListLoad", object: nil)
         }
     }
     

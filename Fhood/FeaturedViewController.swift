@@ -31,7 +31,7 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
         // Account Icon
         let accountIcon = UIImage(named: "userCircle2")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
-            target: revealController, action: "revealToggle:")
+                                                                target: revealController, action: #selector(revealViewController().revealToggle))
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

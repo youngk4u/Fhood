@@ -50,7 +50,7 @@ final class BubbleView: UIView {
     }
 
     class func nibView(withAnnotation annotation: AnnotationObject?) -> BubbleView {
-        let view = NSBundle.mainBundle().loadNibNamed("BubbleView", owner: self, options: nil)[0]
+        let view = NSBundle.mainBundle().loadNibNamed("BubbleView", owner: self, options: nil)![0]
         let bubbleView = view as? BubbleView ?? BubbleView()
         bubbleView.annotation = annotation
         return bubbleView

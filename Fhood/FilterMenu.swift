@@ -126,7 +126,7 @@ final class FilterMenu: UIView {
             yOrigin += CGRectGetHeight(button.frame)
 
             btn.tag = i
-            btn.addTarget(self, action: "submenuItemAction:", forControlEvents: .TouchUpInside)
+            btn.addTarget(self, action: #selector(FilterMenu.submenuItemAction(_:)), forControlEvents: .TouchUpInside)
         }
 
         return view
@@ -181,7 +181,7 @@ final class FilterMenu: UIView {
                 button.setTitle("Type", forState: .Normal)
             }
 
-            button.addTarget(self, action: "triggerSubMenu:", forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FilterMenu.triggerSubMenu(_:)), forControlEvents: .TouchUpInside)
             button.tag = i
             button.alpha = 0
             button.enabled = false

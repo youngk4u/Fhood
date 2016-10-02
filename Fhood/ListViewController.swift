@@ -48,15 +48,15 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         // Account Icon
         let accountIcon = UIImage(named: "userCircle2")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
-            target: revealController, action: "revealToggle:")
+                                                                target: revealController, action: #selector(revealController.revealToggle))
 
         // Filter Icon
         let filterIcon = UIImage(named: "Filter 2")
-        let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: "filterAction:")
+        let rightBarButton = UIBarButtonItem(image: filterIcon, style: UIBarButtonItemStyle.Plain, target: self, action: #selector(ListViewController.filterAction(_:)))
         self.navigationItem.rightBarButtonItem = rightBarButton
         
         // Swipe to left only
-        let swipeLeft = UISwipeGestureRecognizer(target: self.revealViewController(), action: "revealToggle:")
+        let swipeLeft = UISwipeGestureRecognizer(target: revealController, action: #selector(revealController.revealToggle))
         swipeLeft.direction = UISwipeGestureRecognizerDirection.Left
         self.view.addGestureRecognizer(swipeLeft)
 
@@ -113,7 +113,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         let cell = tableView.dequeueReusableCellWithIdentifier("Tablecell") as! ListTableViewCell
 
         // Customize cell
-        for (var i = 0; i < self.array.count; i++) {
+        for _ in 0 ..< self.array.count {
             if indexPath.row == 0 {
                 fhooderOne()
             }
@@ -169,7 +169,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        self.selectedRow = indexPath.row
+        self.selectedRow = (indexPath as NSIndexPath).row
         
         if self.selectedRow == 0 {
             fhooderOne()

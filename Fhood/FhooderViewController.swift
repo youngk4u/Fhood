@@ -9,6 +9,8 @@
 import UIKit
 import Parse
 
+
+
 final class FhooderViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource  {
     
     @IBOutlet weak var shopName: UILabel!
@@ -67,12 +69,12 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         
         // Reload collectionview data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FhooderViewController.loadList(_:)),name:"load", object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList2:",name:"load2", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FhooderViewController.loadList2(_:)),name:"load2", object: nil)
         
         // Reload open/closed data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList3:",name:"load3", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FhooderViewController.loadList3(_:)),name:"load3", object: nil)
         
         
         NSNotificationCenter.defaultCenter().postNotificationName("load2", object: nil)
@@ -122,6 +124,13 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         Fhoodie.selectedTotalItemPrice = 0
 
     }
+    
+    
+    @IBAction func prepareForUnwindtoDetail(segue: UIStoryboardSegue){
+        
+    }
+    
+    
     
     // Reload collectionview function to use from other controllers
     func loadList(notification: NSNotification){
@@ -184,6 +193,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                     
                     self.phoneNumber.text = fhooder!.valueForKey("phone") as? String
                     self.restaurantType.text = "\(fhooder!.valueForKey("foodTypeOne")!), \(fhooder!.valueForKey("foodTypeTwo")!), \(fhooder!.valueForKey("foodTypeThree")!)"
+                    Fhooder.address = self.fhooderAddress.text
                     Fhooder.fhooderAboutMe = (fhooder!.valueForKey("shopDescription") as? String)!
                     Fhooder.fhooderFirstName = (fhooder!.valueForKey("firstName") as? String)!
                     Fhooder.isOpen = (fhooder!.valueForKey("isOpen") as? Bool)!
@@ -254,7 +264,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                                     Fhooder.dailyQuantity = self.arrItemCount
                                     
                                     if self.selectedItemCount == [] {
-                                        for var i = 0; i < items?.count; i++ {
+                                        for _ in 1...items!.count {
                                             self.selectedItemCount.append(0)
                                         }
                                     }
@@ -354,13 +364,13 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         }
 
         coCell.subtractButton.layer.setValue(indexPath.item, forKey: "index")
-        coCell.subtractButton.addTarget(self, action: "subtractItem:", forControlEvents: UIControlEvents.TouchUpInside)
+        coCell.subtractButton.addTarget(self, action: #selector(FhooderViewController.subtractItem(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         if Fhoodie.isAnythingSelected == false {
             self.doneButton.alpha = 0
             self.totalPrice.text = "$0.00"
         } else {
-            for var i = 0; i < Fhooder.itemNames!.count; i++ {
+            for i in 0 ..< Fhooder.itemNames!.count {
                 self.totalItemPrice += (Double(self.selectedItemCount[i]) * Fhooder.itemPrices![i])
             }
 
@@ -368,7 +378,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             self.totalPrice.text = formatter.stringFromNumber(Fhoodie.selectedTotalItemPrice!)
 
             self.doneButton.alpha = 1
-            self.doneButton.addTarget(self, action: "donePressed:", forControlEvents: UIControlEvents.TouchUpInside)
+            self.doneButton.addTarget(self, action: #selector(FhooderViewController.donePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         }
         return coCell
     }
@@ -378,10 +388,10 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     func subtractItem(sender: UIButton) {
         let i = sender.layer.valueForKey("index") as! Int
 
-        self.selectedItemCount[i]--
+        self.selectedItemCount[i] -= 1
         self.totalItemPrice = 0
         
-        for var i = 0; i < Fhooder.itemNames!.count; i++ {
+        for i in 0 ..< Fhooder.itemNames!.count {
             self.totalItemPrice += (Double(self.selectedItemCount[i]) * Fhooder.itemPrices![i])
         }
         Fhoodie.selectedTotalItemPrice! = self.totalItemPrice
@@ -412,14 +422,14 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             coCell.subtractButton.alpha = 0.8
             coCell.subtractButton.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
 
-            for var i = 0; i < self.selectedItemCount.count; i++ {
+            for i in 0 ..< self.selectedItemCount.count {
                 self.totalItemPrice += (Double(self.selectedItemCount[i]) * Fhooder.itemPrices![i])
             }
             Fhoodie.selectedTotalItemPrice! = self.totalItemPrice
 
             self.totalPrice.text = formatter.stringFromNumber(Fhoodie.selectedTotalItemPrice!)
             self.doneButton.alpha = 1
-            self.doneButton.addTarget(self, action: "donePressed:", forControlEvents: UIControlEvents.TouchUpInside)
+            self.doneButton.addTarget(self, action: #selector(FhooderViewController.donePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         } else if Fhoodie.selectedTotalItemPrice! == 0 {
             self.totalPrice.text = "$0.00"
         }
@@ -440,7 +450,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     }
 
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-        insetForSectionAtIndex section: Int) -> UIEdgeInsets
+        insetForSectionAt section: Int) -> UIEdgeInsets
     {
         return sectionInsets
     }
@@ -467,7 +477,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         else {
         
             // Organize the receipt list
-            for var i = 0; i < Fhooder.itemNames!.count; i++ {
+            for i in 0 ..< Fhooder.itemNames!.count {
                 if self.selectedItemCount[i] != 0 {
                     self.itemReceipt.append(Fhooder.itemNames![i])
                     self.qtyReceipt.append(self.selectedItemCount[i])

@@ -27,7 +27,7 @@ struct Router {
         }
     }
 
-    static func route(animated animated: Bool) {
+    static func route(animated: Bool) {
         guard let window = UIApplication.sharedApplication().delegate?.window! else { return }
         let rootViewController = self.rootViewController
 
@@ -36,14 +36,14 @@ struct Router {
         }
 
         let snapshotView = window.snapshotViewAfterScreenUpdates(true)
-        rootViewController.view.addSubview(snapshotView)
+        rootViewController.view.addSubview(snapshotView!)
         window.rootViewController = rootViewController
 
         UIView.animateWithDuration(0.5, animations: {
-            snapshotView.layer.opacity = 0
-            snapshotView.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5)
+            snapshotView!.layer.opacity = 0
+            snapshotView!.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5)
         }, completion: { _ in
-            snapshotView.removeFromSuperview()
+            snapshotView!.removeFromSuperview()
         })
     }
 }

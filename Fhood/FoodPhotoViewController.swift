@@ -14,7 +14,7 @@ final class FoodPhotoViewController: UIViewController, UIImagePickerControllerDe
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var saveButton: UIBarButtonItem!
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
+    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[0].rootViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +89,7 @@ final class FoodPhotoViewController: UIViewController, UIImagePickerControllerDe
         }
         
         let cropSquare = CGRectMake(positionX, positionY, width, height)
-        let imageRef = CGImageCreateWithImageInRect(image.CGImage, cropSquare)
+        let imageRef = CGImageCreateWithImageInRect(image.CGImage!, cropSquare)
         return UIImage(CGImage: imageRef!, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)
     }
     

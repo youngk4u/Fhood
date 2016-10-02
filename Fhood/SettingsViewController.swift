@@ -20,7 +20,7 @@ final class SettingsViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         
         // Reload tableView data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"loadSettings", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SettingsViewController.loadList(_:)),name:"loadSettings", object: nil)
                 
         let nav = self.navigationController?.navigationBar
         
@@ -98,7 +98,7 @@ final class SettingsViewController: UIViewController, UITableViewDataSource, UIT
         let logout = UIAlertAction(title: "Log out", style: .Default) { (action: UIAlertAction!) -> () in
             PFUser.logOutInBackgroundWithBlock { error in
                 Fhooder.fhooderSignedIn = false
-                Router.route(animated: true)
+                Router.route(true)
             }
         }
         alert.addAction(cancel)

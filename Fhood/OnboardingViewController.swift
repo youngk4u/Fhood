@@ -45,7 +45,7 @@ final class OnboardingViewController: UIViewController {
     }
 
     private func authenticate() {
-        guard let email = self.emailTextField.text, password = self.passwordTextField.text else { return }
+        guard let email = self.emailTextField.text, let password = self.passwordTextField.text else { return }
         
         HUD.show()
 
@@ -89,15 +89,16 @@ final class OnboardingViewController: UIViewController {
 
                 user.username = email
                 user.email = email
-                user["firstName"] = result?["first_name"]
-                user["lastName"] = result?["last_name"]
-                user["pictureUrl"] = result?["picture"]??["data"]??["url"]
+                user["firstName"] = result?["first_name"] as? String
+                user["lastName"] = result?["last_name"] as? String
+                user["pictureUrl"] = result?["picture"]??["data"]??["url"] as? String
                 user.saveInBackgroundWithBlock { _, error  in
                     self?.parseDidAuthenticate(withUser: user, error: nil)
                 }
             }
         }
     }
+    
 
     private func parseDidAuthenticate(withUser user: PFUser?, error: NSError?) {
         HUD.dismiss()
@@ -110,18 +111,24 @@ final class OnboardingViewController: UIViewController {
 
         self.emailTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
+        
+        
+        let installation: PFInstallation = PFInstallation.currentInstallation()!
+        installation["user"] = PFUser.currentUser()
+        installation.saveInBackground()
 
-        Router.route(animated: true)
+
+        Router.route(true)
     }
 
     private func validateInput() -> Bool {
-        guard let email = self.emailTextField.text where !email.isEmpty else {
+        guard let email = self.emailTextField.text  where !email.isEmpty else {
             self.showAlert(withMessage: "Please, enter an email before continuing!")
             self.emailTextField.becomeFirstResponder()
             return false
         }
 
-        guard let password = self.passwordTextField.text where !password.isEmpty else {
+        guard let password = self.passwordTextField.text  where !password.isEmpty else {
             self.showAlert(withMessage: "Please, enter a password before continuing!")
             self.passwordTextField.becomeFirstResponder()
             return false

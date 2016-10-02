@@ -58,13 +58,13 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         HUD.show()
         
         // Reload Parse data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList1:",name:"load1", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ManageViewController.loadList1(_:)),name:"load1", object: nil)
         
         // Reload collectionview data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList2:",name:"load2", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ManageViewController.loadList2(_:)),name:"load2", object: nil)
         
         // Reload open/closed data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList3:",name:"load3", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ManageViewController.loadList3(_:)),name:"load3", object: nil)
         
         
         NSNotificationCenter.defaultCenter().postNotificationName("load1", object: nil)
@@ -77,7 +77,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         // Account Icon
         let accountIcon = UIImage(named: "userCircle2")
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
-            target: revealController, action: "revealToggle:")
+                                                                target: revealController, action: #selector(revealController.revealToggle(_:)))
         
         // Logo
         let logo = UIImage(named: "FhoodLogo")
@@ -87,7 +87,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         // Fhooder Cooking time Icon
         let fhooderTime = UIImage(named: "FhooderOnIcon2")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: fhooderTime, style: UIBarButtonItemStyle.Plain,
-            target: self, action: "toCookingTimeView")
+            target: self, action: #selector(ManageViewController.toCookingTimeView))
 
         
         // TableView Delegate
@@ -99,7 +99,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
         
-        self.addButton.addTarget(self, action: "segueToAddItemView", forControlEvents: UIControlEvents.TouchUpInside)
+        self.addButton.addTarget(self, action: #selector(ManageViewController.segueToAddItemView), forControlEvents: UIControlEvents.TouchUpInside)
 
         HUD.dismiss()
 
@@ -340,12 +340,12 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
         
         
         // If shop is opened timer goes off to get notified with new orders
-        if Fhooder.isOpen == true {
-            self.timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: ("ordersQuery"), userInfo: nil, repeats: true)
-        }
-        else {
-            self.timer = nil
-        }
+//        if Fhooder.isOpen == true {
+//            self.timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: ("ordersQuery"), userInfo: nil, repeats: true)
+//        }
+//        else {
+//    (w       self.t: mer = nil
+//        }
     }
     
     

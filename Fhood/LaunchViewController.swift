@@ -8,7 +8,7 @@
 
 import UIKit
 import Parse
-import ClosureKit
+import LambdaKit
 
 final class LaunchViewController: UIViewController {
 
@@ -24,8 +24,8 @@ final class LaunchViewController: UIViewController {
         self.activityIndicator.alpha = 0
         self.badConnectionLabel.alpha = 0
         self.logoutButton.alpha = 0
-
-        self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(5, repeats: false) { [weak self] _ in
+        
+        self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(5, repeated: false) { [weak self] _ in
             guard self != nil else { return }
 
             self?.connectionTimer?.invalidate()
@@ -54,7 +54,7 @@ final class LaunchViewController: UIViewController {
 
     @IBAction private func logoutTapped() {
         PFUser.logOutInBackgroundWithBlock { error in
-            Router.route(animated: true)
+            Router.route(true)
         }
     }
 }

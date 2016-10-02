@@ -1,20 +1,20 @@
-platform :ios, "8.0"
+platform :ios, “10.0”
 use_frameworks!
 
 target :Fhood do
     xcodeproj 'Fhood.xcodeproj'
 
-    pod 'Alamofire'             , :git => "https://github.com/Alamofire/Alamofire.git"
-    pod 'ClosureKit'            , :git => "https://github.com/Reflejo/ClosureKit"
-    pod 'FBSDKCoreKit'          , :git => "https://github.com/facebook/facebook-ios-sdk.git", :branch => "release-4.9.0-beta"
-    pod 'FBSDKLoginKit'         , :git => "https://github.com/facebook/facebook-ios-sdk.git", :branch => "release-4.9.0-beta"
-    pod 'JGProgressHUD'	  , :git => “https://github.com/JonasGessner/JGProgressHUD.git”
-    pod 'Parse'			  , :git => “https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git”
-    pod 'ParseFacebookUtilsV4'	  , :git => “https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git”
-    pod 'SWRevealViewController', :git => "https://github.com/John-Lluch/SWRevealViewController.git", :branch => "master", :inhibit_warnings => true
-    pod 'SnapKit'               , :git => "https://github.com/SnapKit/SnapKit.git", :branch => "swift-2.0"
-    pod 'SMCalloutView'         , :git => "https://github.com/nfarina/calloutview.git", :branch => "master"
-end
+    pod 'Alamofire', '~> 3.5.0'
+    pod 'LambdaKit'
+    pod 'SnapKit’, ‘~> 0.22.0’
+    pod 'FBSDKCoreKit'          , :git => ‘https://github.com/facebook/facebook-ios-sdk.git'
+    pod 'FBSDKLoginKit'         , :git => ‘https://github.com/facebook/facebook-ios-sdk.git'
+    pod 'JGProgressHUD'	  , :git => ‘https://github.com/JonasGessner/JGProgressHUD.git'
+    pod 'Parse'			  , :git => ‘https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git'
+    pod 'ParseFacebookUtilsV4'	  , :git => ‘https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git'
+    pod 'SWRevealViewController', :git => ‘https://github.com/John-Lluch/SWRevealViewController.git', :branch => ‘master’, :inhibit_warnings => true
+    pod 'SMCalloutView'         , :git => ‘https://github.com/nfarina/calloutview.git', :branch => ‘master’
+end	
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|

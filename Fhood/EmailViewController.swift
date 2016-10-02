@@ -36,7 +36,7 @@ final class EmailViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EmailViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
     }
     
@@ -84,7 +84,7 @@ final class EmailViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func validateInput() -> Bool {
-        guard let email = self.emailTextField.text where !email.isEmpty else {
+        guard let email = self.emailTextField.text  where !email.isEmpty else {
             self.showAlert(withMessage: "Please, enter an email before continuing!")
             return false
         }

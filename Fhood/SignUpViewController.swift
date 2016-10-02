@@ -88,7 +88,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         
         // Reload data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadProfile:",name:"loadProfileView", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpViewController.loadProfile(_:)),name:"loadProfileView", object: nil)
         
         
         self.statePicker = UIPickerView()
@@ -262,8 +262,8 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     
@@ -429,11 +429,11 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     private func validateInput() -> Bool {
         
         
-        guard let firstname = self.firstNameTextfield.text where !firstname.isEmpty else {
+        guard let firstname = self.firstNameTextfield.text  where !firstname.isEmpty else {
             self.showAlert(withMessage: "Please enter your name before continuing!")
             return false
         }
-        guard let lastname = self.lastNameTextfield.text where !lastname.isEmpty else {
+        guard let lastname = self.lastNameTextfield.text  where !lastname.isEmpty else {
             self.showAlert(withMessage: "Please enter your last name before continuing!")
             return false
         }
@@ -442,11 +442,11 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             self.showAlert(withMessage: "Please provide profile picture before continuing!")
             return false
         }
-        guard let phone = self.phoneNumberTextfield.text where !phone.isEmpty else {
+        guard let phone = self.phoneNumberTextfield.text  where !phone.isEmpty else {
             self.showAlert(withMessage: "Please enter your phone number before continuing!")
             return false
         }
-        guard let email = self.emailTextfield.text where !email.isEmpty else {
+        guard let email = self.emailTextfield.text  where !email.isEmpty else {
             self.showAlert(withMessage: "Please enter an email before continuing!")
             return false
         }
@@ -454,23 +454,23 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             self.showAlert(withMessage: "Please enter your address before saving!")
             return false
         }
-        guard let shopname = self.nameOfShopTextfield.text where !shopname.isEmpty else {
+        guard let shopname = self.nameOfShopTextfield.text  where !shopname.isEmpty else {
             self.showAlert(withMessage: "Please enter the shop name before continuing!")
             return false
         }
-        guard let description = self.shopDescription where !description.isEmpty else {
+        guard let description = self.shopDescription  where !description.isEmpty else {
             self.showAlert(withMessage: "Please fill out your description before continuing!")
             return false
         }
-        guard let typeOne = self.foodTypeOneTextfield.text where !typeOne.isEmpty else {
+        guard let typeOne = self.foodTypeOneTextfield.text  where !typeOne.isEmpty else {
             self.showAlert(withMessage: "Please select the food type before continuing!")
             return false
         }
-        guard let typeTwo = self.foodTypeTwoTextfield.text where !typeTwo.isEmpty else {
+        guard let typeTwo = self.foodTypeTwoTextfield.text  where !typeTwo.isEmpty else {
             self.showAlert(withMessage: "Please select the food type before continuing!")
             return false
         }
-        guard let typeThree = self.foodTypeThreeTextfield.text where !typeThree.isEmpty else {
+        guard let typeThree = self.foodTypeThreeTextfield.text  where !typeThree.isEmpty else {
             self.showAlert(withMessage: "Please select the food type before continuing!")
             return false
         }
@@ -576,6 +576,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
                     
                     user!["fhooder"] = applicant
                     user!["applied"] = true
+                    user!["fhooderId"] = applicant.objectId
                     
                     do {
                         try user!.save()
@@ -599,7 +600,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
                     alert.addAction(saved)
                     self.rootViewController.presentViewController(alert, animated: true, completion: nil)
                     Fhooder.fhooderSignedIn = false
-                    Router.route(animated: true)
+                    Router.route(true)
 
                 }
                 else {

@@ -37,20 +37,29 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.commentBox.layer.borderWidth = 1
         self.commentBox.layer.borderColor = blackBorder.CGColor
         
-        let swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: "dismissKeyboard")
+        let swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(RateViewController.dismissKeyboard))
         
         swipe.direction = UISwipeGestureRecognizerDirection.Down
         self.view.addGestureRecognizer(swipe)
     
         
-        self.spoonOne.addTarget(self, action: "onePressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.spoonTwo.addTarget(self, action: "twoPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.spoonThree.addTarget(self, action: "threePressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.spoonFour.addTarget(self, action: "fourPressed:", forControlEvents: UIControlEvents.TouchUpInside)
-        self.spoonFive.addTarget(self, action: "fivePressed:", forControlEvents: UIControlEvents.TouchUpInside)
+        self.spoonOne.addTarget(self, action: #selector(RateViewController.onePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.spoonTwo.addTarget(self, action: #selector(RateViewController.twoPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.spoonThree.addTarget(self, action: #selector(RateViewController.threePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.spoonFour.addTarget(self, action: #selector(RateViewController.fourPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.spoonFive.addTarget(self, action: #selector(RateViewController.fivePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
         
         
-        self.fhooderImage.image = UIImage(named: Fhooder.fhooderPic!)
+        fhooderImage.image = Fhooder.itemPics![0]
+        let image = UIImageView(image: self.fhooderImage.image)
+        self.fhooderImage.image = nil 
+        image.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
+        image.layer.masksToBounds = false
+        image.layer.cornerRadius = 13
+        image.layer.cornerRadius = image.frame.size.height/2
+        image.clipsToBounds = true
+        self.fhooderImage.addSubview(image)
+        
         self.fhooderName.text = Fhooder.shopName!
     }
     
