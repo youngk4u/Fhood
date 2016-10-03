@@ -84,7 +84,7 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
         self.dismissViewControllerAnimated(true, completion: nil)
         
         self.imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
-        
+        self.imageView.image = cropToSquare(self.imageView.image!)
         self.saveButton.enabled = true
         
     }
@@ -92,26 +92,27 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
     
     // Crops image to square
     func cropToSquare(image: UIImage) -> UIImage {
-        var positionX: CGFloat = 0.0
-        var positionY: CGFloat = 0.0
+
+        var xPosition: CGFloat = 0.0
+        var yPosition: CGFloat = 0.0
         var width: CGFloat = image.size.width
         var height: CGFloat = image.size.height
         
         if width > height {
             //Landscape
-            positionX = -((height - width) / 2.0)
+            xPosition = (width - height) / 2
             width = height
         }
         else if width < height {
             //Portrait
-            positionY = ((height - width) / 2.0)
+            yPosition = (height - width) / 2
             height = width
         }
         else{
             //Already Square
         }
         
-        let cropSquare = CGRectMake(positionX, positionY, width, height)
+        let cropSquare = CGRectMake(xPosition, yPosition, width, height)
         let imageRef = CGImageCreateWithImageInRect(image.CGImage!, cropSquare)
         return UIImage(CGImage: imageRef!, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)
     }
@@ -120,11 +121,28 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
     @IBAction func photoSaveButton(sender: UIBarButtonItem) {
         
         if self.imageView.image != nil {
-            self.imageView.image = self.cropToSquare(self.imageView.image!)
+            //self.imageView.image = self.cropToSquare(self.imageView.image!)
             let imageData = imageView.image!.lowestQualityJPEGNSData
             let imageFile = PFFile(name:"profile.png", data:imageData)
             
             let user = PFUser.currentUser()
+            
+            let FhooderBool = user!["isFhooder"] as! Bool
+            
+            if FhooderBool == true {
+                
+                let query = PFQuery(className: "Fhooder")
+                let ID = Fhooder.objectID
+                query.getObjectInBackgroundWithId(ID!) { (fhooder: PFObject?, error: NSError?) -> Void in
+                    if error == nil && fhooder != nil {
+                        
+                        fhooder!["profilePic"] = imageFile! as PFFile
+                        fhooder!.saveInBackground()
+                    }
+                }
+                
+            }
+            
             user!["profilePhoto"] = imageFile
             user!.saveInBackground()
             

@@ -69,6 +69,10 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We&apos;ll only use your location to give you directions to pick your order.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Custom action for camera</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Photo Library use permission</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

@@ -386,7 +386,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AmJ-yg-33R" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="264" y="-1240"/>
+            <point key="canvasLocation" x="248" y="59"/>
         </scene>
         <!--Item Detail View Controller-->
         <scene sceneID="otV-qY-SQx">
@@ -727,7 +727,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QRc-Ag-nTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="-2716"/>
+            <point key="canvasLocation" x="1065" y="-1441"/>
         </scene>
         <!--Add Item View Controller-->
         <scene sceneID="xl3-PD-usW">
@@ -1170,7 +1170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjK-rI-30V" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1811" y="-895"/>
+            <point key="canvasLocation" x="1065" y="342"/>
         </scene>
         <!--Food Photo View Controller-->
         <scene sceneID="wcO-fs-2JC">
@@ -1184,25 +1184,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agT-Cw-eKT">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="LZ2-gO-VeQ"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Photo" id="HJk-H6-YXT">
-                                        <barButtonItem key="leftBarButtonItem" title="Close" id="lAB-ZV-m90">
-                                            <connections>
-                                                <action selector="closeView:" destination="9Bl-VJ-F4a" id="aqa-in-UpY"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Save" id="tTP-2o-mGG">
-                                            <connections>
-                                                <action selector="photoSaveButton:" destination="9Bl-VJ-F4a" id="7DY-gf-Aae"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vMc-xY-zch">
                                 <color key="backgroundColor" red="0.0" green="1" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -1213,8 +1194,7 @@
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="libraryButton:" destination="9Bl-VJ-F4a" eventType="touchUpInside" id="4Zs-2u-dif"/>
-                                    <action selector="libraryButtonWithSender:" destination="9Bl-VJ-F4a" eventType="touchUpInside" id="ab8-Rs-A0b"/>
+                                    <action selector="libraryButton:" destination="9Bl-VJ-F4a" eventType="touchUpInside" id="oMj-HL-VeC"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ddi-uV-r2L">
@@ -1227,42 +1207,61 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="cameraButtonWithSender:" destination="9Bl-VJ-F4a" eventType="touchUpInside" id="US2-3x-2ka"/>
+                                    <action selector="cameraButton:" destination="9Bl-VJ-F4a" eventType="touchUpInside" id="BXw-6h-IoJ"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YZm-pF-x4N">
                                 <color key="backgroundColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="YZm-pF-x4N" secondAttribute="height" multiplier="320:320" id="aeb-u0-9Sh"/>
+                                    <constraint firstAttribute="width" secondItem="YZm-pF-x4N" secondAttribute="height" multiplier="1:1" id="Nik-dp-HKh"/>
                                 </constraints>
                             </imageView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="agT-Cw-eKT">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="LZ2-gO-VeQ"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Photo" id="HJk-H6-YXT">
+                                        <barButtonItem key="leftBarButtonItem" title="Close" id="lAB-ZV-m90">
+                                            <connections>
+                                                <action selector="closeView:" destination="9Bl-VJ-F4a" id="bBo-lk-SPo"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Save" id="tTP-2o-mGG">
+                                            <connections>
+                                                <action selector="photoSaveButton:" destination="9Bl-VJ-F4a" id="urV-gF-xhi"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="YZm-pF-x4N" secondAttribute="trailing" id="06g-UR-zHQ"/>
                             <constraint firstItem="vMc-xY-zch" firstAttribute="top" secondItem="ddi-uV-r2L" secondAttribute="bottom" id="4hQ-il-CRL"/>
                             <constraint firstItem="ddi-uV-r2L" firstAttribute="leading" secondItem="vsQ-Mk-Vea" secondAttribute="leading" id="Crr-vn-GJy"/>
                             <constraint firstItem="vMc-xY-zch" firstAttribute="leading" secondItem="vsQ-Mk-Vea" secondAttribute="leading" id="FLk-PJ-LQX"/>
                             <constraint firstItem="agT-Cw-eKT" firstAttribute="top" secondItem="vsQ-Mk-Vea" secondAttribute="top" id="GfK-HO-e3l"/>
                             <constraint firstAttribute="trailing" secondItem="agT-Cw-eKT" secondAttribute="trailing" id="SND-wb-lun"/>
                             <constraint firstItem="agT-Cw-eKT" firstAttribute="leading" secondItem="vsQ-Mk-Vea" secondAttribute="leading" id="Ut5-sW-PlV"/>
-                            <constraint firstItem="YZm-pF-x4N" firstAttribute="leading" secondItem="vsQ-Mk-Vea" secondAttribute="leading" id="eNM-fY-pGJ"/>
+                            <constraint firstItem="YZm-pF-x4N" firstAttribute="leading" secondItem="vsQ-Mk-Vea" secondAttribute="leading" id="V58-c3-YpX"/>
+                            <constraint firstAttribute="trailing" secondItem="YZm-pF-x4N" secondAttribute="trailing" id="WQL-HQ-5kp"/>
+                            <constraint firstItem="YZm-pF-x4N" firstAttribute="top" secondItem="agT-Cw-eKT" secondAttribute="bottom" id="brw-2m-PQc"/>
                             <constraint firstAttribute="trailing" secondItem="vMc-xY-zch" secondAttribute="trailing" id="iAd-b9-toh"/>
                             <constraint firstAttribute="trailing" secondItem="ddi-uV-r2L" secondAttribute="trailing" id="moU-35-8mr"/>
                             <constraint firstItem="46J-Pi-SCg" firstAttribute="top" secondItem="vMc-xY-zch" secondAttribute="bottom" id="oQ1-Dx-6oM"/>
-                            <constraint firstItem="YZm-pF-x4N" firstAttribute="top" secondItem="agT-Cw-eKT" secondAttribute="bottom" id="t9U-7c-m7v"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="568"/>
                     <connections>
                         <outlet property="imageView" destination="YZm-pF-x4N" id="dhj-8H-XOa"/>
-                        <outlet property="saveButton" destination="tTP-2o-mGG" id="aCX-10-D2S"/>
+                        <outlet property="saveButton" destination="tTP-2o-mGG" id="ZoB-20-afr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOI-TH-dLX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2623" y="-1999"/>
+            <point key="canvasLocation" x="1914" y="-746"/>
         </scene>
         <!--Description Ingredients View Controller-->
         <scene sceneID="7GK-yT-f2V">
@@ -1321,7 +1320,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYm-KK-Wiu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2751" y="-896"/>
+            <point key="canvasLocation" x="1914" y="343"/>
         </scene>
         <!--About Fhooder View Controller-->
         <scene sceneID="mDo-9K-UIg">
@@ -1382,7 +1381,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEE-Im-zly" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="-2000"/>
+            <point key="canvasLocation" x="1065" y="-746"/>
         </scene>
         <!--Cooking Time View Controller-->
         <scene sceneID="BQ3-0Y-5Ub">
@@ -1555,7 +1554,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9P-dq-5Og" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="-3436"/>
+            <point key="canvasLocation" x="1065" y="-2137"/>
         </scene>
         <!--OrdersViewController-->
         <scene sceneID="f11-51-oAB">
@@ -1696,7 +1695,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ggc-PJ-sXV" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="265" y="-598"/>
+            <point key="canvasLocation" x="249" y="700"/>
         </scene>
         <!--Orders Detail View Controller-->
         <scene sceneID="HHh-f5-ST6">
@@ -1952,7 +1951,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fqA-8x-4Kf" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6cK-hb-Egn" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="113"/>
+            <point key="canvasLocation" x="1065" y="1411"/>
         </scene>
         <!--Cancel Orders View Controller-->
         <scene sceneID="OI2-wF-Az3">
@@ -2049,7 +2048,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sga-NB-5qa" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="jv7-33-bLR" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="912"/>
+            <point key="canvasLocation" x="1065" y="2163"/>
         </scene>
         <!--ManageNavigationController-->
         <scene sceneID="NaA-Lq-LGf">
@@ -2071,7 +2070,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GiP-sM-MZF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-632" y="-1240"/>
+            <point key="canvasLocation" x="-649" y="59"/>
         </scene>
         <!--FhooderMoreViewController-->
         <scene sceneID="odU-et-bI3">
@@ -2117,7 +2116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BPB-ua-Z9M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="264" y="113"/>
+            <point key="canvasLocation" x="248" y="1411"/>
         </scene>
         <!--TabBarController-->
         <scene sceneID="HJF-28-dSQ">
@@ -2141,7 +2140,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dQq-d4-dPA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1463" y="113"/>
+            <point key="canvasLocation" x="-1502" y="1410"/>
         </scene>
         <!--FhooderMoreNavigationController-->
         <scene sceneID="Vya-l7-5e5">
@@ -2162,7 +2161,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G7M-kv-iRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-634" y="113"/>
+            <point key="canvasLocation" x="-651" y="1411"/>
         </scene>
         <!--OrdersNavigationController-->
         <scene sceneID="9mw-SE-mNt">
@@ -2186,7 +2185,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ViC-Df-gxF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-632" y="-597"/>
+            <point key="canvasLocation" x="-649" y="701"/>
         </scene>
     </scenes>
     <resources>
@@ -2202,7 +2201,7 @@
         <image name="photos" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1ZM-qt-yR9"/>
         <segue reference="jtO-BX-Lnj"/>
+        <segue reference="K1W-5N-hg0"/>
     </inferredMetricsTieBreakers>
 </document>

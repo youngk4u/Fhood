@@ -68,9 +68,9 @@ final class OrderedViewController: UIViewController {
         super.viewDidLoad()
         
         // Reload Parse data
-//        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(OrdersViewController.loadList1(_:)),name:"fhooderOrderLoad", object: nil)
-//        
-//        NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
+        //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(OrdersViewController.loadList1(_:)),name:"fhooderOrderLoad", object: nil)
+        
+        //NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
         
         // Timer
         let attributes = [

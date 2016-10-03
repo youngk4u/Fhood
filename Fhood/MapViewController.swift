@@ -47,7 +47,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         self.mapView.calloutView = self.calloutView
         
         self.reloadAnnotationsButton.hidden = true
-        self.reloadAnnotations()
+        
         
         
 
@@ -74,7 +74,13 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                                                                  style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapViewController.filterAction))
         
         
+        
     }
+    
+      
+    
+
+
     
     func zoomedWithinMiles() -> Double {
         
@@ -96,47 +102,47 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                 
                 if self.userLoc != nil {
                     point = PFGeoPoint(location: self.userLoc)
-                }
                 
-                let query = PFQuery(className: "Fhooder")
-                query.limit = 10
-                query.whereKey("location", nearGeoPoint: point, withinMiles: self.zoomWithinMiles)
-                query.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
-                    if (error == nil) {
-                        
-                        for object in objects! {
+                    let query = PFQuery(className: "Fhooder")
+                    query.limit = 10
+                    query.whereKey("location", nearGeoPoint: point, withinMiles: self.zoomWithinMiles)
+                    query.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+                        if (error == nil) {
                             
-                            let geolocation = object.valueForKey("location")!
-                            let picFile = object.valueForKey("itemPic") as? PFFile
-                            
-                            picFile?.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
-                                if error == nil {
-                                    if let imageData = imageData {
-                                        Fhooder.objectID = object.valueForKey("objectId") as? String
-                                        Fhooder.itemPic = UIImage(data: imageData)
-                                        Fhooder.itemPrice = object.valueForKey("itemPrice") as? Double
-                                        
-                                        Fhooder.shopName = object.valueForKey("shopName")! as? String
-                                        Fhooder.foodTypeOne = "\(object.valueForKey("foodTypeOne")!)"
-                                        
-                                        Fhooder.fhooderLatitude = geolocation.latitude
-                                        Fhooder.fhooderLongitude = geolocation.longitude
-                                        Fhooder.reviews = object.valueForKey("ratings")! as? Int
-                                        Fhooder.isOpen = object.valueForKey("isOpen")! as? Bool
-                                        Fhooder.ratingInString = "no-Spoon"
-                                        
-                                        
-                                        let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
-                                        
-                                        self.mapView.addAnnotation(annotation)
-                                        
+                            for object in objects! {
+                                
+                                let geolocation = object.valueForKey("location")!
+                                let picFile = object.valueForKey("itemPic") as? PFFile
+                                
+                                picFile?.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                                    if error == nil {
+                                        if let imageData = imageData {
+                                            Fhooder.objectID = object.valueForKey("objectId") as? String
+                                            Fhooder.itemPic = UIImage(data: imageData)
+                                            Fhooder.itemPrice = object.valueForKey("itemPrice") as? Double
+                                            
+                                            Fhooder.shopName = object.valueForKey("shopName")! as? String
+                                            Fhooder.foodTypeOne = "\(object.valueForKey("foodTypeOne")!)"
+                                            
+                                            Fhooder.fhooderLatitude = geolocation.latitude
+                                            Fhooder.fhooderLongitude = geolocation.longitude
+                                            Fhooder.reviews = object.valueForKey("ratings")! as? Int
+                                            Fhooder.isOpen = object.valueForKey("isOpen")! as? Bool
+                                            Fhooder.ratingInString = "no-Spoon"
+                                            
+                                            
+                                            let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
+                                            
+                                            self.mapView.addAnnotation(annotation)
+                                            
+                                        }
                                     }
-                                }
-                            })
-                            
+                                })
+                                
+                            }
                         }
-                    }
-                })
+                    })
+                }
             }
         }
 
@@ -317,6 +323,9 @@ extension MapViewController: CLLocationManagerDelegate {
             self.mapView.setRegion(region, animated: true)
             self.mapView.showsUserLocation = true
             self.locationManager.stopUpdatingLocation()
+        
+        self.userLoc = userLoction
+        self.reloadAnnotations()
         
     }
     

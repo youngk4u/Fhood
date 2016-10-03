@@ -29,7 +29,7 @@
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tsR-hK-woN">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfn-Zz-BuA" customClass="MapView" customModule="Fhood" customModuleProvider="target"/>
@@ -60,11 +60,11 @@
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="mGq-xe-AaS" secondAttribute="bottom" constant="15" id="1Dn-8s-Nei"/>
                             <constraint firstAttribute="trailing" secondItem="mGq-xe-AaS" secondAttribute="trailing" constant="20" id="Amc-8H-uvJ"/>
-                            <constraint firstAttribute="bottom" secondItem="cfn-Zz-BuA" secondAttribute="bottom" id="HFi-xU-Wlg"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="IT7-57-ryv"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="leading" secondItem="tsR-hK-woN" secondAttribute="leading" id="LTq-6n-OfW"/>
                             <constraint firstItem="jjx-0Z-axY" firstAttribute="centerX" secondItem="tsR-hK-woN" secondAttribute="centerX" id="QRh-Cn-8LL"/>
-                            <constraint firstAttribute="trailing" secondItem="cfn-Zz-BuA" secondAttribute="trailing" id="mAI-Fd-BG7"/>
+                            <constraint firstAttribute="bottom" secondItem="cfn-Zz-BuA" secondAttribute="bottom" id="Wsh-xO-QyY"/>
+                            <constraint firstAttribute="trailing" secondItem="cfn-Zz-BuA" secondAttribute="trailing" id="dQF-wM-mOu"/>
                             <constraint firstItem="4ug-Mw-9AY" firstAttribute="top" secondItem="jjx-0Z-axY" secondAttribute="bottom" constant="15" id="qRD-0y-XfQ"/>
                             <constraint firstItem="cfn-Zz-BuA" firstAttribute="top" secondItem="tsR-hK-woN" secondAttribute="top" constant="100" id="weI-lu-8Wm"/>
                         </constraints>
@@ -85,7 +85,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="243.75" y="-1147.1830985915492"/>
+            <point key="canvasLocation" x="242.40000000000001" y="-1147.3763118440781"/>
         </scene>
         <!--FhooderReviewViewController-->
         <scene sceneID="b7o-Du-IlG">
@@ -96,7 +96,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Wae-9O-FaD"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gXb-jS-XpX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -114,7 +114,7 @@
                         <viewControllerLayoutGuide type="bottom" id="pkT-ar-Tjt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="PlI-0A-nxO">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vv-1k-G2b" userLabel="detailView">
@@ -380,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qoD-nI-dGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1854" y="-421"/>
+            <point key="canvasLocation" x="1854" y="-439"/>
         </scene>
         <!--FhooderViewController-->
         <scene sceneID="Z1n-AW-X4v">
@@ -391,7 +391,7 @@
                         <viewControllerLayoutGuide type="bottom" id="bNT-p2-eFe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="NDl-Zo-zIB">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="20b-7x-aVf">
@@ -407,11 +407,11 @@
                                                     <size key="itemSize" width="150" height="150"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="collCell" id="Jt1-IF-mFF" customClass="CollectionViewCell" customModule="Fhood" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="10" width="150" height="150"/>
+                                                        <rect key="frame" x="10" y="10" width="150" height="150"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                             <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
@@ -638,10 +638,10 @@
                                                 </constraints>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Tablecell3" rowHeight="44" id="74g-eB-71n" customClass="TableViewCell3" customModule="Fhood" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                                        <rect key="frame" x="0.0" y="22" width="375" height="44"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="74g-eB-71n" id="s4H-on-h7q">
-                                                            <frame key="frameInset" width="287" height="43"/>
+                                                            <frame key="frameInset" width="342" height="44"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Qh-0x-S36">
@@ -818,7 +818,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ih-dh-C3t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1014" y="-421"/>
+            <point key="canvasLocation" x="1014" y="-439"/>
         </scene>
         <!--Receipt View Controller-->
         <scene sceneID="lri-v7-VZd">
@@ -829,7 +829,7 @@
                         <viewControllerLayoutGuide type="bottom" id="eq6-UT-z42"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SrC-jL-vhu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IUO-ah-gE2" userLabel="receiptView">
@@ -1168,7 +1168,7 @@
                         <viewControllerLayoutGuide type="bottom" id="rNl-Ye-ro0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3aY-ck-sJm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
@@ -1186,7 +1186,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Qw6-vS-JtF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7dz-dU-Hc9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your order has been submitted." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2I-se-0yz">
@@ -1643,7 +1643,7 @@
                         <viewControllerLayoutGuide type="bottom" id="NGJ-Dl-dc3"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="6z4-By-Dw0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="direction1" translatesAutoresizingMaskIntoConstraints="NO" id="Aql-lI-xtx"/>
@@ -1796,7 +1796,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Y5C-mQ-s6G"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ntG-7X-m88">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5CG-aX-DEy">
@@ -1857,7 +1857,7 @@
                                     <navigationItem id="DO6-tq-hdP">
                                         <nil key="title"/>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="HBN-aj-WmY">
-                                            <rect key="frame" x="97" y="28" width="126" height="30"/>
+                                            <rect key="frame" x="437" y="963" width="126" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="FhoodLogo">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1915,7 +1915,7 @@
                         <viewControllerLayoutGuide type="bottom" id="0yb-SH-2hs"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="0N6-qV-Ap4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cT-cI-JyP" userLabel="spoonOne">
@@ -2010,7 +2010,7 @@
                                     <navigationItem id="83Z-Ml-u6L">
                                         <nil key="title"/>
                                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t9h-rx-dVs">
-                                            <rect key="frame" x="97" y="28" width="126" height="30"/>
+                                            <rect key="frame" x="124.5" y="28" width="126" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" image="FhoodLogo">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2103,7 +2103,7 @@
                         <viewControllerLayoutGuide type="bottom" id="ufz-ew-7c2"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="w1A-cf-xU6">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Fhood-Logo" translatesAutoresizingMaskIntoConstraints="NO" id="3WF-TV-Poe"/>
@@ -2157,7 +2157,7 @@
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="QS5-Rx-YEW">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="92" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="XnJ-pq-8UL">
@@ -2165,10 +2165,10 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Tablecell" rowHeight="92" id="skP-ET-zhb" customClass="ListTableViewCell" customModule="Fhood" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="92"/>
+                                        <rect key="frame" x="0.0" y="86" width="375" height="92"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="skP-ET-zhb" id="U1m-9U-CBm">
-                                            <frame key="frameInset" width="320" height="91"/>
+                                            <frame key="frameInset" width="375" height="92"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="fhooder1" translatesAutoresizingMaskIntoConstraints="NO" id="EAU-9P-LZw">
@@ -2323,7 +2323,7 @@
                         <viewControllerLayoutGuide type="bottom" id="SBA-a7-amJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XLi-gO-dXY">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" rowHeight="55" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="gua-sd-P2f">
@@ -2331,10 +2331,10 @@
                                 <color key="separatorColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MoreTableViewCell" rowHeight="55" id="xS1-3e-PMG">
-                                        <rect key="frame" x="0.0" y="120" width="320" height="55"/>
+                                        <rect key="frame" x="0.0" y="120" width="1000" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xS1-3e-PMG" id="GtJ-iZ-trI">
-                                            <frame key="frameInset" width="287" height="54"/>
+                                            <frame key="frameInset" width="818" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <color key="backgroundColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </tableViewCellContentView>
@@ -2369,7 +2369,7 @@
                         <viewControllerLayoutGuide type="bottom" id="kAJ-0Z-VnY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="qdc-gV-eC7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fhooderVid" translatesAutoresizingMaskIntoConstraints="NO" id="t0h-kF-03y">
@@ -2397,10 +2397,10 @@
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="featuredTableCell" rowHeight="97" id="70N-rv-uv2" customClass="FeaturedTableViewCell" customModule="Fhood" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="97"/>
+                                        <rect key="frame" x="0.0" y="22" width="1000" height="97"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="70N-rv-uv2" id="vtY-VT-Crz">
-                                            <frame key="frameInset" width="320" height="96"/>
+                                            <frame key="frameInset" width="1000" height="97"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Say Cheese" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XFQ-m3-upF">
@@ -2620,7 +2620,7 @@
                         <viewControllerLayoutGuide type="bottom" id="KRi-fb-ZPj"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XFX-GM-ag8">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zf1-xE-TDv">
