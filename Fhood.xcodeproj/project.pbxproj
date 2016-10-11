@@ -42,11 +42,36 @@
 		636E3FBC1D1670AB006A2C68 /* OrdersDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E3FBB1D1670AB006A2C68 /* OrdersDetailTableViewCell.swift */; };
 		636F75141B7E973A00A8C1E8 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75131B7E973A00A8C1E8 /* BubbleView.swift */; };
 		636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */; };
+		637FF4F01DAA50BC00D938D5 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637FF4EF1DAA50BC00D938D5 /* UserNotifications.framework */; };
 		6382F0991BDF23EE002C9C6B /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0981BDF23EE002C9C6B /* ReceiptViewController.swift */; };
 		6382F09B1BDF7007002C9C6B /* Fhoodie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F09A1BDF7007002C9C6B /* Fhoodie.swift */; };
 		6382F09D1BE0ABC0002C9C6B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F09C1BE0ABC0002C9C6B /* DetailViewController.swift */; };
 		63847E9D1D2D1DC800EBE212 /* OrdersNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63847E9C1D2D1DC800EBE212 /* OrdersNavigationController.swift */; };
 		638654131B65A81A000DFC5E /* OrderedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 638654121B65A81A000DFC5E /* OrderedViewController.swift */; };
+		63909E851DA9204C006E67E8 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F341D99202700692A52 /* Bolts.framework */; };
+		63909E861DA9204C006E67E8 /* Bolts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F341D99202700692A52 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E871DA9204C006E67E8 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F351D99202700692A52 /* FBSDKCoreKit.framework */; };
+		63909E881DA9204C006E67E8 /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F351D99202700692A52 /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E891DA9204C006E67E8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F361D99202700692A52 /* FBSDKLoginKit.framework */; };
+		63909E8A1DA9204C006E67E8 /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F361D99202700692A52 /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E8B1DA9204C006E67E8 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F371D99202700692A52 /* JGProgressHUD.framework */; };
+		63909E8C1DA9204C006E67E8 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F371D99202700692A52 /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E8D1DA9204C006E67E8 /* LambdaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F381D99202700692A52 /* LambdaKit.framework */; };
+		63909E8E1DA9204C006E67E8 /* LambdaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F381D99202700692A52 /* LambdaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E8F1DA9204C006E67E8 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F391D99202700692A52 /* Parse.framework */; };
+		63909E901DA9204C006E67E8 /* Parse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F391D99202700692A52 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E911DA9204C006E67E8 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3A1D99202700692A52 /* ParseFacebookUtilsV4.framework */; };
+		63909E921DA9204C006E67E8 /* ParseFacebookUtilsV4.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3A1D99202700692A52 /* ParseFacebookUtilsV4.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E931DA9204C006E67E8 /* SMCalloutView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3B1D99202700692A52 /* SMCalloutView.framework */; };
+		63909E941DA9204C006E67E8 /* SMCalloutView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3B1D99202700692A52 /* SMCalloutView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E951DA9204C006E67E8 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3C1D99202700692A52 /* SnapKit.framework */; };
+		63909E961DA9204C006E67E8 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3C1D99202700692A52 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E971DA9204C006E67E8 /* SWRevealViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3D1D99202700692A52 /* SWRevealViewController.framework */; };
+		63909E981DA9204C006E67E8 /* SWRevealViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3D1D99202700692A52 /* SWRevealViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E991DA9204C006E67E8 /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9F1288772EA77F902DB83D /* Pods_Fhood.framework */; };
+		63909E9A1DA9204C006E67E8 /* Pods_Fhood.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B9F1288772EA77F902DB83D /* Pods_Fhood.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		63909E9B1DA92908006E67E8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F331D99202700692A52 /* Alamofire.framework */; };
+		63909E9C1DA92908006E67E8 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F331D99202700692A52 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63936FDC1BF6B0CC00970926 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63936FDB1BF6B0CC00970926 /* ProfileViewController.swift */; };
 		63936FDE1BF6B49700970926 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63936FDD1BF6B49700970926 /* EmailViewController.swift */; };
 		63936FE01BF6B4CA00970926 /* PhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63936FDF1BF6B4CA00970926 /* PhoneNumberViewController.swift */; };
@@ -80,39 +105,6 @@
 		63EF67021BD1EFDB0068D531 /* OrdersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF67011BD1EFDB0068D531 /* OrdersDetailViewController.swift */; };
 		63F547481BC751B600299899 /* CookingTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F547471BC751B600299899 /* CookingTimeViewController.swift */; };
 		63F70A2D1B5A3CE200A2D618 /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A2C1B5A3CE200A2D618 /* FinalViewController.swift */; };
-		63F70A2F1B5B6F2700A2D618 /* fhooderOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A2E1B5B6F2700A2D618 /* fhooderOne.swift */; };
-		63F70A311B5B720C00A2D618 /* fhooderTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A301B5B720C00A2D618 /* fhooderTwo.swift */; };
-		63F70A331B5B763B00A2D618 /* fhooderThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A321B5B763B00A2D618 /* fhooderThree.swift */; };
-		63F70A351B5B764800A2D618 /* fhooderFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A341B5B764800A2D618 /* fhooderFour.swift */; };
-		63F70A371B5B765300A2D618 /* fhooderFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A361B5B765300A2D618 /* fhooderFive.swift */; };
-		63F70A391B5B765E00A2D618 /* fhooderSix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A381B5B765E00A2D618 /* fhooderSix.swift */; };
-		63F70A3B1B5B766900A2D618 /* fhooderSeven.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A3A1B5B766900A2D618 /* fhooderSeven.swift */; };
-		63F70A3D1B5B767500A2D618 /* fhooderEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A3C1B5B767500A2D618 /* fhooderEight.swift */; };
-		63F70A3F1B5B768000A2D618 /* fhooderNine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A3E1B5B768000A2D618 /* fhooderNine.swift */; };
-		63F70A411B5B768A00A2D618 /* fhooderTen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A401B5B768A00A2D618 /* fhooderTen.swift */; };
-		63FA3A181D99259500CA4221 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F331D99202700692A52 /* Alamofire.framework */; };
-		63FA3A191D99259500CA4221 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F331D99202700692A52 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A1A1D99259500CA4221 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F341D99202700692A52 /* Bolts.framework */; };
-		63FA3A1B1D99259500CA4221 /* Bolts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F341D99202700692A52 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A1C1D99259500CA4221 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F351D99202700692A52 /* FBSDKCoreKit.framework */; };
-		63FA3A1D1D99259500CA4221 /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F351D99202700692A52 /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A1E1D99259500CA4221 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F361D99202700692A52 /* FBSDKLoginKit.framework */; };
-		63FA3A1F1D99259500CA4221 /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F361D99202700692A52 /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A201D99259500CA4221 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F371D99202700692A52 /* JGProgressHUD.framework */; };
-		63FA3A211D99259500CA4221 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F371D99202700692A52 /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A221D99259500CA4221 /* LambdaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F381D99202700692A52 /* LambdaKit.framework */; };
-		63FA3A231D99259500CA4221 /* LambdaKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F381D99202700692A52 /* LambdaKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A241D99259500CA4221 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F391D99202700692A52 /* Parse.framework */; };
-		63FA3A251D99259500CA4221 /* Parse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F391D99202700692A52 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A261D99259500CA4221 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3A1D99202700692A52 /* ParseFacebookUtilsV4.framework */; };
-		63FA3A271D99259500CA4221 /* ParseFacebookUtilsV4.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3A1D99202700692A52 /* ParseFacebookUtilsV4.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A2B1D99259500CA4221 /* SMCalloutView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3B1D99202700692A52 /* SMCalloutView.framework */; };
-		63FA3A2C1D99259500CA4221 /* SMCalloutView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3B1D99202700692A52 /* SMCalloutView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A2D1D99259500CA4221 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3C1D99202700692A52 /* SnapKit.framework */; };
-		63FA3A2E1D99259500CA4221 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3C1D99202700692A52 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63FA3A2F1D99259500CA4221 /* SWRevealViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3D1D99202700692A52 /* SWRevealViewController.framework */; };
-		63FA3A301D99259500CA4221 /* SWRevealViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63377F3D1D99202700692A52 /* SWRevealViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		E5B6D9E9E5543264A0FAB93D /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A4BBDB144A4C5FD76D0842F /* Pods_Fhood.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,17 +124,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				63FA3A301D99259500CA4221 /* SWRevealViewController.framework in Embed Frameworks */,
-				63FA3A231D99259500CA4221 /* LambdaKit.framework in Embed Frameworks */,
-				63FA3A191D99259500CA4221 /* Alamofire.framework in Embed Frameworks */,
-				63FA3A2C1D99259500CA4221 /* SMCalloutView.framework in Embed Frameworks */,
-				63FA3A271D99259500CA4221 /* ParseFacebookUtilsV4.framework in Embed Frameworks */,
-				63FA3A1D1D99259500CA4221 /* FBSDKCoreKit.framework in Embed Frameworks */,
-				63FA3A251D99259500CA4221 /* Parse.framework in Embed Frameworks */,
-				63FA3A1F1D99259500CA4221 /* FBSDKLoginKit.framework in Embed Frameworks */,
-				63FA3A211D99259500CA4221 /* JGProgressHUD.framework in Embed Frameworks */,
-				63FA3A1B1D99259500CA4221 /* Bolts.framework in Embed Frameworks */,
-				63FA3A2E1D99259500CA4221 /* SnapKit.framework in Embed Frameworks */,
+				63909E941DA9204C006E67E8 /* SMCalloutView.framework in Embed Frameworks */,
+				63909E9A1DA9204C006E67E8 /* Pods_Fhood.framework in Embed Frameworks */,
+				63909E8E1DA9204C006E67E8 /* LambdaKit.framework in Embed Frameworks */,
+				63909E981DA9204C006E67E8 /* SWRevealViewController.framework in Embed Frameworks */,
+				63909E921DA9204C006E67E8 /* ParseFacebookUtilsV4.framework in Embed Frameworks */,
+				63909E881DA9204C006E67E8 /* FBSDKCoreKit.framework in Embed Frameworks */,
+				63909E901DA9204C006E67E8 /* Parse.framework in Embed Frameworks */,
+				63909E9C1DA92908006E67E8 /* Alamofire.framework in Embed Frameworks */,
+				63909E8A1DA9204C006E67E8 /* FBSDKLoginKit.framework in Embed Frameworks */,
+				63909E8C1DA9204C006E67E8 /* JGProgressHUD.framework in Embed Frameworks */,
+				63909E861DA9204C006E67E8 /* Bolts.framework in Embed Frameworks */,
+				63909E961DA9204C006E67E8 /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,8 +143,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1730634F0FF143144753DD20 /* Pods-Fhood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.debug.xcconfig"; sourceTree = "<group>"; };
-		1CEE0161E2444615801CA217 /* Pods-Fhood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.release.xcconfig"; sourceTree = "<group>"; };
 		3B356FCB1B9275670014AD22 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		3B356FCD1B9284500014AD22 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3B356FD21B93E6A30014AD22 /* HUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
@@ -163,7 +154,7 @@
 		3BD592631B96A5F0003D26AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreenSystem.xib; sourceTree = "<group>"; };
 		3BF325321B92533700C606D5 /* Reveal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reveal.storyboard; sourceTree = "<group>"; };
 		3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		4A4BBDB144A4C5FD76D0842F /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5B9F1288772EA77F902DB83D /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6301DF751C02988100314323 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		630306C11BD8694D002C5B0F /* CancelOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelOrdersViewController.swift; sourceTree = "<group>"; };
 		630609DE1B0AFC4400DAA7B4 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
@@ -199,6 +190,7 @@
 		636E3FBB1D1670AB006A2C68 /* OrdersDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersDetailTableViewCell.swift; sourceTree = "<group>"; };
 		636F75131B7E973A00A8C1E8 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationObject.swift; sourceTree = "<group>"; };
+		637FF4EF1DAA50BC00D938D5 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		6382F0981BDF23EE002C9C6B /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		6382F09A1BDF7007002C9C6B /* Fhoodie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fhoodie.swift; sourceTree = "<group>"; };
 		6382F09C1BE0ABC0002C9C6B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -243,16 +235,8 @@
 		63EF67011BD1EFDB0068D531 /* OrdersDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersDetailViewController.swift; sourceTree = "<group>"; };
 		63F547471BC751B600299899 /* CookingTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookingTimeViewController.swift; sourceTree = "<group>"; };
 		63F70A2C1B5A3CE200A2D618 /* FinalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
-		63F70A2E1B5B6F2700A2D618 /* fhooderOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderOne.swift; sourceTree = "<group>"; };
-		63F70A301B5B720C00A2D618 /* fhooderTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderTwo.swift; sourceTree = "<group>"; };
-		63F70A321B5B763B00A2D618 /* fhooderThree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderThree.swift; sourceTree = "<group>"; };
-		63F70A341B5B764800A2D618 /* fhooderFour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderFour.swift; sourceTree = "<group>"; };
-		63F70A361B5B765300A2D618 /* fhooderFive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderFive.swift; sourceTree = "<group>"; };
-		63F70A381B5B765E00A2D618 /* fhooderSix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderSix.swift; sourceTree = "<group>"; };
-		63F70A3A1B5B766900A2D618 /* fhooderSeven.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderSeven.swift; sourceTree = "<group>"; };
-		63F70A3C1B5B767500A2D618 /* fhooderEight.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderEight.swift; sourceTree = "<group>"; };
-		63F70A3E1B5B768000A2D618 /* fhooderNine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderNine.swift; sourceTree = "<group>"; };
-		63F70A401B5B768A00A2D618 /* fhooderTen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fhooderTen.swift; sourceTree = "<group>"; };
+		C932D19E6D887BD2F57ED2EA /* Pods-Fhood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.release.xcconfig"; sourceTree = "<group>"; };
+		FC5F0B0295D0EFA1E379E611 /* Pods-Fhood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -260,18 +244,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63FA3A1A1D99259500CA4221 /* Bolts.framework in Frameworks */,
-				63FA3A1C1D99259500CA4221 /* FBSDKCoreKit.framework in Frameworks */,
-				63FA3A2B1D99259500CA4221 /* SMCalloutView.framework in Frameworks */,
-				63FA3A2F1D99259500CA4221 /* SWRevealViewController.framework in Frameworks */,
-				63FA3A2D1D99259500CA4221 /* SnapKit.framework in Frameworks */,
-				63FA3A201D99259500CA4221 /* JGProgressHUD.framework in Frameworks */,
-				63FA3A1E1D99259500CA4221 /* FBSDKLoginKit.framework in Frameworks */,
-				E5B6D9E9E5543264A0FAB93D /* Pods_Fhood.framework in Frameworks */,
-				63FA3A261D99259500CA4221 /* ParseFacebookUtilsV4.framework in Frameworks */,
-				63FA3A181D99259500CA4221 /* Alamofire.framework in Frameworks */,
-				63FA3A241D99259500CA4221 /* Parse.framework in Frameworks */,
-				63FA3A221D99259500CA4221 /* LambdaKit.framework in Frameworks */,
+				637FF4F01DAA50BC00D938D5 /* UserNotifications.framework in Frameworks */,
+				63909E971DA9204C006E67E8 /* SWRevealViewController.framework in Frameworks */,
+				63909E851DA9204C006E67E8 /* Bolts.framework in Frameworks */,
+				63909E9B1DA92908006E67E8 /* Alamofire.framework in Frameworks */,
+				63909E871DA9204C006E67E8 /* FBSDKCoreKit.framework in Frameworks */,
+				63909E931DA9204C006E67E8 /* SMCalloutView.framework in Frameworks */,
+				63909E8B1DA9204C006E67E8 /* JGProgressHUD.framework in Frameworks */,
+				63909E891DA9204C006E67E8 /* FBSDKLoginKit.framework in Frameworks */,
+				63909E991DA9204C006E67E8 /* Pods_Fhood.framework in Frameworks */,
+				63909E911DA9204C006E67E8 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				63909E8F1DA9204C006E67E8 /* Parse.framework in Frameworks */,
+				63909E8D1DA9204C006E67E8 /* LambdaKit.framework in Frameworks */,
+				63909E951DA9204C006E67E8 /* SnapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,11 +270,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2DC9B7A0D7B0CB73DADBB7E8 /* Pods */ = {
+		25716749EB768F98CC385C02 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1730634F0FF143144753DD20 /* Pods-Fhood.debug.xcconfig */,
-				1CEE0161E2444615801CA217 /* Pods-Fhood.release.xcconfig */,
+				FC5F0B0295D0EFA1E379E611 /* Pods-Fhood.debug.xcconfig */,
+				C932D19E6D887BD2F57ED2EA /* Pods-Fhood.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -297,6 +282,7 @@
 		3A2E488DE99364F248C525AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				637FF4EF1DAA50BC00D938D5 /* UserNotifications.framework */,
 				63377F331D99202700692A52 /* Alamofire.framework */,
 				63377F341D99202700692A52 /* Bolts.framework */,
 				63377F351D99202700692A52 /* FBSDKCoreKit.framework */,
@@ -308,7 +294,7 @@
 				63377F3B1D99202700692A52 /* SMCalloutView.framework */,
 				63377F3C1D99202700692A52 /* SnapKit.framework */,
 				63377F3D1D99202700692A52 /* SWRevealViewController.framework */,
-				4A4BBDB144A4C5FD76D0842F /* Pods_Fhood.framework */,
+				5B9F1288772EA77F902DB83D /* Pods_Fhood.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -356,16 +342,6 @@
 			children = (
 				636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */,
 				63E085CE1B44AB750095C603 /* Fhooder.swift */,
-				63F70A2E1B5B6F2700A2D618 /* fhooderOne.swift */,
-				63F70A301B5B720C00A2D618 /* fhooderTwo.swift */,
-				63F70A321B5B763B00A2D618 /* fhooderThree.swift */,
-				63F70A341B5B764800A2D618 /* fhooderFour.swift */,
-				63F70A361B5B765300A2D618 /* fhooderFive.swift */,
-				63F70A381B5B765E00A2D618 /* fhooderSix.swift */,
-				63F70A3A1B5B766900A2D618 /* fhooderSeven.swift */,
-				63F70A3C1B5B767500A2D618 /* fhooderEight.swift */,
-				63F70A3E1B5B768000A2D618 /* fhooderNine.swift */,
-				63F70A401B5B768A00A2D618 /* fhooderTen.swift */,
 				6382F09A1BDF7007002C9C6B /* Fhoodie.swift */,
 			);
 			name = Model;
@@ -471,8 +447,8 @@
 				63C8302D1B0996FB0089CCFF /* Fhood */,
 				63C830451B0996FB0089CCFF /* FhoodTests */,
 				63C8302C1B0996FB0089CCFF /* Products */,
-				2DC9B7A0D7B0CB73DADBB7E8 /* Pods */,
 				3A2E488DE99364F248C525AE /* Frameworks */,
+				25716749EB768F98CC385C02 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -529,13 +505,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 63C8304C1B0996FB0089CCFF /* Build configuration list for PBXNativeTarget "Fhood" */;
 			buildPhases = (
-				A27941AA8EAE8CE396FACC32 /* [CP] Check Pods Manifest.lock */,
+				EE51DCAD8AE3B2925A186700 /* [CP] Check Pods Manifest.lock */,
 				63C830271B0996FB0089CCFF /* Sources */,
 				63C830281B0996FB0089CCFF /* Frameworks */,
 				63C830291B0996FB0089CCFF /* Resources */,
-				D6B3B24CA75BBA6E1E674A81 /* [CP] Embed Pods Frameworks */,
-				55B8173C28E06248F128181B /* [CP] Copy Pods Resources */,
 				63FA3A311D99259500CA4221 /* Embed Frameworks */,
+				6CC8AE98311C293D02EDF22E /* [CP] Embed Pods Frameworks */,
+				D3B5325DAA8C9863339803FD /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -641,7 +617,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		55B8173C28E06248F128181B /* [CP] Copy Pods Resources */ = {
+		6CC8AE98311C293D02EDF22E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fhood/Pods-Fhood-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3B5325DAA8C9863339803FD /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -656,7 +647,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fhood/Pods-Fhood-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A27941AA8EAE8CE396FACC32 /* [CP] Check Pods Manifest.lock */ = {
+		EE51DCAD8AE3B2925A186700 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -669,21 +660,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D6B3B24CA75BBA6E1E674A81 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Fhood/Pods-Fhood-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -699,19 +675,15 @@
 				630609E11B0AFC5B00DAA7B4 /* MoreViewController.swift in Sources */,
 				63B329CE1B2010AA00077377 /* AccountViewController.swift in Sources */,
 				63CB95241B945714005815E7 /* OrdersTableViewCell.swift in Sources */,
-				63F70A331B5B763B00A2D618 /* fhooderThree.swift in Sources */,
 				63E5CA161C13D99100D33B25 /* AddressViewController.swift in Sources */,
 				3BD592611B96A3B5003D26AE /* UIView+Extension.swift in Sources */,
 				3BC061291BA600EC000614E8 /* BubbleBackgroundView.swift in Sources */,
 				6382F0991BDF23EE002C9C6B /* ReceiptViewController.swift in Sources */,
 				63F547481BC751B600299899 /* CookingTimeViewController.swift in Sources */,
 				63847E9D1D2D1DC800EBE212 /* OrdersNavigationController.swift in Sources */,
-				63F70A2F1B5B6F2700A2D618 /* fhooderOne.swift in Sources */,
 				636CB1691B9452D100674C91 /* FhooderTabBarController.swift in Sources */,
 				63137FCE1C2153640017DFF5 /* AboutFhooderViewController.swift in Sources */,
-				63F70A411B5B768A00A2D618 /* fhooderTen.swift in Sources */,
 				63F70A2D1B5A3CE200A2D618 /* FinalViewController.swift in Sources */,
-				63F70A391B5B765E00A2D618 /* fhooderSix.swift in Sources */,
 				633376991B582CB400F7D846 /* ConfirmViewController.swift in Sources */,
 				636CB1671B9452A700674C91 /* FhooderMoreViewController.swift in Sources */,
 				636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */,
@@ -731,16 +703,12 @@
 				63AD61BA1B91A1C200BA1574 /* LandingViewController.swift in Sources */,
 				63AF75511C14DAA0004E9A85 /* AboutMeViewController.swift in Sources */,
 				63A97FF91B3C1FDA00EEDF58 /* CollectionViewCell.swift in Sources */,
-				63F70A371B5B765300A2D618 /* fhooderFive.swift in Sources */,
 				636CB1711B94536400674C91 /* OrdersViewController.swift in Sources */,
 				3B356FCE1B9284500014AD22 /* Constants.swift in Sources */,
 				63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */,
-				63F70A351B5B764800A2D618 /* fhooderFour.swift in Sources */,
 				6382F09D1BE0ABC0002C9C6B /* DetailViewController.swift in Sources */,
-				63F70A311B5B720C00A2D618 /* fhooderTwo.swift in Sources */,
 				3B356FCC1B9275670014AD22 /* OnboardingViewController.swift in Sources */,
 				63331AFB1C0C08B300C4E44A /* NutritionalInfoCell.swift in Sources */,
-				63F70A3F1B5B768000A2D618 /* fhooderNine.swift in Sources */,
 				63BAF19A1BF609AB005EAC92 /* SettingsTableViewCell.swift in Sources */,
 				630609DF1B0AFC4400DAA7B4 /* FeaturedViewController.swift in Sources */,
 				63C830331B0996FB0089CCFF /* MapViewController.swift in Sources */,
@@ -756,12 +724,10 @@
 				3BB130D91BB720B7009204D5 /* MapView.swift in Sources */,
 				636E3FBC1D1670AB006A2C68 /* OrdersDetailTableViewCell.swift in Sources */,
 				63936FE01BF6B4CA00970926 /* PhoneNumberViewController.swift in Sources */,
-				63F70A3D1B5B767500A2D618 /* fhooderEight.swift in Sources */,
 				63331AF91C0A842C00C4E44A /* AddItemViewController.swift in Sources */,
 				3B356FD31B93E6A30014AD22 /* HUD.swift in Sources */,
 				63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */,
 				63CA0CB11BDAE9B6000BCF45 /* ItemDetailViewController.swift in Sources */,
-				63F70A3B1B5B766900A2D618 /* fhooderSeven.swift in Sources */,
 				63D8D72E1B25E41C0016D33D /* HistoryViewController.swift in Sources */,
 				3B356FDA1B940C240014AD22 /* LaunchViewController.swift in Sources */,
 				636F75141B7E973A00A8C1E8 /* BubbleView.swift in Sources */,
@@ -839,6 +805,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -891,6 +858,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				"FRAMEWORK_SEARCH_PATHS[arch=*]" = "";
@@ -916,18 +884,19 @@
 		};
 		63C8304D1B0996FB0089CCFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1730634F0FF143144753DD20 /* Pods-Fhood.debug.xcconfig */;
+			baseConfigurationReference = FC5F0B0295D0EFA1E379E611 /* Pods-Fhood.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_ENTITLEMENTS = Fhood/Fhood.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Fhood/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -940,18 +909,19 @@
 		};
 		63C8304E1B0996FB0089CCFF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1CEE0161E2444615801CA217 /* Pods-Fhood.release.xcconfig */;
+			baseConfigurationReference = C932D19E6D887BD2F57ED2EA /* Pods-Fhood.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_ENTITLEMENTS = Fhood/Fhood.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = Fhood/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -968,6 +938,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Z3A283N666;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -975,7 +946,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = FhoodTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -993,10 +964,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = Z3A283N666;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				INFOPLIST_FILE = FhoodTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";

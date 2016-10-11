@@ -3,7 +3,7 @@
 //  Fhood
 //
 //  Created by Young-hu Kim on 5/18/15.
-//  Copyright (c) 2015 Fhood LLC. All rights reserved.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit
@@ -45,7 +45,7 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        fhooderOne()
+        
         self.performSegueWithIdentifier("toFhooderView", sender: tableView)
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }

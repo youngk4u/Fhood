@@ -3,7 +3,7 @@
 //  Fhood
 //
 //  Created by Young-hu Kim on 5/17/15.
-//  Copyright (c) 2015 Fhood LLC. All rights reserved.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit
@@ -22,7 +22,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         
         // Initiailize Vendor modules like Parse, Stripe, etc.
         self.loadVendorLibraries()
-        
         
         let defaultACL = PFACL();
         
@@ -46,16 +45,35 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
                 PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
             }
         }
+
         
-        let center = UNUserNotificationCenter.currentNotificationCenter()
-        center.delegate = self
-        
-        center.requestAuthorizationWithOptions([.Sound, .Alert, .Badge]) { (granted, error) in
+        func registerForPushNotifications(application: UIApplication) {
+            
+            if #available(iOS 10.0, *){
+                UNUserNotificationCenter.currentNotificationCenter().delegate = self
+                UNUserNotificationCenter.currentNotificationCenter().requestAuthorizationWithOptions([.Badge, .Sound, .Alert], completionHandler: {(granted, error) in
+                    if (granted)
+                    {
+                        UIApplication.sharedApplication().registerForRemoteNotifications()
+                    }
+                    else{
+                        //Do stuff if unsuccessful...
+                    }
+                })
+            }
+                
+            else{ //If user is not on iOS 10 use the old methods we've been using
+                let notificationSettings = UIUserNotificationSettings(
+                    forTypes: [.Badge, .Sound, .Alert], categories: nil)
+                application.registerUserNotificationSettings(notificationSettings)
+                application.registerForRemoteNotifications()
+            }
             
         }
         
-        application.registerForRemoteNotifications()
         
+        // Badge number set to 0 once app is opended
+        //UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         
 //        let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
 //        let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
@@ -79,6 +97,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
                 }
             }
         }
+        
     
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         Router.route(false)
@@ -102,7 +121,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
 //    }
     
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceTok deviceToken: NSData) {
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         let installation = PFInstallation.currentInstallation()
         installation!.setDeviceTokenFromData(deviceToken)
         installation!.saveInBackground()
@@ -125,18 +144,23 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
     }
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        PFPush.handlePush(userInfo)
         if application.applicationState == UIApplicationState.Inactive {
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         } else {
             
             let id = userInfo["type"] as? String
-            if id == "ordered" || id == "fhoodieCancelled" {
+            if id == "ordered" {
+                
+                UIApplication.sharedApplication().applicationIconBadgeNumber = 4
+                application.applicationIconBadgeNumber = 9
                 
                 let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Fhooder", bundle: nil)
                 let orderViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("FhooderTabController") as! FhooderTabBarController
                 orderViewController.selectedIndex = 1
-                self.window?.rootViewController = orderViewController
+                //self.window?.rootViewController = orderViewController
+            }
+            else if id == "fhoodieCancelled" {
+                
             }
             else if id == "fhooderCancelled" {
                 
@@ -148,6 +172,17 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
             PFPush.handlePush(userInfo)
             NSNotificationCenter.defaultCenter().postNotificationName("OrderListLoad", object: nil)
         }
+    }
+    
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+        //Handle the notification
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
+        //Handle the notification
     }
     
     

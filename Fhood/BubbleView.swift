@@ -3,7 +3,7 @@
 //  CustomPin
 //
 //  Created by MIKALAI BUSLAYEU on 8/13/15.
-//  Copyright (c) 2015 MI. All rights reserved.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit

@@ -2,8 +2,8 @@
 //  SignUpViewController.swift
 //  Fhood
 //
-//  Created by YOUNG on 11/25/15.
-//  Copyright © 2015 YOUNG&YOUM. All rights reserved.
+//  Created by Young-hu Kim on 11/25/15.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit
@@ -566,6 +566,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["userID"] = PFUser.currentUser()?.objectId
             
             applicant["ratings"] = 0
+            applicant["reviews"] = 0
             applicant["isOpen"] = false
             
             

@@ -3,7 +3,7 @@
 //  Fhood
 //
 //  Created by Young-hu Kim on 5/17/15.
-//  Copyright (c) 2015 Fhood LLC. All rights reserved.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit
@@ -30,6 +30,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     private var location: CLLocationCoordinate2D!
     private var region: MKCoordinateRegion!
     private var userLoc: CLLocation!
+    private var userLocation: CLLocation!
     
     private var mapChangedFromUserInteraction = false
     private var zoomWithinMiles: Double = 2.5
@@ -48,9 +49,9 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         
         self.reloadAnnotationsButton.hidden = true
         
+        let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
+        self.userLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
         
-        
-
         // Search Bar
         UISearchBar.appearance().backgroundImage = nil // Search Bar with no rim
         self.navigationItem.titleView = UIBarButtonItem(customView: searchBars).customView
@@ -126,12 +127,22 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                                             
                                             Fhooder.fhooderLatitude = geolocation.latitude
                                             Fhooder.fhooderLongitude = geolocation.longitude
-                                            Fhooder.reviews = object.valueForKey("ratings")! as? Int
+                                            Fhooder.reviews = object.valueForKey("reviews")! as? Int
                                             Fhooder.isOpen = object.valueForKey("isOpen")! as? Bool
-                                            Fhooder.ratingInString = "no-Spoon"
+                                            let ratingInDouble = object.valueForKey("ratings") as? Double
+                                            Fhooder.ratingInString = String(format: "%.1f", ratingInDouble!)
                                             
+                                            // Distance to fhooder in Mile
+                                            let CLLoc = CLLocation(latitude: geolocation.latitude, longitude: geolocation.longitude)
+                                            let distance = CLLoc.distanceFromLocation(self.userLocation)
+                                            let distanceMile = distance * 0.000621371
+                                            Fhooder.distance = round(distanceMile * 10) / 10
                                             
-                                            let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, imageRating: UIImage(named: Fhooder.ratingInString!)!)
+                                            print(self.userLocation)
+
+                                            print(Fhooder.distance!)
+                                            
+                                            let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, imageRating: UIImage(named: Fhooder.ratingInString!)!, distanceX: Fhooder.distance!)
                                             
                                             self.mapView.addAnnotation(annotation)
                                             
@@ -213,7 +224,6 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
         
         pinView.image = UIImage(named: "FhooderOn")
-        
         pinView.canShowCallout = false
         pinView.annotation = annotation
         
@@ -225,6 +235,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
         let anno = annotationView.annotation as? AnnotationObject
         Fhooder.objectID = anno!.objectID
+        Fhooder.distance = anno!.distance
         
         self.calloutView.contentView = BubbleView.nibView(withAnnotation: annotationView.annotation as? AnnotationObject)
         self.calloutView.calloutOffset = annotationView.calloutOffset

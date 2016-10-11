@@ -2,8 +2,8 @@
 //  AddItemViewController.swift
 //  Fhood
 //
-//  Created by YOUNG on 11/28/15.
-//  Copyright © 2015 YOUNG&YOUM. All rights reserved.
+//  Created by Young-hu Kim on 11/28/15.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit

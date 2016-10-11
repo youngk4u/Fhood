@@ -2,8 +2,8 @@
 //  AddressViewController.swift
 //  Fhood
 //
-//  Created by YOUNG on 12/5/15.
-//  Copyright © 2015 YOUNG&YOUM. All rights reserved.
+//  Created by Young-hu Kim on 12/5/15.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit

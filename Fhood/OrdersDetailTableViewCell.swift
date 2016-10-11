@@ -2,8 +2,8 @@
 //  OrdersDetailTableViewCell.swift
 //  Fhood
 //
-//  Created by YOUNG on 6/18/16.
-//  Copyright © 2016 YOUNG&YOUM. All rights reserved.
+//  Created by Young-hu Kim on 6/18/16.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit

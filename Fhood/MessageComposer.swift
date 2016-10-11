@@ -3,7 +3,7 @@
 //  Fhood
 //
 //  Created by Andrew Bancroft on 10/22/15.
-//  Copyright (c) 2015 Fhood LLC. All rights reserved.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import Foundation

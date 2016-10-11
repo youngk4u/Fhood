@@ -3,7 +3,7 @@
 //  Fhood
 //
 //  Created by Young-hu Kim on 6/29/15.
-//  Copyright (c) 2015 Fhood LLC. All rights reserved.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit
@@ -178,6 +178,15 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                             }
                         }
                     }
+                    
+                    let ratings = fhooder?.valueForKey("ratings") as? Double
+                    let spoons = String(format: "%.1f", ratings!)
+                    self.spoonRating.image = UIImage(named: spoons)
+                    
+                    self.reviewCount.text = "\(fhooder!.valueForKey("reviews")!) Reviews"
+                    
+                    self.fhooderDistance.text = "(\(String(Fhooder.distance!)) miles)"
+                    
                     
                     // If it has apt or bldg number
                     var unit : String?

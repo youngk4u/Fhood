@@ -3,7 +3,7 @@
 //  Fhood
 //
 //  Created by Matias Pequeno on 9/13/15.
-//  Copyright © 2015 YOUNG&YOUM. All rights reserved.
+//  Copyright © 2016 Fhood LLC. All rights reserved.
 //
 
 import UIKit
