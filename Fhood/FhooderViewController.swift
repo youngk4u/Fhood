@@ -20,8 +20,8 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var fhooderAddress: UILabel!
     @IBOutlet weak var fhooderDistance: UILabel!
     @IBOutlet weak var pickupSign: UILabel!
-    @IBOutlet weak var eatinSign: UILabel!
     @IBOutlet weak var deliverySign: UILabel!
+    @IBOutlet weak var eatinSign: UILabel!
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var openNowOrClose: UILabel!
 
@@ -155,8 +155,8 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         self.arrTimeInterval = []
         self.arrItemID = []
         self.pickupSign.hidden = true
-        self.eatinSign.hidden = true
         self.deliverySign.hidden = true
+        self.eatinSign.hidden = true
         
             let query = PFQuery(className: "Fhooder")
             let id = (Fhooder.objectID)! as String
@@ -205,6 +205,16 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                     Fhooder.address = self.fhooderAddress.text
                     Fhooder.fhooderAboutMe = (fhooder!.valueForKey("shopDescription") as? String)!
                     Fhooder.fhooderFirstName = (fhooder!.valueForKey("firstName") as? String)!
+                    
+                    Fhooder.pickup? = (fhooder!.valueForKey("isPickup") as? Bool)!
+                    self.pickupSign.hidden = !Fhooder.pickup!
+                    
+                    Fhooder.delivery? = (fhooder!.valueForKey("isDeliver") as? Bool)!
+                    self.deliverySign.hidden = !Fhooder.delivery!
+                    
+                    Fhooder.eatin? = (fhooder!.valueForKey("isEatin") as? Bool)!
+                    self.eatinSign.hidden = !Fhooder.eatin!
+                    
                     Fhooder.isOpen = (fhooder!.valueForKey("isOpen") as? Bool)!
                     NSNotificationCenter.defaultCenter().postNotificationName("load3", object: nil)
                     
@@ -225,7 +235,6 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                                     let picture = UIImage(data: picData)
                                     let name = item["itemName"] as! String
                                     let price = item["price"] as! Double
-                                    let servingMethod = item["servingMethod"] as! [Bool]
                                     let description = item["description"] as! String
                                     let ingredient = item["ingredients"] as! String
                                     let prefOne = item["organic"] as! Bool
@@ -242,18 +251,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                                     
                                     self.itemPictures.append(picture!)
                                     Fhooder.itemPics = self.itemPictures
-                                    
-                                    if servingMethod[0] == true {
-                                        self.pickupSign.hidden = false
-                                    }
-                                    if servingMethod[1] == true {
-                                        self.eatinSign.hidden = false
-                                    }
-                                    if servingMethod[2] == true {
-                                        self.deliverySign.hidden = false
-                                    }
-                                    
-                                    
+                            
                                     self.arrItemNames.append(name)
                                     Fhooder.itemNames = self.arrItemNames
                                     

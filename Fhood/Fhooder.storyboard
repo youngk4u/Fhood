@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n3d-NZ-Vlb">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="n3d-NZ-Vlb">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -36,20 +36,20 @@
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pTy-3m-hoa">
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="shopName" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zA-dZ-ukx">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zA-dZ-ukx">
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="32" id="Nzq-Aj-dhx"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="26"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-Spoon" translatesAutoresizingMaskIntoConstraints="NO" id="7VE-Zh-OdS">
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7VE-Zh-OdS">
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="70" id="7NW-RQ-cRl"/>
                                                             <constraint firstAttribute="height" constant="20" id="Q2G-Ak-o6Y"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="foodType" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgZ-sP-ycK">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fgZ-sP-ycK">
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="33J-H7-wmN"/>
                                                         </constraints>
@@ -57,7 +57,7 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wv-CY-6JL">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Wv-CY-6JL">
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="21" id="ki4-rJ-yLQ"/>
                                                         </constraints>
@@ -75,8 +75,8 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eat in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdB-V7-q0b" userLabel="Eat in">
-                                                        <color key="backgroundColor" red="0.0" green="1" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WdB-V7-q0b" userLabel="Delivery Sign">
+                                                        <color key="backgroundColor" red="1" green="0.70588235290000001" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="17" id="H7G-uE-JBf"/>
                                                             <constraint firstAttribute="width" constant="44" id="hB3-7W-mKu"/>
@@ -85,8 +85,8 @@
                                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hK2-Ln-i1u">
-                                                        <color key="backgroundColor" red="0.9880223274230957" green="0.37536495923995972" blue="0.99931108951568604" alpha="0.32000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Eat in" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hK2-Ln-i1u" userLabel="Eatin Sign">
+                                                        <color key="backgroundColor" red="1" green="1" blue="0.21133609689999999" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="44" id="MNS-Yj-ghG"/>
                                                             <constraint firstAttribute="height" constant="17" id="kSY-xj-Mj7"/>
@@ -99,7 +99,7 @@
                                                         <frame key="frameInset" minX="7" minY="91" width="15" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(000)000-0000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6D-jQ-Sss">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6D-jQ-Sss">
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="22" id="2Bw-Cm-MvG"/>
                                                         </constraints>
@@ -367,8 +367,8 @@
                     <connections>
                         <outlet property="addButton" destination="WX9-rc-doq" id="gNm-e5-obr"/>
                         <outlet property="collectionView" destination="10D-7E-ANC" id="kyT-p0-ib7"/>
-                        <outlet property="deliverySign" destination="hK2-Ln-i1u" id="wZ3-Wq-TKu"/>
-                        <outlet property="eatinSign" destination="WdB-V7-q0b" id="4Rk-yh-8ae"/>
+                        <outlet property="deliverySign" destination="WdB-V7-q0b" id="o4Z-B5-48e"/>
+                        <outlet property="eatinSign" destination="hK2-Ln-i1u" id="Hrm-w2-Bsx"/>
                         <outlet property="fhooderAddress" destination="0Wv-CY-6JL" id="4Dz-JQ-Un6"/>
                         <outlet property="openNowOrClose" destination="G8F-kz-gsz" id="SOz-VV-2Bd"/>
                         <outlet property="phoneNumber" destination="m6D-jQ-Sss" id="kek-gm-Y5f"/>
@@ -2196,12 +2196,12 @@
         <image name="ManageWhite" width="30" height="30"/>
         <image name="OrdersCyan" width="30" height="30"/>
         <image name="OrdersWhite" width="30" height="30"/>
-        <image name="no-Spoon" width="200" height="38"/>
+        <image name="no-Spoon" width="414" height="736"/>
         <image name="phone" width="30" height="30"/>
         <image name="photos" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1ZM-qt-yR9"/>
         <segue reference="jtO-BX-Lnj"/>
-        <segue reference="K1W-5N-hg0"/>
     </inferredMetricsTieBreakers>
 </document>

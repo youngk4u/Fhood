@@ -132,17 +132,18 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                                             let ratingInDouble = object.valueForKey("ratings") as? Double
                                             Fhooder.ratingInString = String(format: "%.1f", ratingInDouble!)
                                             
+                                            Fhooder.pickup = object.valueForKey("isPickup") as? Bool
+                                            Fhooder.delivery = object.valueForKey("isDeliver") as? Bool
+                                            Fhooder.eatin = object.valueForKey("isEatin") as? Bool
+                                            
+                                            
                                             // Distance to fhooder in Mile
                                             let CLLoc = CLLocation(latitude: geolocation.latitude, longitude: geolocation.longitude)
                                             let distance = CLLoc.distanceFromLocation(self.userLocation)
                                             let distanceMile = distance * 0.000621371
                                             Fhooder.distance = round(distanceMile * 10) / 10
                                             
-                                            print(self.userLocation)
-
-                                            print(Fhooder.distance!)
-                                            
-                                            let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, imageRating: UIImage(named: Fhooder.ratingInString!)!, distanceX: Fhooder.distance!)
+                                            let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, imageRating: UIImage(named: Fhooder.ratingInString!)!, pickup: Fhooder.pickup!, deliver: Fhooder.delivery!, eatin: Fhooder.eatin!, distanceX: Fhooder.distance!)
                                             
                                             self.mapView.addAnnotation(annotation)
                                             

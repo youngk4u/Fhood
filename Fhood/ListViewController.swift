@@ -20,8 +20,8 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
     var fhooderSpoons : [String] = []
     var fhooderReviews : [Int] = []
     var fhooderPickups : [Bool] = []
-    var fhooderEatins : [Bool] = []
     var fhooderDelivers : [Bool] = []
+    var fhooderEatins : [Bool] = []
     var fhooderTypesOne : [String] = []
     var fhooderTypesTwo : [String] = []
     var fhooderTypesThree : [String] = []
@@ -116,9 +116,12 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         self.userLoc = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
     }
     
+
+    
     
     func refresh(sender:AnyObject) {
         self.refreshCounter += 1
+        
         NSNotificationCenter.defaultCenter().postNotificationName("fhooderListLoad", object: nil)
         refreshControl.endRefreshing()
     }
@@ -184,8 +187,8 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
                         self.fhooderSpoons = []
                         self.fhooderReviews = []
                         self.fhooderPickups = []
-                        self.fhooderEatins = []
                         self.fhooderDelivers = []
+                        self.fhooderEatins = []
                         self.fhooderTypesOne = []
                         self.fhooderTypesTwo = []
                         self.fhooderTypesThree = []
@@ -228,11 +231,11 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
                                     let pickup = object.valueForKey("isPickup") as? Bool
                                     self.fhooderPickups.append(pickup!)
                                     
-                                    let eatin = object.valueForKey("isEatin") as? Bool
-                                    self.fhooderEatins.append(eatin!)
-                                    
                                     let deliver = object.valueForKey("isDeliver") as? Bool
                                     self.fhooderDelivers.append(deliver!)
+                                    
+                                    let eatin = object.valueForKey("isEatin") as? Bool
+                                    self.fhooderEatins.append(eatin!)
                                     
                                     let typeOne = object.valueForKey("foodTypeOne") as? String
                                     self.fhooderTypesOne.append(typeOne!)
@@ -300,8 +303,8 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         cell.fhooderSpoon.image = UIImage(named: "\(self.fhooderSpoons[row])")
         cell.fhooderReview.text = "\(String(self.fhooderReviews[row])) reviews"
         cell.fhooderPickup.hidden = !self.fhooderPickups[row]
-        cell.fhooderEatin.hidden = !self.fhooderEatins[row]
         cell.fhooderDelivery.hidden = !self.fhooderDelivers[row]
+        cell.fhooderEatin.hidden = !self.fhooderEatins[row]
         cell.fhooderType.text = "\(self.fhooderTypesOne[row]), \(self.fhooderTypesTwo[row]), \(self.fhooderTypesThree[row])"
         cell.fhooderOpen.hidden = self.fhooderOpens[row]
         cell.fhooderClosed.hidden = self.fhooderCloses[row]

@@ -26,8 +26,8 @@ struct Fhooder {
     static var distance: Double? = 0
     static var servingMethod: [Bool]? = []
     static var pickup: Bool? = false
-    static var eatin: Bool? = false
     static var delivery: Bool? = false
+    static var eatin: Bool? = false
     static var phoneNum: String? = ""
     static var isOpen: Bool? = false
     static var isClosed: Bool? = true

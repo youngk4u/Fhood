@@ -6,12 +6,11 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - FBSDKCoreKit (4.16.0):
+  - FBSDKCoreKit (4.16.1):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.16.0):
+  - FBSDKLoginKit (4.16.1):
     - FBSDKCoreKit
   - JGProgressHUD (1.4)
-  - LambdaKit (0.0.1)
   - Parse (1.14.2):
     - Bolts/Tasks (~> 1.8)
   - ParseFacebookUtilsV4 (1.11.1):
@@ -29,7 +28,6 @@ DEPENDENCIES:
   - FBSDKCoreKit (from `https://github.com/facebook/facebook-ios-sdk.git`)
   - FBSDKLoginKit (from `https://github.com/facebook/facebook-ios-sdk.git`)
   - JGProgressHUD (from `https://github.com/JonasGessner/JGProgressHUD.git`)
-  - LambdaKit
   - Parse (from `https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git`)
   - ParseFacebookUtilsV4 (from `https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git`)
   - SMCalloutView (from `https://github.com/nfarina/calloutview.git`, branch `master`)
@@ -56,10 +54,10 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FBSDKCoreKit:
-    :commit: 31797f4dd1977f44441ce0753e7788857119a765
+    :commit: a8b14df50c2d2d9e7201bbcf5e2dc2debe24030c
     :git: https://github.com/facebook/facebook-ios-sdk.git
   FBSDKLoginKit:
-    :commit: 31797f4dd1977f44441ce0753e7788857119a765
+    :commit: a8b14df50c2d2d9e7201bbcf5e2dc2debe24030c
     :git: https://github.com/facebook/facebook-ios-sdk.git
   JGProgressHUD:
     :commit: eda194e17b0f59dfa05227e90caba84b7ffa165d
@@ -80,16 +78,15 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  FBSDKCoreKit: 7a6baaed4a2b2a244ba253346713bdbc74df135b
-  FBSDKLoginKit: 9a514a55a7d05190f64d4ef09502737588b5b561
+  FBSDKCoreKit: 6feac4e8921ccd7afa83fb1df6291dc6eec42c7c
+  FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
   JGProgressHUD: 1617b0940cf80bb53e8f7d6f0fd69252ea45d6d4
-  LambdaKit: e13d5a4c8791268a4d00e5b8b9fb68aa7baa4f7d
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
   SWRevealViewController: b653f339865208c97be99a24876545f5be0cc4bb
 
-PODFILE CHECKSUM: 27bc48b805f7933ae019e81484d1cfaaf4ae4a31
+PODFILE CHECKSUM: 81b5ce91cc5ba6dca0af963115e9c3658830ea53
 
 COCOAPODS: 1.0.1

@@ -15,6 +15,8 @@ final class BubbleView: UIView {
     @IBOutlet private var spoonView: UIImageView!
     @IBOutlet private var reviewLabel: UILabel!
     @IBOutlet private var pickupLabel: UILabel!
+    @IBOutlet private var deliveryLabel: UILabel!
+    @IBOutlet private var eatinLabel: UILabel!
     @IBOutlet private var priceLabel: UILabel!
     @IBOutlet private var openLabel: UILabel!
 
@@ -25,6 +27,9 @@ final class BubbleView: UIView {
             self.typeLabel.text = annotation.subtitle
             self.nameLabel.text = annotation.title
             self.imageView.image = annotation.image
+            self.pickupLabel.hidden = !annotation.pickup
+            self.deliveryLabel.hidden = !annotation.deliver
+            self.eatinLabel.hidden = !annotation.eatin
             
             let image = UIImageView(image: self.imageView.image)
             self.imageView.image = nil

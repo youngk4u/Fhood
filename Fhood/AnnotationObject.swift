@@ -23,13 +23,16 @@ final class AnnotationObject: NSObject, MKAnnotation  {
 //    let pickup: Bool
     let open: Bool
     let imageRatingActive: UIImage
+    let pickup: Bool
+    let deliver: Bool
+    let eatin: Bool
     let distance: Double
 
     var reviewsDescription: String {
         return "\(countReviews) Reviews"
     }
 
-    init(objectID: String, title: String, subtitle: String,coordinate: CLLocationCoordinate2D, countReviews: Int, image: UIImage, price: Double, open: Bool, imageRating: UIImage, distanceX: Double) {
+    init(objectID: String, title: String, subtitle: String,coordinate: CLLocationCoordinate2D, countReviews: Int, image: UIImage, price: Double, open: Bool, imageRating: UIImage, pickup: Bool, deliver: Bool, eatin: Bool, distanceX: Double) {
         
         self.objectID = objectID
         self.title = title
@@ -40,6 +43,9 @@ final class AnnotationObject: NSObject, MKAnnotation  {
         self.price = price
         self.open = open
         self.imageRatingActive = imageRating
+        self.pickup = pickup
+        self.deliver = deliver
+        self.eatin = eatin
         self.distance = distanceX
 
         super.init()

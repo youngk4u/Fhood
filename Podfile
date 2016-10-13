@@ -5,7 +5,6 @@ target :Fhood do
     xcodeproj 'Fhood.xcodeproj'
 
     pod 'Alamofire', '~> 3.5.1'
-    pod 'LambdaKit'
     pod 'SnapKit’, ‘~> 0.22.0’
     pod 'FBSDKCoreKit'          , :git => ‘https://github.com/facebook/facebook-ios-sdk.git'
     pod 'FBSDKLoginKit'         , :git => ‘https://github.com/facebook/facebook-ios-sdk.git'

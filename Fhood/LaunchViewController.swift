@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import LambdaKit
 
 final class LaunchViewController: UIViewController {
 
@@ -25,18 +24,22 @@ final class LaunchViewController: UIViewController {
         self.badConnectionLabel.alpha = 0
         self.logoutButton.alpha = 0
         
-        self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(5, repeated: false) { [weak self] _ in
-            guard self != nil else { return }
-
-            self?.connectionTimer?.invalidate()
-
-            UIView.animate {
-                self?.badConnectionLabel.alpha = 1
+        if #available(iOS 10.0, *) {
+            self.connectionTimer = NSTimer.scheduledTimerWithTimeInterval(5, repeats: false) { [weak self] _ in
+                guard self != nil else { return }
+                
+                self?.connectionTimer?.invalidate()
+                
+                UIView.animate {
+                    self?.badConnectionLabel.alpha = 1
+                }
+                
+                UIView.animate(delay: 1) {
+                    self?.logoutButton.alpha = 1
+                }
             }
-
-            UIView.animate(delay: 1) {
-                self?.logoutButton.alpha = 1
-            }
+        } else {
+            // Fallback on earlier versions
         }
     }
 

@@ -16,8 +16,8 @@ final class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var fhooderSpoon: UIImageView!
     @IBOutlet weak var fhooderReview: UILabel!
     @IBOutlet weak var fhooderPickup: UILabel!
-    @IBOutlet weak var fhooderEatin: UILabel!
     @IBOutlet weak var fhooderDelivery: UILabel!
+    @IBOutlet weak var fhooderEatin: UILabel!
     @IBOutlet weak var fhooderType: UILabel!
     @IBOutlet weak var fhooderOpen: UILabel!
     @IBOutlet weak var fhooderClosed: UILabel!

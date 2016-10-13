@@ -16,11 +16,10 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     @IBOutlet weak var reviewCount: UILabel!
     @IBOutlet weak var restaurantType: UILabel!
     @IBOutlet weak var fhooderAddress: UILabel!
-    @IBOutlet weak var fhooderDistance: UILabel!
     @IBOutlet weak var phoneNumber: UILabel!
     @IBOutlet weak var pickupSign: UILabel!
-    @IBOutlet weak var eatinSign: UILabel!
     @IBOutlet weak var deliverySign: UILabel!
+    @IBOutlet weak var eatinSign: UILabel!
     @IBOutlet weak var openNowOrClose: UILabel!
 
     @IBOutlet weak var collectionView: UICollectionView!
@@ -215,6 +214,12 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
                         }
                     }
                     
+                    let ratings = fhooder?.valueForKey("ratings") as? Double
+                    let spoons = String(format: "%.1f", ratings!)
+                    self.spoonRating.image = UIImage(named: spoons)
+                    
+                    self.reviewCount.text = "\(fhooder!.valueForKey("reviews")!) Reviews"
+                    
                     // If it has apt or bldg number
                     var unit : String?
                     if fhooder?.valueForKey("unitAddress") != nil {
@@ -231,6 +236,16 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
                     self.restaurantType.text = "\(fhooder!.valueForKey("foodTypeOne")!), \(fhooder!.valueForKey("foodTypeTwo")!), \(fhooder!.valueForKey("foodTypeThree")!)"
                     self.aboutFhooder = (fhooder!.valueForKey("shopDescription") as? String)!
                     self.fhooderFirstName = (fhooder!.valueForKey("firstName") as? String)!
+                    
+                    Fhooder.pickup? = (fhooder!.valueForKey("isPickup") as? Bool)!
+                    self.pickupSign.hidden = !Fhooder.pickup!
+                    
+                    Fhooder.delivery? = (fhooder!.valueForKey("isDeliver") as? Bool)!
+                    self.deliverySign.hidden = !Fhooder.delivery!
+                    
+                    Fhooder.eatin? = (fhooder!.valueForKey("isEatin") as? Bool)!
+                    self.eatinSign.hidden = !Fhooder.eatin!
+                    
                     Fhooder.isOpen = (fhooder!.valueForKey("isOpen") as? Bool)!
                     NSNotificationCenter.defaultCenter().postNotificationName("load3", object: nil)
                     
@@ -251,7 +266,6 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
                                         let picture = UIImage(data: picData)
                                         let name = item["itemName"] as! String
                                         let price = item["price"] as! Double
-                                        let servingMethod = item["servingMethod"] as! [Bool]
                                         let description = item["description"] as! String
                                         let ingredient = item["ingredients"] as! String
                                         let prefOne = item["organic"] as! Bool
@@ -267,18 +281,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
                                         let timeInterval = item["timeInterval"] as! Int
                                         
                                         self.itemPictures.append(picture!)
-                                        
-                                        if servingMethod[0] == true {
-                                            self.pickupSign.hidden = false
-                                        }
-                                        if servingMethod[1] == true {
-                                            self.eatinSign.hidden = false
-                                        }
-                                        if servingMethod[2] == true {
-                                            self.deliverySign.hidden = false
-                                        }
-
-                                        
+                                    
                                         self.arrItemNames.append(name)
                                         self.arrPrice.append(price)
                                         self.arrDecriptions.append(description)
