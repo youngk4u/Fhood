@@ -237,6 +237,8 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         let anno = annotationView.annotation as? AnnotationObject
         Fhooder.objectID = anno!.objectID
         Fhooder.distance = anno!.distance
+        Fhooder.fhooderLatitude = anno!.coordinate.latitude
+        Fhooder.fhooderLongitude = anno!.coordinate.longitude
         
         self.calloutView.contentView = BubbleView.nibView(withAnnotation: annotationView.annotation as? AnnotationObject)
         self.calloutView.calloutOffset = annotationView.calloutOffset

@@ -210,6 +210,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
                         if error == nil {
                             if let imageData = imageData {
                                 self.fhooderPic = UIImage(data:imageData)
+                                Fhooder.fhooderPicture = self.fhooderPic
                             }
                         }
                     }

@@ -29,6 +29,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
     var fhooderCloses : [Bool] = []
     var fhooderDistances : [Double] = []
     var fhooderID : [String] = []
+    var fhooderlocation : [PFGeoPoint] = []
     
     private let searchBars = UISearchBar()
     private let formatter = NSNumberFormatter()
@@ -195,6 +196,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
                         self.fhooderOpens = []
                         self.fhooderCloses = []
                         self.fhooderDistances = []
+                        self.fhooderlocation = []
                         
                         if (error == nil) {
                             
@@ -248,21 +250,23 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
                                     
                                     let isOpen = object.valueForKey("isOpen") as? Bool
                                     if isOpen == true {
-                                        self.fhooderOpens.append(isOpen!)
-                                        self.fhooderCloses.append(!isOpen!)
+                                        self.fhooderOpens.append(true)
+                                        self.fhooderCloses.append(false)
                                     } else {
-                                        self.fhooderOpens.append(!isOpen!)
-                                        self.fhooderCloses.append(isOpen!)
+                                        self.fhooderOpens.append(false)
+                                        self.fhooderCloses.append(true)
                                     }
                                     
                                     // Distance to fhooder in Mile
-                                    let fhooderlocation = object.valueForKey("location") as? PFGeoPoint
-                                    let CLLoc = fhooderlocation!.location()
+                                    let geopoint = object.valueForKey("location") as? PFGeoPoint
+                                    self.fhooderlocation.append(geopoint!)
+                                    let CLLoc = geopoint!.location()
                                     let distance = CLLoc.distanceFromLocation(self.userLoc)
                                     let distanceMile = distance * 0.000621371
                                     let x = round(distanceMile * 10) / 10
                                     
                                     self.fhooderDistances.append(x)
+                                    
                                     
                                     self.fhooderID.append(ID!)
 
@@ -306,8 +310,8 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         cell.fhooderDelivery.hidden = !self.fhooderDelivers[row]
         cell.fhooderEatin.hidden = !self.fhooderEatins[row]
         cell.fhooderType.text = "\(self.fhooderTypesOne[row]), \(self.fhooderTypesTwo[row]), \(self.fhooderTypesThree[row])"
-        cell.fhooderOpen.hidden = self.fhooderOpens[row]
-        cell.fhooderClosed.hidden = self.fhooderCloses[row]
+        cell.fhooderOpen.hidden = !self.fhooderOpens[row]
+        cell.fhooderClosed.hidden = !self.fhooderCloses[row]
         cell.fhooderDistance.text = "\(self.fhooderDistances[row]) miles"
         
         
@@ -321,6 +325,8 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         
         Fhooder.objectID = self.fhooderID[indexPath.row]
         Fhooder.distance = self.fhooderDistances[indexPath.row]
+        Fhooder.fhooderLatitude = self.fhooderlocation[indexPath.row].latitude
+        Fhooder.fhooderLongitude = self.fhooderlocation[indexPath.row].longitude
         TableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
 }

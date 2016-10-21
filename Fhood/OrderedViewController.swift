@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import CountdownLabel
 
 final class OrderedViewController: UIViewController {
 
@@ -28,6 +29,7 @@ final class OrderedViewController: UIViewController {
     @IBOutlet weak var total: UILabel!
     var totalPassed: String = ""
 
+    @IBOutlet weak var counterLabel: CountdownLabel!
     
     @IBOutlet weak var qtyOne: UILabel!
     @IBOutlet weak var qtyTwo: UILabel!
@@ -57,34 +59,33 @@ final class OrderedViewController: UIViewController {
     var priceArray: [String] = ["","","","","","",""]
     
     @IBOutlet var navbar: UINavigationBar!
+
     
     // Create Message Composer
     let messageComposer = MessageComposer()
     
     let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
         // Reload Parse data
         //NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(OrdersViewController.loadList1(_:)),name:"fhooderOrderLoad", object: nil)
         
         //NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
         
-        // Timer
-        let attributes = [
-            NSForegroundColorAttributeName: UIColor.blackColor(),
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 25)!
-        ]
-        self.navbar.titleTextAttributes = attributes
-        self.navbar.topItem?.title = "00:07:52"
-
         
-        //Hide tab bar
-        self.tabBarController?.tabBar.hidden = true
+        // Calculate pickup time and start the counter
+        let convertedDate = NSDate().localDate(NSDate())
+        counterLabel.countdownDelegate = self
+        self.counterLabel.setCountDownDate(NSDate(), targetDate: Fhoodie.fhoodiePickupTime!)
+        self.counterLabel.animationType = .Evaporate
+        countingAt(timeCounted: 60, timeRemaining: counterLabel.timeRemaining)
+        self.counterLabel.start()
         
-        //self.orderTime.text = "Ordered at \(fhoodie.orderedTime)"
+        
+        self.orderedTime.text = "Ordered at \(convertedDate)"
         self.fhooderName.text = Fhooder.shopName!
         self.address.text = Fhooder.address!
         
@@ -145,6 +146,16 @@ final class OrderedViewController: UIViewController {
         self.total.text = self.totalPassed
     }
     
+
+    
+    @IBAction func directionButton(sender: AnyObject) {
+        
+        let coordinate = CLLocationCoordinate2DMake(Fhooder.fhooderLatitude!, Fhooder.fhooderLongitude!)
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+        mapItem.name = Fhooder.shopName!
+        mapItem.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        
+    }
     
     
     func cancelOrderPushNotification () {
@@ -233,3 +244,35 @@ final class OrderedViewController: UIViewController {
         }
     }    
 }
+
+extension OrderedViewController: CountdownLabelDelegate {
+    
+    
+    
+    func countdownFinished() {
+        alert("Your pickup time is due", message: "Please proceed to the Fhooder's curbside.")
+    }
+    func countingAt(timeCounted timeCounted: NSTimeInterval, timeRemaining: NSTimeInterval) {
+        switch timeRemaining {
+        case 10*60:
+            self.alert("10 Minutes till the pickup time 😉", message: "")
+        case 5*60:
+            self.alert("5 Minutes till the pickup time!", message: "")
+            self.counterLabel.textColor = .redColor()
+        default:
+            break
+        }
+    }
+    
+}
+
+extension OrderedViewController {
+
+    func alert(title: String, message: String) {
+        let vc = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+        vc.addAction(action)
+        self.presentViewController(vc, animated: true) {}
+    }
+}
+

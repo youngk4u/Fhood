@@ -263,9 +263,7 @@ final class ReceiptViewController: UIViewController {
                 order.saveInBackgroundWithBlock({ (success: Bool, error2: NSError?) -> Void in
                     if success {
                         
-                        print(order.objectId)
                         Fhoodie.fhoodieOrderID = order.objectId
-                        print(Fhoodie.fhoodieOrderID)
                         
                         let relation = user?.relationForKey("orders")
                         relation!.addObject(order)
@@ -360,6 +358,8 @@ final class ReceiptViewController: UIViewController {
             orderedVC.subtotalPassed = self.subTotal.text!
             orderedVC.taxesAndFeesPassed = self.taxesAndFees.text!
             orderedVC.totalPassed = self.totalAmountDue.text!
+            
+            Fhoodie.fhoodiePickupTime = self.timePicker.date
         }
     }
 

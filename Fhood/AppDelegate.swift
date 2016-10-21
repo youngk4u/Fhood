@@ -228,3 +228,13 @@ extension UIImage {
     var lowQualityJPEGNSData: NSData     { return UIImageJPEGRepresentation(self, 0.25)!}
     var lowestQualityJPEGNSData: NSData  { return UIImageJPEGRepresentation(self, 0.0)! }
 }
+
+// Turns NSDate to PST formatted string
+extension NSDate {
+    func localDate (Date: NSDate) -> String {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.locale = NSLocale.currentLocale()
+        dateFormatter.dateFormat = "MMM d, yyyy, hh:mm aaa"
+        return dateFormatter.stringFromDate(Date)
+    }
+}

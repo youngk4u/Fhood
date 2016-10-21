@@ -3,7 +3,8 @@ use_frameworks!
 
 target :Fhood do
     xcodeproj 'Fhood.xcodeproj'
-
+    
+    pod 'CountdownLabel’
     pod 'Alamofire', '~> 3.5.1'
     pod 'SnapKit’, ‘~> 0.22.0’
     pod 'FBSDKCoreKit'          , :git => ‘https://github.com/facebook/facebook-ios-sdk.git'

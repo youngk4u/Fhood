@@ -33,7 +33,14 @@ final class ConfirmViewController: UIViewController {
         
         self.welcomeSign.text = "Welcome to \(Fhooder.shopName!)!"
         
-        self.fhooderFace.image = Fhooder.fhooderPicture!
+        let image = UIImageView(image: Fhooder.fhooderPicture!)
+        image.frame = CGRectMake(0, 0, 80, 80)
+        image.layer.masksToBounds = false
+        image.layer.cornerRadius = 13
+        image.layer.cornerRadius = image.frame.size.height/2
+        image.clipsToBounds = true
+        self.fhooderFace.addSubview(image)
+        
         self.fhooderFaceName.text = Fhooder.fhooderFirstName!
     }
     

@@ -6,6 +6,7 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - CountdownLabel (1.2.0)
   - FBSDKCoreKit (4.16.1):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.16.1):
@@ -25,6 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.5.1)
+  - CountdownLabel
   - FBSDKCoreKit (from `https://github.com/facebook/facebook-ios-sdk.git`)
   - FBSDKLoginKit (from `https://github.com/facebook/facebook-ios-sdk.git`)
   - JGProgressHUD (from `https://github.com/JonasGessner/JGProgressHUD.git`)
@@ -78,6 +80,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  CountdownLabel: 7dcc9bb2c8f488af7a4d29053f41c014ea0b973d
   FBSDKCoreKit: 6feac4e8921ccd7afa83fb1df6291dc6eec42c7c
   FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
   JGProgressHUD: 1617b0940cf80bb53e8f7d6f0fd69252ea45d6d4
@@ -87,6 +90,6 @@ SPEC CHECKSUMS:
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
   SWRevealViewController: b653f339865208c97be99a24876545f5be0cc4bb
 
-PODFILE CHECKSUM: 81b5ce91cc5ba6dca0af963115e9c3658830ea53
+PODFILE CHECKSUM: 866483eabc5e92185e6d4faa366d18047e1f96d5
 
 COCOAPODS: 1.0.1
