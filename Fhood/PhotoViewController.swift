@@ -127,7 +127,7 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
             
             let user = PFUser.currentUser()
             
-            let FhooderBool = user!["isFhooder"] as! Bool
+            let FhooderBool = user!["isFhooder"] as? Bool
             
             if FhooderBool == true {
                 

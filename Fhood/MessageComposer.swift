@@ -23,7 +23,7 @@ final class MessageComposer: NSObject, MFMessageComposeViewControllerDelegate {
         let messageComposeVC = MFMessageComposeViewController()
         messageComposeVC.messageComposeDelegate = self  //  Make sure to set this property to self, so that the controller can be dismissed!
         messageComposeVC.recipients = textMessageRecipients
-        messageComposeVC.body = "Hello Fhoodie! Nice to meet you :)"
+        messageComposeVC.body = ""
         return messageComposeVC
     }
     

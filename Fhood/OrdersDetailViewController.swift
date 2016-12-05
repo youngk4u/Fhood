@@ -48,8 +48,6 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
         
         self.navigationItem.title = "Pending"
         
-        self.messageButton.hidden = true
-        
         
         self.fhoodieName.text = Fhoodie.fhoodieFirstName
         
@@ -81,32 +79,41 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
             //let id = (Fhoodie.fhoodieOrderID)! as String
             
             query.getObjectInBackgroundWithId(Fhoodie.fhoodieOrderID!) { (Ordered: PFObject?, error: NSError?) -> Void in
-            if error == nil && Ordered != nil {
-    
-                let orderStatus = Ordered!["orderStatus"] as! String
-                
-                if orderStatus == "Made" || orderStatus == "Confirmed" {
-                    self.orderQuantity = Ordered!["itemQty"] as! [Int]
-                    self.orderName = Ordered!["itemNames"] as! [String]
-                    self.orderPrice = Ordered!["itemPrices"] as! [Double]
+                if error == nil && Ordered != nil {
+        
+                    let orderStatus = Ordered!["orderStatus"] as! String
                     
-                    for i in 0..<self.orderName.count {
-                        self.sum.append(self.orderPrice[i] * Double(self.orderQuantity[i]))
+                    if orderStatus == "New" || orderStatus == "Accepted" {
+                        self.orderQuantity = Ordered!["itemQty"] as! [Int]
+                        self.orderName = Ordered!["itemNames"] as! [String]
+                        self.orderPrice = Ordered!["itemPrices"] as! [Double]
+                        
+                        for i in 0..<self.orderName.count {
+                            self.sum.append(self.orderPrice[i] * Double(self.orderQuantity[i]))
+                        }
+                        
+                        let multiples = self.sum
+                        
+                        // Adds the total price
+                        self.totalPrice.text = self.formatter.stringFromNumber(multiples.reduce(0, combine: +) / Double(multiples.count))
+                        
+                        if orderStatus == "New" {
+                            self.messageButton.hidden = true
+                            self.acceptOrderButton.hidden = false
+                        }
+                        else {
+                            self.messageButton.hidden = false
+                            self.acceptOrderButton.hidden = true
+                        }
+                        
+                    }
+                    else {
+                        NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
+                        self.performSegueWithIdentifier("unwindToViewController1", sender: self)
                     }
                     
-                    let multiples = self.sum
-                    
-                    // Adds the total price
-                    self.totalPrice.text = self.formatter.stringFromNumber(multiples.reduce(0, combine: +) / Double(multiples.count))
-                    
+                    self.orderListTableView.reloadData()
                 }
-                else {
-                    NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
-                    self.performSegueWithIdentifier("unwindToViewController1", sender: self)
-                }
-                
-                self.orderListTableView.reloadData()
-            }
             
             }
             
@@ -118,6 +125,20 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
     @IBAction func acceptOrderTapped(sender: UIButton) {
         self.acceptOrderButton.hidden = true
         self.messageButton.hidden = false
+        
+        if PFUser.currentUser() != nil {
+            let query = PFQuery(className: "Orders")
+            
+            query.getObjectInBackgroundWithId(Fhoodie.fhoodieOrderID!) { (Ordered: PFObject?, error: NSError?) -> Void in
+                if error == nil && Ordered != nil {
+                    
+                    Ordered!["orderStatus"] = "Accepted"
+                    
+                    Ordered?.saveInBackground()
+                    NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
+                }
+            }
+        }
         
     }
     

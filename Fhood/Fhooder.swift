@@ -24,7 +24,6 @@ struct Fhooder {
     static var fhooderLatitude: Double? = 0
     static var fhooderLongitude: Double? = 0
     static var distance: Double? = 0
-    static var servingMethod: [Bool]? = []
     static var pickup: Bool? = false
     static var delivery: Bool? = false
     static var eatin: Bool? = false
@@ -44,6 +43,7 @@ struct Fhooder {
     static var orderTimeMinute: Int? = 0
     static var orderTimeAmpm: String? = ""
     static var orderTime: String? = ""
+    static var orderQuantity: Int? = 0
 
     static var itemNames: [String]? = []
     static var itemPrice: Double? = 0

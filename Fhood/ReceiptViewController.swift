@@ -8,8 +8,10 @@
 
 import UIKit
 import Parse
+import Braintree
+import PassKit
 
-final class ReceiptViewController: UIViewController {
+final class ReceiptViewController: UIViewController, BTDropInViewControllerDelegate, PKPaymentAuthorizationViewControllerDelegate  {
     
     @IBOutlet weak var fhooderName: UILabel!
     
@@ -53,12 +55,21 @@ final class ReceiptViewController: UIViewController {
     var closeDate: NSDate!
     var userImageFile: PFFile!
     
+    var braintreeClient: BTAPIClient?
+    var orderSuccess: Bool = false
     var formatter = NSNumberFormatter()
+    
+    @IBOutlet weak var completOrderButton: UIButton!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.view.backgroundColor = UIColor(white: 0, alpha: 0.8)
+        
+        
+        self.fhooderName.text = Fhooder.shopName!
         
         // Currency formatter
         self.formatter.numberStyle = .CurrencyStyle
@@ -121,12 +132,12 @@ final class ReceiptViewController: UIViewController {
             
         }
         
-        // Stripe fee (2.9% + 30 cents) and taxes (7.1% - Stripe) added to every order
+        // Braintree fee (2.9% + 30 cents) and taxes (7.1% - Stripe) added to every order
         self.subTotal.text = formatter.stringFromNumber(Fhoodie.selectedTotalItemPrice!)
         self.taxesAndFees.text = formatter.stringFromNumber(Fhoodie.selectedTotalItemPrice! * 0.1 + 0.3)
         Fhoodie.totalDue = Fhoodie.selectedTotalItemPrice! + Fhoodie.selectedTotalItemPrice! * 0.1 + 0.3
         self.totalAmountDue.text = formatter.stringFromNumber(Fhoodie.totalDue!)
-
+        
         
         
         let query = PFQuery(className: "Fhooder")
@@ -195,7 +206,166 @@ final class ReceiptViewController: UIViewController {
             
         }
         
+        
+        
+        
+        
+        // Braintree
+        
+        if PKPaymentAuthorizationViewController.canMakePaymentsUsingNetworks([PKPaymentNetworkVisa, PKPaymentNetworkMasterCard, PKPaymentNetworkAmex]) {
+            
+            self.completOrderButton.addTarget(self, action: #selector(ReceiptViewController.tappedApplePay), forControlEvents: UIControlEvents.TouchUpInside)
+        }
+        
+        
+        let clientTokenURL = NSURL(string: "https://braintree-sample-merchant.herokuapp.com/client_token")!
+        let clientTokenRequest = NSMutableURLRequest(URL: clientTokenURL)
+        clientTokenRequest.setValue("text/plain", forHTTPHeaderField: "Accept")
+        
+        NSURLSession.sharedSession().dataTaskWithRequest(clientTokenRequest) { (data, response, error) -> Void in
+            // TODO: Handle errors
+            let clientToken = String(data: data!, encoding: NSUTF8StringEncoding)
+            
+            self.braintreeClient = BTAPIClient(authorization: clientToken!)
+            // As an example, you may wish to present our Drop-in UI at this point.
+            // Continue to the next section to learn more...
+            }.resume()
+        
     }
+    
+    
+//    func applePayButton() -> UIButton {
+//        var button: UIButton?
+//        
+//        if #available(iOS 10.0, *) { // Available in iOS 8.3+
+//            button = PKPaymentButton(type: PKPaymentButtonType.Buy, style: PKPaymentButtonStyle.Black)
+//        } else {
+//            // TODO: Create and return your own apple pay button
+//            // button = ...
+//        }
+//        
+//        button?.addTarget(self, action: #selector(ConfirmViewController.tappedApplePay), forControlEvents: UIControlEvents.TouchUpInside)
+//        
+//        return button!
+//    }
+    
+    
+    
+    func tappedApplePay() {
+        let paymentRequest = self.paymentRequest()
+        // Example: Promote PKPaymentAuthorizationViewController to optional so that we can verify
+        // that our paymentRequest is valid. Otherwise, an invalid paymentRequest would crash our app.
+        if let vc = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
+            as PKPaymentAuthorizationViewController?
+        {
+            vc.delegate = self
+            presentViewController(vc, animated: true, completion: nil)
+            
+        } else {
+            print("Error: Payment request is invalid.")
+        }
+    }
+    
+    
+    func paymentRequest() -> PKPaymentRequest {
+        let paymentRequest = PKPaymentRequest()
+        paymentRequest.merchantIdentifier = "merchant.com.example.fhood";
+        paymentRequest.supportedNetworks = [PKPaymentNetworkAmex, PKPaymentNetworkVisa, PKPaymentNetworkMasterCard];
+        paymentRequest.merchantCapabilities = PKMerchantCapability.Capability3DS;
+        paymentRequest.countryCode = "US"; // e.g. US
+        paymentRequest.currencyCode = "USD"; // e.g. USD
+        paymentRequest.paymentSummaryItems = [
+            PKPaymentSummaryItem(label: "SUBTOTAL", amount: NSDecimalNumber(double: Fhoodie.selectedTotalItemPrice!)),
+            PKPaymentSummaryItem(label: "TAXES AND FEES", amount: NSDecimalNumber(double: (Fhoodie.selectedTotalItemPrice! * 0.1 + 0.3))),
+            PKPaymentSummaryItem(label: "TOTAL", amount: NSDecimalNumber(double: Fhoodie.totalDue!)),
+            PKPaymentSummaryItem(label: Fhooder.shopName!, amount: NSDecimalNumber(double: Fhoodie.totalDue!))
+        ]
+        return paymentRequest
+    }
+    
+    
+    
+    func paymentAuthorizationViewController(controller: PKPaymentAuthorizationViewController,
+                                            didAuthorizePayment payment: PKPayment, completion: (PKPaymentAuthorizationStatus) -> Void) {
+        
+        // Example: Tokenize the Apple Pay payment
+        let applePayClient = BTApplePayClient(APIClient: braintreeClient!)
+        applePayClient.tokenizeApplePayPayment(payment) { (tokenizedApplePayPayment, error) in
+            guard let tokenizedApplePayPayment = tokenizedApplePayPayment else {
+                // Tokenization failed. Check `error` for the cause of the failure.
+                
+                // Indicate failure via completion callback.
+                completion(PKPaymentAuthorizationStatus.Failure)
+                
+                return
+            }
+            
+            // Received a tokenized Apple Pay payment from Braintree.
+            // If applicable, address information is accessible in `payment`.
+            
+            // Send the nonce to your server for processing.
+            print("nonce = \(tokenizedApplePayPayment.nonce)")
+            self.orderSuccess = true 
+            
+            // Then indicate success or failure via the completion callback, e.g.
+            completion(PKPaymentAuthorizationStatus.Success)
+            
+            
+        }
+    }
+    
+    // Be sure to implement paymentAuthorizationViewControllerDidFinish.
+    // You are responsible for dismissing the view controller in this method.
+    @available(iOS 8.0, *)
+    func paymentAuthorizationViewControllerDidFinish(controller: PKPaymentAuthorizationViewController)
+    {
+        dismissViewControllerAnimated(true, completion: nil)
+        
+        if orderSuccess == true {
+            self.completeOrder()
+        }
+    }
+    
+
+    
+    func dropInViewController(viewController: BTDropInViewController,
+                              didSucceedWithTokenization paymentMethodNonce: BTPaymentMethodNonce)
+    {
+        // Send payment method nonce to your server for processing
+        postNonceToServer(paymentMethodNonce.nonce)
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func dropInViewControllerDidCancel(viewController: BTDropInViewController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+
+    
+    func userDidCancelPayment() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    
+    
+    func postNonceToServer(paymentMethodNonce: String) {
+        let paymentURL = NSURL(string: "http://fhood.com/fhoodFiles/braintree.py")!
+        let request = NSMutableURLRequest(URL: paymentURL)
+        request.HTTPBody = "payment_method_nonce=\(paymentMethodNonce)".dataUsingEncoding(NSUTF8StringEncoding)
+        request.HTTPMethod = "POST"
+        
+        NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
+            // TODO: Handle success or failure
+            }.resume()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     func pushNotification () {
@@ -209,7 +379,7 @@ final class ReceiptViewController: UIViewController {
         let push : PFPush = PFPush()
         push.setQuery(iQuery)
         
-        let pushData : NSDictionary = NSDictionary(objects: ["You've got an order!", "ordered", "1"], forKeys: ["alert", "type", "number"])
+        let pushData : NSDictionary = NSDictionary(objects: ["You've got an order!", "ordered", "1", "true"], forKeys: ["alert", "type", "badge", "sound"])
         push.setData(pushData as [NSObject : AnyObject])
         
         do {
@@ -222,9 +392,8 @@ final class ReceiptViewController: UIViewController {
     }
     
     
-    @IBAction func completeOrder(sender: AnyObject) {
-        let alert = UIAlertController(title: "Confirm your order", message:"The total amount of \(self.totalAmountDue.text!) will be charged to your account. Would you like to proceed?", preferredStyle: .Alert)
-        let cancel = UIAlertAction(title: "Cancel", style: .Default) { _ in}
+    func completeOrder() {
+        let alert = UIAlertController(title: "Thank You!", message:"Your order has been successfully placed.", preferredStyle: .Alert)
         let proceed = UIAlertAction(title: "Proceed", style: .Default) { (action: UIAlertAction!) -> () in
             
             HUD.show()
@@ -249,7 +418,7 @@ final class ReceiptViewController: UIViewController {
                 order["itemsId"] = Fhoodie.selectedItemObjectId!
                 order["itemQty"] = Fhoodie.selectedItemCount!
                 order["pickupTime"] = self.timePicker.date
-                order["orderStatus"] = "Made"
+                order["orderStatus"] = "New"
                 order["itemNames"] = self.itemNameArray as [String]
                 order["itemPrices"] = self.priceArrayDouble as [Double]
                 
@@ -270,12 +439,6 @@ final class ReceiptViewController: UIViewController {
                         
                         do {
                             try user?.save()
-                            
-                            let alert = UIAlertController(title: "Order completed", message:"Your order is submitted! Please wait for the confirmation.", preferredStyle: .Alert)
-                            let added = UIAlertAction(title: "Ok!", style: .Default) { _ in}
-                            alert.addAction(added)
-                            self.presentViewController(alert, animated: true, completion: nil)
-                            
                             
                             let query = PFQuery(className: "Fhooder")
                             query.getObjectInBackgroundWithId(fhooderID, block: { (fhooder: PFObject?, error: NSError?) -> Void in
@@ -339,7 +502,6 @@ final class ReceiptViewController: UIViewController {
             
             self.performSegueWithIdentifier("toOrderedView", sender: self)
         }
-        alert.addAction(cancel)
         alert.addAction(proceed)
         self.presentViewController(alert, animated: true){}
         

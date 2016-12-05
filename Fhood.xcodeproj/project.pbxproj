@@ -21,27 +21,6 @@
 		630609E11B0AFC5B00DAA7B4 /* MoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 630609E01B0AFC5B00DAA7B4 /* MoreViewController.swift */; };
 		63137FCE1C2153640017DFF5 /* AboutFhooderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63137FCD1C2153640017DFF5 /* AboutFhooderViewController.swift */; };
 		631DD3481BFA5F4E006C5BBF /* PromoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 631DD3471BFA5F4E006C5BBF /* PromoViewController.swift */; };
-		63264C001DB044DA00B298E2 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264BFF1DB044DA00B298E2 /* Alamofire.framework */; };
-		63264C011DB044DA00B298E2 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264BFF1DB044DA00B298E2 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C031DB044DA00B298E2 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C021DB044DA00B298E2 /* Bolts.framework */; };
-		63264C041DB044DA00B298E2 /* Bolts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C021DB044DA00B298E2 /* Bolts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C061DB044DA00B298E2 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C051DB044DA00B298E2 /* FBSDKCoreKit.framework */; };
-		63264C071DB044DA00B298E2 /* FBSDKCoreKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C051DB044DA00B298E2 /* FBSDKCoreKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C091DB044DA00B298E2 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C081DB044DA00B298E2 /* FBSDKLoginKit.framework */; };
-		63264C0A1DB044DA00B298E2 /* FBSDKLoginKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C081DB044DA00B298E2 /* FBSDKLoginKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C0C1DB044DA00B298E2 /* JGProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C0B1DB044DA00B298E2 /* JGProgressHUD.framework */; };
-		63264C0D1DB044DA00B298E2 /* JGProgressHUD.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C0B1DB044DA00B298E2 /* JGProgressHUD.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C0F1DB044DA00B298E2 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C0E1DB044DA00B298E2 /* Parse.framework */; };
-		63264C101DB044DA00B298E2 /* Parse.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C0E1DB044DA00B298E2 /* Parse.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C121DB044DA00B298E2 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C111DB044DA00B298E2 /* ParseFacebookUtilsV4.framework */; };
-		63264C131DB044DA00B298E2 /* ParseFacebookUtilsV4.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C111DB044DA00B298E2 /* ParseFacebookUtilsV4.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C161DB044DA00B298E2 /* Pods_Fhood.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C141DB044DA00B298E2 /* Pods_Fhood.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C181DB044DA00B298E2 /* SMCalloutView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C171DB044DA00B298E2 /* SMCalloutView.framework */; };
-		63264C191DB044DA00B298E2 /* SMCalloutView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C171DB044DA00B298E2 /* SMCalloutView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C1B1DB044DA00B298E2 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C1A1DB044DA00B298E2 /* SnapKit.framework */; };
-		63264C1C1DB044DA00B298E2 /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C1A1DB044DA00B298E2 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		63264C1E1DB044DA00B298E2 /* SWRevealViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C1D1DB044DA00B298E2 /* SWRevealViewController.framework */; };
-		63264C1F1DB044DA00B298E2 /* SWRevealViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63264C1D1DB044DA00B298E2 /* SWRevealViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63331AF91C0A842C00C4E44A /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63331AF81C0A842C00C4E44A /* AddItemViewController.swift */; };
 		63331AFB1C0C08B300C4E44A /* NutritionalInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63331AFA1C0C08B300C4E44A /* NutritionalInfoCell.swift */; };
 		633376991B582CB400F7D846 /* ConfirmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633376981B582CB400F7D846 /* ConfirmViewController.swift */; };
@@ -64,7 +43,7 @@
 		636E3FBC1D1670AB006A2C68 /* OrdersDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636E3FBB1D1670AB006A2C68 /* OrdersDetailTableViewCell.swift */; };
 		636F75141B7E973A00A8C1E8 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75131B7E973A00A8C1E8 /* BubbleView.swift */; };
 		636F75161B7E9A0C00A8C1E8 /* AnnotationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */; };
-		637FF4F01DAA50BC00D938D5 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 637FF4EF1DAA50BC00D938D5 /* UserNotifications.framework */; };
+		637153AE1DC4A50300B892BD /* AddPaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637153AD1DC4A50300B892BD /* AddPaymentViewController.swift */; };
 		6382F0991BDF23EE002C9C6B /* ReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F0981BDF23EE002C9C6B /* ReceiptViewController.swift */; };
 		6382F09B1BDF7007002C9C6B /* Fhoodie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F09A1BDF7007002C9C6B /* Fhoodie.swift */; };
 		6382F09D1BE0ABC0002C9C6B /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6382F09C1BE0ABC0002C9C6B /* DetailViewController.swift */; };
@@ -87,8 +66,6 @@
 		63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B329CF1B201E9D00077377 /* PaymentViewController.swift */; };
 		63B4560B1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B4560A1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift */; };
 		63BAF19A1BF609AB005EAC92 /* SettingsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63BAF1991BF609AB005EAC92 /* SettingsTableViewCell.swift */; };
-		63C3BDCB1DB63E3B0086F28B /* CountdownLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63C3BDCA1DB63E3B0086F28B /* CountdownLabel.framework */; };
-		63C3BDCC1DB63E3B0086F28B /* CountdownLabel.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 63C3BDCA1DB63E3B0086F28B /* CountdownLabel.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		63C830311B0996FB0089CCFF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C830301B0996FB0089CCFF /* AppDelegate.swift */; };
 		63C830331B0996FB0089CCFF /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C830321B0996FB0089CCFF /* MapViewController.swift */; };
 		63C830351B0996FB0089CCFF /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C830341B0996FB0089CCFF /* ListViewController.swift */; };
@@ -104,7 +81,7 @@
 		63EF67021BD1EFDB0068D531 /* OrdersDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63EF67011BD1EFDB0068D531 /* OrdersDetailViewController.swift */; };
 		63F547481BC751B600299899 /* CookingTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F547471BC751B600299899 /* CookingTimeViewController.swift */; };
 		63F70A2D1B5A3CE200A2D618 /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F70A2C1B5A3CE200A2D618 /* FinalViewController.swift */; };
-		9B6B6D8931F0AD5A3A05519A /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A1BCC1C3C83A065DBF19B12 /* Pods_Fhood.framework */; };
+		80555C08D0E062A4B62E91C0 /* Pods_Fhood.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4D7F29B4D0404DBB073BDCF /* Pods_Fhood.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,20 +101,18 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				63264C191DB044DA00B298E2 /* SMCalloutView.framework in Embed Frameworks */,
-				63264C011DB044DA00B298E2 /* Alamofire.framework in Embed Frameworks */,
-				63264C071DB044DA00B298E2 /* FBSDKCoreKit.framework in Embed Frameworks */,
-				63264C1F1DB044DA00B298E2 /* SWRevealViewController.framework in Embed Frameworks */,
-				63264C131DB044DA00B298E2 /* ParseFacebookUtilsV4.framework in Embed Frameworks */,
-				63C3BDCC1DB63E3B0086F28B /* CountdownLabel.framework in Embed Frameworks */,
-				63264C0A1DB044DA00B298E2 /* FBSDKLoginKit.framework in Embed Frameworks */,
-				63264C0D1DB044DA00B298E2 /* JGProgressHUD.framework in Embed Frameworks */,
-				63264C161DB044DA00B298E2 /* Pods_Fhood.framework in Embed Frameworks */,
-				63264C101DB044DA00B298E2 /* Parse.framework in Embed Frameworks */,
-				63264C041DB044DA00B298E2 /* Bolts.framework in Embed Frameworks */,
-				63264C1C1DB044DA00B298E2 /* SnapKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		636E910F1DBCFC480037FFA5 /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed PlugIns";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -153,24 +128,13 @@
 		3BD592601B96A3B5003D26AE /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		3BF325321B92533700C606D5 /* Reveal.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Reveal.storyboard; sourceTree = "<group>"; };
 		3BF91B7E1B926EC5005C9EDB /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		5A1BCC1C3C83A065DBF19B12 /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56B970E4FDDA46C9950AFC51 /* Pods-Fhood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.debug.xcconfig"; sourceTree = "<group>"; };
 		6301DF751C02988100314323 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
 		630306C11BD8694D002C5B0F /* CancelOrdersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelOrdersViewController.swift; sourceTree = "<group>"; };
 		630609DE1B0AFC4400DAA7B4 /* FeaturedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedViewController.swift; sourceTree = "<group>"; };
 		630609E01B0AFC5B00DAA7B4 /* MoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreViewController.swift; sourceTree = "<group>"; };
 		63137FCD1C2153640017DFF5 /* AboutFhooderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutFhooderViewController.swift; sourceTree = "<group>"; };
 		631DD3471BFA5F4E006C5BBF /* PromoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromoViewController.swift; sourceTree = "<group>"; };
-		63264BFF1DB044DA00B298E2 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C021DB044DA00B298E2 /* Bolts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Bolts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C051DB044DA00B298E2 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C081DB044DA00B298E2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C0B1DB044DA00B298E2 /* JGProgressHUD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JGProgressHUD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C0E1DB044DA00B298E2 /* Parse.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Parse.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C111DB044DA00B298E2 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C141DB044DA00B298E2 /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C171DB044DA00B298E2 /* SMCalloutView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SMCalloutView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C1A1DB044DA00B298E2 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		63264C1D1DB044DA00B298E2 /* SWRevealViewController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SWRevealViewController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63331AF81C0A842C00C4E44A /* AddItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
 		63331AFA1C0C08B300C4E44A /* NutritionalInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NutritionalInfoCell.swift; sourceTree = "<group>"; };
 		633376981B582CB400F7D846 /* ConfirmViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmViewController.swift; sourceTree = "<group>"; };
@@ -189,7 +153,7 @@
 		636E3FBB1D1670AB006A2C68 /* OrdersDetailTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersDetailTableViewCell.swift; sourceTree = "<group>"; };
 		636F75131B7E973A00A8C1E8 /* BubbleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		636F75151B7E9A0C00A8C1E8 /* AnnotationObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationObject.swift; sourceTree = "<group>"; };
-		637FF4EF1DAA50BC00D938D5 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		637153AD1DC4A50300B892BD /* AddPaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPaymentViewController.swift; sourceTree = "<group>"; };
 		6382F0981BDF23EE002C9C6B /* ReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptViewController.swift; sourceTree = "<group>"; };
 		6382F09A1BDF7007002C9C6B /* Fhoodie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fhoodie.swift; sourceTree = "<group>"; };
 		6382F09C1BE0ABC0002C9C6B /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -214,7 +178,6 @@
 		63B329CF1B201E9D00077377 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		63B4560A1B5F2E4B002E1C67 /* FeaturedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeaturedTableViewCell.swift; sourceTree = "<group>"; };
 		63BAF1991BF609AB005EAC92 /* SettingsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewCell.swift; sourceTree = "<group>"; };
-		63C3BDCA1DB63E3B0086F28B /* CountdownLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CountdownLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C8302B1B0996FB0089CCFF /* Fhood.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fhood.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63C8302F1B0996FB0089CCFF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		63C830301B0996FB0089CCFF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -236,8 +199,8 @@
 		63EF67011BD1EFDB0068D531 /* OrdersDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersDetailViewController.swift; sourceTree = "<group>"; };
 		63F547471BC751B600299899 /* CookingTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CookingTimeViewController.swift; sourceTree = "<group>"; };
 		63F70A2C1B5A3CE200A2D618 /* FinalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
-		C932D19E6D887BD2F57ED2EA /* Pods-Fhood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.release.xcconfig"; sourceTree = "<group>"; };
-		FC5F0B0295D0EFA1E379E611 /* Pods-Fhood.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.debug.xcconfig"; sourceTree = "<group>"; };
+		B937B53162710B5203CAB1AF /* Pods-Fhood.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Fhood.release.xcconfig"; path = "Pods/Target Support Files/Pods-Fhood/Pods-Fhood.release.xcconfig"; sourceTree = "<group>"; };
+		F4D7F29B4D0404DBB073BDCF /* Pods_Fhood.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Fhood.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,19 +208,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63264C061DB044DA00B298E2 /* FBSDKCoreKit.framework in Frameworks */,
-				637FF4F01DAA50BC00D938D5 /* UserNotifications.framework in Frameworks */,
-				63264C181DB044DA00B298E2 /* SMCalloutView.framework in Frameworks */,
-				63264C1E1DB044DA00B298E2 /* SWRevealViewController.framework in Frameworks */,
-				63264C1B1DB044DA00B298E2 /* SnapKit.framework in Frameworks */,
-				63264C091DB044DA00B298E2 /* FBSDKLoginKit.framework in Frameworks */,
-				63264C001DB044DA00B298E2 /* Alamofire.framework in Frameworks */,
-				9B6B6D8931F0AD5A3A05519A /* Pods_Fhood.framework in Frameworks */,
-				63264C121DB044DA00B298E2 /* ParseFacebookUtilsV4.framework in Frameworks */,
-				63C3BDCB1DB63E3B0086F28B /* CountdownLabel.framework in Frameworks */,
-				63264C0C1DB044DA00B298E2 /* JGProgressHUD.framework in Frameworks */,
-				63264C0F1DB044DA00B298E2 /* Parse.framework in Frameworks */,
-				63264C031DB044DA00B298E2 /* Bolts.framework in Frameworks */,
+				80555C08D0E062A4B62E91C0 /* Pods_Fhood.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,32 +222,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		25716749EB768F98CC385C02 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FC5F0B0295D0EFA1E379E611 /* Pods-Fhood.debug.xcconfig */,
-				C932D19E6D887BD2F57ED2EA /* Pods-Fhood.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		3A2E488DE99364F248C525AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				63C3BDCA1DB63E3B0086F28B /* CountdownLabel.framework */,
-				63264C1D1DB044DA00B298E2 /* SWRevealViewController.framework */,
-				63264C1A1DB044DA00B298E2 /* SnapKit.framework */,
-				63264C171DB044DA00B298E2 /* SMCalloutView.framework */,
-				63264C141DB044DA00B298E2 /* Pods_Fhood.framework */,
-				63264C111DB044DA00B298E2 /* ParseFacebookUtilsV4.framework */,
-				63264C0E1DB044DA00B298E2 /* Parse.framework */,
-				63264C0B1DB044DA00B298E2 /* JGProgressHUD.framework */,
-				63264C081DB044DA00B298E2 /* FBSDKLoginKit.framework */,
-				63264C051DB044DA00B298E2 /* FBSDKCoreKit.framework */,
-				63264C021DB044DA00B298E2 /* Bolts.framework */,
-				63264BFF1DB044DA00B298E2 /* Alamofire.framework */,
-				637FF4EF1DAA50BC00D938D5 /* UserNotifications.framework */,
-				5A1BCC1C3C83A065DBF19B12 /* Pods_Fhood.framework */,
+				F4D7F29B4D0404DBB073BDCF /* Pods_Fhood.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -409,6 +338,7 @@
 				63E5CA151C13D99100D33B25 /* AddressViewController.swift */,
 				63AF75501C14DAA0004E9A85 /* AboutMeViewController.swift */,
 				634F3BB51C062A5F00344A09 /* SignUpViewController.swift */,
+				637153AD1DC4A50300B892BD /* AddPaymentViewController.swift */,
 			);
 			name = Reveal;
 			sourceTree = "<group>";
@@ -450,7 +380,7 @@
 				63C830451B0996FB0089CCFF /* FhoodTests */,
 				63C8302C1B0996FB0089CCFF /* Products */,
 				3A2E488DE99364F248C525AE /* Frameworks */,
-				25716749EB768F98CC385C02 /* Pods */,
+				A70FF79FC17EDC59FE92CE83 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -500,6 +430,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A70FF79FC17EDC59FE92CE83 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				56B970E4FDDA46C9950AFC51 /* Pods-Fhood.debug.xcconfig */,
+				B937B53162710B5203CAB1AF /* Pods-Fhood.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -514,6 +453,7 @@
 				6CC8AE98311C293D02EDF22E /* [CP] Embed Pods Frameworks */,
 				D3B5325DAA8C9863339803FD /* [CP] Copy Pods Resources */,
 				63264C201DB044DB00B298E2 /* Embed Frameworks */,
+				636E910F1DBCFC480037FFA5 /* Embed PlugIns */,
 			);
 			buildRules = (
 			);
@@ -558,6 +498,9 @@
 						DevelopmentTeam = Z3A283N666;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -710,6 +653,7 @@
 				63B329D01B201E9D00077377 /* PaymentViewController.swift in Sources */,
 				6382F09D1BE0ABC0002C9C6B /* DetailViewController.swift in Sources */,
 				3B356FCC1B9275670014AD22 /* OnboardingViewController.swift in Sources */,
+				637153AE1DC4A50300B892BD /* AddPaymentViewController.swift in Sources */,
 				63331AFB1C0C08B300C4E44A /* NutritionalInfoCell.swift in Sources */,
 				63BAF19A1BF609AB005EAC92 /* SettingsTableViewCell.swift in Sources */,
 				630609DF1B0AFC4400DAA7B4 /* FeaturedViewController.swift in Sources */,
@@ -886,7 +830,7 @@
 		};
 		63C8304D1B0996FB0089CCFF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC5F0B0295D0EFA1E379E611 /* Pods-Fhood.debug.xcconfig */;
+			baseConfigurationReference = 56B970E4FDDA46C9950AFC51 /* Pods-Fhood.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -901,6 +845,36 @@
 				INFOPLIST_FILE = Fhood/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"Braintree\"",
+					"-framework",
+					"\"CountdownLabel\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"JGProgressHUD\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseFacebookUtilsV4\"",
+					"-framework",
+					"\"SMCalloutView\"",
+					"-framework",
+					"\"SWRevealViewController\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-w",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -912,7 +886,7 @@
 		};
 		63C8304E1B0996FB0089CCFF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C932D19E6D887BD2F57ED2EA /* Pods-Fhood.release.xcconfig */;
+			baseConfigurationReference = B937B53162710B5203CAB1AF /* Pods-Fhood.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -927,6 +901,36 @@
 				INFOPLIST_FILE = Fhood/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-l\"c++\"",
+					"-framework",
+					"\"Alamofire\"",
+					"-framework",
+					"\"Bolts\"",
+					"-framework",
+					"\"Braintree\"",
+					"-framework",
+					"\"CountdownLabel\"",
+					"-framework",
+					"\"FBSDKCoreKit\"",
+					"-framework",
+					"\"FBSDKLoginKit\"",
+					"-framework",
+					"\"JGProgressHUD\"",
+					"-framework",
+					"\"Parse\"",
+					"-framework",
+					"\"ParseFacebookUtilsV4\"",
+					"-framework",
+					"\"SMCalloutView\"",
+					"-framework",
+					"\"SWRevealViewController\"",
+					"-framework",
+					"\"SnapKit\"",
+					"-w",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -952,6 +956,10 @@
 				INFOPLIST_FILE = FhoodTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "814d8db9-3400-45b6-b2ff-6ac0a10bf721";
@@ -974,6 +982,10 @@
 				INFOPLIST_FILE = FhoodTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-framework",
+					XCTest,
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "814d8db9-3400-45b6-b2ff-6ac0a10bf721";

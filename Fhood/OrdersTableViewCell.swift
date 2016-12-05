@@ -16,5 +16,7 @@ final class OrdersTableViewCell: UITableViewCell {
     @IBOutlet weak var userID: UILabel!
     @IBOutlet weak var userRating: UIImageView!
     @IBOutlet weak var pickupCountdown: UILabel!
+    @IBOutlet weak var newOrderLabel: UILabel!
+
     
 }

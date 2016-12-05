@@ -47,29 +47,36 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         }
 
         
-        func registerForPushNotifications(application: UIApplication) {
-            
-            if #available(iOS 10.0, *){
-                UNUserNotificationCenter.currentNotificationCenter().delegate = self
-                UNUserNotificationCenter.currentNotificationCenter().requestAuthorizationWithOptions([.Badge, .Sound, .Alert], completionHandler: {(granted, error) in
-                    if (granted)
-                    {
-                        UIApplication.sharedApplication().registerForRemoteNotifications()
-                    }
-                    else{
-                        //Do stuff if unsuccessful...
-                    }
-                })
-            }
-                
-            else{ //If user is not on iOS 10 use the old methods we've been using
-                let notificationSettings = UIUserNotificationSettings(
-                    forTypes: [.Badge, .Sound, .Alert], categories: nil)
-                application.registerUserNotificationSettings(notificationSettings)
-                application.registerForRemoteNotifications()
-            }
-            
-        }
+        
+        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
+        
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+
+        
+//        func registerForPushNotifications(application: UIApplication) {
+//            
+//            if #available(iOS 10.0, *){
+//                UNUserNotificationCenter.currentNotificationCenter().delegate = self
+//                UNUserNotificationCenter.currentNotificationCenter().requestAuthorizationWithOptions([.Badge, .Sound, .Alert], completionHandler: {(granted, error) in
+//                    if (granted)
+//                    {
+//                        UIApplication.sharedApplication().registerForRemoteNotifications()
+//                    }
+//                    else{
+//                        //Do stuff if unsuccessful...
+//                    }
+//                })
+//            }
+//                
+//            else{ //If user is not on iOS 10 use the old methods we've been using
+//                let notificationSettings = UIUserNotificationSettings(
+//                    forTypes: [.Badge, .Sound, .Alert], categories: nil)
+//                application.registerUserNotificationSettings(notificationSettings)
+//                application.registerForRemoteNotifications()
+//            }
+//            
+//        }
         
         
         // Badge number set to 0 once app is opended
@@ -83,16 +90,18 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
 
         if PFUser.currentUser() != nil {
             let user = PFUser.currentUser()!
-            let query = PFQuery(className: "Fhooder")
-            let id = (user.valueForKey("fhooder")?.objectId)! as String
-            query.getObjectInBackgroundWithId(id) { (fhooder: PFObject?, error: NSError?) -> Void in
-                if error == nil && fhooder != nil {
-                    let openStatus = fhooder!["isOpen"] as! Bool
-                    if openStatus == true {
-                        Fhooder.fhooderSignedIn = true
-                        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-                        Router.route(false)
-                        self.window?.makeKeyAndVisible()
+            if user["isFhooder"] != nil {
+                let query = PFQuery(className: "Fhooder")
+                let id = (user.valueForKey("fhooder")?.objectId)! as String
+                query.getObjectInBackgroundWithId(id) { (fhooder: PFObject?, error: NSError?) -> Void in
+                    if error == nil && fhooder != nil {
+                        let openStatus = fhooder!["isOpen"] as! Bool
+                        if openStatus == true {
+                            Fhooder.fhooderSignedIn = true
+                            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                            Router.route(false)
+                            self.window?.makeKeyAndVisible()
+                        }
                     }
                 }
             }
@@ -135,6 +144,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         }
     }
     
+    
+    
     func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
         if error.code == 3010 {
             print("Push notifications are not supported in the iOS Simulator.\n")
@@ -143,47 +154,57 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         }
     }
     
+    
+    
+    
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        
+        let id = userInfo["type"] as? String
+        
+        // If the app is closed
         if application.applicationState == UIApplicationState.Inactive {
+            if id == "ordered" {
+                UIApplication.sharedApplication().applicationIconBadgeNumber += 1
+                Fhooder.orderQuantity! += 1
+                NSNotificationCenter.defaultCenter().postNotificationName("postBadgeRefresh", object: nil)
+            }
+            // Refreshing Fhooder's order list
+            NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
             PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
         } else {
             
-            let id = userInfo["type"] as? String
             if id == "ordered" {
                 
-                UIApplication.sharedApplication().applicationIconBadgeNumber = 4
-                application.applicationIconBadgeNumber = 9
-                
-                let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Fhooder", bundle: nil)
-                let orderViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("FhooderTabController") as! FhooderTabBarController
-                orderViewController.selectedIndex = 1
-                //self.window?.rootViewController = orderViewController
+                UIApplication.sharedApplication().applicationIconBadgeNumber += 1
+                Fhooder.orderQuantity! += 1
+                NSNotificationCenter.defaultCenter().postNotificationName("postBadgeRefresh", object: nil)
+
             }
             else if id == "fhoodieCancelled" {
                 
             }
             else if id == "fhooderCancelled" {
                 
-                let mainStoryBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let orderViewController = mainStoryBoard.instantiateViewControllerWithIdentifier("orderViewController")
-                orderViewController.performSegueWithIdentifier("unwindToViewController", sender: self)
+                
             }
-            
-            PFPush.handlePush(userInfo)
-            NSNotificationCenter.defaultCenter().postNotificationName("OrderListLoad", object: nil)
         }
+        
+        // Refreshing Fhooder's order list
+        NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
+        PFPush.handlePush(userInfo)
+        
     }
     
     
-    @available(iOS 10.0, *)
-    func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
-        //Handle the notification
-    }
-    
-    @available(iOS 10.0, *)
-    func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
-        //Handle the notification
-    }
+//    @available(iOS 10.0, *)
+//    func userNotificationCenter(center: UNUserNotificationCenter, willPresentNotification notification: UNNotification, withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
+//        //Handle the notification
+//    }
+//    
+//    @available(iOS 10.0, *)
+//    func userNotificationCenter(center: UNUserNotificationCenter, didReceiveNotificationResponse response: UNNotificationResponse, withCompletionHandler completionHandler: () -> Void) {
+//        //Handle the notification
+//    }
     
     
 
@@ -202,7 +223,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
 
     func applicationDidBecomeActive(application: UIApplication) {
         FBSDKAppEvents.activateApp()
+        
     }
+    
 
     func applicationWillResignActive(application: UIApplication) {
 
@@ -213,7 +236,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
     }
 
     func applicationDidEnterBackground(application: UIApplication) {
-
+        application.beginReceivingRemoteControlEvents()
     }
 
     func applicationWillTerminate(application: UIApplication) {

@@ -10,4 +10,12 @@ import UIKit
 
 final class FeaturedTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var featuredName: UILabel!
+    @IBOutlet weak var featuredType: UILabel!
+    @IBOutlet weak var featuredSpoon: UIImageView!
+    @IBOutlet weak var featuredReviewCount: UILabel!
+    @IBOutlet weak var featuredImage: UIImageView!
+    
+    
+    
 }

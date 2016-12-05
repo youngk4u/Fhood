@@ -13,7 +13,7 @@ import CountdownLabel
 final class OrderedViewController: UIViewController {
 
 
-    @IBOutlet weak var orderedTime: UILabel!
+    @IBOutlet weak var pickupTime: UILabel!
     @IBOutlet weak var orderStatus: UILabel!
     @IBOutlet weak var fhooderName: UILabel!
     @IBOutlet weak var fhooderImage: UIImageView!
@@ -77,15 +77,15 @@ final class OrderedViewController: UIViewController {
         
         
         // Calculate pickup time and start the counter
-        let convertedDate = NSDate().localDate(NSDate())
+        let convertedDate = NSDate().localDate(Fhoodie.fhoodiePickupTime!)
         counterLabel.countdownDelegate = self
         self.counterLabel.setCountDownDate(NSDate(), targetDate: Fhoodie.fhoodiePickupTime!)
         self.counterLabel.animationType = .Evaporate
-        countingAt(timeCounted: 60, timeRemaining: counterLabel.timeRemaining)
+        countingAt(60, timeRemaining: counterLabel.timeRemaining)
         self.counterLabel.start()
         
         
-        self.orderedTime.text = "Ordered at \(convertedDate)"
+        self.pickupTime.text = "PICKUP TIME: \(convertedDate)"
         self.fhooderName.text = Fhooder.shopName!
         self.address.text = Fhooder.address!
         
@@ -197,7 +197,6 @@ final class OrderedViewController: UIViewController {
                    self.performSegueWithIdentifier("unwindToViewController", sender: self)
                     
                 }
-            
             NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
             }
         }
@@ -247,12 +246,10 @@ final class OrderedViewController: UIViewController {
 
 extension OrderedViewController: CountdownLabelDelegate {
     
-    
-    
     func countdownFinished() {
         alert("Your pickup time is due", message: "Please proceed to the Fhooder's curbside.")
     }
-    func countingAt(timeCounted timeCounted: NSTimeInterval, timeRemaining: NSTimeInterval) {
+    func countingAt(timeCounted: NSTimeInterval, timeRemaining: NSTimeInterval) {
         switch timeRemaining {
         case 10*60:
             self.alert("10 Minutes till the pickup time 😉", message: "")
@@ -263,7 +260,6 @@ extension OrderedViewController: CountdownLabelDelegate {
             break
         }
     }
-    
 }
 
 extension OrderedViewController {

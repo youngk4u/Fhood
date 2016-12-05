@@ -21,7 +21,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     @IBOutlet var cuisinTypeTextfield: UITextField!
     
     var cuisinTypePicker: UIPickerView!
-    let cuisinTypePickerValues = ["", "American", "Argentinian", "Asian", "BBQ", "Bagels", "Bakery", "Bento", "Brazilian", "Breakfast", "Californian", "Calzones", "Cantonese", "Caribbean", "Cheesesteaks", "Chicken", "Chinese", "Coffee", "Cold Pressed", "Crepes", "Cuban", "Deli", "Dessert", "Dim Sum", "Diner", "Dinner", "Eclectic", "Empanadas", "European", "Fish and Chips", "French", "Fusion", "German", "Gluten-Free", "Greek", "Grill", "Grilled Cheese", "Gyro", "Halal", "Hamburgers", "Hawaiian", "Healthy", "Hoagies", "Hot Dogs", "Ice Cream", "Indian", "Indonesian", "Italian", "Japanese", "Kids Menu", "Korean", "Kosher", "Kosher-Style", "Late Night", "Latin American", "Lebanese", "Lemonade", "Low Carb", "Low Fat", "Lunch", "Mandarin", "Meatloaf", "Mediterranean", "Mexican", "Middle Eastern", "Mini Sliders", "New American", "Noodles", "Organic", "Pasta", "Persian", "Peruvian", "Pitas", "Pizza", "Pork Buns", "Potato", "Pub Food", "Ribs", "Rice Bowl", "Russian", "Salads", "Sandwiches", "Seafood", "Smoothies and Juices", "Soul Food", "Soup", "Steak", "Subs", "Sushi", "Shawarma", "Szechwan", "Tapas", "Tea", "Thai", "Vegan", "Vegetarian", "Vietnamese", "Water", "Wings", "Wraps", "Other"]
+    let cuisinTypePickerValues = ["", "American", "Argentinian", "Asian", "BBQ", "Bagels", "Bakery", "Bento", "Brazilian", "Breakfast", "Californian", "Calzones", "Cantonese", "Caribbean", "Cheesesteaks", "Chicken", "Chinese", "Coffee", "Cold Pressed", "Crepes", "Cuban", "Curry", "Deli", "Dessert", "Dim Sum", "Diner", "Dinner", "Eclectic", "Empanadas", "European", "Fish and Chips", "French", "Fusion", "German", "Gluten-Free", "Greek", "Grill", "Grilled Cheese", "Gyro", "Halal", "Hamburgers", "Hawaiian", "Healthy", "Hoagies", "Hot Dogs", "Ice Cream", "Indian", "Indonesian", "Italian", "Japanese", "Kids Menu", "Korean", "Kosher", "Kosher-Style", "Late Night", "Latin American", "Lebanese", "Lemonade", "Low Carb", "Low Fat", "Lunch", "Mandarin", "Meatloaf", "Mediterranean", "Mexican", "Middle Eastern", "Mini Sliders", "New American", "Noodles", "Organic", "Pasta", "Persian", "Peruvian", "Pitas", "Pizza", "Pork Buns", "Potato", "Pub Food", "Ribs", "Rice Bowl", "Russian", "Salads", "Sandwiches", "Seafood", "Smoothies and Juices", "Soul Food", "Soup", "Steak", "Subs", "Sushi", "Shawarma", "Szechwan", "Tapas", "Tea", "Thai", "Vegan", "Vegetarian", "Vietnamese", "Water", "Wings", "Wraps", "Other"]
     
     @IBOutlet var pickupButton: UIButton!
     var pickupBtnState: Bool = false
@@ -389,6 +389,16 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
                     else {
                         itemPicExist = false
                     }
+                    
+                    if self.pickupBtnState == true {
+                        fhooder!["isPickup"] = self.pickupBtnState
+                    }
+                    if self.deliveryBtnState == true {
+                        fhooder!["isDeliver"] = self.deliveryBtnState
+                    }
+                    if self.eatInBtnState == true {
+                        fhooder!["isEatin"] = self.eatInBtnState
+                    }
             
                     let item = PFObject(className: "Items")
                     item["itemName"] = self.menuNameTextfield.text!.capitalizedString
@@ -403,9 +413,6 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
                         fhooder!["itemPic"] = imageFile
                     }
                     
-                    
-                    
-                    item["servingMethod"] = [self.pickupBtnState, self.eatInBtnState, self.deliveryBtnState]
                     
                     let priceInString = self.priceTextfield.text!
                     let priceString = String(priceInString.characters.dropFirst())
@@ -437,7 +444,9 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
                     
                     Fhooder.itemNames?.append(self.menuNameTextfield.text!)
                     Fhooder.itemPics?.append(Fhooder.itemPic!)
-                    Fhooder.servingMethod = [self.pickupBtnState, self.eatInBtnState, self.deliveryBtnState]
+                    Fhooder.pickup? = self.pickupBtnState
+                    Fhooder.delivery? = self.deliveryBtnState
+                    Fhooder.eatin? = self.eatInBtnState
                     Fhooder.itemPrices?.append(priceNumber!)
                     Fhooder.itemDescription?.append(self.descriptionTextfield.text!)
                     Fhooder.itemIngredients?.append(self.ingredientsTextfield.text!)

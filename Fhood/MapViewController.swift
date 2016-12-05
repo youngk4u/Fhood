@@ -56,7 +56,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         UISearchBar.appearance().backgroundImage = nil // Search Bar with no rim
         self.navigationItem.titleView = UIBarButtonItem(customView: searchBars).customView
         self.searchBars.delegate = self
-        self.searchBars.placeholder = "Sandwich"
+        self.searchBars.placeholder = "Bento"
 
         // Configure reveal for this view
         let revealController = self.revealViewController()

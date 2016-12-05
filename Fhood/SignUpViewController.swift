@@ -568,6 +568,15 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["ratings"] = 0
             applicant["reviews"] = 0
             applicant["isOpen"] = false
+            applicant["isPickup"] = false
+            applicant["isDeliver"] = false
+            applicant["isEatin"] = false
+            
+            let acl = PFACL()
+            acl.publicReadAccess = true
+            acl.publicWriteAccess = true
+            
+            applicant.ACL = acl
             
             
             applicant.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in

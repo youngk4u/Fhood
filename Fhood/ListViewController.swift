@@ -205,79 +205,80 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
                                 let picFile = object.valueForKey("itemPic") as? PFFile
                                 let ID = object.objectId
                                 
-                                do {
-                                    let picData : NSData = try picFile!.getData()
-                                    let picture = UIImage(data: picData)
-                                    let image = UIImageView(image: picture)
-                                    image.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
-                                    image.layer.masksToBounds = false
-                                    image.layer.cornerRadius = 13
-                                    image.layer.cornerRadius = image.frame.size.height/2
-                                    image.clipsToBounds = true
+                                picFile?.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                                    if error == nil {
+                                        if let imageData = imageData {
+                                            
+                                            let picture = UIImage(data: imageData)
+                                            let image = UIImageView(image: picture)
+                                            image.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
+                                            image.layer.masksToBounds = false
+                                            image.layer.cornerRadius = 13
+                                            image.layer.cornerRadius = image.frame.size.height/2
+                                            image.clipsToBounds = true
+                                            
+                                            self.fhooderPics.append(image)
+                                            
+                                            let name = object.valueForKey("shopName") as? String
+                                            self.array.append(name!)
+                                            
+                                            let itemPrice = object.valueForKey("itemPrice") as? Double
+                                            self.fhooderItemPrices.append(itemPrice!)
+                                            
+                                            let spoons = object.valueForKey("ratings") as? Double
+                                            let spoonsString = String(format: "%.1f", spoons!)
+                                            self.fhooderSpoons.append(spoonsString)
+                                            
+                                            let review = object.valueForKey("reviews") as? Int
+                                            self.fhooderReviews.append(review!)
+                                            
+                                            let pickup = object.valueForKey("isPickup") as? Bool
+                                            self.fhooderPickups.append(pickup!)
+                                            
+                                            let deliver = object.valueForKey("isDeliver") as? Bool
+                                            self.fhooderDelivers.append(deliver!)
+                                            
+                                            let eatin = object.valueForKey("isEatin") as? Bool
+                                            self.fhooderEatins.append(eatin!)
+                                            
+                                            let typeOne = object.valueForKey("foodTypeOne") as? String
+                                            self.fhooderTypesOne.append(typeOne!)
+                                            
+                                            let typeTwo = object.valueForKey("foodTypeTwo") as? String
+                                            self.fhooderTypesTwo.append(typeTwo!)
+                                            
+                                            let typeThree = object.valueForKey("foodTypeThree") as? String
+                                            self.fhooderTypesThree.append(typeThree!)
+                                            
+                                            let isOpen = object.valueForKey("isOpen") as? Bool
+                                            if isOpen == true {
+                                                self.fhooderOpens.append(true)
+                                                self.fhooderCloses.append(false)
+                                            } else {
+                                                self.fhooderOpens.append(false)
+                                                self.fhooderCloses.append(true)
+                                            }
+                                            
+                                            // Distance to fhooder in Mile
+                                            let geopoint = object.valueForKey("location") as? PFGeoPoint
+                                            self.fhooderlocation.append(geopoint!)
+                                            let CLLoc = geopoint!.location()
+                                            let distance = CLLoc.distanceFromLocation(self.userLoc)
+                                            let distanceMile = distance * 0.000621371
+                                            let x = round(distanceMile * 10) / 10
+                                            
+                                            self.fhooderDistances.append(x)
+                                            
+                                            
+                                            self.fhooderID.append(ID!)
+
+                                            self.TableView.reloadData()
                                     
-                                    self.fhooderPics.append(image)
-                                    
-                                    let name = object.valueForKey("shopName") as? String
-                                    self.array.append(name!)
-                                    
-                                    let itemPrice = object.valueForKey("itemPrice") as? Double
-                                    self.fhooderItemPrices.append(itemPrice!)
-                                    
-                                    let spoons = object.valueForKey("ratings") as? Double
-                                    let spoonsString = String(format: "%.1f", spoons!)
-                                    self.fhooderSpoons.append(spoonsString)
-                                    
-                                    let review = object.valueForKey("reviews") as? Int
-                                    self.fhooderReviews.append(review!)
-                                    
-                                    let pickup = object.valueForKey("isPickup") as? Bool
-                                    self.fhooderPickups.append(pickup!)
-                                    
-                                    let deliver = object.valueForKey("isDeliver") as? Bool
-                                    self.fhooderDelivers.append(deliver!)
-                                    
-                                    let eatin = object.valueForKey("isEatin") as? Bool
-                                    self.fhooderEatins.append(eatin!)
-                                    
-                                    let typeOne = object.valueForKey("foodTypeOne") as? String
-                                    self.fhooderTypesOne.append(typeOne!)
-                                    
-                                    let typeTwo = object.valueForKey("foodTypeTwo") as? String
-                                    self.fhooderTypesTwo.append(typeTwo!)
-                                    
-                                    let typeThree = object.valueForKey("foodTypeThree") as? String
-                                    self.fhooderTypesThree.append(typeThree!)
-                                    
-                                    let isOpen = object.valueForKey("isOpen") as? Bool
-                                    if isOpen == true {
-                                        self.fhooderOpens.append(true)
-                                        self.fhooderCloses.append(false)
-                                    } else {
-                                        self.fhooderOpens.append(false)
-                                        self.fhooderCloses.append(true)
+                                        }
+
                                     }
                                     
-                                    // Distance to fhooder in Mile
-                                    let geopoint = object.valueForKey("location") as? PFGeoPoint
-                                    self.fhooderlocation.append(geopoint!)
-                                    let CLLoc = geopoint!.location()
-                                    let distance = CLLoc.distanceFromLocation(self.userLoc)
-                                    let distanceMile = distance * 0.000621371
-                                    let x = round(distanceMile * 10) / 10
-                                    
-                                    self.fhooderDistances.append(x)
-                                    
-                                    
-                                    self.fhooderID.append(ID!)
-
-                                    self.TableView.reloadData()
-                                    
-                                }
-                                catch {
-                                    print("error")
-                                }
-                                
-                              
+                                })
                                 self.TableView.reloadData()
                             }
                         }

@@ -4,6 +4,8 @@ use_frameworks!
 target :Fhood do
     xcodeproj 'Fhood.xcodeproj'
     
+    pod 'Braintree'
+    pod 'Braintree/Apple-Pay'
     pod 'CountdownLabel’
     pod 'Alamofire', '~> 3.5.1'
     pod 'SnapKit’, ‘~> 0.22.0’

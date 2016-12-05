@@ -8,9 +8,8 @@
 
 import UIKit
 
-final class PaymentViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class PaymentViewController: UIViewController {
     
-    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +18,6 @@ final class PaymentViewController: UIViewController, UITableViewDelegate, UITabl
         nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
         self.title = "Payment"
         
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
     
     }
     
@@ -28,18 +25,6 @@ final class PaymentViewController: UIViewController, UITableViewDelegate, UITabl
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Table View
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("PaymentTableViewCell", forIndexPath: indexPath)
-        
-        
-        
-        return cell
-    }
 
     
 }

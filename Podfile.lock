@@ -6,6 +6,30 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Braintree (4.7.1):
+    - Braintree/Card (= 4.7.1)
+    - Braintree/Core (= 4.7.1)
+    - Braintree/PayPal (= 4.7.1)
+    - Braintree/UI (= 4.7.1)
+  - Braintree/Apple-Pay (4.7.1):
+    - Braintree/Core
+  - Braintree/Card (4.7.1):
+    - Braintree/Core
+  - Braintree/Core (4.7.1)
+  - Braintree/PayPal (4.7.1):
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.7.1):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.7.1):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.7.1)
+  - Braintree/UI (4.7.1):
+    - Braintree/Card
+    - Braintree/Core
   - CountdownLabel (1.2.0)
   - FBSDKCoreKit (4.16.1):
     - Bolts (~> 1.7)
@@ -26,6 +50,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 3.5.1)
+  - Braintree
+  - Braintree/Apple-Pay
   - CountdownLabel
   - FBSDKCoreKit (from `https://github.com/facebook/facebook-ios-sdk.git`)
   - FBSDKLoginKit (from `https://github.com/facebook/facebook-ios-sdk.git`)
@@ -80,6 +106,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Braintree: c57bcb7983412530ea6d71cee4b99a4ba316c4ef
   CountdownLabel: 7dcc9bb2c8f488af7a4d29053f41c014ea0b973d
   FBSDKCoreKit: 6feac4e8921ccd7afa83fb1df6291dc6eec42c7c
   FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
@@ -90,6 +117,6 @@ SPEC CHECKSUMS:
   SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
   SWRevealViewController: b653f339865208c97be99a24876545f5be0cc4bb
 
-PODFILE CHECKSUM: 866483eabc5e92185e6d4faa366d18047e1f96d5
+PODFILE CHECKSUM: 722f0089ac5cbee9b350800211b412f77d5eba79
 
 COCOAPODS: 1.0.1

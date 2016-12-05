@@ -11,7 +11,6 @@ import Parse
 
 final class AccountViewController: UIViewController  {
 
-
     
     @IBOutlet weak var fhooderSwitch: UISwitch!
     @IBOutlet weak var joinWindow: UIView!
@@ -123,7 +122,6 @@ final class AccountViewController: UIViewController  {
             }
         }
     }
-
     
 
     
@@ -139,58 +137,38 @@ final class AccountViewController: UIViewController  {
         
         
         if PFUser.currentUser()?.objectForKey("isFhooder") != nil {
-            
             let fhooder = PFUser.currentUser()!.objectForKey("isFhooder")
-            
+
             if self.fhooderSwitch.on == true {
-                
                 if fhooder != nil {
-                    
                     if fhooder as! NSObject == true {
                         Fhooder.fhooderSignedIn = true
                         Router.route(true)
-                        
-                    }
-
-                    else {
+                    } else {
                         animate()
                     }
-                    
-                }
-                else {
+                } else {
                     animate()
                 }
-            }
-            else {
+            } else {
                 if fhooder as! NSObject == false {
                     animate()
-                }
-                else {
-                    
+                } else {
                     if Fhooder.isOpen == true {
-                        
                         let alert = UIAlertController(title: "Wait", message: "You have to close the shop before you shop!", preferredStyle: UIAlertControllerStyle.Alert)
                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
                         self.presentViewController(alert, animated: true, completion: nil)
-                        
                         self.fhooderSwitch.on = true
-                        
-                    }
-                    else {
+                    } else {
                         Fhooder.fhooderSignedIn = false
-                            
                         let query = PFQuery(className: "Fhooder")
                         query.getObjectInBackgroundWithId(Fhooder.objectID!) { (fhooder: PFObject?, error: NSError?) -> Void in
                             if error == nil && fhooder != nil {
-                                
                                 fhooder!["isOpen"] = Fhooder.isOpen
                                 fhooder?.saveInBackground()
-                                
                             }
                         }
-                        
                     Router.route(true)
-                        
                     }
                 }
             }
@@ -202,8 +180,7 @@ final class AccountViewController: UIViewController  {
                     self.signUpButton.hidden = true
                     self.signupMessage.text = "You've already submitted your application. One of our representatives will contact you shortly!"
                 }
-            }
-            else {
+            } else {
                 self.signUpButton.hidden = false
             }
             animate()

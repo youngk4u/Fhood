@@ -19,10 +19,18 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
     var orderUserPic : [UIImageView] = []
     var orderUserPhoto: [UIImage] = []
     var orderedTime : [String] = []
+    var newOrder : [Bool] = []
     
     var dateFormatter = NSDateFormatter()
     
     var refreshControl: UIRefreshControl!
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        tabBarController?.tabBar.items?[1].badgeValue = nil
+        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        Fhooder.orderQuantity! = 0
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,7 +82,6 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
     func refresh(sender:AnyObject) {
 
         NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
-        
         refreshControl.endRefreshing()
     }
     
@@ -96,7 +103,6 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
     // Reload Parse function to use from other_  controllers
     func loadList1(notification: NSNotification){
         
-
         if PFUser.currentUser() != nil {
         let user = PFUser.currentUser()!
             let query = PFQuery(className: "Fhooder")
@@ -120,22 +126,28 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
                         self.orderUser = []
                         self.orderedTime = []
                         self.fhoodieID = []
+                        self.newOrder = []
                         
                         if error2 == nil && orders != nil {
                             for order in orders! {
                                 
                                 let status = order["orderStatus"] as! String
                                 
-                                if status == "Made" || status == "Confirmed" {
+                                if status == "New" || status == "Accepted" {
                                 
                                     let id = order.objectId
                                     self.orderID.append(id!)
                                     
                                     let pic = order["userPic"] as! PFFile
                                     
+                                    if status == "New" {
+                                        self.newOrder.append(true)
+                                    } else {
+                                        self.newOrder.append(false)
+                                    }
                                     
                                     do {
-                                      let picData : NSData = try pic.getData()
+                                        let picData : NSData = try pic.getData()
                                         let picture = UIImage(data: picData)
                                         let image = UIImageView(image: picture)
                                         image.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
@@ -198,14 +210,19 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         cell.layoutMargins = UIEdgeInsetsZero
 
         // Link Fhoodie information
-        
-       
+
         cell.orderTime.text = self.orderedTime[indexPath.row]
         cell.orderNumber.text = String((indexPath as NSIndexPath).row + 1)
         cell.userPic.addSubview(self.orderUserPic[(indexPath as NSIndexPath).row])
         cell.userID.text = self.orderUser[indexPath.row]
         cell.userRating.image = UIImage(named: Fhooder.ratingInString!)
         cell.pickupCountdown.text = "Pending"
+        
+        if self.newOrder[indexPath.row] == true {
+            cell.newOrderLabel.hidden = false
+        } else {
+            cell.newOrderLabel.hidden = true
+        }
 
         return cell
     }

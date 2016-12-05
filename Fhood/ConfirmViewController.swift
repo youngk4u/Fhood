@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 
+
 final class ConfirmViewController: UIViewController {
 
     @IBOutlet private var totalPriceLabel: UILabel!
@@ -42,10 +43,9 @@ final class ConfirmViewController: UIViewController {
         self.fhooderFace.addSubview(image)
         
         self.fhooderFaceName.text = Fhooder.fhooderFirstName!
+        
+        
     }
-    
 
-    
-    
     
 }

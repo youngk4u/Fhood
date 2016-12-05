@@ -51,7 +51,7 @@ class AboutMeViewController: UIViewController, UITextViewDelegate {
             return false
         }
         let newlength = textView.text.characters.count + text.characters.count - range.length
-        return newlength <= 200
+        return newlength <= 300
     }
 
     
