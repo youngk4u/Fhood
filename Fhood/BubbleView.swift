@@ -9,16 +9,16 @@
 import UIKit
 
 final class BubbleView: UIView {
-    @IBOutlet private var nameLabel: UILabel!
-    @IBOutlet private var imageView: UIImageView!
-    @IBOutlet private var typeLabel: UILabel!
-    @IBOutlet private var spoonView: UIImageView!
-    @IBOutlet private var reviewLabel: UILabel!
-    @IBOutlet private var pickupLabel: UILabel!
-    @IBOutlet private var deliveryLabel: UILabel!
-    @IBOutlet private var eatinLabel: UILabel!
-    @IBOutlet private var priceLabel: UILabel!
-    @IBOutlet private var openLabel: UILabel!
+    @IBOutlet fileprivate var nameLabel: UILabel!
+    @IBOutlet fileprivate var imageView: UIImageView!
+    @IBOutlet fileprivate var typeLabel: UILabel!
+    @IBOutlet fileprivate var spoonView: UIImageView!
+    @IBOutlet fileprivate var reviewLabel: UILabel!
+    @IBOutlet fileprivate var pickupLabel: UILabel!
+    @IBOutlet fileprivate var deliveryLabel: UILabel!
+    @IBOutlet fileprivate var eatinLabel: UILabel!
+    @IBOutlet fileprivate var priceLabel: UILabel!
+    @IBOutlet fileprivate var openLabel: UILabel!
 
     var annotation: AnnotationObject? {
         didSet {
@@ -27,13 +27,13 @@ final class BubbleView: UIView {
             self.typeLabel.text = annotation.subtitle
             self.nameLabel.text = annotation.title
             self.imageView.image = annotation.image
-            self.pickupLabel.hidden = !annotation.pickup
-            self.deliveryLabel.hidden = !annotation.deliver
-            self.eatinLabel.hidden = !annotation.eatin
+            self.pickupLabel.isHidden = !annotation.pickup
+            self.deliveryLabel.isHidden = !annotation.deliver
+            self.eatinLabel.isHidden = !annotation.eatin
             
             let image = UIImageView(image: self.imageView.image)
             self.imageView.image = nil
-            image.frame = CGRectMake(0, 0, 58, 58)
+            image.frame = CGRect(x: 0, y: 0, width: 58, height: 58)
             image.layer.masksToBounds = false
             image.layer.cornerRadius = 13
             image.layer.cornerRadius = image.frame.size.height/2
@@ -42,11 +42,11 @@ final class BubbleView: UIView {
             
             if annotation.open == true {
                 self.openLabel.text = "Open"
-                self.openLabel.textColor = UIColor.greenColor()
+                self.openLabel.textColor = UIColor.green
             }
             else {
                 self.openLabel.text = "Closed"
-                self.openLabel.textColor = UIColor.redColor()
+                self.openLabel.textColor = UIColor.red
             }
             
             self.priceLabel.text = String(format: "$%.2f", annotation.price)
@@ -55,7 +55,7 @@ final class BubbleView: UIView {
     }
 
     class func nibView(withAnnotation annotation: AnnotationObject?) -> BubbleView {
-        let view = NSBundle.mainBundle().loadNibNamed("BubbleView", owner: self, options: nil)![0]
+        let view = Bundle.main.loadNibNamed("BubbleView", owner: self, options: nil)![0]
         let bubbleView = view as? BubbleView ?? BubbleView()
         bubbleView.annotation = annotation
         return bubbleView
@@ -64,6 +64,6 @@ final class BubbleView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 8
-        self.backgroundColor = UIColor.clearColor()
+        self.backgroundColor = UIColor.clear
     }
 }

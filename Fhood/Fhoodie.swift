@@ -33,7 +33,7 @@ struct Fhoodie {
     static var selectedItemCount: [Int]? = [0, 0, 0, 0, 0, 0, 0]
     static var selectedItemObjectId: [String]?
     static var fhoodieOrderID: String?
-    static var fhoodiePickupTime: NSDate?
+    static var fhoodiePickupTime: Date?
     static var isAnythingSelected: Bool?
     static var selectedTotalItemPrice: Double?
     static var totalDue: Double?

@@ -26,12 +26,12 @@ final class AccountViewController: UIViewController  {
         super.viewDidLoad()
         
         // Reload data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AccountViewController.loadInfo(_:)),name:"loadSettings", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AccountViewController.loadInfo(_:)),name:NSNotification.Name(rawValue: "loadSettings"), object: nil)
         
         loadPicAndName()
                 
         // Connect to switch function
-        self.fhooderSwitch.addTarget(self, action: #selector(AccountViewController.toggleSwitch(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.fhooderSwitch.addTarget(self, action: #selector(AccountViewController.toggleSwitch(_:)), for: UIControlEvents.valueChanged)
     
         // Make join window and sign up button round
         self.joinWindow.layer.cornerRadius = 5
@@ -39,10 +39,10 @@ final class AccountViewController: UIViewController  {
         
     
         if Fhooder.fhooderSignedIn == true {
-            self.fhooderSwitch.on = true
+            self.fhooderSwitch.isOn = true
         }
         else {
-            self.fhooderSwitch.on = false
+            self.fhooderSwitch.isOn = false
         }
         
         
@@ -51,7 +51,7 @@ final class AccountViewController: UIViewController  {
     
     
     // Reload Picture and name to reload from other controllers
-    func loadInfo(notification: NSNotification){
+    func loadInfo(_ notification: Notification){
         loadPicAndName()
     }
 
@@ -59,16 +59,16 @@ final class AccountViewController: UIViewController  {
     func loadPicAndName() {
         
         // Get first name from Parse
-        if PFUser.currentUser()?.objectForKey("firstName") != nil {
-            self.fhoodieName.text = "\(PFUser.currentUser()!.objectForKey("firstName")!)"
+        if PFUser.current()?.object(forKey: "firstName") != nil {
+            self.fhoodieName.text = "\(PFUser.current()!.object(forKey: "firstName")!)"
         }
         else{
-            self.fhoodieName.text = PFUser.currentUser()?.username
+            self.fhoodieName.text = PFUser.current()?.username
         }
-        if PFUser.currentUser()?.objectForKey("profilePhoto") != nil {
-            let userImageFile = PFUser.currentUser()!["profilePhoto"] as! PFFile
-            userImageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData?, error: NSError?) -> Void in
+        if PFUser.current()?.object(forKey: "profilePhoto") != nil {
+            let userImageFile = PFUser.current()!["profilePhoto"] as! PFFile
+            userImageFile.getDataInBackground {
+                (imageData: Data?, error: Error?) -> Void in
                 if error == nil {
                     if let imageData = imageData {
                         
@@ -77,7 +77,7 @@ final class AccountViewController: UIViewController  {
                         
                         let image = UIImageView(image: self.fhoodiePic.image)
                         self.fhoodiePic.image = nil
-                        image.frame = CGRectMake(0, 0, 80, 80)
+                        image.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
                         image.layer.masksToBounds = false
                         image.layer.cornerRadius = 13
                         image.layer.cornerRadius = image.frame.size.height/2
@@ -85,7 +85,7 @@ final class AccountViewController: UIViewController  {
                         self.fhoodiePic.addSubview(image)
                         
                         // Back ground styling
-                        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Light)
+                        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
                         let blurView = UIVisualEffectView(effect: lightBlur)
                         blurView.frame = self.view.bounds
                         self.fhoodiePicBG.addSubview(blurView)
@@ -96,9 +96,9 @@ final class AccountViewController: UIViewController  {
         }
         // Get picture from Facebook(Parse)
         else {
-            if PFUser.currentUser()?.objectForKey("pictureUrl") != nil {
-                if let picURL = NSURL(string: "\(PFUser.currentUser()!.objectForKey("pictureUrl")!)") {
-                    if let data = NSData(contentsOfURL: picURL) {
+            if PFUser.current()?.object(forKey: "pictureUrl") != nil {
+                if let picURL = URL(string: "\(PFUser.current()!.object(forKey: "pictureUrl")!)") {
+                    if let data = try? Data(contentsOf: picURL) {
                         self.fhoodiePic.image = UIImage(data: data)
                         self.fhoodiePicBG.image = UIImage(data: data)
                         
@@ -113,7 +113,7 @@ final class AccountViewController: UIViewController  {
                         self.fhoodiePic.addSubview(image)
                         
                         // Back ground styling
-                        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.Light)
+                        let lightBlur = UIBlurEffect(style: UIBlurEffectStyle.light)
                         let blurView = UIVisualEffectView(effect: lightBlur)
                         blurView.frame = self.view.bounds
                         self.fhoodiePicBG.addSubview(blurView)
@@ -127,21 +127,21 @@ final class AccountViewController: UIViewController  {
     
     // Animate join window for toggle switch
     func animate () {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.5, animations: {
             self.joinWindow.alpha = self.joinWindow.alpha == 0 ? 1 : 0
-        }
+        }, completion: nil)
     }
     
     
-    func toggleSwitch(sender: UISwitch) {
+    func toggleSwitch(_ sender: UISwitch) {
         
         
-        if PFUser.currentUser()?.objectForKey("isFhooder") != nil {
-            let fhooder = PFUser.currentUser()!.objectForKey("isFhooder")
+        if PFUser.current()?.object(forKey: "isFhooder") != nil {
+            let fhooder = PFUser.current()!.object(forKey: "isFhooder")
 
-            if self.fhooderSwitch.on == true {
+            if self.fhooderSwitch.isOn == true {
                 if fhooder != nil {
-                    if fhooder as! NSObject == true {
+                    if fhooder as! Bool == true {
                         Fhooder.fhooderSignedIn = true
                         Router.route(true)
                     } else {
@@ -151,18 +151,18 @@ final class AccountViewController: UIViewController  {
                     animate()
                 }
             } else {
-                if fhooder as! NSObject == false {
+                if fhooder as! Bool == false {
                     animate()
                 } else {
                     if Fhooder.isOpen == true {
-                        let alert = UIAlertController(title: "Wait", message: "You have to close the shop before you shop!", preferredStyle: UIAlertControllerStyle.Alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-                        self.presentViewController(alert, animated: true, completion: nil)
-                        self.fhooderSwitch.on = true
+                        let alert = UIAlertController(title: "Wait", message: "You have to close the shop before you shop!", preferredStyle: UIAlertControllerStyle.alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                        self.fhooderSwitch.isOn = true
                     } else {
                         Fhooder.fhooderSignedIn = false
                         let query = PFQuery(className: "Fhooder")
-                        query.getObjectInBackgroundWithId(Fhooder.objectID!) { (fhooder: PFObject?, error: NSError?) -> Void in
+                        query.getObjectInBackground(withId: Fhooder.objectID!) { (fhooder: PFObject?, error: Error?) -> Void in
                             if error == nil && fhooder != nil {
                                 fhooder!["isOpen"] = Fhooder.isOpen
                                 fhooder?.saveInBackground()
@@ -174,14 +174,14 @@ final class AccountViewController: UIViewController  {
             }
         }
         else {
-            if PFUser.currentUser()?.objectForKey("applied") != nil {
-                let didApplied = PFUser.currentUser()!.objectForKey("applied") as! Bool
+            if PFUser.current()?.object(forKey: "applied") != nil {
+                let didApplied = PFUser.current()!.object(forKey: "applied") as! Bool
                 if didApplied {
-                    self.signUpButton.hidden = true
+                    self.signUpButton.isHidden = true
                     self.signupMessage.text = "You've already submitted your application. One of our representatives will contact you shortly!"
                 }
             } else {
-                self.signUpButton.hidden = false
+                self.signUpButton.isHidden = false
             }
             animate()
         }

@@ -23,7 +23,7 @@ final class CancelOrdersViewController: UIViewController {
     
     func pushNotification () {
         
-        let pushData: NSDictionary = NSDictionary(objects: ["Fhooder has cancelled your order.", "fhooderCancelled", "1"], forKeys: ["alert", "type", "number"])
+        let pushData: NSDictionary = NSDictionary(objects: ["Fhooder has cancelled your order.", "fhooderCancelled", "1"], forKeys: ["alert" as NSCopying, "type" as NSCopying, "number" as NSCopying])
         
         let uQuery = PFUser.query()!
         uQuery.whereKey("objectId", equalTo: Fhoodie.fhoodieID!)
@@ -32,11 +32,11 @@ final class CancelOrdersViewController: UIViewController {
         iQuery.whereKey("user", matchesQuery: uQuery)
         
         let push : PFPush = PFPush()
-        push.setData(pushData as [NSObject : AnyObject])
+        push.setData(pushData as? [AnyHashable: Any])
         //push.setMessage("Fhooder has cancelled your order.")
         
         do {
-            try push.sendPush()
+            try push.send()
         } catch {
             print("Push didn't work")
         }
@@ -44,12 +44,12 @@ final class CancelOrdersViewController: UIViewController {
     }
     
     
-    func cancelOrder (why: String) {
+    func cancelOrder (_ why: String) {
        
-        if PFUser.currentUser() != nil {
+        if PFUser.current() != nil {
             let query = PFQuery(className: "Orders")
             let id = (Fhoodie.fhoodieOrderID)! as String
-            query.getObjectInBackgroundWithId(id) { (order: PFObject?, error: NSError?) -> Void in
+            query.getObjectInBackground(withId: id) { (order: PFObject?, error: Error?) -> Void in
                 if error == nil && order != nil {
                     
                     order!["orderStatus"] = why
@@ -57,9 +57,9 @@ final class CancelOrdersViewController: UIViewController {
                     
                     self.pushNotification()  
                     
-                   self.performSegueWithIdentifier("unwindToViewController1", sender: self)
+                   self.performSegue(withIdentifier: "unwindToViewController1", sender: self)
                 }
-            NSNotificationCenter.defaultCenter().postNotificationName("hooderOrderLoad", object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "hooderOrderLoad"), object: nil)
                 
             }
             
@@ -69,27 +69,27 @@ final class CancelOrdersViewController: UIViewController {
     }
     
 
-    @IBAction func fhoodieNoShow(sender: AnyObject) {
+    @IBAction func fhoodieNoShow(_ sender: AnyObject) {
         self.reason = "No Show"
         cancelOrder(self.reason)
     }
     
-    @IBAction func fhoodieCancelRequest(sender: AnyObject) {
+    @IBAction func fhoodieCancelRequest(_ sender: AnyObject) {
         self.reason = "Cancel requested"
         cancelOrder(self.reason)
     }
 
 
 
-    @IBAction func noReason(sender: AnyObject) {
+    @IBAction func noReason(_ sender: AnyObject) {
         self.reason = "Cancel"
         cancelOrder(self.reason)
     }
 
     
-    @IBAction func dontCancelButton(sender: AnyObject) {
+    @IBAction func dontCancelButton(_ sender: AnyObject) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

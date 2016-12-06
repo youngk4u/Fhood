@@ -1,39 +1,39 @@
 PODS:
-  - Alamofire (3.5.1)
+  - Alamofire (4.2.0)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - Braintree (4.7.1):
-    - Braintree/Card (= 4.7.1)
-    - Braintree/Core (= 4.7.1)
-    - Braintree/PayPal (= 4.7.1)
-    - Braintree/UI (= 4.7.1)
-  - Braintree/Apple-Pay (4.7.1):
+  - Braintree (4.7.3):
+    - Braintree/Card (= 4.7.3)
+    - Braintree/Core (= 4.7.3)
+    - Braintree/PayPal (= 4.7.3)
+    - Braintree/UI (= 4.7.3)
+  - Braintree/Apple-Pay (4.7.3):
     - Braintree/Core
-  - Braintree/Card (4.7.1):
+  - Braintree/Card (4.7.3):
     - Braintree/Core
-  - Braintree/Core (4.7.1)
-  - Braintree/PayPal (4.7.1):
+  - Braintree/Core (4.7.3)
+  - Braintree/PayPal (4.7.3):
     - Braintree/Core
     - Braintree/PayPalOneTouch
-  - Braintree/PayPalDataCollector (4.7.1):
+  - Braintree/PayPalDataCollector (4.7.3):
     - Braintree/Core
     - Braintree/PayPalUtils
-  - Braintree/PayPalOneTouch (4.7.1):
+  - Braintree/PayPalOneTouch (4.7.3):
     - Braintree/Core
     - Braintree/PayPalDataCollector
     - Braintree/PayPalUtils
-  - Braintree/PayPalUtils (4.7.1)
-  - Braintree/UI (4.7.1):
+  - Braintree/PayPalUtils (4.7.3)
+  - Braintree/UI (4.7.3):
     - Braintree/Card
     - Braintree/Core
   - CountdownLabel (1.2.0)
-  - FBSDKCoreKit (4.16.1):
+  - FBSDKCoreKit (4.18.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.16.1):
+  - FBSDKLoginKit (4.18.0):
     - FBSDKCoreKit
   - JGProgressHUD (1.4)
   - Parse (1.14.2):
@@ -45,11 +45,11 @@ PODS:
     - FBSDKTVOSKit (~> 4.10)
     - Parse (~> 1.12)
   - SMCalloutView (2.1.5)
-  - SnapKit (0.22.0)
+  - SnapKit (3.0.2)
   - SWRevealViewController (2.4.0)
 
 DEPENDENCIES:
-  - Alamofire (~> 3.5.1)
+  - Alamofire
   - Braintree
   - Braintree/Apple-Pay
   - CountdownLabel
@@ -59,7 +59,7 @@ DEPENDENCIES:
   - Parse (from `https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git`)
   - ParseFacebookUtilsV4 (from `https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git`)
   - SMCalloutView (from `https://github.com/nfarina/calloutview.git`, branch `master`)
-  - SnapKit (~> 0.22.0)
+  - SnapKit (~> 3.0.2)
   - SWRevealViewController (from `https://github.com/John-Lluch/SWRevealViewController.git`, branch `master`)
 
 EXTERNAL SOURCES:
@@ -82,13 +82,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FBSDKCoreKit:
-    :commit: a8b14df50c2d2d9e7201bbcf5e2dc2debe24030c
+    :commit: f7531a838a1ec3308721f335e801ac9f508feee4
     :git: https://github.com/facebook/facebook-ios-sdk.git
   FBSDKLoginKit:
-    :commit: a8b14df50c2d2d9e7201bbcf5e2dc2debe24030c
+    :commit: f7531a838a1ec3308721f335e801ac9f508feee4
     :git: https://github.com/facebook/facebook-ios-sdk.git
   JGProgressHUD:
-    :commit: eda194e17b0f59dfa05227e90caba84b7ffa165d
+    :commit: bba544e8601679efda06dbfedcf2dc7f627bf3ef
     :git: https://github.com/JonasGessner/JGProgressHUD.git
   Parse:
     :commit: 7a820b75c6726808475af9ce705053ff0e8cbd11
@@ -104,19 +104,19 @@ CHECKOUT OPTIONS:
     :git: https://github.com/John-Lluch/SWRevealViewController.git
 
 SPEC CHECKSUMS:
-  Alamofire: 0dfba1184a543e2aa160f4e39cac4e8aba48d223
+  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Braintree: c57bcb7983412530ea6d71cee4b99a4ba316c4ef
+  Braintree: 3eee856da5d30357a55439283b4bb3dbaddcaa7c
   CountdownLabel: 7dcc9bb2c8f488af7a4d29053f41c014ea0b973d
-  FBSDKCoreKit: 6feac4e8921ccd7afa83fb1df6291dc6eec42c7c
-  FBSDKLoginKit: 469a56cebe2e1ed62b1621d0b155970fd6aac2d8
+  FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
+  FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
   JGProgressHUD: 1617b0940cf80bb53e8f7d6f0fd69252ea45d6d4
   Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
-  SnapKit: 0dd2fd157330f1ea11fd84da13e6be8a7a22bae0
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
   SWRevealViewController: b653f339865208c97be99a24876545f5be0cc4bb
 
-PODFILE CHECKSUM: 722f0089ac5cbee9b350800211b412f77d5eba79
+PODFILE CHECKSUM: 709c45226620b683684c0c66880960eb9655ac47
 
 COCOAPODS: 1.0.1

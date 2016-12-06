@@ -7,8 +7,8 @@ target :Fhood do
     pod 'Braintree'
     pod 'Braintree/Apple-Pay'
     pod 'CountdownLabel’
-    pod 'Alamofire', '~> 3.5.1'
-    pod 'SnapKit’, ‘~> 0.22.0’
+    pod 'Alamofire'
+    pod 'SnapKit’, '~> 3.0.2'
     pod 'FBSDKCoreKit'          , :git => ‘https://github.com/facebook/facebook-ios-sdk.git'
     pod 'FBSDKLoginKit'         , :git => ‘https://github.com/facebook/facebook-ios-sdk.git'
     pod 'JGProgressHUD'	  , :git => ‘https://github.com/JonasGessner/JGProgressHUD.git'

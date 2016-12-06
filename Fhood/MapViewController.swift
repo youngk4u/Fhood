@@ -16,24 +16,24 @@ private let kPinAnnotationReuseIdentifier = "pinAnnotationIdentifier"
 
 final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewDelegate, UIGestureRecognizerDelegate {
 
-    @IBOutlet private var mapView: MapView!
-    @IBOutlet private var followUserButton: UIButton!
+    @IBOutlet fileprivate var mapView: MapView!
+    @IBOutlet fileprivate var followUserButton: UIButton!
 
-    private let locationManager = CLLocationManager()
-    private let searchBars = UISearchBar()
-    private let calloutView = SMCalloutView()
+    fileprivate let locationManager = CLLocationManager()
+    fileprivate let searchBars = UISearchBar()
+    fileprivate let calloutView = SMCalloutView()
 
-    private var filterMenu: FilterMenu?
-    private var filterShown = false
+    fileprivate var filterMenu: FilterMenu?
+    fileprivate var filterShown = false
 
-    private var span: MKCoordinateSpan!
-    private var location: CLLocationCoordinate2D!
-    private var region: MKCoordinateRegion!
-    private var userLoc: CLLocation!
-    private var userLocation: CLLocation!
+    fileprivate var span: MKCoordinateSpan!
+    fileprivate var location: CLLocationCoordinate2D!
+    fileprivate var region: MKCoordinateRegion!
+    fileprivate var userLoc: CLLocation!
+    fileprivate var userLocation: CLLocation!
     
-    private var mapChangedFromUserInteraction = false
-    private var zoomWithinMiles: Double = 2.5
+    fileprivate var mapChangedFromUserInteraction = false
+    fileprivate var zoomWithinMiles: Double = 2.5
     
     @IBOutlet var reloadAnnotationsButton: UIButton!
 
@@ -47,7 +47,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
         self.mapView.calloutView = self.calloutView
         
-        self.reloadAnnotationsButton.hidden = true
+        self.reloadAnnotationsButton.isHidden = true
         
         let locValue:CLLocationCoordinate2D = locationManager.location!.coordinate
         self.userLocation = CLLocation(latitude: locValue.latitude, longitude: locValue.longitude)
@@ -60,19 +60,19 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
         // Configure reveal for this view
         let revealController = self.revealViewController()
-        revealController.panGestureRecognizer()
-        revealController.tapGestureRecognizer()
+        _ = revealController?.panGestureRecognizer()
+        _ = revealController?.tapGestureRecognizer()
 
         // Custom Back button -> Cancel button
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Cancel", style: .Plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: nil, action: nil)
 
         // Account Icon
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "userCircle2"),
-                                                                style: UIBarButtonItemStyle.Plain, target: revealController, action: #selector(revealController.revealToggle))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "userCircle2"), style: UIBarButtonItemStyle.plain, target: revealController, action: #selector(revealController?.revealToggle(_:)))
+
 
         // Filter Icon
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "Filter 2"),
-                                                                 style: UIBarButtonItemStyle.Plain, target: self, action: #selector(MapViewController.filterAction))
+                                                                 style: UIBarButtonItemStyle.plain, target: self, action: #selector(MapViewController.filterAction))
         
         
         
@@ -96,7 +96,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     func reloadAnnotations() {
         
         //Put Fhooders on the map
-        PFGeoPoint.geoPointForCurrentLocationInBackground { ( point: PFGeoPoint?, error: NSError?) -> Void in
+        PFGeoPoint.geoPointForCurrentLocation { ( point: PFGeoPoint?, error: Error?) -> Void in
             if error == nil {
                 
                 var point = PFGeoPoint()
@@ -107,39 +107,39 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                     let query = PFQuery(className: "Fhooder")
                     query.limit = 10
                     query.whereKey("location", nearGeoPoint: point, withinMiles: self.zoomWithinMiles)
-                    query.findObjectsInBackgroundWithBlock({ (objects: [PFObject]?, error: NSError?) -> Void in
+                    query.findObjectsInBackground(block: { (objects: [PFObject]?, error: Error?) -> Void in
                         if (error == nil) {
                             
                             for object in objects! {
                                 
-                                let geolocation = object.valueForKey("location")!
-                                let picFile = object.valueForKey("itemPic") as? PFFile
+                                let geolocation = object.value(forKey: "location")!
+                                let picFile = object.value(forKey: "itemPic") as? PFFile
                                 
-                                picFile?.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
+                                picFile?.getDataInBackground(block: { (imageData: Data?, error: Error?) -> Void in
                                     if error == nil {
                                         if let imageData = imageData {
-                                            Fhooder.objectID = object.valueForKey("objectId") as? String
+                                            Fhooder.objectID = object.value(forKey: "objectId") as? String
                                             Fhooder.itemPic = UIImage(data: imageData)
-                                            Fhooder.itemPrice = object.valueForKey("itemPrice") as? Double
+                                            Fhooder.itemPrice = object.value(forKey: "itemPrice") as? Double
                                             
-                                            Fhooder.shopName = object.valueForKey("shopName")! as? String
-                                            Fhooder.foodTypeOne = "\(object.valueForKey("foodTypeOne")!)"
+                                            Fhooder.shopName = object.value(forKey: "shopName")! as? String
+                                            Fhooder.foodTypeOne = "\(object.value(forKey: "foodTypeOne")!)"
                                             
-                                            Fhooder.fhooderLatitude = geolocation.latitude
-                                            Fhooder.fhooderLongitude = geolocation.longitude
-                                            Fhooder.reviews = object.valueForKey("reviews")! as? Int
-                                            Fhooder.isOpen = object.valueForKey("isOpen")! as? Bool
-                                            let ratingInDouble = object.valueForKey("ratings") as? Double
+                                            Fhooder.fhooderLatitude = (geolocation as AnyObject).latitude
+                                            Fhooder.fhooderLongitude = (geolocation as AnyObject).longitude
+                                            Fhooder.reviews = object.value(forKey: "reviews")! as? Int
+                                            Fhooder.isOpen = object.value(forKey: "isOpen")! as? Bool
+                                            let ratingInDouble = object.value(forKey: "ratings") as? Double
                                             Fhooder.ratingInString = String(format: "%.1f", ratingInDouble!)
                                             
-                                            Fhooder.pickup = object.valueForKey("isPickup") as? Bool
-                                            Fhooder.delivery = object.valueForKey("isDeliver") as? Bool
-                                            Fhooder.eatin = object.valueForKey("isEatin") as? Bool
+                                            Fhooder.pickup = object.value(forKey: "isPickup") as? Bool
+                                            Fhooder.delivery = object.value(forKey: "isDeliver") as? Bool
+                                            Fhooder.eatin = object.value(forKey: "isEatin") as? Bool
                                             
                                             
                                             // Distance to fhooder in Mile
-                                            let CLLoc = CLLocation(latitude: geolocation.latitude, longitude: geolocation.longitude)
-                                            let distance = CLLoc.distanceFromLocation(self.userLocation)
+                                            let CLLoc = CLLocation(latitude: (geolocation as AnyObject).latitude, longitude: (geolocation as AnyObject).longitude)
+                                            let distance = CLLoc.distance(from: self.userLocation)
                                             let distanceMile = distance * 0.000621371
                                             Fhooder.distance = round(distanceMile * 10) / 10
                                             
@@ -162,12 +162,12 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
   
 
 
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }
 
     
-    func filterAction(sender: AnyObject) {
+    func filterAction(_ sender: AnyObject) {
         /*
         if filterMenu == nil {
             let sections = [FilterMenuSectionInfo(titles: ["Less than $5", "$5 ~ $10", "More than $10"]),
@@ -188,7 +188,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         */
     }
 
-    func filterMenuViewDidSelect(section: Int, subMenu: Int) {
+    func filterMenuViewDidSelect(_ section: Int, subMenu: Int) {
         print("Did select: \nsection: \(section)\nsubMenu:\(subMenu)")
         if (section == 1 && subMenu == 1) {
 
@@ -200,14 +200,14 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
 
     
-    @IBAction func reloadAnno(sender: AnyObject) {
+    @IBAction func reloadAnno(_ sender: AnyObject) {
         
         HUD.show()
         
         let annotationsToRemove = mapView.annotations.filter { $0 !== mapView.userLocation }
         mapView.removeAnnotations(annotationsToRemove)
         self.reloadAnnotations()
-        self.reloadAnnotationsButton.hidden = true
+        self.reloadAnnotationsButton.isHidden = true
         
         HUD.dismiss()
         
@@ -217,10 +217,10 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     
 // MARK: - MKMapViewDelegate implementation
     
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is AnnotationObject else { return nil }
 
-        let pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(kPinAnnotationReuseIdentifier) ??
+        let pinView = mapView.dequeueReusableAnnotationView(withIdentifier: kPinAnnotationReuseIdentifier) ??
             MKAnnotationView(annotation: annotation, reuseIdentifier: kPinAnnotationReuseIdentifier)
 
         
@@ -231,7 +231,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         return pinView
     }
 
-    func mapView(mapView: MKMapView, didSelectAnnotationView annotationView: MKAnnotationView) {
+    func mapView(_ mapView: MKMapView, didSelect annotationView: MKAnnotationView) {
         guard annotationView.reuseIdentifier == kPinAnnotationReuseIdentifier else { return }
 
         let anno = annotationView.annotation as? AnnotationObject
@@ -242,14 +242,14 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         
         self.calloutView.contentView = BubbleView.nibView(withAnnotation: annotationView.annotation as? AnnotationObject)
         self.calloutView.calloutOffset = annotationView.calloutOffset
-        self.calloutView.contentViewInset = UIEdgeInsetsZero
+        self.calloutView.contentViewInset = UIEdgeInsets.zero
         self.calloutView.backgroundView = BubbleBackgroundView()
-        self.calloutView.presentCalloutFromRect(annotationView.bounds, inView: annotationView,
-            constrainedToView: self.view, animated: true)
+        self.calloutView.presentCallout(from: annotationView.bounds, in: annotationView,
+            constrainedTo: self.view, animated: true)
     }
 
-    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
-        self.calloutView.dismissCalloutAnimated(true)
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        self.calloutView.dismissCallout(animated: true)
     }
     
     func mapViewRegionDidChangeFromUserInteraction() -> Bool {
@@ -257,7 +257,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         //  Look through gesture recognizers to determine whether this region change is from user interaction
         if let gestureRecognizers = view.gestureRecognizers {
             for recognizer in gestureRecognizers {
-                if( recognizer.state == UIGestureRecognizerState.Began || recognizer.state == UIGestureRecognizerState.Ended ) {
+                if( recognizer.state == UIGestureRecognizerState.began || recognizer.state == UIGestureRecognizerState.ended ) {
                     return true
                 }
             }
@@ -265,7 +265,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
         return false
     }
     
-    func mapView(mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         
         mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
         
@@ -282,7 +282,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
             
             self.userLoc =  CLLocation(latitude: getLat, longitude: getLon)
             
-            self.reloadAnnotationsButton.hidden = false
+            self.reloadAnnotationsButton.isHidden = false
             
         }
         
@@ -297,7 +297,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
 
 extension MapViewController: CLLocationManagerDelegate {
 
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 
         self.showUserLocation()
     }
@@ -305,24 +305,24 @@ extension MapViewController: CLLocationManagerDelegate {
 
     func showUserLocation() {
         switch CLLocationManager.authorizationStatus() {
-        case .AuthorizedWhenInUse, .AuthorizedAlways:
+        case .authorizedWhenInUse, .authorizedAlways:
             self.mapView.region = MKCoordinateRegionMakeWithDistance(mapView.centerCoordinate, 50, 50)
             self.mapView.setRegion(self.mapView.region, animated: true)
-            self.followUserButton.hidden = false
+            self.followUserButton.isHidden = false
             self.mapView.showsUserLocation = true
-            self.mapView.setUserTrackingMode(.Follow, animated: true)
+            self.mapView.setUserTrackingMode(.follow, animated: true)
             self.locationManager.startUpdatingLocation()
-        case .NotDetermined:
+        case .notDetermined:
             self.locationManager.requestWhenInUseAuthorization()
             fallthrough
         default:
             self.mapView.showsUserLocation = false
-            self.followUserButton.hidden = true
+            self.followUserButton.isHidden = true
         }
     }
 
     
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         
             self.locationManager.startUpdatingLocation()
@@ -344,8 +344,8 @@ extension MapViewController: CLLocationManagerDelegate {
     }
     
 
-    @IBAction private func toggleFollowUserLocation() {
-        let mode: MKUserTrackingMode = self.mapView.userTrackingMode == .None ? .Follow : .None
+    @IBAction fileprivate func toggleFollowUserLocation() {
+        let mode: MKUserTrackingMode = self.mapView.userTrackingMode == .none ? .follow : .none
         self.mapView.setUserTrackingMode(mode, animated: true)
     }
 }
@@ -354,19 +354,19 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: SMCalloutViewDelegate {
 
-    func calloutView(calloutView: SMCalloutView, delayForRepositionWithSize offset: CGSize) -> NSTimeInterval {
-        let currentCenter = self.mapView.convertCoordinate(self.mapView.centerCoordinate, toPointToView: self.view)
+    func calloutView(_ calloutView: SMCalloutView, delayForRepositionWith offset: CGSize) -> TimeInterval {
+        let currentCenter = self.mapView.convert(self.mapView.centerCoordinate, toPointTo: self.view)
         let newCenter = CGPoint(x: currentCenter.x - offset.width, y: currentCenter.y - offset.height)
 
-        let centerCoordinate = self.mapView.convertPoint(newCenter, toCoordinateFromView: self.view)
-        self.mapView.setCenterCoordinate(centerCoordinate, animated: true)
+        let centerCoordinate = self.mapView.convert(newCenter, toCoordinateFrom: self.view)
+        self.mapView.setCenter(centerCoordinate, animated: true)
         return kSMCalloutViewRepositionDelayForUIScrollView
     }
 
 
-    func calloutViewClicked(calloutView: SMCalloutView) {
+    func calloutViewClicked(_ calloutView: SMCalloutView) {
     
-        performSegueWithIdentifier("fhooderDetail", sender: self)
+        performSegue(withIdentifier: "fhooderDetail", sender: self)
     
     }
 }

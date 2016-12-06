@@ -18,13 +18,13 @@ final class HistoryViewController: UIViewController {
         
         let nav = self.navigationController?.navigationBar
         
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
         
         self.title = "History"
         
         let imageData = UIImage(named: "cutoBento")
         let image = UIImageView(image: imageData)
-        image.frame = CGRectMake(0, 0, 50, 50)
+        image.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         image.layer.masksToBounds = false
         image.layer.cornerRadius = 13
         image.layer.cornerRadius = image.frame.size.height/2
@@ -37,7 +37,7 @@ final class HistoryViewController: UIViewController {
     
     
     
-    @IBAction func cancelButton(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
 }

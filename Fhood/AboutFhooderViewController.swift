@@ -20,7 +20,7 @@ class AboutFhooderViewController: UIViewController {
         self.title = "About me"
         
         let image = UIImageView(image: Fhooder.fhooderPicture)
-        image.frame = CGRectMake(0, 0, 80, 80)
+        image.frame = CGRect(x: 0, y: 0, width: 80, height: 80)
         image.layer.masksToBounds = false
         image.layer.cornerRadius = 13
         image.layer.cornerRadius = image.frame.size.height/2

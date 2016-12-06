@@ -14,11 +14,19 @@ private var kBackgroundColor = UIColor(white: 0, alpha: 0.9)
 private var kCalloutArrowImage: UIImage? = nil
 
 final class BubbleBackgroundView: SMCalloutBackgroundView {
-    private static var initOnceToken: dispatch_once_t = 0
+    private static var __once: () = {
+            let calloutArrow = SMCalloutBackgroundView.perform(Selector(("embeddedImageNamed:")), with: "CalloutArrow")
+            guard let arrowImage = calloutArrow?.takeUnretainedValue() as? UIImage else {
+                return assertionFailure("arrow couldn't be created")
+            }
 
-    private let containerView = UIView()
-    private let arrowView = UIView()
-    private var arrowImageView = UIImageView()
+            kCalloutArrowImage = arrowImage.image(withColor: kBackgroundColor)
+        }()
+    fileprivate static var initOnceToken: Int = 0
+
+    fileprivate let containerView = UIView()
+    fileprivate let arrowView = UIView()
+    fileprivate var arrowImageView = UIImageView()
 
     override var arrowPoint: CGPoint {
         didSet {
@@ -29,13 +37,13 @@ final class BubbleBackgroundView: SMCalloutBackgroundView {
     override var contentMask: CALayer {
         get {
             UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, 0)
-            self.layer.renderInContext(UIGraphicsGetCurrentContext()!)
+            self.layer.render(in: UIGraphicsGetCurrentContext()!)
             let maskImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
 
             let layer = CALayer()
             layer.frame = self.bounds
-            layer.contents = maskImage!.CGImage
+            layer.contents = maskImage!.cgImage
             return layer
         }
         set { }
@@ -61,22 +69,15 @@ final class BubbleBackgroundView: SMCalloutBackgroundView {
         self.containerView.frame = CGRect(x: 0.0, y: dy, width: self.frame.width, height: dheight)
         self.arrowView.frame.origin.x = round(self.arrowPoint.x - self.arrowView.frame.width / 2)
         self.arrowView.frame.origin.y = pointingUp ? 0 : self.containerView.frame.height
-        self.arrowView.transform = pointingUp ? CGAffineTransformMakeRotation(CGFloat(M_PI)) : CGAffineTransformIdentity
+        self.arrowView.transform = pointingUp ? CGAffineTransform(rotationAngle: CGFloat(M_PI)) : CGAffineTransform.identity
     }
 
     // MARK: - Private functions
 
-    private func sharedInit() {
-        dispatch_once(&BubbleBackgroundView.initOnceToken) {
-            let calloutArrow = SMCalloutBackgroundView.performSelector(Selector("embeddedImageNamed:"), withObject: "CalloutArrow")
-            guard let arrowImage = calloutArrow?.takeUnretainedValue() as? UIImage else {
-                return assertionFailure("arrow couldn't be created")
-            }
+    fileprivate func sharedInit() {
+        _ = BubbleBackgroundView.__once
 
-            kCalloutArrowImage = arrowImage.image(withColor: kBackgroundColor)
-        }
-
-        self.arrowView.frame = CGRect(origin: CGPointZero, size: kCalloutArrowImage?.size ?? CGSizeZero)
+        self.arrowView.frame = CGRect(origin: CGPoint.zero, size: kCalloutArrowImage?.size ?? CGSize.zero)
         self.arrowImageView = UIImageView(image: kCalloutArrowImage)
 
         self.containerView.backgroundColor = kBackgroundColor
@@ -97,17 +98,17 @@ final class BubbleBackgroundView: SMCalloutBackgroundView {
 
 private extension UIImage {
 
-    private func image(withColor color: UIColor) -> UIImage {
+    func image(withColor color: UIColor) -> UIImage {
         UIGraphicsBeginImageContextWithOptions(self.size, false, 0)
         defer { UIGraphicsEndImageContext() }
 
-        let imageRect = CGRect(origin: CGPointZero, size: self.size)
+        let imageRect = CGRect(origin: CGPoint.zero, size: self.size)
         let context = UIGraphicsGetCurrentContext()
-        CGContextTranslateCTM(context!, 0, self.size.height)
-        CGContextScaleCTM(context!, 1, -1)
-        CGContextClipToMask(context!, imageRect, self.CGImage!)
+        context!.translateBy(x: 0, y: self.size.height)
+        context!.scaleBy(x: 1, y: -1)
+        context!.clip(to: imageRect, mask: self.cgImage!)
         color.setFill()
-        CGContextFillRect(context!, imageRect)
+        context!.fill(imageRect)
 
         return UIGraphicsGetImageFromCurrentImageContext()!
     }

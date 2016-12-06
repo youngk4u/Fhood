@@ -21,14 +21,14 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
     var orderedTime : [String] = []
     var newOrder : [Bool] = []
     
-    var dateFormatter = NSDateFormatter()
+    var dateFormatter = DateFormatter()
     
     var refreshControl: UIRefreshControl!
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         tabBarController?.tabBar.items?[1].badgeValue = nil
-        UIApplication.sharedApplication().applicationIconBadgeNumber = 0
+        UIApplication.shared.applicationIconBadgeNumber = 0
         Fhooder.orderQuantity! = 0
     }
     
@@ -36,18 +36,18 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         super.viewDidLoad()
         
         // Reload Parse data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(OrdersViewController.loadList1(_:)), name: "fhooderOrderLoad", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(OrdersViewController.loadList1(_:)), name: NSNotification.Name(rawValue: "fhooderOrderLoad"), object: nil)
         
-        NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "fhooderOrderLoad"), object: nil)
         
         // Configure reveal for this view
         let revealController = self.revealViewController()
-        revealController?.panGestureRecognizer()
-        revealController?.tapGestureRecognizer()
+        _ = revealController?.panGestureRecognizer()
+        _ = revealController?.tapGestureRecognizer()
         
         // Account Icon
         let accountIcon = UIImage(named: "userCircle2")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.plain,
                                                                 target: revealController, action: #selector(revealViewController().revealToggle(_:)))
         
         // Logo
@@ -58,7 +58,7 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         
         // Fhooder Cooking time Icon
         let fhooderTime = UIImage(named: "FhooderOnIcon2")
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: fhooderTime, style: UIBarButtonItemStyle.Plain,
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: fhooderTime, style: UIBarButtonItemStyle.plain,
                                                                  target: self, action: #selector(ManageViewController.toCookingTimeView))
 
         
@@ -67,25 +67,25 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         self.TableView.dataSource = self
         
         refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(OrdersViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: #selector(OrdersViewController.refresh(_:)), for: UIControlEvents.valueChanged)
         TableView.addSubview(refreshControl) // not required when using UITableViewController
         
         
     }
     
     func toCookingTimeView () {
-        performSegueWithIdentifier("toCookingTime", sender: self)
+        performSegue(withIdentifier: "toCookingTime", sender: self)
     }
     
     
     
-    func refresh(sender:AnyObject) {
+    func refresh(_ sender:AnyObject) {
 
-        NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "fhooderOrderLoad"), object: nil)
         refreshControl.endRefreshing()
     }
     
-    func badgeAlert (counting: Int) {
+    func badgeAlert (_ counting: Int) {
     
         if counting != 0 {
             let badgeNumber = String(counting)
@@ -95,30 +95,30 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue){
+    @IBAction func prepareForUnwind(_ segue: UIStoryboardSegue){
         
     }
     
     
     // Reload Parse function to use from other_  controllers
-    func loadList1(notification: NSNotification){
+    func loadList1(_ notification: Notification){
         
-        if PFUser.currentUser() != nil {
-        let user = PFUser.currentUser()!
+        if PFUser.current() != nil {
+        let user = PFUser.current()!
             let query = PFQuery(className: "Fhooder")
-            let id = user.valueForKey("fhooder")!.objectId!! as String
-            query.getObjectInBackgroundWithId(id) { (fhooder: PFObject?, error: NSError?) -> Void in
+            let id = (user.value(forKey: "fhooder")! as AnyObject).objectId!! as String
+            query.getObjectInBackground(withId: id) { (fhooder: PFObject?, error: Error?) -> Void in
                 if error == nil && fhooder != nil {
                     
                     // fhooder information pulled
                     
                     Fhooder.objectID = fhooder?.objectId
                     
-                    let relation = fhooder!.relationForKey("orders")
+                    let relation = fhooder!.relation(forKey: "orders")
                     let query2 = relation.query()
          
-                    query2.orderByAscending("createdAt")
-                    query2.findObjectsInBackgroundWithBlock( { (orders: [PFObject]?, error2: NSError?) -> Void in
+                    query2.order(byAscending: "createdAt")
+                    query2.findObjectsInBackground( block: { (orders: [PFObject]?, error2: Error?) -> Void in
                         
                         self.orderID = []
                         self.orderUserPic = []
@@ -147,7 +147,7 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
                                     }
                                     
                                     do {
-                                        let picData : NSData = try pic.getData()
+                                        let picData : Data = try pic.getData()
                                         let picture = UIImage(data: picData)
                                         let image = UIImageView(image: picture)
                                         image.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
@@ -167,8 +167,8 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
                                         
                                         let orderTime = order.createdAt
                                         
-                                        self.dateFormatter.timeStyle = .ShortStyle
-                                        self.orderedTime.append("Ordered at \(self.dateFormatter.stringFromDate( orderTime!))")
+                                        self.dateFormatter.timeStyle = .short
+                                        self.orderedTime.append("Ordered at \(self.dateFormatter.string( from: orderTime!))")
                                         
                                         self.TableView.reloadData()
                                         
@@ -197,43 +197,43 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
     
 
     // Table View
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.orderUser.count
     }
             
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // Try to get a cell to reuse
-        let cell = tableView.dequeueReusableCellWithIdentifier("Tablecell") as! OrdersTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Tablecell") as! OrdersTableViewCell
         
         // Cell Marginal lines on the left to stretch all the way to the left screen
-        cell.layoutMargins = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsets.zero
 
         // Link Fhoodie information
 
         cell.orderTime.text = self.orderedTime[indexPath.row]
-        cell.orderNumber.text = String((indexPath as NSIndexPath).row + 1)
-        cell.userPic.addSubview(self.orderUserPic[(indexPath as NSIndexPath).row])
+        cell.orderNumber.text = String((indexPath as IndexPath).row + 1)
+        cell.userPic.addSubview(self.orderUserPic[(indexPath as IndexPath).row])
         cell.userID.text = self.orderUser[indexPath.row]
         cell.userRating.image = UIImage(named: Fhooder.ratingInString!)
         cell.pickupCountdown.text = "Pending"
         
         if self.newOrder[indexPath.row] == true {
-            cell.newOrderLabel.hidden = false
+            cell.newOrderLabel.isHidden = false
         } else {
-            cell.newOrderLabel.hidden = true
+            cell.newOrderLabel.isHidden = true
         }
 
         return cell
     }
 
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         Fhoodie.fhoodieFirstName = self.orderUser[indexPath.row]
         Fhoodie.fhoodiePhoto = self.orderUserPhoto[indexPath.row]
         Fhoodie.fhoodieOrderID = self.orderID[indexPath.row]
         Fhoodie.fhoodieID = self.fhoodieID[indexPath.row]
     
-        TableView.deselectRowAtIndexPath(indexPath, animated: true)
+        TableView.deselectRow(at: indexPath, animated: true)
     }
 }

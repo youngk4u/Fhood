@@ -29,7 +29,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var textFieldCloseButton: UIButton!
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[0].rootViewController!
+    let rootViewController: UIViewController = UIApplication.shared.windows[0].rootViewController!
     
     var kbHeight: CGFloat!
     
@@ -37,11 +37,11 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
                 
         // Reload data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.loadProfile(_:)),name:"loadProfileView", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.loadProfile(_:)),name:NSNotification.Name(rawValue: "loadProfileView"), object: nil)
         
         // Navigation bar appearance
         let nav = self.navigationController?.navigationBar
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
         self.title = "Profile"
         
         firstNameTextField.delegate = self
@@ -50,12 +50,12 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         // Get profile info from Parse
         loadProfilePic()
         
-        if PFUser.currentUser()?.objectForKey("firstName") != nil {
-            self.firstNameTextField.text = "\(PFUser.currentUser()!.objectForKey("firstName")!)"
+        if PFUser.current()?.object(forKey: "firstName") != nil {
+            self.firstNameTextField.text = "\(PFUser.current()!.object(forKey: "firstName")!)"
             self.firstName = self.firstNameTextField.text!
         }
-        if PFUser.currentUser()?.objectForKey("lastName") != nil {
-            self.lastNameTextField.text = "\(PFUser.currentUser()!.objectForKey("lastName")!)"
+        if PFUser.current()?.object(forKey: "lastName") != nil {
+            self.lastNameTextField.text = "\(PFUser.current()!.object(forKey: "lastName")!)"
             self.lastName = self.lastNameTextField.text!
         }
         
@@ -66,14 +66,14 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    override func viewWillAppear(animated:Bool) {
+    override func viewWillAppear(_ animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func loadProfile(notification: NSNotification){
+    func loadProfile(_ notification: Notification){
         loadProfilePic()
         loadAddress()
         loadAboutMe()
@@ -81,16 +81,16 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     func loadProfilePic() {
         // Get picture from file(Parse)
-        if PFUser.currentUser()?.objectForKey("profilePhoto") != nil {
-            let userImageFile = PFUser.currentUser()!["profilePhoto"] as! PFFile
-            userImageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData?, error: NSError?) -> Void in
+        if PFUser.current()?.object(forKey: "profilePhoto") != nil {
+            let userImageFile = PFUser.current()!["profilePhoto"] as! PFFile
+            userImageFile.getDataInBackground {
+                (imageData: Data?, error: Error?) -> Void in
                 if error == nil {
                     if let imageData = imageData {
                         self.profilePic.image = UIImage(data:imageData)
                         let image = UIImageView(image: self.profilePic.image)
                         self.profilePic.image = nil
-                        image.frame = CGRectMake(0, 0, 60, 60)
+                        image.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
                         image.layer.masksToBounds = false
                         image.layer.cornerRadius = 13
                         image.layer.cornerRadius = image.frame.size.height/2
@@ -103,17 +103,17 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
         else {
             // Get picture from Facebook(Parse)
-            if PFUser.currentUser()?.objectForKey("pictureUrl") != nil {
-                if let picURL = NSURL(string: "\(PFUser.currentUser()!.objectForKey("pictureUrl")!)") {
-                    if let data = NSData(contentsOfURL: picURL) {
+            if PFUser.current()?.object(forKey: "pictureUrl") != nil {
+                if let picURL = URL(string: "\(PFUser.current()!.object(forKey: "pictureUrl")!)") {
+                    if let data = try? Data(contentsOf: picURL) {
                         self.profilePic.image = UIImage(data: data)
                         
                         // Profile pic becomes round with white border
                         let image = UIImageView(image: self.profilePic.image)
                         self.profilePic.image = nil // Get rid of the duplicate
-                        image.frame = CGRectMake(0, 0, 60, 60)
+                        image.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
                         image.layer.masksToBounds = false
-                        image.layer.borderColor = UIColor.whiteColor().CGColor
+                        image.layer.borderColor = UIColor.white.cgColor
                         image.layer.cornerRadius = 13
                         image.layer.cornerRadius = image.frame.size.height/2
                         image.clipsToBounds = true
@@ -127,37 +127,37 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     func loadAddress() {
         // Get address from Parse 
-        if PFUser.currentUser()?.objectForKey("streetAddress") != nil && PFUser.currentUser()?.objectForKey("city") != nil && PFUser.currentUser()?.objectForKey("stateProvince") != nil && PFUser.currentUser()?.objectForKey("zip") != nil && PFUser.currentUser()?.objectForKey("country") != nil {
-            self.addressButton.setTitle("\(PFUser.currentUser()!.objectForKey("city")!)" + ", " + "\(PFUser.currentUser()!.objectForKey("stateProvince")!)" + ", " + "\(PFUser.currentUser()!.objectForKey("country")!)", forState: .Normal)
-            self.addressButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        if PFUser.current()?.object(forKey: "streetAddress") != nil && PFUser.current()?.object(forKey: "city") != nil && PFUser.current()?.object(forKey: "stateProvince") != nil && PFUser.current()?.object(forKey: "zip") != nil && PFUser.current()?.object(forKey: "country") != nil {
+            self.addressButton.setTitle("\(PFUser.current()!.object(forKey: "city")!)" + ", " + "\(PFUser.current()!.object(forKey: "stateProvince")!)" + ", " + "\(PFUser.current()!.object(forKey: "country")!)", for: UIControlState())
+            self.addressButton.setTitleColor(UIColor.black, for: UIControlState())
         }
     }
     
     func loadAboutMe() {
         // Get about me from Parse
-        if PFUser.currentUser()?.objectForKey("aboutMe") != nil {
-            let aboutMe = String(PFUser.currentUser()!.objectForKey("aboutMe")!)
-            self.aboutMeButton.setTitle(aboutMe, forState: .Normal)
-            self.aboutMeButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        if PFUser.current()?.object(forKey: "aboutMe") != nil {
+            let aboutMe = String(describing: PFUser.current()!.object(forKey: "aboutMe")!)
+            self.aboutMeButton.setTitle(aboutMe, for: UIControlState())
+            self.aboutMeButton.setTitleColor(UIColor.black, for: UIControlState())
             
             if aboutMe == "" {
-                self.aboutMeButton.setTitle("About me", forState: .Normal)
-                self.aboutMeButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+                self.aboutMeButton.setTitle("About me", for: UIControlState())
+                self.aboutMeButton.setTitleColor(UIColor.lightGray, for: UIControlState())
             }
         }
     }
     
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo {
-            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 self.kbHeight = keyboardSize.height
                 self.bottomUpdate.constant = kbHeight
                 
                 self.profileButtonTop.constant = -100
                 self.profilePicTop.constant = -100
                 
-                UIView.animateWithDuration(0.2, animations: {
+                UIView.animate(withDuration: 0.2, animations: {
                     self.view.layoutIfNeeded()
                     }, completion: nil)
                 
@@ -166,9 +166,9 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    func keyboardWillHide(_ notification: Notification) {
         if let userInfo = notification.userInfo {
-            if let _ = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if let _ = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 self.bottomUpdate.constant = 0
                 
                 self.profileButtonTop.constant = 0
@@ -189,39 +189,39 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         self.profileButtonTop.constant = 0
         self.profilePicTop.constant = 33
         
-        UIView.animateWithDuration(0.2, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
             }, completion: nil)
     }
     
     
-    func textFieldDidEndEditing(textField: UITextField) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == self.firstNameTextField {
-            textField.text = textField.text?.capitalizedString
+            textField.text = textField.text?.capitalized
         }
         else if textField == self.lastNameTextField {
-            textField.text = textField.text?.capitalizedString
+            textField.text = textField.text?.capitalized
         }
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.firstNameTextField {
-            textField.text = textField.text?.capitalizedString
+            textField.text = textField.text?.capitalized
         }
         else if textField == self.lastNameTextField {
-            textField.text = textField.text?.capitalizedString
+            textField.text = textField.text?.capitalized
         }
         textfieldClose()
         return true
     }
     
-    @IBAction func closeKeyboard(sender: AnyObject) {
+    @IBAction func closeKeyboard(_ sender: AnyObject) {
         textfieldClose()
     }
     
     
-    @IBAction func saveButton(sender: AnyObject) {
+    @IBAction func saveButton(_ sender: AnyObject) {
 
         
         if validateInput() {
@@ -230,7 +230,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
             self.lastName = self.lastNameTextField.text
 
             
-            let user = PFUser.currentUser()
+            let user = PFUser.current()
             
             if self.firstName != "" {
                 user!["firstName"] = firstName
@@ -242,22 +242,22 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
             do {
                 try user!.save()
             
-                NSNotificationCenter.defaultCenter().postNotificationName("loadSettings", object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "loadSettings"), object: nil)
                 
-                let alert = UIAlertController(title: "", message:"Your new info has been updated!", preferredStyle: .Alert)
-                let saved = UIAlertAction(title: "Nice!", style: .Default) { _ in}
+                let alert = UIAlertController(title: "", message:"Your new info has been updated!", preferredStyle: .alert)
+                let saved = UIAlertAction(title: "Nice!", style: .default) { _ in}
                 alert.addAction(saved)
-                rootViewController.presentViewController(alert, animated: true, completion: nil)
+                rootViewController.present(alert, animated: true, completion: nil)
         
                 
-                navigationController?.popViewControllerAnimated(true)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                _ = navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true, completion: nil)
             }
             catch {
-                let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .Alert)
-                let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
+                let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .alert)
+                let error = UIAlertAction(title: "Ok", style: .default) { _ in}
                 alert.addAction(error)
-                rootViewController.presentViewController(alert, animated: true, completion: nil)
+                rootViewController.present(alert, animated: true, completion: nil)
                 
             }
 
@@ -265,7 +265,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         
     }
 
-    private func validateInput() -> Bool {
+    fileprivate func validateInput() -> Bool {
         
         var newInfo = false
         
@@ -293,16 +293,16 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    private func showAlert(withMessage message: String) {
-        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        rootViewController.presentViewController(alert, animated: true, completion: nil)
+    fileprivate func showAlert(withMessage message: String) {
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        rootViewController.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func closeProfile(sender: AnyObject) {
+    @IBAction func closeProfile(_ sender: AnyObject) {
         self.view.endEditing(true)
-        navigationController?.popViewControllerAnimated(true)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        _ = navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

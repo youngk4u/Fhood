@@ -9,27 +9,27 @@
 import JGProgressHUD
 
 struct HUD {
-    private static var currentHUD: JGProgressHUD?
+    fileprivate static var currentHUD: JGProgressHUD?
 
     static func show(withText text: String? = nil) {
-        guard let window = UIApplication.sharedApplication().delegate?.window! else { return }
+        guard let window = UIApplication.shared.delegate?.window! else { return }
 
         self.dismiss()
 
-        self.currentHUD = JGProgressHUD(style: .Dark)
+        self.currentHUD = JGProgressHUD(style: .dark)
         self.currentHUD?.textLabel.text = text
-        self.currentHUD?.textLabel.font = UIFont.systemFontOfSize(15.0)
+        self.currentHUD?.textLabel.font = UIFont.systemFont(ofSize: 15.0)
         self.currentHUD?.animation = JGProgressHUDFadeZoomAnimation()
-        self.currentHUD?.showInView(window, animated: true)
+        self.currentHUD?.show(in: window, animated: true)
     }
 
-    static func dismiss(afterDelay delay: NSTimeInterval? = nil) {
+    static func dismiss(afterDelay delay: TimeInterval? = nil) {
         guard let currentHUD = self.currentHUD else { return }
 
         guard let delay = delay else {
             return currentHUD.dismiss()
         }
 
-        currentHUD.dismissAfterDelay(delay)
+        currentHUD.dismiss(afterDelay: delay)
     }
 }

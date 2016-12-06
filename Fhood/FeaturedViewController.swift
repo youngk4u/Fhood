@@ -11,7 +11,7 @@ import Parse
 
 final class FeaturedViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet private var tableView: UITableView!
+    @IBOutlet fileprivate var tableView: UITableView!
     
     var fhooderPic: UIImageView!
     
@@ -19,8 +19,8 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         
         // Reload Parse data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FeaturedViewController.getImage(_:)), name: "getImage", object: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("getImage", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FeaturedViewController.getImage(_:)), name: NSNotification.Name(rawValue: "getImage"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "getImage"), object: nil)
 
         
         let logo = UIImage(named: "FhoodLogo")
@@ -29,42 +29,42 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.layoutMargins = UIEdgeInsetsZero
+        self.tableView.layoutMargins = UIEdgeInsets.zero
 
         // Configure reveal for this view
         let revealController = self.revealViewController()
-        revealController.panGestureRecognizer()
-        revealController.tapGestureRecognizer()
+        _ = revealController?.panGestureRecognizer()
+        _ = revealController?.tapGestureRecognizer()
 
         // Account Icon
         let accountIcon = UIImage(named: "userCircle2")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain,
-                                                                target: revealController, action: #selector(revealViewController().revealToggle))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.plain,
+                                                                target: revealController, action: #selector(revealViewController().revealToggle(_:)))
         
         
     }
     
-    func getImage(notification: NSNotification) {
+    func getImage(_ notification: Notification) {
         
         let query = PFQuery(className: "Fhooder")
         
         // Featured Fhooder ID
         Fhooder.objectID = "oCWrWgSv4h"
         
-        query.getObjectInBackgroundWithId(Fhooder.objectID!) { (object: PFObject?, error: NSError?) -> Void in
+        query.getObjectInBackground(withId: Fhooder.objectID!) { (object: PFObject?, error: Error?) -> Void in
             if error == nil && object != nil {
                 
                 
-                Fhooder.shopName = object?.valueForKey("shopName") as? String
-                Fhooder.foodTypeOne = object?.valueForKey("foodTypeOne") as? String
-                Fhooder.rating = object?.valueForKey("ratings") as? Double
+                Fhooder.shopName = object?.value(forKey: "shopName") as? String
+                Fhooder.foodTypeOne = object?.value(forKey: "foodTypeOne") as? String
+                Fhooder.rating = object?.value(forKey: "ratings") as? Double
                 Fhooder.ratingInString = String(Fhooder.rating!)
-                Fhooder.reviews = object?.valueForKey("reviews") as? Int
+                Fhooder.reviews = object?.value(forKey: "reviews") as? Int
                 
-                let pic = object?.valueForKey("itemPic") as! PFFile
+                let pic = object?.value(forKey: "itemPic") as! PFFile
                 
-                pic.getDataInBackgroundWithBlock {
-                    (imageData: NSData?, error: NSError?) -> Void in
+                pic.getDataInBackground {
+                    (imageData: Data?, error: Error?) -> Void in
                     if error == nil {
                         if let imageData = imageData {
                             Fhooder.itemPic = UIImage(data:imageData)
@@ -88,14 +88,14 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
         
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("featuredTableCell") as! FeaturedTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "featuredTableCell") as! FeaturedTableViewCell
         
-        cell.layoutMargins = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsets.zero
         
         
         cell.featuredName.text = Fhooder.shopName!
@@ -109,10 +109,10 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         Fhooder.objectID = "oCWrWgSv4h"
-        self.performSegueWithIdentifier("toFhooderView", sender: tableView)
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.performSegue(withIdentifier: "toFhooderView", sender: tableView)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

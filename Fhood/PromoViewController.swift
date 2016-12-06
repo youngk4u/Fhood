@@ -17,7 +17,7 @@ final class PromoViewController: UIViewController, UITextFieldDelegate {
         
         let nav = self.navigationController?.navigationBar
         
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
 
         self.title = "Promotions"
        
@@ -25,12 +25,12 @@ final class PromoViewController: UIViewController, UITextFieldDelegate {
         
     }
 
-    @IBAction func closePromo(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func closePromo(_ sender: AnyObject) {
+        self.dismiss(animated: true, completion: nil)
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
     }

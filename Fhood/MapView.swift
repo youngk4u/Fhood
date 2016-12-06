@@ -14,13 +14,13 @@ final class MapView: MKMapView {
 
     weak var calloutView: SMCalloutView?
 
-    override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
-        let calloutPoint = self.calloutView?.convertPoint(point, fromView: self)
-        let calloutView = calloutPoint.map { self.calloutView?.hitTest($0, withEvent: event) }
-        return calloutView! ?? super.hitTest(point, withEvent: event)
+    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let calloutPoint = self.calloutView?.convert(point, from: self)
+        let calloutView = calloutPoint.map { self.calloutView?.hitTest($0, with: event) }
+        return calloutView! ?? super.hitTest(point, with: event)
     }
 
-    override func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
-        return touch.view is UIControl ? false : super.gestureRecognizer(gestureRecognizer, shouldReceiveTouch: touch)
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        return touch.view is UIControl ? false : super.gestureRecognizer(gestureRecognizer, shouldReceive: touch)
     }
 }

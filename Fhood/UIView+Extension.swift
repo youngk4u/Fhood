@@ -22,10 +22,10 @@ extension UIView {
                        valid constants, see UIViewAnimationOptions.
     :param: animations A closure containing the changes to commit to the views. This parameter must not be nil
     */
-    public class func animate(withDuration duration: NSTimeInterval = kDefaultFadeDuration,
-        delay: NSTimeInterval = 0, options: UIViewAnimationOptions = [], animations: () -> Void)
+    public class func animate(withDuration duration: TimeInterval = kDefaultFadeDuration,
+        delay: TimeInterval = 0, options: UIViewAnimationOptions = [], animations: @escaping () -> Void)
     {
-        UIView.animateWithDuration(duration, delay: delay, options: options, animations: animations,
+        UIView.animate(withDuration: duration, delay: delay, options: options, animations: animations,
             completion: nil)
     }
 }

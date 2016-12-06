@@ -24,11 +24,11 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     let cuisinTypePickerValues = ["", "American", "Argentinian", "Asian", "BBQ", "Bagels", "Bakery", "Bento", "Brazilian", "Breakfast", "Californian", "Calzones", "Cantonese", "Caribbean", "Cheesesteaks", "Chicken", "Chinese", "Coffee", "Cold Pressed", "Crepes", "Cuban", "Curry", "Deli", "Dessert", "Dim Sum", "Diner", "Dinner", "Eclectic", "Empanadas", "European", "Fish and Chips", "French", "Fusion", "German", "Gluten-Free", "Greek", "Grill", "Grilled Cheese", "Gyro", "Halal", "Hamburgers", "Hawaiian", "Healthy", "Hoagies", "Hot Dogs", "Ice Cream", "Indian", "Indonesian", "Italian", "Japanese", "Kids Menu", "Korean", "Kosher", "Kosher-Style", "Late Night", "Latin American", "Lebanese", "Lemonade", "Low Carb", "Low Fat", "Lunch", "Mandarin", "Meatloaf", "Mediterranean", "Mexican", "Middle Eastern", "Mini Sliders", "New American", "Noodles", "Organic", "Pasta", "Persian", "Peruvian", "Pitas", "Pizza", "Pork Buns", "Potato", "Pub Food", "Ribs", "Rice Bowl", "Russian", "Salads", "Sandwiches", "Seafood", "Smoothies and Juices", "Soul Food", "Soup", "Steak", "Subs", "Sushi", "Shawarma", "Szechwan", "Tapas", "Tea", "Thai", "Vegan", "Vegetarian", "Vietnamese", "Water", "Wings", "Wraps", "Other"]
     
     @IBOutlet var pickupButton: UIButton!
-    var pickupBtnState: Bool = false
+    var pickupBtnState: Bool? = false
     @IBOutlet var eatInButton: UIButton!
-    var eatInBtnState: Bool = false
+    var eatInBtnState: Bool? = false
     @IBOutlet var deliveryButton: UIButton!
-    var deliveryBtnState: Bool = false
+    var deliveryBtnState: Bool? = false
     
     
     @IBOutlet var toPhotoButton: UIButton!
@@ -49,7 +49,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     
     var answerArray = [false, false, false, false, false, false, false, false]
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[0].rootViewController!
+    let rootViewController: UIViewController = UIApplication.shared.windows[0].rootViewController!
     
     
     
@@ -66,7 +66,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         
         
         // Reload data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddItemViewController.loadInfo(_:)),name:"loadInfoView", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddItemViewController.loadInfo(_:)),name:NSNotification.Name(rawValue: "loadInfoView"), object: nil)
         
         // Textfield Delegate
         self.menuNameTextfield.delegate = self
@@ -80,39 +80,39 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         self.cuisinTypeTextfield.text = ""
         
         // Buttons unselected
-        self.eatInButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        self.pickupButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
-        self.deliveryButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+        self.eatInButton.setTitleColor(UIColor.lightGray, for: UIControlState())
+        self.pickupButton.setTitleColor(UIColor.lightGray, for: UIControlState())
+        self.deliveryButton.setTitleColor(UIColor.lightGray, for: UIControlState())
         
         // TableView Delegate
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.layoutMargins = UIEdgeInsetsZero
+        self.tableView.layoutMargins = UIEdgeInsets.zero
         
         
         // Placeholder custom insets
-        let paddingView = UIView(frame: CGRectMake(0, 0, 10, 0))
-        let paddingView2 = UIView(frame: CGRectMake(0, 0, 10, 0))
-        let paddingView3 = UIView(frame: CGRectMake(0, 0, 10, 0))
-        let paddingView4 = UIView(frame: CGRectMake(0, 0, 10, 0))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        let paddingView2 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        let paddingView3 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
+        let paddingView4 = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 0))
         
         self.priceTextfield.rightView = paddingView
         self.descriptionTextfield.rightView = paddingView2
         self.ingredientsTextfield.rightView = paddingView3
         self.cuisinTypeTextfield.rightView = paddingView4
         
-        self.priceTextfield.rightViewMode = UITextFieldViewMode.Always
-        self.descriptionTextfield.rightViewMode = UITextFieldViewMode.Always
-        self.ingredientsTextfield.rightViewMode = UITextFieldViewMode.Always
-        self.cuisinTypeTextfield.rightViewMode = UITextFieldViewMode.Always
+        self.priceTextfield.rightViewMode = UITextFieldViewMode.always
+        self.descriptionTextfield.rightViewMode = UITextFieldViewMode.always
+        self.ingredientsTextfield.rightViewMode = UITextFieldViewMode.always
+        self.cuisinTypeTextfield.rightViewMode = UITextFieldViewMode.always
     }
     
     
     // Reload Picture and name to reload from other controllers
-    func loadInfo(notification: NSNotification){
+    func loadInfo(_ notification: Notification){
         
         self.currentItemIndex = (Fhooder.itemNames?.count)!
-        toPhotoButton.setImage(Fhooder.itemPic, forState: .Normal)
+        toPhotoButton.setImage(Fhooder.itemPic, for: UIControlState())
         
         self.descriptionTextfield.text = Fhooder.descriptionText
         self.ingredientsTextfield.text = Fhooder.ingredientsText
@@ -124,7 +124,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     
     
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         if textField == self.priceTextfield || textField == self.cuisinTypeTextfield {
             
@@ -133,9 +133,9 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
             keyboardDoneButtonView.sizeToFit()
             
             // Setup the buttons to be put in the system.
-            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(AddItemViewController.doneButton) )
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
-            item.tintColor = UIColor.blackColor()
+            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(AddItemViewController.doneButton) )
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+            item.tintColor = UIColor.black
             let toolbarButtons = [flexibleSpace, item, flexibleSpace]
             
             //Put the buttons into the ToolBar and display the tool bar
@@ -151,18 +151,18 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         self.view.endEditing(true)
     }
     
-    override func viewWillAppear(animated:Bool) {
+    override func viewWillAppear(_ animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddItemViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AddItemViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddItemViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AddItemViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         var userInfo = notification.userInfo!
-        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 100
@@ -170,36 +170,36 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     }
     
     
-    func keyboardWillHide(notification: NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsetsZero
+    func keyboardWillHide(_ notification: Notification) {
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
     }
     
     
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
 
         if textField == self.priceTextfield {
             
             // Construct the text that will be in the field if this change is accepted
             let oldText = textField.text! as NSString
-            var newText = oldText.stringByReplacingCharactersInRange(range, withString: string) as String!
-            var newTextString = String(newText)
+            var newText = oldText.replacingCharacters(in: range, with: string) as String!
+            var newTextString = String(describing: newText)
             
-            let digits = NSCharacterSet.decimalDigitCharacterSet()
+            let digits = CharacterSet.decimalDigits
             var digitText = ""
             for c in newTextString.unicodeScalars {
-                if digits.longCharacterIsMember(c.value) {
-                    digitText.append(c)
+                if digits.contains(UnicodeScalar(c.value)!) {
+                    digitText.append(String(c))
                 }
             }
             
-            let formatter = NSNumberFormatter()
-            formatter.numberStyle = NSNumberFormatterStyle.CurrencyStyle
-            formatter.locale = NSLocale(localeIdentifier: "en_US")
+            let formatter = NumberFormatter()
+            formatter.numberStyle = NumberFormatter.Style.currency
+            formatter.locale = Locale(identifier: "en_US")
             let numberFromField = (NSString(string: digitText).doubleValue)/100
-            newText = formatter.stringFromNumber(numberFromField)
+            newText = formatter.string(from: (numberFromField) as NSNumber)
             
             textField.text = newText
             
@@ -211,9 +211,9 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == menuNameTextfield {
-            textField.text = textField.text?.capitalizedString
+            textField.text = textField.text?.capitalized
         }
         self.view.endEditing(true)
         return false
@@ -223,11 +223,11 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     
     
     // Picker view
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
+    private func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int{
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         
         if pickerView == self.cuisinTypePicker {
             return cuisinTypePickerValues.count
@@ -236,7 +236,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     }
     
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         if pickerView == self.cuisinTypePicker {
             return cuisinTypePickerValues[row]
@@ -244,7 +244,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         return ""
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         
         if pickerView == self.cuisinTypePicker {
             cuisinTypeTextfield.text = cuisinTypePickerValues[row]
@@ -253,29 +253,29 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     
     
     // TableView
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 8
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("NutritionalInfoCell") as! NutritionalInfoCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "NutritionalInfoCell") as! NutritionalInfoCell
         
         // Get the questions
         cell.questionLabel.text = self.questionArray[indexPath.row]
         
         cell.answerSegment.layer.setValue(indexPath.row, forKey: "index")
-        cell.answerSegment.addTarget(self, action: #selector(AddItemViewController.segment(_:)), forControlEvents: .ValueChanged)
+        cell.answerSegment.addTarget(self, action: #selector(AddItemViewController.segment(_:)), for: .valueChanged)
         cell.answerSegment.selectedSegmentIndex = 2
         
         // Make the insets to zero
-        cell.layoutMargins = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsets.zero
 
         return cell
     }
     
     
-    func segment (sender: UISegmentedControl) {
-        let i = sender.layer.valueForKey("index") as! Int
+    func segment (_ sender: UISegmentedControl) {
+        let i = sender.layer.value(forKey: "index") as! Int
         
         switch sender.selectedSegmentIndex {
         case 0:
@@ -290,70 +290,70 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     }
     
     
-    @IBAction func pickupButton(sender: UIButton) {
+    @IBAction func pickupButton(_ sender: UIButton) {
         if self.pickupBtnState == false {
             self.pickupBtnState = true
-            self.pickupButton.setTitleColor(UIColor(red:0.00, green:0.79, blue:0.73, alpha:1.0), forState: .Normal)
+            self.pickupButton.setTitleColor(UIColor(red:0.00, green:0.79, blue:0.73, alpha:1.0), for: UIControlState())
         }
         else {
             self.pickupBtnState = false
-            self.pickupButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            self.pickupButton.setTitleColor(UIColor.lightGray, for: UIControlState())
         }
 
     }
     
-    @IBAction func eatinButton(sender: UIButton) {
+    @IBAction func eatinButton(_ sender: UIButton) {
         if self.eatInBtnState == false {
             self.eatInBtnState = true
-            self.eatInButton.setTitleColor(UIColor(red:0.00, green:0.79, blue:0.73, alpha:1.0), forState: .Normal)
+            self.eatInButton.setTitleColor(UIColor(red:0.00, green:0.79, blue:0.73, alpha:1.0), for: UIControlState())
         }
         else {
             self.eatInBtnState = false
-            self.eatInButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            self.eatInButton.setTitleColor(UIColor.lightGray, for: UIControlState())
         }
     }
     
 
-    @IBAction func deliveryButton(sender: UIButton) {
+    @IBAction func deliveryButton(_ sender: UIButton) {
         if self.deliveryBtnState == false {
             self.deliveryBtnState = true
-            self.deliveryButton.setTitleColor(UIColor(red:0.00, green:0.79, blue:0.73, alpha:1.0), forState: .Normal)
+            self.deliveryButton.setTitleColor(UIColor(red:0.00, green:0.79, blue:0.73, alpha:1.0), for: UIControlState())
         }
         else {
             self.deliveryBtnState = false
-            self.deliveryButton.setTitleColor(UIColor.lightGrayColor(), forState: .Normal)
+            self.deliveryButton.setTitleColor(UIColor.lightGray, for: UIControlState())
         }
         
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 
         if (segue.identifier == "toDescriptionView") {
-            let destViewController = segue.destinationViewController as! DescriptionIngredientsViewController
+            let destViewController = segue.destination as! DescriptionIngredientsViewController
             let titleString = "Description"
             destViewController.navTitle = titleString
         }
         else if (segue.identifier == "toIngredientsView") {
-            let destViewController = segue.destinationViewController as! DescriptionIngredientsViewController
+            let destViewController = segue.destination as! DescriptionIngredientsViewController
             let titleString = "Ingredients"
             destViewController.navTitle = titleString
         }
 
     }
 
-    @IBAction func descriptionButton(sender: UIButton) {
-        performSegueWithIdentifier("toDescriptionView", sender: self)
+    @IBAction func descriptionButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "toDescriptionView", sender: self)
     }
     
-    @IBAction func ingredientsButton(sender: UIButton) {
-        performSegueWithIdentifier("toIngredientsView", sender: self)
+    @IBAction func ingredientsButton(_ sender: UIButton) {
+        performSegue(withIdentifier: "toIngredientsView", sender: self)
     }
     
     
     
-    @IBAction func closeAdd(sender: AnyObject) {
+    @IBAction func closeAdd(_ sender: AnyObject) {
         
-        NSNotificationCenter.defaultCenter().postNotificationName("loadInfoView", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "loadInfoView"), object: nil)
         
         Fhooder.descriptionText = ""
         Fhooder.ingredientsText = ""
@@ -362,24 +362,24 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         if toPhotoButton.imageView != nil {
             
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     
     
     
-    @IBAction func saveItem(sender: AnyObject) {
+    @IBAction func saveItem(_ sender: AnyObject) {
         
-        NSNotificationCenter.defaultCenter().postNotificationName("loadInfoView", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "loadInfoView"), object: nil)
         
         if validateInput() {
             
             HUD.show()
             
-            if PFUser.currentUser() != nil {
-                let fhooderID = (PFUser.currentUser()!.valueForKey("fhooder")?.objectId)! as String
+            if PFUser.current() != nil {
+                let fhooderID = ((PFUser.current()!.value(forKey: "fhooder") as AnyObject).objectId)!! as String
                 let fhooder = PFQuery(className: "Fhooder")
-                fhooder.getObjectInBackgroundWithId(fhooderID, block: { (fhooder, error) -> Void in
+                fhooder.getObjectInBackground(withId: fhooderID, block: { (fhooder, error) -> Void in
                     
                     // If there's no item set the picture and price in Parse Fhooder class so it'll show on the map
                     var itemPicExist : Bool = true
@@ -401,10 +401,10 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
                     }
             
                     let item = PFObject(className: "Items")
-                    item["itemName"] = self.menuNameTextfield.text!.capitalizedString
+                    item["itemName"] = self.menuNameTextfield.text!.capitalized
                     
                     let imageData = self.toPhotoButton.imageView!.image?.lowestQualityJPEGNSData
-                    let imageFile = PFFile(name: "item.png", data: imageData!)
+                    let imageFile = PFFile(name: "item.png", data: imageData! as Data)
                     if itemPicExist == true {
                         item["photo"] = imageFile
                     }
@@ -444,9 +444,9 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
                     
                     Fhooder.itemNames?.append(self.menuNameTextfield.text!)
                     Fhooder.itemPics?.append(Fhooder.itemPic!)
-                    Fhooder.pickup? = self.pickupBtnState
-                    Fhooder.delivery? = self.deliveryBtnState
-                    Fhooder.eatin? = self.eatInBtnState
+                    Fhooder.pickup? = self.pickupBtnState!
+                    Fhooder.delivery? = self.deliveryBtnState!
+                    Fhooder.eatin? = self.eatInBtnState!
                     Fhooder.itemPrices?.append(priceNumber!)
                     Fhooder.itemDescription?.append(self.descriptionTextfield.text!)
                     Fhooder.itemIngredients?.append(self.ingredientsTextfield.text!)
@@ -454,36 +454,36 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
                     Fhooder.itemPreferences?.append(self.answerArray)
                     
                     
-                    item.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+                    item.saveInBackground { (success: Bool, error: Error?) -> Void in
                         if success {
                             
                             self.view.endEditing(true)
                         
-                            let relation = fhooder?.relationForKey("items")
-                            relation?.addObject(item)
+                            let relation = fhooder?.relation(forKey: "items")
+                            relation?.add(item)
                             
                             do {
                                 try fhooder!.save()
                                 
-                                NSNotificationCenter.defaultCenter().postNotificationName("load1", object: nil)
+                                NotificationCenter.default.post(name: Notification.Name(rawValue: "load1"), object: nil)
                                 
                                 HUD.dismiss()
                                 
-                                let alert = UIAlertController(title: "Item added", message:"New item has been added!", preferredStyle: .Alert)
-                                let added = UIAlertAction(title: "Ok!", style: .Default) { _ in}
+                                let alert = UIAlertController(title: "Item added", message:"New item has been added!", preferredStyle: .alert)
+                                let added = UIAlertAction(title: "Ok!", style: .default) { _ in}
                                 alert.addAction(added)
-                                self.dismissViewControllerAnimated(true, completion: nil)
-                                self.rootViewController.presentViewController(alert, animated: true, completion: nil)
+                                self.dismiss(animated: true, completion: nil)
+                                self.rootViewController.present(alert, animated: true, completion: nil)
 
                             }
                             catch {
                                 
                                 HUD.dismiss()
                                 
-                                let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .Alert)
-                                let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
+                                let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .alert)
+                                let error = UIAlertAction(title: "Ok", style: .default) { _ in}
                                 alert.addAction(error)
-                                self.rootViewController.presentViewController(alert, animated: true, completion: nil)
+                                self.rootViewController.present(alert, animated: true, completion: nil)
                                 
                             }
                             
@@ -497,37 +497,39 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     
     func validateInput() -> Bool {
         
-        guard let firstname = self.menuNameTextfield.text  where !firstname.isEmpty else {
+        guard let firstname = self.menuNameTextfield.text, !firstname.isEmpty else {
             self.showAlert(withMessage: "Please enter the menu name before continuing!")
             return false
         }
         
-        guard let photo = self.toPhotoButton.imageView!.image  where photo == Fhooder.itemPic else {
+        guard let photo = self.toPhotoButton.imageView!.image, photo == Fhooder.itemPic else {
             self.showAlert(withMessage: "Please provide item picture before continuing!")
             return false
         }
         
-        guard let servingMethod: [Bool] = [self.pickupBtnState, self.eatInBtnState, self.deliveryBtnState]  where servingMethod != [false, false, false] else {
+        let servingMethod = [self.pickupBtnState!, self.eatInBtnState!, self.deliveryBtnState!]
+        if (servingMethod != [false, false, false]) {
+        } else {
             self.showAlert(withMessage: "Please choose the serving method before continuing!")
             return false
         }
         
-        guard let price = self.priceTextfield.text  where !price.isEmpty else {
+        guard let price = self.priceTextfield.text, !price.isEmpty else {
             self.showAlert(withMessage: "Please enter the item price before continuing!")
             return false
         }
         
-        guard let descrip = self.descriptionTextfield.text  where !descrip.isEmpty else {
+        guard let descrip = self.descriptionTextfield.text, !descrip.isEmpty else {
             self.showAlert(withMessage: "Please enter the item description before continuing!")
             return false
         }
         
-        guard let ingred = self.ingredientsTextfield.text  where !ingred.isEmpty else {
+        guard let ingred = self.ingredientsTextfield.text, !ingred.isEmpty else {
             self.showAlert(withMessage: "Please enter the item ingredients before continuing!")
             return false
         }
         
-        guard let type = self.cuisinTypeTextfield.text  where !type.isEmpty else {
+        guard let type = self.cuisinTypeTextfield.text, !type.isEmpty else {
             self.showAlert(withMessage: "Please pick the cuisine type before continuing!")
             return false
         }
@@ -535,9 +537,9 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         return true
     }
     
-    private func showAlert(withMessage message: String) {
-        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        rootViewController.presentViewController(alert, animated: true, completion: nil)
+    fileprivate func showAlert(withMessage message: String) {
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        rootViewController.present(alert, animated: true, completion: nil)
     }
 }

@@ -64,7 +64,7 @@ final class OrderedViewController: UIViewController {
     // Create Message Composer
     let messageComposer = MessageComposer()
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
+    let rootViewController: UIViewController = UIApplication.shared.windows[1].rootViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,10 +77,10 @@ final class OrderedViewController: UIViewController {
         
         
         // Calculate pickup time and start the counter
-        let convertedDate = NSDate().localDate(Fhoodie.fhoodiePickupTime!)
+        let convertedDate = Date().localDate(Fhoodie.fhoodiePickupTime!)
         counterLabel.countdownDelegate = self
-        self.counterLabel.setCountDownDate(NSDate(), targetDate: Fhoodie.fhoodiePickupTime!)
-        self.counterLabel.animationType = .Evaporate
+        self.counterLabel.setCountDownDate(Date(), targetDate: Fhoodie.fhoodiePickupTime!)
+        self.counterLabel.animationType = .evaporate
         countingAt(60, timeRemaining: counterLabel.timeRemaining)
         self.counterLabel.start()
         
@@ -148,19 +148,19 @@ final class OrderedViewController: UIViewController {
     
 
     
-    @IBAction func directionButton(sender: AnyObject) {
+    @IBAction func directionButton(_ sender: AnyObject) {
         
         let coordinate = CLLocationCoordinate2DMake(Fhooder.fhooderLatitude!, Fhooder.fhooderLongitude!)
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
         mapItem.name = Fhooder.shopName!
-        mapItem.openInMapsWithLaunchOptions([MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
         
     }
     
     
     func cancelOrderPushNotification () {
         
-        let pushData: NSDictionary = NSDictionary(objects: ["Order has been cancelled.", "fhoodieCancelled", "1"], forKeys: ["alert"  , "typy", "number"])
+        let pushData: NSDictionary = NSDictionary(objects: ["Order has been cancelled.", "fhoodieCancelled", "1"], forKeys: ["alert" as NSCopying  , "typy" as NSCopying, "number" as NSCopying])
         
         let uQuery = PFUser.query()!
         uQuery.whereKey("fhooderId", equalTo: Fhooder.objectID!)
@@ -169,11 +169,11 @@ final class OrderedViewController: UIViewController {
         iQuery.whereKey("user", matchesQuery: uQuery)
         
         let push : PFPush = PFPush()
-        push.setData(pushData as [NSObject : AnyObject])
+        push.setData(pushData as? [AnyHashable: Any])
         //push.setMessage("Fhoodie has cancelled the order!")
         
         do {
-            try push.sendPush()
+            try push.send()
         } catch {
             print("Push didn't work")
         }
@@ -183,10 +183,10 @@ final class OrderedViewController: UIViewController {
     
     func cancelOrder () {
    
-        if PFUser.currentUser() != nil {
+        if PFUser.current() != nil {
             let query = PFQuery(className: "Orders")
             let id = (Fhoodie.fhoodieOrderID)! as String
-            query.getObjectInBackgroundWithId(id) { (order: PFObject?, error: NSError?) -> Void in
+            query.getObjectInBackground(withId: id) { (order: PFObject?, error: Error?) -> Void in
                 if error == nil && order != nil {
                     
                     order!["orderStatus"] = "Fhoodie Cancelled"
@@ -194,35 +194,35 @@ final class OrderedViewController: UIViewController {
                     
                     self.cancelOrderPushNotification()
                     
-                   self.performSegueWithIdentifier("unwindToViewController", sender: self)
+                   self.performSegue(withIdentifier: "unwindToViewController", sender: self)
                     
                 }
-            NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "fhooderOrderLoad"), object: nil)
             }
         }
     }
     
 
     
-    @IBAction func cancelOrderButton(sender: AnyObject) {
+    @IBAction func cancelOrderButton(_ sender: AnyObject) {
         
-        let alert = UIAlertController(title: "Cancel order", message:"Are you sure?", preferredStyle: .Alert)
-        let action = UIAlertAction(title: "Yes", style: .Default) { (UIAlertAction) in
+        let alert = UIAlertController(title: "Cancel order", message:"Are you sure?", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Yes", style: .default) { (UIAlertAction) in
             self.cancelOrder()
             HUD.dismiss()
             
         }
-        let no = UIAlertAction(title: "No", style: .Default) { _ in}
+        let no = UIAlertAction(title: "No", style: .default) { _ in}
         alert.addAction(action)
         alert.addAction(no)
-        self.presentViewController(alert, animated: true){}
+        self.present(alert, animated: true){}
         
     }
 
     
 
     
-    @IBAction func messageFhooder(sender: AnyObject) {
+    @IBAction func messageFhooder(_ sender: AnyObject) {
         
         // Make sure the device can send text messages
         if (messageComposer.canSendText()) {
@@ -232,13 +232,13 @@ final class OrderedViewController: UIViewController {
             // Present the configured MFMessageComposeViewController instance
             // Note that the dismissal of the VC will be handled by the messageComposer instance,
             // since it implements the appropriate delegate call-back
-            presentViewController(messageComposeVC, animated: true, completion: nil)
+            present(messageComposeVC, animated: true, completion: nil)
         } else {
             // Let the user know if his/her device isn't able to send text messages
-            let alert = UIAlertController(title: "Cannot Send Text Message", message:"Your device is not able to send text messages", preferredStyle: .Alert)
-            let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+            let alert = UIAlertController(title: "Cannot Send Text Message", message:"Your device is not able to send text messages", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { _ in}
             alert.addAction(action)
-            self.presentViewController(alert, animated: true){}
+            self.present(alert, animated: true){}
             
         }
     }    
@@ -249,13 +249,13 @@ extension OrderedViewController: CountdownLabelDelegate {
     func countdownFinished() {
         alert("Your pickup time is due", message: "Please proceed to the Fhooder's curbside.")
     }
-    func countingAt(timeCounted: NSTimeInterval, timeRemaining: NSTimeInterval) {
+    func countingAt(_ timeCounted: TimeInterval, timeRemaining: TimeInterval) {
         switch timeRemaining {
         case 10*60:
             self.alert("10 Minutes till the pickup time 😉", message: "")
         case 5*60:
             self.alert("5 Minutes till the pickup time!", message: "")
-            self.counterLabel.textColor = .redColor()
+            self.counterLabel.textColor = .red
         default:
             break
         }
@@ -264,11 +264,11 @@ extension OrderedViewController: CountdownLabelDelegate {
 
 extension OrderedViewController {
 
-    func alert(title: String, message: String) {
-        let vc = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+    func alert(_ title: String, message: String) {
+        let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default) { _ in}
         vc.addAction(action)
-        self.presentViewController(vc, animated: true) {}
+        self.present(vc, animated: true) {}
     }
 }
 

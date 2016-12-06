@@ -18,7 +18,7 @@ class AboutMeViewController: UIViewController, UITextViewDelegate {
     
     var text: String = "Describe yourself in 200 characters."
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
+    let rootViewController: UIViewController = UIApplication.shared.windows[1].rootViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,24 +28,24 @@ class AboutMeViewController: UIViewController, UITextViewDelegate {
         self.textView.delegate = self
         
         textView.text = self.text
-        textView.textColor = UIColor.lightGrayColor()
+        textView.textColor = UIColor.lightGray
         
         // Get about me from Parse
-        if PFUser.currentUser()?.objectForKey("aboutMe") != nil {
-            self.textView.text = "\(PFUser.currentUser()!.objectForKey("aboutMe")!)"
-            self.textView.textColor = UIColor.blackColor()
+        if PFUser.current()?.object(forKey: "aboutMe") != nil {
+            self.textView.text = "\(PFUser.current()!.object(forKey: "aboutMe")!)"
+            self.textView.textColor = UIColor.black
             self.aboutMeText = self.textView.text!
             
             if self.aboutMeText == "" {
                 textView.text = self.text
-                textView.textColor = UIColor.lightGrayColor()
+                textView.textColor = UIColor.lightGray
             }
         }
         
         
     }
     
-    func textView(textView: UITextView,  shouldChangeTextInRange range:NSRange, replacementText text:String ) -> Bool {
+    func textView(_ textView: UITextView,  shouldChangeTextIn range:NSRange, replacementText text:String ) -> Bool {
         
         if range.length + range.location > textView.text.characters.count {
             return false
@@ -55,50 +55,50 @@ class AboutMeViewController: UIViewController, UITextViewDelegate {
     }
 
     
-    func textViewDidBeginEditing(textView: UITextView) {
-        if textView.textColor == UIColor.lightGrayColor() {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
             textView.text = nil
-            textView.textColor = UIColor.blackColor()
+            textView.textColor = UIColor.black
         }
     }
     
-    func textViewDidEndEditing(textView: UITextView) {
+    func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = self.text
-            textView.textColor = UIColor.lightGrayColor()
+            textView.textColor = UIColor.lightGray
         }
     }
 
     
     
-    override func viewWillAppear(animated:Bool) {
+    override func viewWillAppear(_ animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(AboutMeViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(AboutMeViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
     }
     
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         
         
         if let userInfo = notification.userInfo {
-            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 kbHeight = keyboardSize.height
                 bottomSave.constant = kbHeight
                 
-                UIView.animateWithDuration(0.2, animations: {
+                UIView.animate(withDuration: 0.2, animations: {
                     self.view.layoutIfNeeded()
                     }, completion: nil)
             }
         }
     }
 
-    @IBAction func saveButton(sender: UIButton) {
+    @IBAction func saveButton(_ sender: UIButton) {
         
         if validateInput() {
             
-            let user = PFUser.currentUser()
+            let user = PFUser.current()
             
             user!["aboutMe"] = self.textView.text
             
@@ -106,22 +106,22 @@ class AboutMeViewController: UIViewController, UITextViewDelegate {
             
             do {
                 try user!.save()
-                NSNotificationCenter.defaultCenter().postNotificationName("loadProfileView", object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "loadProfileView"), object: nil)
                 
-                let alert = UIAlertController(title: "", message:"Your new info has been updated!", preferredStyle: .Alert)
-                let saved = UIAlertAction(title: "Nice!", style: .Default) { _ in}
+                let alert = UIAlertController(title: "", message:"Your new info has been updated!", preferredStyle: .alert)
+                let saved = UIAlertAction(title: "Nice!", style: .default) { _ in}
                 alert.addAction(saved)
-                rootViewController.presentViewController(alert, animated: true, completion: nil)
+                rootViewController.present(alert, animated: true, completion: nil)
                 
                 
-                navigationController?.popViewControllerAnimated(true)
-                self.dismissViewControllerAnimated(true, completion: nil)
+                _ = navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true, completion: nil)
             }
             catch {
-                let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .Alert)
-                let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
+                let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .alert)
+                let error = UIAlertAction(title: "Ok", style: .default) { _ in}
                 alert.addAction(error)
-                rootViewController.presentViewController(alert, animated: true, completion: nil)
+                rootViewController.present(alert, animated: true, completion: nil)
                 
             }
 
@@ -129,7 +129,7 @@ class AboutMeViewController: UIViewController, UITextViewDelegate {
         
     }
     
-    private func validateInput() -> Bool {
+    fileprivate func validateInput() -> Bool {
         
         var newInfo = false
         
@@ -153,9 +153,9 @@ class AboutMeViewController: UIViewController, UITextViewDelegate {
         return true
     }
     
-    private func showAlert(withMessage message: String) {
-        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        rootViewController.presentViewController(alert, animated: true, completion: nil)
+    fileprivate func showAlert(withMessage message: String) {
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        rootViewController.present(alert, animated: true, completion: nil)
     }
 }

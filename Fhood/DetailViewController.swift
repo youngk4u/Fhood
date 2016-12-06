@@ -38,7 +38,7 @@ final class DetailViewController: UIViewController {
     
     
     var quantityLabel : Int = 0
-    var formatter = NSNumberFormatter()
+    var formatter = NumberFormatter()
     
     var passedItemCount: [Int]!
     var delegate: VCTwoDelegate?
@@ -48,22 +48,22 @@ final class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         // Currency formatter
-        self.formatter.numberStyle = .CurrencyStyle
+        self.formatter.numberStyle = .currency
         
         self.detailStepper.value = Double(self.passedItemCount[Fhoodie.selectedIndex!])
         self.detailQuantity.text = "\(Int(self.detailStepper.value))"
         self.detailTitle.text = Fhooder.itemNames![Fhoodie.selectedIndex!]
         self.detailTitle.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        self.detailTitle.textColor = UIColor.whiteColor()
+        self.detailTitle.textColor = UIColor.white
         self.detailImage.image = Fhooder.itemPics![Fhoodie.selectedIndex!]
-        self.detailPrice.text = formatter.stringFromNumber(Fhooder.itemPrices![Fhoodie.selectedIndex!])
+        self.detailPrice.text = formatter.string(from: (Fhooder.itemPrices![Fhoodie.selectedIndex!]) as NSNumber)
         self.detailDescription.text = "Description: " + Fhooder.itemDescription![Fhoodie.selectedIndex!]
         self.detailIngredients.text = "Ingredients: " + Fhooder.itemIngredients![Fhoodie.selectedIndex!]
         
         
         let newQuantity = Fhooder.dailyQuantity![Fhoodie.selectedIndex!] - Int(self.detailStepper.value)
         if newQuantity == 0 {
-            self.soldOutLabel.hidden = false
+            self.soldOutLabel.isHidden = false
         }
         
 
@@ -75,13 +75,13 @@ final class DetailViewController: UIViewController {
             }
         }
         
-        self.preferenceSet.sortInPlace { (a, b) -> Bool in
+        self.preferenceSet.sort { (a, b) -> Bool in
             if a.isEmpty {
                 return false
             } else if b.isEmpty {
                 return true
             } else {
-                return a.localizedCaseInsensitiveCompare(b) == .OrderedAscending
+                return a.localizedCaseInsensitiveCompare(b) == .orderedAscending
             }
         }
         
@@ -114,19 +114,19 @@ final class DetailViewController: UIViewController {
         // Detail view image tap to see ingredients
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.imageFlipped(_:)))
         self.detailImage.addGestureRecognizer(tapGesture)
-        self.detailImage.userInteractionEnabled = true
+        self.detailImage.isUserInteractionEnabled = true
         
         let tapGestureBack = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.imageFlipBack(_:)))
         self.detailBackImage.addGestureRecognizer(tapGestureBack)
-        self.detailBackImage.userInteractionEnabled = true
+        self.detailBackImage.isUserInteractionEnabled = true
         
     }
     
     // Detail image flip to show ingredients
-    func imageFlipped(gesture: UIGestureRecognizer) {
+    func imageFlipped(_ gesture: UIGestureRecognizer) {
         self.detailImage.translatesAutoresizingMaskIntoConstraints = true
-        UIView.transitionFromView(self.detailImage, toView: self.detailBackImage, duration: 1,
-            options: UIViewAnimationOptions.TransitionFlipFromLeft, completion: nil)
+        UIView.transition(from: self.detailImage, to: self.detailBackImage, duration: 1,
+            options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
         
         self.detailBackImage.alpha = 1
         self.detailPreference.alpha = 1
@@ -134,10 +134,10 @@ final class DetailViewController: UIViewController {
         self.detailIngredients.alpha = 1
     }
     
-    func imageFlipBack(gesture: UIGestureRecognizer) {
+    func imageFlipBack(_ gesture: UIGestureRecognizer) {
         self.detailBackImage.translatesAutoresizingMaskIntoConstraints = true
-        UIView.transitionFromView(self.detailBackImage, toView: self.detailImage, duration: 1,
-            options: UIViewAnimationOptions.TransitionFlipFromRight, completion: nil)
+        UIView.transition(from: self.detailBackImage, to: self.detailImage, duration: 1,
+            options: UIViewAnimationOptions.transitionFlipFromRight, completion: nil)
         
         self.detailBackImage.alpha = 0
         self.detailPreference.alpha = 0
@@ -147,7 +147,7 @@ final class DetailViewController: UIViewController {
 
     
     // Stepper Button
-    @IBAction func stepperPressed(sender: UIStepper) {
+    @IBAction func stepperPressed(_ sender: UIStepper) {
         
         self.quantityLabel = Int(self.detailStepper.value)
         let newMax = Fhooder.maxOrderLimit![Fhoodie.selectedIndex!] - self.quantityLabel
@@ -158,14 +158,14 @@ final class DetailViewController: UIViewController {
         
             if newQuantity > 0 {
             
-                self.soldOutLabel.hidden = true
+                self.soldOutLabel.isHidden = true
                 
                 self.passedItemCount[Fhoodie.selectedIndex!] = self.quantityLabel
                 self.detailQuantity.text = "\(self.quantityLabel)"
                 
             }
             else if newQuantity == 0 {
-                self.soldOutLabel.hidden = false
+                self.soldOutLabel.isHidden = false
                 
                 self.passedItemCount[Fhoodie.selectedIndex!] = self.quantityLabel
                 self.detailQuantity.text = "\(self.quantityLabel)"
@@ -183,26 +183,26 @@ final class DetailViewController: UIViewController {
         else {
             self.detailStepper.value = self.detailStepper.value - 1
             
-            let alert = UIAlertController(title: "", message:"You've reached maximum order limit.", preferredStyle: .Alert)
-            let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+            let alert = UIAlertController(title: "", message:"You've reached maximum order limit.", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { _ in}
             alert.addAction(action)
-            self.presentViewController(alert, animated: true){}
+            self.present(alert, animated: true){}
         }
     }
 
-    @IBAction func detailViewClose(sender: AnyObject) {
+    @IBAction func detailViewClose(_ sender: AnyObject) {
         if self.passedItemCount[Fhoodie.selectedIndex!] != 0 {
             Fhoodie.isAnythingSelected = true
         }
         
         self.delegate?.updateData(self.passedItemCount  )
-        NSNotificationCenter.defaultCenter().postNotificationName("load", object: nil)
-        self.dismissViewControllerAnimated(true, completion: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "load"), object: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }
 
 
 protocol VCTwoDelegate {
-    func updateData(data: [Int])
+    func updateData(_ data: [Int])
 }

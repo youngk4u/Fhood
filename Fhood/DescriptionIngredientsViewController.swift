@@ -16,7 +16,7 @@ final class DescriptionIngredientsViewController: UIViewController, UITextViewDe
 
     @IBOutlet var textView: UITextView!
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[0].rootViewController!
+    let rootViewController: UIViewController = UIApplication.shared.windows[0].rootViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +35,7 @@ final class DescriptionIngredientsViewController: UIViewController, UITextViewDe
     }
     
     
-    @IBAction func saveButton(sender: UIBarButtonItem) {
+    @IBAction func saveButton(_ sender: UIBarButtonItem) {
         
         self.textView.resignFirstResponder()
         
@@ -47,16 +47,16 @@ final class DescriptionIngredientsViewController: UIViewController, UITextViewDe
         }
         
         // Reload tableview from previous controller
-        NSNotificationCenter.defaultCenter().postNotificationName("loadInfoView", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "loadInfoView"), object: nil)
         
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
 
     }
     
     
-    @IBAction func closeView(sender: AnyObject) {
+    @IBAction func closeView(_ sender: AnyObject) {
         self.textView.resignFirstResponder()
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
 }

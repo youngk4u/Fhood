@@ -32,22 +32,22 @@ final class RateViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let blackBorder : UIColor = UIColor.blackColor()
+        let blackBorder : UIColor = UIColor.black
         self.commentBox.delegate = self
         self.commentBox.layer.borderWidth = 1
-        self.commentBox.layer.borderColor = blackBorder.CGColor
+        self.commentBox.layer.borderColor = blackBorder.cgColor
         
         let swipe: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(RateViewController.dismissKeyboard))
         
-        swipe.direction = UISwipeGestureRecognizerDirection.Down
+        swipe.direction = UISwipeGestureRecognizerDirection.down
         self.view.addGestureRecognizer(swipe)
     
         
-        self.spoonOne.addTarget(self, action: #selector(RateViewController.onePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        self.spoonTwo.addTarget(self, action: #selector(RateViewController.twoPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        self.spoonThree.addTarget(self, action: #selector(RateViewController.threePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        self.spoonFour.addTarget(self, action: #selector(RateViewController.fourPressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
-        self.spoonFive.addTarget(self, action: #selector(RateViewController.fivePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        self.spoonOne.addTarget(self, action: #selector(RateViewController.onePressed(_:)), for: UIControlEvents.touchUpInside)
+        self.spoonTwo.addTarget(self, action: #selector(RateViewController.twoPressed(_:)), for: UIControlEvents.touchUpInside)
+        self.spoonThree.addTarget(self, action: #selector(RateViewController.threePressed(_:)), for: UIControlEvents.touchUpInside)
+        self.spoonFour.addTarget(self, action: #selector(RateViewController.fourPressed(_:)), for: UIControlEvents.touchUpInside)
+        self.spoonFive.addTarget(self, action: #selector(RateViewController.fivePressed(_:)), for: UIControlEvents.touchUpInside)
         
         
         fhooderImage.image = Fhooder.itemPics![0]
@@ -63,30 +63,30 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.fhooderName.text = Fhooder.shopName!
     }
     
-    func textViewDidBeginEditing(textView: UITextView) {
+    func textViewDidBeginEditing(_ textView: UITextView) {
         self.view.layoutIfNeeded()
         
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, animations: {
             self.bottomConstraint.constant = 250
-            self.tellCommentLabel.textColor = UIColor.whiteColor()
-            self.commentBox.textColor = UIColor.blackColor()
-            self.commentBox.backgroundColor = UIColor.whiteColor()
+            self.tellCommentLabel.textColor = UIColor.white
+            self.commentBox.textColor = UIColor.black
+            self.commentBox.backgroundColor = UIColor.white
             self.thanks.alpha = 0
             self.fhooderImage.alpha = 0
             self.fhooderName.alpha = 0
-            self.view.backgroundColor = UIColor.darkGrayColor()
+            self.view.backgroundColor = UIColor.darkGray
             self.view.layoutIfNeeded()
-        })
+        }, completion: nil)
     }
 
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        super.touchesBegan(touches, withEvent: event)
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
 
         self.dismissKeyboard()
     }
 
     // called when 'return' key pressed. return NO to ignore.
-    func textViewShouldReturn(textView: UITextView) -> Bool {
+    func textViewShouldReturn(_ textView: UITextView) -> Bool {
         self.dismissKeyboard()
         textView.resignFirstResponder()
         return true
@@ -96,54 +96,54 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.view.layoutIfNeeded()
         self.commentBox.resignFirstResponder()
         
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animate(withDuration: 0.5, animations: {
             self.bottomConstraint.constant = 40
-            self.tellCommentLabel.textColor = UIColor.darkGrayColor()
-            self.commentBox.textColor = UIColor.blackColor()
+            self.tellCommentLabel.textColor = UIColor.darkGray
+            self.commentBox.textColor = UIColor.black
             self.thanks.alpha = 1
             self.fhooderImage.alpha = 1
             self.fhooderName.alpha = 1
-            self.view.backgroundColor = UIColor.whiteColor()
-        })
+            self.view.backgroundColor = UIColor.white
+        }, completion: nil)
     }
 
-    func onePressed (sender: UIButton!) {
-        self.spoonOne.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonTwo.setImage(badSpoon, forState: UIControlState.Normal)
-        self.spoonThree.setImage(badSpoon, forState: UIControlState.Normal)
-        self.spoonFour.setImage(badSpoon, forState: UIControlState.Normal)
-        self.spoonFive.setImage(badSpoon, forState: UIControlState.Normal)
+    func onePressed (_ sender: UIButton!) {
+        self.spoonOne.setImage(goodSpoon, for: UIControlState())
+        self.spoonTwo.setImage(badSpoon, for: UIControlState())
+        self.spoonThree.setImage(badSpoon, for: UIControlState())
+        self.spoonFour.setImage(badSpoon, for: UIControlState())
+        self.spoonFive.setImage(badSpoon, for: UIControlState())
     }
     
-    func twoPressed (sender: UIButton) {
-        self.spoonOne.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonTwo.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonThree.setImage(badSpoon, forState: UIControlState.Normal)
-        self.spoonFour.setImage(badSpoon, forState: UIControlState.Normal)
-        self.spoonFive.setImage(badSpoon, forState: UIControlState.Normal)
+    func twoPressed (_ sender: UIButton) {
+        self.spoonOne.setImage(goodSpoon, for: UIControlState())
+        self.spoonTwo.setImage(goodSpoon, for: UIControlState())
+        self.spoonThree.setImage(badSpoon, for: UIControlState())
+        self.spoonFour.setImage(badSpoon, for: UIControlState())
+        self.spoonFive.setImage(badSpoon, for: UIControlState())
     }
     
-    func threePressed (sender: UIButton) {
-        self.spoonOne.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonTwo.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonThree.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonFour.setImage(badSpoon, forState: UIControlState.Normal)
-        self.spoonFive.setImage(badSpoon, forState: UIControlState.Normal)
+    func threePressed (_ sender: UIButton) {
+        self.spoonOne.setImage(goodSpoon, for: UIControlState())
+        self.spoonTwo.setImage(goodSpoon, for: UIControlState())
+        self.spoonThree.setImage(goodSpoon, for: UIControlState())
+        self.spoonFour.setImage(badSpoon, for: UIControlState())
+        self.spoonFive.setImage(badSpoon, for: UIControlState())
     }
     
-    func fourPressed (sender: UIButton) {
-        self.spoonOne.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonTwo.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonThree.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonFour.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonFive.setImage(badSpoon, forState: UIControlState.Normal)
+    func fourPressed (_ sender: UIButton) {
+        self.spoonOne.setImage(goodSpoon, for: UIControlState())
+        self.spoonTwo.setImage(goodSpoon, for: UIControlState())
+        self.spoonThree.setImage(goodSpoon, for: UIControlState())
+        self.spoonFour.setImage(goodSpoon, for: UIControlState())
+        self.spoonFive.setImage(badSpoon, for: UIControlState())
     }
     
-    func fivePressed (sender: UIButton) {
-        self.spoonOne.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonTwo.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonThree.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonFour.setImage(goodSpoon, forState: UIControlState.Normal)
-        self.spoonFive.setImage(goodSpoon, forState: UIControlState.Normal)
+    func fivePressed (_ sender: UIButton) {
+        self.spoonOne.setImage(goodSpoon, for: UIControlState())
+        self.spoonTwo.setImage(goodSpoon, for: UIControlState())
+        self.spoonThree.setImage(goodSpoon, for: UIControlState())
+        self.spoonFour.setImage(goodSpoon, for: UIControlState())
+        self.spoonFive.setImage(goodSpoon, for: UIControlState())
     }
 }

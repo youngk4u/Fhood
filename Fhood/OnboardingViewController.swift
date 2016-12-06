@@ -16,7 +16,7 @@ final class OnboardingViewController: UIViewController {
     @IBOutlet var passwordTextField: UITextField!
     @IBInspectable var intentIsLogin: Bool = false
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.emailTextField.becomeFirstResponder()
@@ -25,13 +25,13 @@ final class OnboardingViewController: UIViewController {
 
     // MARK: - Private functions
 
-    @IBAction private func facebookTapped() {
-        if let token = FBSDKAccessToken.currentAccessToken() {
+    @IBAction fileprivate func facebookTapped() {
+        if let token = FBSDKAccessToken.current() {
             return self.authenticate(withFacebookAccessToken: token)
         }
 
 
-        FBSDKLoginManager().logInWithReadPermissions(Constants.Vendor.FacebookPermissions, fromViewController: self) { (result, error) -> Void in
+        FBSDKLoginManager().logIn(withReadPermissions: Constants.Vendor.FacebookPermissions, from: self) { (result, error) -> Void in
       
             guard result?.isCancelled == false else { return }
             guard error == nil, let token = result?.token else {
@@ -44,55 +44,58 @@ final class OnboardingViewController: UIViewController {
         }
     }
 
-    private func authenticate() {
+    fileprivate func authenticate() {
         guard let email = self.emailTextField.text, let password = self.passwordTextField.text else { return }
         
         HUD.show()
 
         if self.intentIsLogin {
-            PFUser.logInWithUsernameInBackground(email, password: password) { [weak self] user, error in
-                self?.parseDidAuthenticate(withUser: user, error: error)
+            PFUser.logInWithUsername(inBackground: email, password: password) { [weak self] user, error in
+                self?.parseDidAuthenticate(withUser: user, error: error as NSError?)
             }
 
         } else {
             let user = PFUser(email: email, password: password)
             
-            user.signUpInBackgroundWithBlock { [weak self] _, error in
-                self?.parseDidAuthenticate(withUser: PFUser.currentUser(), error: error)
+            user.signUpInBackground { [weak self] _, error in
+                self?.parseDidAuthenticate(withUser: PFUser.current(), error: error as NSError?)
             }
         }
     }
 
-    private func authenticate(withFacebookAccessToken token: FBSDKAccessToken) {
+    fileprivate func authenticate(withFacebookAccessToken token: FBSDKAccessToken) {
         HUD.show()
-        PFFacebookUtils.logInInBackgroundWithAccessToken(token) { [weak self] user, error in
+        PFFacebookUtils.logInInBackground(with: token) { [weak self] user, error in
             guard error == nil, let user = user else {
-                self?.parseDidAuthenticate(withUser: nil, error: error)
+                self?.parseDidAuthenticate(withUser: nil, error: error as NSError?)
                 return
             }
 
             // If the user already exists, we just finish authentication and move on
             if !user.isNew {
-                self?.parseDidAuthenticate(withUser: user, error: error)
+                self?.parseDidAuthenticate(withUser: user, error: error as NSError?)
                 return
             }
 
             // For new users, we grab some extra info and save it
             let graphParameters = ["fields": "first_name, last_name, email, picture.type(large)"]
             let graphRequest = FBSDKGraphRequest(graphPath: "me", parameters: graphParameters)
-            graphRequest.startWithCompletionHandler { _, result, _ in
+            _ = graphRequest?.start {connection, result, _ in
                 // if for some reason this fails, we must ask for the user's email separately
-                guard let email = result?["email"] as? String else {
+                
+                let data:[String:AnyObject] = result as! [String : AnyObject]
+                
+                guard let email = data["email"] as? String else {
                     self?.parseDidAuthenticate(withUser: user, error: nil)
                     return
                 }
 
                 user.username = email
                 user.email = email
-                user["firstName"] = result?["first_name"] as? String
-                user["lastName"] = result?["last_name"] as? String
-                user["pictureUrl"] = result?["picture"]??["data"]??["url"] as? String
-                user.saveInBackgroundWithBlock { _, error  in
+                user["firstName"] = data["first_name"] as? String
+                user["lastName"] = data["last_name"] as? String
+                user["pictureUrl"] = data["picture"] ?? data["data"] ?? data["url"] as? String
+                user.saveInBackground { _, error  in
                     self?.parseDidAuthenticate(withUser: user, error: nil)
                 }
             }
@@ -100,7 +103,7 @@ final class OnboardingViewController: UIViewController {
     }
     
 
-    private func parseDidAuthenticate(withUser user: PFUser?, error: NSError?) {
+    fileprivate func parseDidAuthenticate(withUser user: PFUser?, error: NSError?) {
         HUD.dismiss()
 
         guard error == nil && user != nil else {
@@ -113,22 +116,22 @@ final class OnboardingViewController: UIViewController {
         self.passwordTextField.resignFirstResponder()
         
         
-        let installation: PFInstallation = PFInstallation.currentInstallation()!
-        installation["user"] = PFUser.currentUser()
+        let installation: PFInstallation = PFInstallation.current()!
+        installation["user"] = PFUser.current()
         installation.saveInBackground()
 
 
         Router.route(true)
     }
 
-    private func validateInput() -> Bool {
-        guard let email = self.emailTextField.text  where !email.isEmpty else {
+    fileprivate func validateInput() -> Bool {
+        guard let email = self.emailTextField.text, !email.isEmpty else {
             self.showAlert(withMessage: "Please, enter an email before continuing!")
             self.emailTextField.becomeFirstResponder()
             return false
         }
 
-        guard let password = self.passwordTextField.text  where !password.isEmpty else {
+        guard let password = self.passwordTextField.text, !password.isEmpty else {
             self.showAlert(withMessage: "Please, enter a password before continuing!")
             self.passwordTextField.becomeFirstResponder()
             return false
@@ -137,7 +140,7 @@ final class OnboardingViewController: UIViewController {
         let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
         let pattern = try! NSRegularExpression(pattern: emailRegex, options: [])
         let strRange = NSRange(location: 0, length: email.characters.count)
-        guard pattern.firstMatchInString(email, options: [], range: strRange) != nil else {
+        guard pattern.firstMatch(in: email, options: [], range: strRange) != nil else {
             self.showAlert(withMessage: "Please, enter a valid email before continuing!")
             self.emailTextField.becomeFirstResponder()
             return false
@@ -152,10 +155,10 @@ final class OnboardingViewController: UIViewController {
         return true
     }
 
-    private func showAlert(withMessage message: String) {
-        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        self.presentViewController(alert, animated: true, completion: nil)
+    fileprivate func showAlert(withMessage message: String) {
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -163,7 +166,7 @@ final class OnboardingViewController: UIViewController {
 
 extension OnboardingViewController: UITextFieldDelegate {
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField === self.emailTextField {
             self.passwordTextField.becomeFirstResponder()
         } else if self.validateInput() {

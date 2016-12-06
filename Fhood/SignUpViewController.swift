@@ -74,7 +74,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     var foodTypeThreePicker: UIPickerView!
     var foodTypeThreePickerValues : [String]!
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
+    let rootViewController: UIViewController = UIApplication.shared.windows[1].rootViewController!
     
     
     
@@ -88,7 +88,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         
         // Reload data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpViewController.loadProfile(_:)),name:"loadProfileView", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.loadProfile(_:)),name:NSNotification.Name(rawValue: "loadProfileView"), object: nil)
         
         
         self.statePicker = UIPickerView()
@@ -139,23 +139,23 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         
         // Load data from parse
-        if PFUser.currentUser()?.objectForKey("firstName") != nil {
-            self.firstNameTextfield.text = "\(PFUser.currentUser()!.objectForKey("firstName")!)"
+        if PFUser.current()?.object(forKey: "firstName") != nil {
+            self.firstNameTextfield.text = "\(PFUser.current()!.object(forKey: "firstName")!)"
             self.firstName = self.firstNameTextfield.text
         }
-        if PFUser.currentUser()?.objectForKey("lastName") != nil {
-            self.lastNameTextfield.text = "\(PFUser.currentUser()!.objectForKey("lastName")!)"
+        if PFUser.current()?.object(forKey: "lastName") != nil {
+            self.lastNameTextfield.text = "\(PFUser.current()!.object(forKey: "lastName")!)"
             self.lastName = self.lastNameTextfield.text!
         }
         
         loadProfilePic()
         
-        if PFUser.currentUser()?.objectForKey("phone") != nil {
-            self.phoneNumberTextfield.text = "\(PFUser.currentUser()!.objectForKey("phone")!)"
+        if PFUser.current()?.object(forKey: "phone") != nil {
+            self.phoneNumberTextfield.text = "\(PFUser.current()!.object(forKey: "phone")!)"
             self.lastName = self.phoneNumberTextfield.text!
         }
-        if PFUser.currentUser()?.objectForKey("email") != nil {
-            self.emailTextfield.text = "\(PFUser.currentUser()!.objectForKey("email")!)"
+        if PFUser.current()?.object(forKey: "email") != nil {
+            self.emailTextfield.text = "\(PFUser.current()!.object(forKey: "email")!)"
             self.email = self.emailTextfield.text!
         }
         
@@ -167,7 +167,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     
-    func loadProfile(notification: NSNotification){
+    func loadProfile(_ notification: Notification){
         loadProfilePic()
         loadAboutMe()
     }
@@ -175,10 +175,10 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
 
     func loadProfilePic() {
         // Get picture from file(Parse)
-        if PFUser.currentUser()?.objectForKey("profilePhoto") != nil {
-            let userImageFile = PFUser.currentUser()!["profilePhoto"] as! PFFile
-            userImageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData?, error: NSError?) -> Void in
+        if PFUser.current()?.object(forKey: "profilePhoto") != nil {
+            let userImageFile = PFUser.current()!["profilePhoto"] as! PFFile
+            userImageFile.getDataInBackground {
+                (imageData: Data?, error: Error?) -> Void in
                 if error == nil {
                     if let imageData = imageData {
                         self.profilePic.image = UIImage(data:imageData)
@@ -187,7 +187,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
                         // Profile pic becomes round
                         let image = UIImageView(image: self.profilePic.image)
                         self.profilePic.image = nil
-                        image.frame = CGRectMake(0, 0, 50, 50)
+                        image.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
                         image.layer.masksToBounds = false
                         image.layer.cornerRadius = 13
                         image.layer.cornerRadius = image.frame.size.height/2
@@ -200,18 +200,18 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         }
         else {
             // Get picture from Facebook(Parse)
-            if PFUser.currentUser()?.objectForKey("pictureUrl") != nil {
-                if let picURL = NSURL(string: "\(PFUser.currentUser()!.objectForKey("pictureUrl")!)") {
-                    if let data = NSData(contentsOfURL: picURL) {
+            if PFUser.current()?.object(forKey: "pictureUrl") != nil {
+                if let picURL = URL(string: "\(PFUser.current()!.object(forKey: "pictureUrl")!)") {
+                    if let data = try? Data(contentsOf: picURL) {
                         self.profilePic.image = UIImage(data: data)
                         self.picture = self.profilePic.image
                         
                         // Profile pic becomes round with white border
                         let image = UIImageView(image: self.profilePic.image)
                         self.profilePic.image = nil // Get rid of the duplicate
-                        image.frame = CGRectMake(0, 0, 60, 60)
+                        image.frame = CGRect(x: 0, y: 0, width: 60, height: 60)
                         image.layer.masksToBounds = false
-                        image.layer.borderColor = UIColor.whiteColor().CGColor
+                        image.layer.borderColor = UIColor.white.cgColor
                         image.layer.cornerRadius = 13
                         image.layer.cornerRadius = image.frame.size.height/2
                         image.clipsToBounds = true
@@ -224,58 +224,58 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     func loadAddress() {
-        if PFUser.currentUser()?.objectForKey("streetAddress") != nil && PFUser.currentUser()?.objectForKey("city") != nil && PFUser.currentUser()?.objectForKey("stateProvince") != nil && PFUser.currentUser()?.objectForKey("zip") != nil && PFUser.currentUser()?.objectForKey("country") != nil {
-            self.streetAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("streetAddress")!)"
+        if PFUser.current()?.object(forKey: "streetAddress") != nil && PFUser.current()?.object(forKey: "city") != nil && PFUser.current()?.object(forKey: "stateProvince") != nil && PFUser.current()?.object(forKey: "zip") != nil && PFUser.current()?.object(forKey: "country") != nil {
+            self.streetAddressTextfield.text = "\(PFUser.current()!.object(forKey: "streetAddress")!)"
             self.streetAdd = self.streetAddressTextfield.text
             
-            if PFUser.currentUser()?.objectForKey("unit") != nil {
-                self.aptAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("unit")!)"
+            if PFUser.current()?.object(forKey: "unit") != nil {
+                self.aptAddressTextfield.text = "\(PFUser.current()!.object(forKey: "unit")!)"
                 self.aptAdd = self.aptAddressTextfield.text
             }
-            self.cityAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("city")!)"
+            self.cityAddressTextfield.text = "\(PFUser.current()!.object(forKey: "city")!)"
             self.cityAdd = self.cityAddressTextfield.text
             
-            self.stateAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("stateProvince")!)"
+            self.stateAddressTextfield.text = "\(PFUser.current()!.object(forKey: "stateProvince")!)"
             self.stateAdd = self.stateAddressTextfield.text
             
-            self.zipAddressTextfield.text = "\(PFUser.currentUser()!.objectForKey("zip")!)"
+            self.zipAddressTextfield.text = "\(PFUser.current()!.object(forKey: "zip")!)"
             self.zipAdd = self.zipAddressTextfield.text
         }
     }
 
     func loadAboutMe() {
         // Get about me from Parse
-        if PFUser.currentUser()?.objectForKey("aboutMe") != nil {
-            let aboutMe = String(PFUser.currentUser()!.objectForKey("aboutMe")!)
-            self.shopDescriptionButton.setTitle(aboutMe, forState: .Normal)
-            self.shopDescriptionButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+        if PFUser.current()?.object(forKey: "aboutMe") != nil {
+            let aboutMe = String(describing: PFUser.current()!.object(forKey: "aboutMe")!)
+            self.shopDescriptionButton.setTitle(aboutMe, for: UIControlState())
+            self.shopDescriptionButton.setTitleColor(UIColor.black, for: UIControlState())
             self.shopDescription = aboutMe
             
             if aboutMe == "" {
-                self.shopDescriptionButton.setTitle("About me", forState: .Normal)
-                self.shopDescriptionButton.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
+                self.shopDescriptionButton.setTitle("About me", for: UIControlState())
+                self.shopDescriptionButton.setTitleColor(UIColor.lightGray, for: UIControlState())
             }
         }
     }
 
     
-    override func viewWillAppear(animated:Bool) {
+    override func viewWillAppear(_ animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SignUpViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == self.firstNameTextfield {
-            textField.text = textField.text?.capitalizedString
+            textField.text = textField.text?.capitalized
         }
         else if textField == self.lastNameTextfield {
-            textField.text = textField.text?.capitalizedString
+            textField.text = textField.text?.capitalized
         }
         else if textField == self.nameOfShopTextfield {
-            textField.text = textField.text?.capitalizedString
+            textField.text = textField.text?.capitalized
         }
         self.view.endEditing(true)
         return true
@@ -283,17 +283,17 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         // Auto phone number formatter
         if textField == self.phoneNumberTextfield {
-            let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
-            let components = newString.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+            let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+            let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
             
-            let decimalString : String = components.joinWithSeparator("")
+            let decimalString : String = components.joined(separator: "")
             let length = decimalString.characters.count
             let decimalStr = decimalString as NSString
-            let hasLeadingOne = length > 0 && decimalStr.characterAtIndex(0) == (1 as unichar)
+            let hasLeadingOne = length > 0 && decimalStr.character(at: 0) == (1 as unichar)
             
             if length == 0 || (length > 10 && !hasLeadingOne) || length > 11
             {
@@ -306,24 +306,24 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             
             if hasLeadingOne
             {
-                formattedString.appendString("1 ")
+                formattedString.append("1 ")
                 index += 1
             }
             if (length - index) > 3
             {
-                let areaCode = decimalStr.substringWithRange(NSMakeRange(index, 3))
+                let areaCode = decimalStr.substring(with: NSMakeRange(index, 3))
                 formattedString.appendFormat("(%@)", areaCode)
                 index += 3
             }
             if length - index > 3
             {
-                let prefix = decimalStr.substringWithRange(NSMakeRange(index, 3))
+                let prefix = decimalStr.substring(with: NSMakeRange(index, 3))
                 formattedString.appendFormat("%@-", prefix)
                 index += 3
             }
             
-            let remainder = decimalStr.substringFromIndex(index)
-            formattedString.appendString(remainder)
+            let remainder = decimalStr.substring(from: index)
+            formattedString.append(remainder)
             textField.text = formattedString as String
             return false
         }
@@ -340,10 +340,10 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
 
 
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         var userInfo = notification.userInfo!
-        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
-        keyboardFrame = self.view.convertRect(keyboardFrame, fromView: nil)
+        var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        keyboardFrame = self.view.convert(keyboardFrame, from: nil)
         
         var contentInset:UIEdgeInsets = self.scrollView.contentInset
         contentInset.bottom = keyboardFrame.size.height + 100
@@ -351,26 +351,26 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     
-    func keyboardWillHide(notification: NSNotification) {
-        let contentInset:UIEdgeInsets = UIEdgeInsetsZero
+    func keyboardWillHide(_ notification: Notification) {
+        let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
     }
     
     
     
-    @IBAction func cancelButton(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancelButton(_ sender: UIBarButtonItem) {
+        dismiss(animated: true, completion: nil)
     }
     
     
     
     
     // Picker view
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int{
+    func numberOfComponentsInPickerView(_ pickerView: UIPickerView) -> Int{
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
        
         if pickerView == self.statePicker {
             return statePickerValues.count
@@ -388,7 +388,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
        
         if pickerView == self.statePicker {
             return statePickerValues[row]
@@ -406,7 +406,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         return ""
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         
         if pickerView == self.statePicker {
             stateAddressTextfield.text = statePickerValues[row]
@@ -426,14 +426,14 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     
     
 
-    private func validateInput() -> Bool {
+    fileprivate func validateInput() -> Bool {
         
         
-        guard let firstname = self.firstNameTextfield.text  where !firstname.isEmpty else {
+        guard let firstname = self.firstNameTextfield.text, !firstname.isEmpty else {
             self.showAlert(withMessage: "Please enter your name before continuing!")
             return false
         }
-        guard let lastname = self.lastNameTextfield.text  where !lastname.isEmpty else {
+        guard let lastname = self.lastNameTextfield.text, !lastname.isEmpty else {
             self.showAlert(withMessage: "Please enter your last name before continuing!")
             return false
         }
@@ -442,11 +442,11 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             self.showAlert(withMessage: "Please provide profile picture before continuing!")
             return false
         }
-        guard let phone = self.phoneNumberTextfield.text  where !phone.isEmpty else {
+        guard let phone = self.phoneNumberTextfield.text, !phone.isEmpty else {
             self.showAlert(withMessage: "Please enter your phone number before continuing!")
             return false
         }
-        guard let email = self.emailTextfield.text  where !email.isEmpty else {
+        guard let email = self.emailTextfield.text, !email.isEmpty else {
             self.showAlert(withMessage: "Please enter an email before continuing!")
             return false
         }
@@ -454,23 +454,23 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             self.showAlert(withMessage: "Please enter your address before saving!")
             return false
         }
-        guard let shopname = self.nameOfShopTextfield.text  where !shopname.isEmpty else {
+        guard let shopname = self.nameOfShopTextfield.text, !shopname.isEmpty else {
             self.showAlert(withMessage: "Please enter the shop name before continuing!")
             return false
         }
-        guard let description = self.shopDescription  where !description.isEmpty else {
+        guard let description = self.shopDescription, !description.isEmpty else {
             self.showAlert(withMessage: "Please fill out your description before continuing!")
             return false
         }
-        guard let typeOne = self.foodTypeOneTextfield.text  where !typeOne.isEmpty else {
+        guard let typeOne = self.foodTypeOneTextfield.text, !typeOne.isEmpty else {
             self.showAlert(withMessage: "Please select the food type before continuing!")
             return false
         }
-        guard let typeTwo = self.foodTypeTwoTextfield.text  where !typeTwo.isEmpty else {
+        guard let typeTwo = self.foodTypeTwoTextfield.text, !typeTwo.isEmpty else {
             self.showAlert(withMessage: "Please select the food type before continuing!")
             return false
         }
-        guard let typeThree = self.foodTypeThreeTextfield.text  where !typeThree.isEmpty else {
+        guard let typeThree = self.foodTypeThreeTextfield.text, !typeThree.isEmpty else {
             self.showAlert(withMessage: "Please select the food type before continuing!")
             return false
         }
@@ -479,7 +479,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
         let pattern = try! NSRegularExpression(pattern: emailRegex, options: [])
         let strRange = NSRange(location: 0, length: email.characters.count)
-        guard pattern.firstMatchInString(email, options: [], range: strRange) != nil else {
+        guard pattern.firstMatch(in: email, options: [], range: strRange) != nil else {
             self.showAlert(withMessage: "Please, enter a valid email before continuing!")
             return false
         }
@@ -488,7 +488,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         return true
     }
     
-    @IBAction func typeOfFhooderSegment(sender: AnyObject) {
+    @IBAction func typeOfFhooderSegment(_ sender: AnyObject) {
         
         self.view.endEditing(true)
         
@@ -504,17 +504,17 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         
     }
     
-    private func showAlert(withMessage message: String) {
-        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        rootViewController.presentViewController(alert, animated: true, completion: nil)
+    fileprivate func showAlert(withMessage message: String) {
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        rootViewController.present(alert, animated: true, completion: nil)
     }
     
-    @IBAction func submitButton(sender: UIBarButtonItem) {
+    @IBAction func submitButton(_ sender: UIBarButtonItem) {
         
         if validateInput() {
             
-            let user = PFUser.currentUser()
+            let user = PFUser.current()
             
             // Make a new object under Fhooder class in Parse
             let applicant = PFObject(className: "Fhooder")
@@ -522,7 +522,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["lastName"] = self.lastNameTextfield.text
             
             let imageData = self.picture!.lowestQualityJPEGNSData
-            let imageFile = PFFile(name: "profile.png", data: imageData)
+            let imageFile = PFFile(name: "profile.png", data: imageData as Data)
             applicant["profilePic"] = imageFile
             
             applicant["phone"] = self.phoneNumberTextfield.text
@@ -541,8 +541,8 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in
                 if ((error) != nil) {
                     
-                    let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .Alert)
-                    let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
+                    let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .alert)
+                    let error = UIAlertAction(title: "Ok", style: .default) { _ in}
                     alert.addAction(error)
 
                 }
@@ -563,7 +563,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["certified"] = self.certified
             
             applicant["status"] = "Pending"
-            applicant["userID"] = PFUser.currentUser()?.objectId
+            applicant["userID"] = PFUser.current()?.objectId
             
             applicant["ratings"] = 0
             applicant["reviews"] = 0
@@ -573,13 +573,13 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["isEatin"] = false
             
             let acl = PFACL()
-            acl.publicReadAccess = true
-            acl.publicWriteAccess = true
+            acl.getPublicReadAccess = true
+            acl.getPublicWriteAccess = true
             
-            applicant.ACL = acl
+            applicant.acl = acl
             
             
-            applicant.saveInBackgroundWithBlock { (success: Bool, error: NSError?) -> Void in
+            applicant.saveInBackground { (success: Bool, error: Error?) -> Void in
                 if success {
                     
                     self.view.endEditing(true)
@@ -592,10 +592,10 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
                         try user!.save()
                     }
                     catch {
-                            let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .Alert)
-                            let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
+                            let alert = UIAlertController(title: "", message:"There was an error!", preferredStyle: .alert)
+                            let error = UIAlertAction(title: "Ok", style: .default) { _ in}
                             alert.addAction(error)
-                            self.rootViewController.presentViewController(alert, animated: true, completion: nil)
+                            self.rootViewController.present(alert, animated: true, completion: nil)
 
                     }
                     
@@ -603,12 +603,12 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
                     let push = PFPush()
                     push.setChannel("admin")
                     push.setMessage("You have a new Fhooder: \(self.firstNameTextfield.text!) \(self.lastNameTextfield.text!) \(self.phoneNumberTextfield.text!)")
-                    push.sendPushInBackground()
+                    push.sendInBackground()
                     
-                    let alert = UIAlertController(title: "Submitted", message:"Thank you for your submission. We will contact you with further instructions soon.", preferredStyle: .Alert)
-                    let saved = UIAlertAction(title: "Ok!", style: .Default) { _ in}
+                    let alert = UIAlertController(title: "Submitted", message:"Thank you for your submission. We will contact you with further instructions soon.", preferredStyle: .alert)
+                    let saved = UIAlertAction(title: "Ok!", style: .default) { _ in}
                     alert.addAction(saved)
-                    self.rootViewController.presentViewController(alert, animated: true, completion: nil)
+                    self.rootViewController.present(alert, animated: true, completion: nil)
                     Fhooder.fhooderSignedIn = false
                     Router.route(true)
 

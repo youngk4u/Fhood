@@ -13,14 +13,14 @@ private let kButtonSidePadding: CGFloat = 0.5
 
 final class FilterMenu: UIView {
 
-    private var mainButtons = [UIButton]()
-    private let sections: [FilterMenuSectionInfo]
+    fileprivate var mainButtons = [UIButton]()
+    fileprivate let sections: [FilterMenuSectionInfo]
     
-    private weak var navController: UINavigationController?
-    private weak var delegate: FilterMenuDelegate?
+    fileprivate weak var navController: UINavigationController?
+    fileprivate weak var delegate: FilterMenuDelegate?
     
-    private var subMenuView: UIView?
-    private var activeSubMenu = -1
+    fileprivate var subMenuView: UIView?
+    fileprivate var activeSubMenu = -1
 
     init(navigationController: UINavigationController, sections: [FilterMenuSectionInfo], delegate: FilterMenuDelegate) {
         self.navController = navigationController
@@ -30,7 +30,7 @@ final class FilterMenu: UIView {
         super.init(frame: navigationController.view.bounds)
 
         self.configureView()
-        self.hidden = true
+        self.isHidden = true
         navigationController.view.insertSubview(self, belowSubview: navigationController.navigationBar)
     }
 
@@ -39,7 +39,7 @@ final class FilterMenu: UIView {
     }
 
     func show() {
-        self.hidden = false
+        self.isHidden = false
         self.setMainButtonsHidden(false, completion: nil)
     }
     
@@ -47,17 +47,17 @@ final class FilterMenu: UIView {
         if self.activeSubMenu > 0 {
             self.hideActiveSubmenuView {
                 self.setMainButtonsHidden(true) {
-                    self.hidden = true
+                    self.isHidden = true
                 }
             }
         } else {
             self.setMainButtonsHidden(true) {
-                self.hidden = true
+                self.isHidden = true
             }
         }
     }
 
-    func triggerSubMenu(sender: UIButton) {
+    func triggerSubMenu(_ sender: UIButton) {
         if subMenuView?.tag == sender.tag {
             self.hideActiveSubmenuView()
             return
@@ -68,7 +68,7 @@ final class FilterMenu: UIView {
             self.insertSubview(self.subMenuView!, belowSubview: sender)
             let frame = self.subMenuView?.frame
             var startFrame = frame
-            startFrame!.origin.y = frame!.origin.y - (frame!.size.height + CGRectGetHeight(sender.frame))
+            startFrame!.origin.y = frame!.origin.y - (frame!.size.height + sender.frame.height)
 
             self.subMenuView?.alpha = 1
             self.subMenuView?.frame = startFrame!
@@ -87,15 +87,15 @@ final class FilterMenu: UIView {
         }
     }
     
-    func submenuItemAction(sender: UIButton) {
+    func submenuItemAction(_ sender: UIButton) {
         self.delegate?.filterMenuViewDidSelect(activeSubMenu, subMenu: sender.tag)
         self.hideActiveSubmenuView()
     }
     
     // MARK: - Private methods
 
-    private func hideActiveSubmenuView(completion: (() -> Void)? = nil) {
-        UIView.animateWithDuration(0.2, animations: {
+    fileprivate func hideActiveSubmenuView(_ completion: (() -> Void)? = nil) {
+        UIView.animate(withDuration: 0.2, animations: {
             self.subMenuView?.alpha = 0
         }, completion: { finished in
             self.subMenuView?.removeFromSuperview()
@@ -105,10 +105,10 @@ final class FilterMenu: UIView {
         })
     }
     
-    func submenuViewForSectionButton(button: UIButton) -> UIView {
+    func submenuViewForSectionButton(_ button: UIButton) -> UIView {
         let info = self.sections[button.tag - 1]
         
-        let view = UIView(frame: CGRectMake(button.frame.origin.x, CGRectGetMaxY(button.frame), button.frame.size.width, button.frame.size.height * CGFloat(info.itemTitles.count)))
+        let view = UIView(frame: CGRect(x: button.frame.origin.x, y: button.frame.maxY, width: button.frame.size.width, height: button.frame.size.height * CGFloat(info.itemTitles.count)))
         view.alpha = 0
         view.tag = button.tag
         view.backgroundColor = UIColor(hue: 0, saturation: 0, brightness: 0.11, alpha: 0.7)
@@ -117,22 +117,22 @@ final class FilterMenu: UIView {
         var yOrigin : CGFloat = 0
         
         for i in 1...info.itemTitles.count {
-            btn = UIButton(frame: CGRectMake(0, yOrigin, CGRectGetWidth(button.frame), CGRectGetHeight(button.frame)))
-            btn.titleLabel?.textColor = UIColor.whiteColor()
-            btn.titleLabel?.font = UIFont.systemFontOfSize(11)
-            btn.setTitle(info.itemTitles[i - 1], forState: .Normal)
+            btn = UIButton(frame: CGRect(x: 0, y: yOrigin, width: button.frame.width, height: button.frame.height))
+            btn.titleLabel?.textColor = UIColor.white
+            btn.titleLabel?.font = UIFont.systemFont(ofSize: 11)
+            btn.setTitle(info.itemTitles[i - 1], for: UIControlState())
 
             view.addSubview(btn)
-            yOrigin += CGRectGetHeight(button.frame)
+            yOrigin += button.frame.height
 
             btn.tag = i
-            btn.addTarget(self, action: #selector(FilterMenu.submenuItemAction(_:)), forControlEvents: .TouchUpInside)
+            btn.addTarget(self, action: #selector(FilterMenu.submenuItemAction(_:)), for: .touchUpInside)
         }
 
         return view
     }
     
-    private func setMainButtonsHidden(hidden: Bool, completion: (() -> Void)?) {
+    fileprivate func setMainButtonsHidden(_ hidden: Bool, completion: (() -> Void)?) {
         var frame: CGRect
         
         if !hidden {
@@ -144,47 +144,47 @@ final class FilterMenu: UIView {
             }
         }
 
-        UIView.animateWithDuration(0.5, animations: {
+        UIView.animate(withDuration: 0.5, animations: {
             for button in self.mainButtons {
                 var frame = button.frame
-                frame.origin.y = hidden ? frame.origin.y - CGRectGetHeight(button.frame) : 64
+                frame.origin.y = hidden ? frame.origin.y - button.frame.height : 64
                 button.frame = frame
-                button.enabled = !hidden
+                button.isEnabled = !hidden
             }
-        }) { _ in
+        }, completion: { _ in
             completion?()
-        }
+        }) 
     }
     
     // MARK: - Configurations
     
-    private func configureView() {
+    fileprivate func configureView() {
         var button: UIButton
-        let buttonWidth = (CGRectGetWidth(self.frame) - CGFloat(self.sections.count + 1) * kButtonSidePadding) / CGFloat(self.sections.count)
-        let yOrigin = CGRectGetHeight(self.navController!.navigationBar.frame) + CGRectGetHeight(UIApplication.sharedApplication().statusBarFrame)
+        let buttonWidth = (self.frame.width - CGFloat(self.sections.count + 1) * kButtonSidePadding) / CGFloat(self.sections.count)
+        let yOrigin = self.navController!.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height
         var origin = kButtonSidePadding
 
         for i in 1...self.sections.count {
-            button = UIButton (frame: CGRectMake(origin, yOrigin, buttonWidth, kButtonHeight))
-            button.backgroundColor = UIColor.darkGrayColor()
+            button = UIButton (frame: CGRect(x: origin, y: yOrigin, width: buttonWidth, height: kButtonHeight))
+            button.backgroundColor = UIColor.darkGray
             button.alpha = 1
-            button.titleLabel?.textColor = UIColor.whiteColor()
-            button.titleLabel?.font = UIFont.systemFontOfSize(13)
+            button.titleLabel?.textColor = UIColor.white
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
             
             if i == 1 {
-                button.setTitle("Price", forState: .Normal)
+                button.setTitle("Price", for: UIControlState())
             } else if i == 2 {
-                button.setTitle("Rating", forState: .Normal)
+                button.setTitle("Rating", for: UIControlState())
             } else if i == 3 {
-                button.setTitle("Time", forState: .Normal)
+                button.setTitle("Time", for: UIControlState())
             } else {
-                button.setTitle("Type", forState: .Normal)
+                button.setTitle("Type", for: UIControlState())
             }
 
-            button.addTarget(self, action: #selector(FilterMenu.triggerSubMenu(_:)), forControlEvents: .TouchUpInside)
+            button.addTarget(self, action: #selector(FilterMenu.triggerSubMenu(_:)), for: .touchUpInside)
             button.tag = i
             button.alpha = 0
-            button.enabled = false
+            button.isEnabled = false
 
             self.addSubview(button)
             origin += buttonWidth + kButtonSidePadding
@@ -195,7 +195,7 @@ final class FilterMenu: UIView {
 }
 
 struct FilterMenuSectionInfo {
-    private let itemTitles: [String]
+    fileprivate let itemTitles: [String]
     
     init(titles: [String]) {
         itemTitles = titles
@@ -203,5 +203,5 @@ struct FilterMenuSectionInfo {
 }
 
 protocol FilterMenuDelegate: class {
-    func filterMenuViewDidSelect(section: Int, subMenu: Int)
+    func filterMenuViewDidSelect(_ section: Int, subMenu: Int)
 }

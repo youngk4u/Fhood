@@ -15,19 +15,19 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var saveButton: UIBarButtonItem!
     
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[0].rootViewController!
+    let rootViewController: UIViewController = UIApplication.shared.windows[0].rootViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "Profile photo"
-        self.saveButton.enabled = false
+        self.saveButton.isEnabled = false
         
         // Get picture from file(Parse)
-        if PFUser.currentUser()?.objectForKey("profilePhoto") != nil {
-            let userImageFile = PFUser.currentUser()!["profilePhoto"] as! PFFile
-            userImageFile.getDataInBackgroundWithBlock {
-                (imageData: NSData?, error: NSError?) -> Void in
+        if PFUser.current()?.object(forKey: "profilePhoto") != nil {
+            let userImageFile = PFUser.current()!["profilePhoto"] as! PFFile
+            userImageFile.getDataInBackground {
+                (imageData: Data?, error: Error?) -> Void in
                 if error == nil {
                     if let imageData = imageData {
                         self.imageView.image = UIImage(data:imageData)
@@ -37,9 +37,9 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
         }
         else {
             // Get picture from Facebook(Parse)
-            if PFUser.currentUser()?.objectForKey("pictureUrl") != nil {
-                if let picURL = NSURL(string: "\(PFUser.currentUser()!.objectForKey("pictureUrl")!)") {
-                    if let data = NSData(contentsOfURL: picURL) {
+            if PFUser.current()?.object(forKey: "pictureUrl") != nil {
+                if let picURL = URL(string: "\(PFUser.current()!.object(forKey: "pictureUrl")!)") {
+                    if let data = try? Data(contentsOf: picURL) {
                         self.imageView.image = UIImage(data: data)
                         
                     }
@@ -49,49 +49,49 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
 
     }
 
-    @IBAction func cameraButton(sender: UIButton) {
+    @IBAction func cameraButton(_ sender: UIButton) {
         
         // Check if the device has a camera
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
             
             // Device has a camera, now create the image picker controller
             let imagePicker:UIImagePickerController = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
             imagePicker.allowsEditing = false
             
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
 
-    @IBAction func libraryButton(sender: UIButton) {
+    @IBAction func libraryButton(_ sender: UIButton) {
         
         // Check if the device has a photo library
-        if UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             
             // Device has a photo library
             let imagePicker:UIImagePickerController = UIImagePickerController()
             imagePicker.delegate = self
-            imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary
             imagePicker.allowsEditing = false
             
-            self.presentViewController(imagePicker, animated: true, completion: nil)
+            self.present(imagePicker, animated: true, completion: nil)
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         // To dismiss the image picker
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
         self.imageView.image = info[UIImagePickerControllerOriginalImage] as? UIImage
         self.imageView.image = cropToSquare(self.imageView.image!)
-        self.saveButton.enabled = true
+        self.saveButton.isEnabled = true
         
     }
     
     
     // Crops image to square
-    func cropToSquare(image: UIImage) -> UIImage {
+    func cropToSquare(_ image: UIImage) -> UIImage {
 
         var xPosition: CGFloat = 0.0
         var yPosition: CGFloat = 0.0
@@ -112,20 +112,20 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
             //Already Square
         }
         
-        let cropSquare = CGRectMake(xPosition, yPosition, width, height)
-        let imageRef = CGImageCreateWithImageInRect(image.CGImage!, cropSquare)
-        return UIImage(CGImage: imageRef!, scale: UIScreen.mainScreen().scale, orientation: image.imageOrientation)
+        let cropSquare = CGRect(x: xPosition, y: yPosition, width: width, height: height)
+        let imageRef = image.cgImage!.cropping(to: cropSquare)
+        return UIImage(cgImage: imageRef!, scale: UIScreen.main.scale, orientation: image.imageOrientation)
     }
     
 
-    @IBAction func photoSaveButton(sender: UIBarButtonItem) {
+    @IBAction func photoSaveButton(_ sender: UIBarButtonItem) {
         
         if self.imageView.image != nil {
             //self.imageView.image = self.cropToSquare(self.imageView.image!)
             let imageData = imageView.image!.lowestQualityJPEGNSData
-            let imageFile = PFFile(name:"profile.png", data:imageData)
+            let imageFile = PFFile(name:"profile.png", data:imageData as Data)
             
-            let user = PFUser.currentUser()
+            let user = PFUser.current()
             
             let FhooderBool = user!["isFhooder"] as? Bool
             
@@ -133,7 +133,7 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
                 
                 let query = PFQuery(className: "Fhooder")
                 let ID = Fhooder.objectID
-                query.getObjectInBackgroundWithId(ID!) { (fhooder: PFObject?, error: NSError?) -> Void in
+                query.getObjectInBackground(withId: ID!) { (fhooder: PFObject?, error: Error?) -> Void in
                     if error == nil && fhooder != nil {
                         
                         fhooder!["profilePic"] = imageFile! as PFFile
@@ -146,17 +146,17 @@ final class PhotoViewController: UIViewController, UIImagePickerControllerDelega
             user!["profilePhoto"] = imageFile
             user!.saveInBackground()
             
-            NSNotificationCenter.defaultCenter().postNotificationName("loadSettings", object: nil)
-            NSNotificationCenter.defaultCenter().postNotificationName("loadProfileView", object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "loadSettings"), object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "loadProfileView"), object: nil)
             
-            let alert = UIAlertController(title: "", message:"Your new photo has been saved!", preferredStyle: .Alert)
-            let saved = UIAlertAction(title: "Ok!", style: .Default) { _ in}
+            let alert = UIAlertController(title: "", message:"Your new photo has been saved!", preferredStyle: .alert)
+            let saved = UIAlertAction(title: "Ok!", style: .default) { _ in}
             alert.addAction(saved)
-            rootViewController.presentViewController(alert, animated: true, completion: nil)
+            rootViewController.present(alert, animated: true, completion: nil)
             
             
-            navigationController?.popViewControllerAnimated(true)
-            self.dismissViewControllerAnimated(true, completion: nil)
+            _ = navigationController?.popViewController(animated: true)
+            self.dismiss(animated: true, completion: nil)
         }
     }
 

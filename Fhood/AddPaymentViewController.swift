@@ -18,21 +18,21 @@ final class AddPaymentViewController: UIViewController {
     
         let nav = self.navigationController?.navigationBar
         
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.blackColor(),NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
+        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
         self.title = "Add Payment"
         
-        self.savePaymentButton.enabled = false 
+        self.savePaymentButton.isEnabled = false 
     
     
     }
-    @IBAction func savePaymentCard(sender: AnyObject) {
+    @IBAction func savePaymentCard(_ sender: AnyObject) {
         
 
     }
     
     
-    @IBAction func cancelButton(sender: AnyObject) {
+    @IBAction func cancelButton(_ sender: AnyObject) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 }

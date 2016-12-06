@@ -18,7 +18,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
 
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         // Initiailize Vendor modules like Parse, Stripe, etc.
         self.loadVendorLibraries()
@@ -26,79 +26,76 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         let defaultACL = PFACL();
         
         // If you would like all objects to be private by default, remove this line.
-        defaultACL.publicReadAccess = true
+        defaultACL.getPublicReadAccess = true
         
-        PFACL.setDefaultACL(defaultACL, withAccessForCurrentUser:true)
+        PFACL.setDefault(defaultACL, withAccessForCurrentUser:true)
         
-        if application.applicationState != UIApplicationState.Background {
+        if application.applicationState != UIApplicationState.background {
             // Track an app open here if we launch with a push, unless
             // "content_available" was used to trigger a background push (introduced in iOS 7).
             // In that case, we skip tracking here to avoid double counting the app-open.
             
-            let preBackgroundPush = !application.respondsToSelector(Selector("backgroundRefreshStatus"))
-            let oldPushHandlerOnly = !self.respondsToSelector(#selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
+            let preBackgroundPush = !application.responds(to: #selector(getter: UIApplication.backgroundRefreshStatus))
+            let oldPushHandlerOnly = !self.responds(to: #selector(UIApplicationDelegate.application(_:didReceiveRemoteNotification:fetchCompletionHandler:)))
             var noPushPayload = false;
             if let options = launchOptions {
-                noPushPayload = options[UIApplicationLaunchOptionsRemoteNotificationKey] != nil;
+                noPushPayload = options[UIApplicationLaunchOptionsKey.remoteNotification] != nil;
             }
             if (preBackgroundPush || oldPushHandlerOnly || noPushPayload) {
-                PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
+                PFAnalytics.trackAppOpened(launchOptions: launchOptions)
             }
         }
 
         
         
-        let settings = UIUserNotificationSettings(forTypes: [.Alert, .Badge, .Sound], categories: nil)
-        
-        application.registerUserNotificationSettings(settings)
-        application.registerForRemoteNotifications()
+//        let settings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//        
+//        application.registerUserNotificationSettings(settings)
+//        application.registerForRemoteNotifications()
 
         
-//        func registerForPushNotifications(application: UIApplication) {
-//            
-//            if #available(iOS 10.0, *){
-//                UNUserNotificationCenter.currentNotificationCenter().delegate = self
-//                UNUserNotificationCenter.currentNotificationCenter().requestAuthorizationWithOptions([.Badge, .Sound, .Alert], completionHandler: {(granted, error) in
-//                    if (granted)
-//                    {
-//                        UIApplication.sharedApplication().registerForRemoteNotifications()
-//                    }
-//                    else{
-//                        //Do stuff if unsuccessful...
-//                    }
-//                })
-//            }
-//                
-//            else{ //If user is not on iOS 10 use the old methods we've been using
-//                let notificationSettings = UIUserNotificationSettings(
-//                    forTypes: [.Badge, .Sound, .Alert], categories: nil)
-//                application.registerUserNotificationSettings(notificationSettings)
-//                application.registerForRemoteNotifications()
-//            }
-//            
-//        }
+        func registerForPushNotifications(application: UIApplication) {
+            
+            if #available(iOS 10.0, *){
+                UNUserNotificationCenter.current().delegate = self
+                UNUserNotificationCenter.current().requestAuthorization(options: [.badge, .sound, .alert], completionHandler: {(granted, error) in
+                    if (granted)
+                    {
+                        UIApplication.shared.registerForRemoteNotifications()
+                    }
+                    else{
+                        //Do stuff if unsuccessful...
+                    }
+                })
+            }
+                
+            else{ //If user is not on iOS 10 use the old methods we've been using
+                let types: UIUserNotificationType = [.alert, .badge, .sound]
+                let settings = UIUserNotificationSettings(types: types, categories: nil)
+                application.registerUserNotificationSettings(settings)
+                application.registerForRemoteNotifications()
+            }
+            
+        }
         
         
         // Badge number set to 0 once app is opended
         //UIApplication.sharedApplication().applicationIconBadgeNumber = 0
         
-//        let types: UIUserNotificationType = [.Alert, .Badge, .Sound]
-//        let settings = UIUserNotificationSettings(forTypes: types, categories: nil)
-//        application.registerUserNotificationSettings(settings)
-//        application.registerForRemoteNotifications()
 
 
-        if PFUser.currentUser() != nil {
-            let user = PFUser.currentUser()!
+
+        if PFUser.current() != nil {
+            let user = PFUser.current()!
             if user["isFhooder"] != nil {
                 let query = PFQuery(className: "Fhooder")
-                let id = (user.valueForKey("fhooder")?.objectId)! as String
-                query.getObjectInBackgroundWithId(id) { (fhooder: PFObject?, error: NSError?) -> Void in
+                let id = ((user.value(forKey: "fhooder") as AnyObject).objectId)!! as String
+                query.getObjectInBackground(withId: id) { (fhooder: PFObject?, error: Error?) -> Void in
                     if error == nil && fhooder != nil {
                         let openStatus = fhooder!["isOpen"] as! Bool
                         if openStatus == true {
                             Fhooder.fhooderSignedIn = true
-                            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+                            self.window = UIWindow(frame: UIScreen.main.bounds)
                             Router.route(false)
                             self.window?.makeKeyAndVisible()
                         }
@@ -108,12 +105,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         }
         
     
-        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window = UIWindow(frame: UIScreen.main.bounds)
         Router.route(false)
         self.window?.makeKeyAndVisible()
 
-        PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        PFAnalytics.trackAppOpened(launchOptions: launchOptions)
+        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
 
         return true
     }
@@ -130,24 +127,24 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
 //    }
     
     
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        let installation = PFInstallation.currentInstallation()
-        installation!.setDeviceTokenFromData(deviceToken)
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let installation = PFInstallation.current()
+        installation!.setDeviceTokenFrom(deviceToken)
         installation!.saveInBackground()
         
-        PFPush.subscribeToChannelInBackground("") { (succeeded: Bool, error: NSError?) in
+        PFPush.subscribeToChannel(inBackground: "") { (succeeded: Bool, error: Error?) in
             if succeeded {
                 print("ParseStarterProject successfully subscribed to push notifications on the broadcast channel.\n");
             } else {
-                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error)
+                print("ParseStarterProject failed to subscribe to push notifications on the broadcast channel with error = %@.\n", error as Any)
             }
         }
     }
     
     
     
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        if error.code == 3010 {
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        if error._code == 3010 {
             print("Push notifications are not supported in the iOS Simulator.\n")
         } else {
             print("application:didFailToRegisterForRemoteNotificationsWithError: %@\n", error)
@@ -157,27 +154,27 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
     
     
     
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         
         let id = userInfo["type"] as? String
         
         // If the app is closed
-        if application.applicationState == UIApplicationState.Inactive {
+        if application.applicationState == UIApplicationState.inactive {
             if id == "ordered" {
-                UIApplication.sharedApplication().applicationIconBadgeNumber += 1
+                UIApplication.shared.applicationIconBadgeNumber += 1
                 Fhooder.orderQuantity! += 1
-                NSNotificationCenter.defaultCenter().postNotificationName("postBadgeRefresh", object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "postBadgeRefresh"), object: nil)
             }
             // Refreshing Fhooder's order list
-            NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
-            PFAnalytics.trackAppOpenedWithRemoteNotificationPayload(userInfo)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "fhooderOrderLoad"), object: nil)
+            PFAnalytics.trackAppOpened(withRemoteNotificationPayload: userInfo)
         } else {
             
             if id == "ordered" {
                 
-                UIApplication.sharedApplication().applicationIconBadgeNumber += 1
+                UIApplication.shared.applicationIconBadgeNumber += 1
                 Fhooder.orderQuantity! += 1
-                NSNotificationCenter.defaultCenter().postNotificationName("postBadgeRefresh", object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "postBadgeRefresh"), object: nil)
 
             }
             else if id == "fhoodieCancelled" {
@@ -190,8 +187,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         }
         
         // Refreshing Fhooder's order list
-        NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
-        PFPush.handlePush(userInfo)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "fhooderOrderLoad"), object: nil)
+        PFPush.handle(userInfo)
         
     }
     
@@ -216,48 +213,48 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
         FBSDKSettings.setLoggingBehavior(Set())
     }
 
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
-        return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url,
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url,
             sourceApplication: sourceApplication, annotation: annotation)
     }
 
-    func applicationDidBecomeActive(application: UIApplication) {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         FBSDKAppEvents.activateApp()
         
     }
     
 
-    func applicationWillResignActive(application: UIApplication) {
+    func applicationWillResignActive(_ application: UIApplication) {
 
     }
 
-    func applicationWillEnterForeground(application: UIApplication) {
+    func applicationWillEnterForeground(_ application: UIApplication) {
 
     }
 
-    func applicationDidEnterBackground(application: UIApplication) {
+    func applicationDidEnterBackground(_ application: UIApplication) {
         application.beginReceivingRemoteControlEvents()
     }
 
-    func applicationWillTerminate(application: UIApplication) {
+    func applicationWillTerminate(_ application: UIApplication) {
 
     }
 }
 
 extension UIImage {
-    var highestQualityJPEGNSData: NSData { return UIImageJPEGRepresentation(self, 1.0)! }
-    var highQualityJPEGNSData: NSData    { return UIImageJPEGRepresentation(self, 0.75)!}
-    var mediumQualityJPEGNSData: NSData  { return UIImageJPEGRepresentation(self, 0.5)! }
-    var lowQualityJPEGNSData: NSData     { return UIImageJPEGRepresentation(self, 0.25)!}
-    var lowestQualityJPEGNSData: NSData  { return UIImageJPEGRepresentation(self, 0.0)! }
+    var highestQualityJPEGNSData: Data { return UIImageJPEGRepresentation(self, 1.0)! }
+    var highQualityJPEGNSData: Data    { return UIImageJPEGRepresentation(self, 0.75)!}
+    var mediumQualityJPEGNSData: Data  { return UIImageJPEGRepresentation(self, 0.5)! }
+    var lowQualityJPEGNSData: Data     { return UIImageJPEGRepresentation(self, 0.25)!}
+    var lowestQualityJPEGNSData: Data  { return UIImageJPEGRepresentation(self, 0.0)! }
 }
 
 // Turns NSDate to PST formatted string
-extension NSDate {
-    func localDate (Date: NSDate) -> String {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.locale = NSLocale.currentLocale()
+extension Date {
+    func localDate (_ Date: Foundation.Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.current
         dateFormatter.dateFormat = "MMM d, yyyy, hh:mm aaa"
-        return dateFormatter.stringFromDate(Date)
+        return dateFormatter.string(from: Date)
     }
 }

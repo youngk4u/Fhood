@@ -8,6 +8,19 @@
 
 import UIKit
 import Parse
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 
 
@@ -54,7 +67,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     @IBOutlet weak var doneButton: UIButton!
     
     var selectedRow2 : Int = 0
-    var formatter = NSNumberFormatter()
+    var formatter = NumberFormatter()
 
 
     var tableCellList : NSArray = ["Reviews", "Photos", "Send request", "About the Fhooder"]
@@ -69,15 +82,15 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         super.viewDidLoad()
         
         // Reload collectionview data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FhooderViewController.loadList(_:)),name:"load", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FhooderViewController.loadList(_:)),name:NSNotification.Name(rawValue: "load"), object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FhooderViewController.loadList2(_:)),name:"load2", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FhooderViewController.loadList2(_:)),name:NSNotification.Name(rawValue: "load2"), object: nil)
         
         // Reload open/closed data
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(FhooderViewController.loadList3(_:)),name:"load3", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FhooderViewController.loadList3(_:)),name:NSNotification.Name(rawValue: "load3"), object: nil)
         
         
-        NSNotificationCenter.defaultCenter().postNotificationName("load2", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "load2"), object: nil)
         
 
         var newOpenMinute: String
@@ -110,13 +123,13 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         // TableView Delegate
         self.TableView3.delegate = self
         self.TableView3.dataSource = self
-        self.TableView3.layoutMargins = UIEdgeInsetsZero
+        self.TableView3.layoutMargins = UIEdgeInsets.zero
         
         // No lines between table cells
-        self.TableView3.separatorStyle = UITableViewCellSeparatorStyle.None
+        self.TableView3.separatorStyle = UITableViewCellSeparatorStyle.none
 
         // Currency formatter
-        self.formatter.numberStyle = .CurrencyStyle
+        self.formatter.numberStyle = .currency
 
 
         // Initialize fhoodie variables
@@ -126,19 +139,19 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     }
     
     
-    @IBAction func prepareForUnwindtoDetail(segue: UIStoryboardSegue){
+    @IBAction func prepareForUnwindtoDetail(_ segue: UIStoryboardSegue){
         
     }
     
     
     
     // Reload collectionview function to use from other controllers
-    func loadList(notification: NSNotification){
+    func loadList(_ notification: Notification){
         
         self.collectionView.reloadData()
     }
     
-    func loadList2(notification: NSNotification){
+    func loadList2(_ notification: Notification){
         
         HUD.show()
         
@@ -154,24 +167,24 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         self.arrMaxOrderLimit = []
         self.arrTimeInterval = []
         self.arrItemID = []
-        self.pickupSign.hidden = true
-        self.deliverySign.hidden = true
-        self.eatinSign.hidden = true
+        self.pickupSign.isHidden = true
+        self.deliverySign.isHidden = true
+        self.eatinSign.isHidden = true
         
             let query = PFQuery(className: "Fhooder")
             let id = (Fhooder.objectID)! as String
-            query.getObjectInBackgroundWithId(id) { (fhooder: PFObject?, error: NSError?) -> Void in
+            query.getObjectInBackground(withId: id) { (fhooder: PFObject?, error: Error?) -> Void in
                 if error == nil && fhooder != nil {
                     
                     // Fhooder information pulled
                     
                     
-                    self.shopName.text = fhooder!.valueForKey("shopName")! as? String
+                    self.shopName.text = fhooder!.value(forKey: "shopName")! as? String
                     Fhooder.shopName = self.shopName.text
                     
-                    let userImageFile = fhooder!.valueForKey("profilePic") as! PFFile
-                    userImageFile.getDataInBackgroundWithBlock {
-                        (imageData: NSData?, error: NSError?) -> Void in
+                    let userImageFile = fhooder!.value(forKey: "profilePic") as! PFFile
+                    userImageFile.getDataInBackground {
+                        (imageData: Data?, error: Error?) -> Void in
                         if error == nil {
                             if let imageData = imageData {
                                 Fhooder.fhooderPicture = UIImage(data:imageData)
@@ -179,57 +192,57 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                         }
                     }
                     
-                    let ratings = fhooder?.valueForKey("ratings") as? Double
+                    let ratings = fhooder?.value(forKey: "ratings") as? Double
                     let spoons = String(format: "%.1f", ratings!)
                     self.spoonRating.image = UIImage(named: spoons)
                     
-                    self.reviewCount.text = "\(fhooder!.valueForKey("reviews")!) Reviews"
+                    self.reviewCount.text = "\(fhooder!.value(forKey: "reviews")!) Reviews"
                     
                     self.fhooderDistance.text = "(\(String(Fhooder.distance!)) miles)"
                     
                     
                     // If it has apt or bldg number
                     var unit : String?
-                    if fhooder?.valueForKey("unitAddress") != nil {
-                        unit = fhooder!.valueForKey("unitAddress")! as? String
+                    if fhooder?.value(forKey: "unitAddress") != nil {
+                        unit = fhooder!.value(forKey: "unitAddress")! as? String
                         if unit != "" {
                             unit = unit! + ", "
                             
-                            self.fhooderAddress.text = "\(fhooder!.valueForKey("streetAddress")!), \(unit)\(fhooder!.valueForKey("city")!), \(fhooder!.valueForKey("stateProvince")!) \(fhooder!.valueForKey("zip")!)"
+                            self.fhooderAddress.text = "\(fhooder!.value(forKey: "streetAddress")!), \(unit)\(fhooder!.value(forKey: "city")!), \(fhooder!.value(forKey: "stateProvince")!) \(fhooder!.value(forKey: "zip")!)"
                         }
                     }
-                    self.fhooderAddress.text =  "\(fhooder!.valueForKey("streetAddress")!), \(fhooder!.valueForKey("city")!), \(fhooder!.valueForKey("stateProvince")!) \(fhooder!.valueForKey("zip")!)"
+                    self.fhooderAddress.text =  "\(fhooder!.value(forKey: "streetAddress")!), \(fhooder!.value(forKey: "city")!), \(fhooder!.value(forKey: "stateProvince")!) \(fhooder!.value(forKey: "zip")!)"
                     
-                    self.phoneNumber.text = fhooder!.valueForKey("phone") as? String
-                    self.restaurantType.text = "\(fhooder!.valueForKey("foodTypeOne")!), \(fhooder!.valueForKey("foodTypeTwo")!), \(fhooder!.valueForKey("foodTypeThree")!)"
+                    self.phoneNumber.text = fhooder!.value(forKey: "phone") as? String
+                    self.restaurantType.text = "\(fhooder!.value(forKey: "foodTypeOne")!), \(fhooder!.value(forKey: "foodTypeTwo")!), \(fhooder!.value(forKey: "foodTypeThree")!)"
                     Fhooder.address = self.fhooderAddress.text
-                    Fhooder.fhooderAboutMe = (fhooder!.valueForKey("shopDescription") as? String)!
-                    Fhooder.fhooderFirstName = (fhooder!.valueForKey("firstName") as? String)!
+                    Fhooder.fhooderAboutMe = (fhooder!.value(forKey: "shopDescription") as? String)!
+                    Fhooder.fhooderFirstName = (fhooder!.value(forKey: "firstName") as? String)!
                     
-                    Fhooder.pickup? = (fhooder!.valueForKey("isPickup") as? Bool)!
-                    self.pickupSign.hidden = !Fhooder.pickup!
+                    Fhooder.pickup? = (fhooder!.value(forKey: "isPickup") as? Bool)!
+                    self.pickupSign.isHidden = !Fhooder.pickup!
                     
-                    Fhooder.delivery? = (fhooder!.valueForKey("isDeliver") as? Bool)!
-                    self.deliverySign.hidden = !Fhooder.delivery!
+                    Fhooder.delivery? = (fhooder!.value(forKey: "isDeliver") as? Bool)!
+                    self.deliverySign.isHidden = !Fhooder.delivery!
                     
-                    Fhooder.eatin? = (fhooder!.valueForKey("isEatin") as? Bool)!
-                    self.eatinSign.hidden = !Fhooder.eatin!
+                    Fhooder.eatin? = (fhooder!.value(forKey: "isEatin") as? Bool)!
+                    self.eatinSign.isHidden = !Fhooder.eatin!
                     
-                    Fhooder.isOpen = (fhooder!.valueForKey("isOpen") as? Bool)!
-                    NSNotificationCenter.defaultCenter().postNotificationName("load3", object: nil)
+                    Fhooder.isOpen = (fhooder!.value(forKey: "isOpen") as? Bool)!
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "load3"), object: nil)
                     
-                    let relation = fhooder!.relationForKey("items")
+                    let relation = fhooder!.relation(forKey: "items")
                     let query2 = relation.query()
                     
-                    query2.orderByAscending("createdAt")
-                    query2.findObjectsInBackgroundWithBlock({ (items: [PFObject]?, error2: NSError?) -> Void in
+                    query2.order(byAscending: "createdAt")
+                    query2.findObjectsInBackground(block: { (items: [PFObject]?, error2: Error?) -> Void in
                         if error2 == nil && items != nil {
                             for item in items! {
                                 let pic = item["photo"] as! PFFile
                                 
                                 
                                 do {
-                                    let picData : NSData = try pic.getData()
+                                    let picData : Data = try pic.getData()
                                     //pic.getDataInBackgroundWithBlock({ (imageData: NSData?, error: NSError?) -> Void in
                                     //if (error == nil) {
                                     let picture = UIImage(data: picData)
@@ -312,50 +325,50 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     
     
     // Reload shop open/close status
-    func loadList3(notification: NSNotification){
+    func loadList3(_ notification: Notification){
         if Fhooder.isOpen == true {
             self.openNowOrClose.text = "OPEN NOW"
             self.openNowOrClose.textColor = UIColor(red: 0.0/255.0, green: 200.0/255.0, blue: 0.0/255.0, alpha: 1)
         }
         else {
             self.openNowOrClose.text = "CLOSED"
-            self.openNowOrClose.textColor = UIColor.redColor()
+            self.openNowOrClose.textColor = UIColor.red
         }
     }
    
     
     
     // CollectionView
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrItemNames.count
     }
     
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let coCell = collectionView.dequeueReusableCellWithReuseIdentifier("collCell", forIndexPath: indexPath) as! CollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let coCell = collectionView.dequeueReusableCell(withReuseIdentifier: "collCell", for: indexPath) as! CollectionViewCell
 
         self.totalItemPrice = 0
 
         if Fhooder.dailyQuantity![indexPath.item] == 0 && Fhooder.isOpen == true {
-            coCell.soldOutLabel.hidden = false
+            coCell.soldOutLabel.isHidden = false
         }
         else {
-            coCell.soldOutLabel.hidden = true
+            coCell.soldOutLabel.isHidden = true
         }
         
         coCell.fhoodImage.image = self.itemPictures[indexPath.item]
 
         coCell.foodName.text = arrItemNames[indexPath.item]
         coCell.foodName.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        coCell.foodName.textColor = UIColor.whiteColor()
+        coCell.foodName.textColor = UIColor.white
 
-        coCell.foodPrice.text = formatter.stringFromNumber(arrPrice[indexPath.item])
+        coCell.foodPrice.text = formatter.string(from: (arrPrice[indexPath.item]) as NSNumber)
         coCell.foodPrice.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-        coCell.foodPrice.textColor = UIColor.whiteColor()
+        coCell.foodPrice.textColor = UIColor.white
 
         if self.selectedItemCount[indexPath.item] == 0 {
             coCell.foodQuantity.text = ""
@@ -371,7 +384,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         }
 
         coCell.subtractButton.layer.setValue(indexPath.item, forKey: "index")
-        coCell.subtractButton.addTarget(self, action: #selector(FhooderViewController.subtractItem(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+        coCell.subtractButton.addTarget(self, action: #selector(FhooderViewController.subtractItem(_:)), for: UIControlEvents.touchUpInside)
         
         if Fhoodie.isAnythingSelected == false {
             self.doneButton.alpha = 0
@@ -382,18 +395,18 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             }
 
             Fhoodie.selectedTotalItemPrice! = self.totalItemPrice
-            self.totalPrice.text = formatter.stringFromNumber(Fhoodie.selectedTotalItemPrice!)
+            self.totalPrice.text = formatter.string(from: (Fhoodie.selectedTotalItemPrice!) as NSNumber)
 
             self.doneButton.alpha = 1
-            self.doneButton.addTarget(self, action: #selector(FhooderViewController.donePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            self.doneButton.addTarget(self, action: #selector(FhooderViewController.donePressed(_:)), for: UIControlEvents.touchUpInside)
         }
         return coCell
     }
 
     
     // Subtract icon function
-    func subtractItem(sender: UIButton) {
-        let i = sender.layer.valueForKey("index") as! Int
+    func subtractItem(_ sender: UIButton) {
+        let i = sender.layer.value(forKey: "index") as! Int
 
         self.selectedItemCount[i] -= 1
         self.totalItemPrice = 0
@@ -407,21 +420,21 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             Fhoodie.isAnythingSelected = false
         }
         
-        self.totalPrice.text = formatter.stringFromNumber(Fhoodie.selectedTotalItemPrice!)
+        self.totalPrice.text = formatter.string(from: (Fhoodie.selectedTotalItemPrice!) as NSNumber)
 
         self.collectionView.reloadData()
     }
 
     
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let coCell = collectionView.cellForItemAtIndexPath(indexPath) as! CollectionViewCell
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let coCell = collectionView.cellForItem(at: indexPath) as! CollectionViewCell
 
         self.totalItemPrice = 0
         
         Fhoodie.selectedIndex = indexPath.item
 
-        performSegueWithIdentifier("toDetailView", sender: self)
+        performSegue(withIdentifier: "toDetailView", sender: self)
 
         if self.selectedItemCount[indexPath.item] != 0 {
             coCell.foodQuantity.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
@@ -434,29 +447,29 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             }
             Fhoodie.selectedTotalItemPrice! = self.totalItemPrice
 
-            self.totalPrice.text = formatter.stringFromNumber(Fhoodie.selectedTotalItemPrice!)
+            self.totalPrice.text = formatter.string(from: (Fhoodie.selectedTotalItemPrice!) as NSNumber)
             self.doneButton.alpha = 1
-            self.doneButton.addTarget(self, action: #selector(FhooderViewController.donePressed(_:)), forControlEvents: UIControlEvents.TouchUpInside)
+            self.doneButton.addTarget(self, action: #selector(FhooderViewController.donePressed(_:)), for: UIControlEvents.touchUpInside)
         } else if Fhoodie.selectedTotalItemPrice! == 0 {
             self.totalPrice.text = "$0.00"
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any!) {
         if (segue.identifier == "toDetailView") {
-            (segue.destinationViewController as! DetailViewController).delegate = self
-            let secondViewController = segue.destinationViewController as! DetailViewController
+            (segue.destination as! DetailViewController).delegate = self
+            let secondViewController = segue.destination as! DetailViewController
             secondViewController.passedItemCount = self.selectedItemCount
         }
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath) -> CGSize
     {
         return CGSize(width: 150, height: 150)
     }
 
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
         insetForSectionAt section: Int) -> UIEdgeInsets
     {
         return sectionInsets
@@ -465,7 +478,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     
 
     // Done Button
-    func donePressed(sender: UIButton) {
+    func donePressed(_ sender: UIButton) {
         
         // Reset arrays for receipt
         self.itemReceipt = []
@@ -475,10 +488,10 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         
         
         if Fhooder.isOpen == false {
-            let alert = UIAlertController(title: "Shop is closed", message:"Why don't you send a request for a meal?", preferredStyle: .Alert)
-            let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+            let alert = UIAlertController(title: "Shop is closed", message:"Why don't you send a request for a meal?", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { _ in}
             alert.addAction(action)
-            self.presentViewController(alert, animated: true){}
+            self.present(alert, animated: true){}
             
         }
         else {
@@ -500,7 +513,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
             Fhoodie.selectedItemObjectId = self.arrItemID
             Fhoodie.selectedTotalItemPrice = self.totalItemPrice
                         
-            performSegueWithIdentifier("toReceiptView", sender: self)
+            performSegue(withIdentifier: "toReceiptView", sender: self)
         }
     }
         
@@ -508,32 +521,32 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
     
     // TableView
-    func tableView(tableView3: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView3: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
 
-    func tableView(tableView3: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView3: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Try to get a cell to reuse
-        let cell3 = TableView3.dequeueReusableCellWithIdentifier("Tablecell3") as! TableViewCell3
+        let cell3 = TableView3.dequeueReusableCell(withIdentifier: "Tablecell3") as! TableViewCell3
 
         // Make the insets to zero
-        cell3.layoutMargins = UIEdgeInsetsZero
+        cell3.layoutMargins = UIEdgeInsets.zero
 
         // Customize cell
-        cell3.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell3.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         cell3.tableViewLabel!.text = self.tableCellList[indexPath.row] as? String
-        cell3.tableViewImage.image = UIImage(named: (tableCellImage.objectAtIndex(indexPath.row) as! String) )
+        cell3.tableViewImage.image = UIImage(named: (tableCellImage.object(at: indexPath.row) as! String) )
 
         return cell3
     }
 
-    func tableView(tableView3: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView3: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.selectedRow2 = indexPath.row
         
         if self.selectedRow2 == 0 {
-            self.performSegueWithIdentifier("toFhooderReviewsView", sender: TableView3)
+            self.performSegue(withIdentifier: "toFhooderReviewsView", sender: TableView3)
         } else if self.selectedRow2 == 1 {
-            self.performSegueWithIdentifier("toFhooderPhotosView", sender: TableView3)
+            self.performSegue(withIdentifier: "toFhooderPhotosView", sender: TableView3)
         } else if self.selectedRow2 == 2 {
             // Make sure the device can send text messages
             if (messageComposer.canSendText()) {
@@ -543,27 +556,27 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                 // Present the configured MFMessageComposeViewController instance
                 // Note that the dismissal of the VC will be handled by the messageComposer instance,
                 // since it implements the appropriate delegate call-back
-                presentViewController(messageComposeVC, animated: true, completion: nil)
+                present(messageComposeVC, animated: true, completion: nil)
             } else {
                 // Let the user know if his/her device isn't able to send text messages
-                let alert = UIAlertController(title: "Cannot Send Text Message", message:"Your device is not able to send text messages", preferredStyle: .Alert)
-                let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+                let alert = UIAlertController(title: "Cannot Send Text Message", message:"Your device is not able to send text messages", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default) { _ in}
                 alert.addAction(action)
-                self.presentViewController(alert, animated: true){}
+                self.present(alert, animated: true){}
                 
             }
         } else if self.selectedRow2 == 3 {
-            self.performSegueWithIdentifier("toAboutFhooderView", sender: TableView3)
+            self.performSegue(withIdentifier: "toAboutFhooderView", sender: TableView3)
         }
 
-        TableView3.deselectRowAtIndexPath(indexPath, animated: true)
+        TableView3.deselectRow(at: indexPath, animated: true)
     }
 
 
 }
 
 extension FhooderViewController: VCTwoDelegate {
-    func updateData(data: [Int]) {
+    func updateData(_ data: [Int]) {
         self.selectedItemCount = data
     }
 }

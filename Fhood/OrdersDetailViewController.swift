@@ -25,7 +25,7 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
     @IBOutlet weak var messageButton: UIButton!
     @IBOutlet weak var acceptOrderButton: UIButton!
     
-    var formatter = NSNumberFormatter()
+    var formatter = NumberFormatter()
     
     var orderQuantity: [Int] = []
     var orderName: [String] = []
@@ -35,13 +35,13 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(OrdersDetailViewController.orderList(_:)), name: "OrderListLoad", object: nil)
-        NSNotificationCenter.defaultCenter().postNotificationName("OrderListLoad", object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(OrdersDetailViewController.orderList(_:)), name: NSNotification.Name(rawValue: "OrderListLoad"), object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "OrderListLoad"), object: nil)
     
         // Timer
         self.navigationController?.navigationBar.topItem?.title = "Order #"
         let attributes = [
-            NSForegroundColorAttributeName: UIColor.blackColor(),
+            NSForegroundColorAttributeName: UIColor.black,
             NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 25)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
@@ -62,7 +62,7 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
         self.fhoodieImage.addSubview(fhoodieImage)
         
         // Currency formattec
-        formatter.numberStyle = .CurrencyStyle
+        formatter.numberStyle = .currency
         
         // TableView Delegates
         self.orderListTableView.delegate = self
@@ -71,14 +71,14 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
     }
     
     
-    func orderList(notification: NSNotification) {
+    func orderList(_ notification: Notification) {
             
     
-        if PFUser.currentUser() != nil {
+        if PFUser.current() != nil {
             let query = PFQuery(className: "Orders")
             //let id = (Fhoodie.fhoodieOrderID)! as String
             
-            query.getObjectInBackgroundWithId(Fhoodie.fhoodieOrderID!) { (Ordered: PFObject?, error: NSError?) -> Void in
+            query.getObjectInBackground(withId: Fhoodie.fhoodieOrderID!) { (Ordered: PFObject?, error: Error?) -> Void in
                 if error == nil && Ordered != nil {
         
                     let orderStatus = Ordered!["orderStatus"] as! String
@@ -95,21 +95,21 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
                         let multiples = self.sum
                         
                         // Adds the total price
-                        self.totalPrice.text = self.formatter.stringFromNumber(multiples.reduce(0, combine: +) / Double(multiples.count))
+                        self.totalPrice.text = self.formatter.string(from: multiples.reduce(0, +) / Double(multiples.count) as NSNumber)
                         
                         if orderStatus == "New" {
-                            self.messageButton.hidden = true
-                            self.acceptOrderButton.hidden = false
+                            self.messageButton.isHidden = true
+                            self.acceptOrderButton.isHidden = false
                         }
                         else {
-                            self.messageButton.hidden = false
-                            self.acceptOrderButton.hidden = true
+                            self.messageButton.isHidden = false
+                            self.acceptOrderButton.isHidden = true
                         }
                         
                     }
                     else {
-                        NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
-                        self.performSegueWithIdentifier("unwindToViewController1", sender: self)
+                        NotificationCenter.default.post(name: Notification.Name(rawValue: "fhooderOrderLoad"), object: nil)
+                        self.performSegue(withIdentifier: "unwindToViewController1", sender: self)
                     }
                     
                     self.orderListTableView.reloadData()
@@ -122,20 +122,20 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
     }
     
     
-    @IBAction func acceptOrderTapped(sender: UIButton) {
-        self.acceptOrderButton.hidden = true
-        self.messageButton.hidden = false
+    @IBAction func acceptOrderTapped(_ sender: UIButton) {
+        self.acceptOrderButton.isHidden = true
+        self.messageButton.isHidden = false
         
-        if PFUser.currentUser() != nil {
+        if PFUser.current() != nil {
             let query = PFQuery(className: "Orders")
             
-            query.getObjectInBackgroundWithId(Fhoodie.fhoodieOrderID!) { (Ordered: PFObject?, error: NSError?) -> Void in
+            query.getObjectInBackground(withId: Fhoodie.fhoodieOrderID!) { (Ordered: PFObject?, error: Error?) -> Void in
                 if error == nil && Ordered != nil {
                     
                     Ordered!["orderStatus"] = "Accepted"
                     
                     Ordered?.saveInBackground()
-                    NSNotificationCenter.defaultCenter().postNotificationName("fhooderOrderLoad", object: nil)
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "fhooderOrderLoad"), object: nil)
                 }
             }
         }
@@ -144,19 +144,19 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
     
     
     // TableView
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.orderName.count
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("OrderListTablecell") as! OrdersDetailTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderListTablecell") as! OrdersDetailTableViewCell
         
         // Cell Marginal lines on the left to stretch all the way to the left screen
-        cell.layoutMargins = UIEdgeInsetsZero
+        cell.layoutMargins = UIEdgeInsets.zero
         
         cell.orderQty.text = String(self.orderQuantity[indexPath.row])
         cell.orderName.text = self.orderName[indexPath.row]
-        cell.orderPrice.text = formatter.stringFromNumber(self.orderPrice[indexPath.row] * Double(self.orderQuantity[indexPath.row]))
+        cell.orderPrice.text = formatter.string(from: self.orderPrice[indexPath.row] * Double(self.orderQuantity[indexPath.row]) as NSNumber)
         
         return cell
     }
@@ -165,7 +165,7 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
     // Create a MessageComposer_ 
     let messageComposer = MessageComposer()
     
-    @IBAction func sendTextMessageButtonTapped(sender: UIButton) {
+    @IBAction func sendTextMessageButtonTapped(_ sender: UIButton) {
         // Make sure the device can send text messages
         if (messageComposer.canSendText()) {
             // Obtain a configured MFMessageComposeViewController
@@ -174,13 +174,13 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
             // Present the configured MFMessageComposeViewController instance
             // Note that the dismissal of the VC will be handled by the messageComposer instance,
             // since it implements the appropriate delegate call-back
-            presentViewController(messageComposeVC, animated: true, completion: nil)
+            present(messageComposeVC, animated: true, completion: nil)
         } else {
             // Let the user know if his/her device isn't able to send text messages
-            let alert = UIAlertController(title: "Cannot Send Text Message", message:"Your device is not able to send text messages", preferredStyle: .Alert)
-            let action = UIAlertAction(title: "OK", style: .Default) { _ in}
+            let alert = UIAlertController(title: "Cannot Send Text Message", message:"Your device is not able to send text messages", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { _ in}
             alert.addAction(action)
-            self.presentViewController(alert, animated: true){}
+            self.present(alert, animated: true){}
             
         }
     }

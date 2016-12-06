@@ -17,14 +17,14 @@ final class EmailViewController: UIViewController, UITextFieldDelegate {
     var emailAddress: String!
     
     var kbHeight: CGFloat!
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
+    let rootViewController: UIViewController = UIApplication.shared.windows[1].rootViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Get email address from Parse
-        if PFUser.currentUser()?.objectForKey("email") != nil {
-            self.emailTextField.text = "\(PFUser.currentUser()!.objectForKey("email")!)"
+        if PFUser.current()?.object(forKey: "email") != nil {
+            self.emailTextField.text = "\(PFUser.current()!.object(forKey: "email")!)"
             self.emailAddress = self.emailTextField.text!
         }
 
@@ -33,58 +33,58 @@ final class EmailViewController: UIViewController, UITextFieldDelegate {
 
     }
     
-    override func viewWillAppear(animated:Bool) {
+    override func viewWillAppear(_ animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(EmailViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EmailViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
     }
     
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo {
-            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 kbHeight = keyboardSize.height
                 bottomSave.constant = kbHeight
             }
         }
     }
 
-    @IBAction func saveButton(sender: AnyObject) {
+    @IBAction func saveButton(_ sender: AnyObject) {
         let email = self.emailTextField.text!
         
         if validateInput() {
             
-            let user = PFUser.currentUser()
+            let user = PFUser.current()
             
             user!["email"] = email
             user!["username"] = email
             do {
                 try user!.save()
             
-                let alert = UIAlertController(title: "", message:"Your new email has been saved!", preferredStyle: .Alert)
-                let saved = UIAlertAction(title: "Nice!", style: .Default) { _ in}
+                let alert = UIAlertController(title: "", message:"Your new email has been saved!", preferredStyle: .alert)
+                let saved = UIAlertAction(title: "Nice!", style: .default) { _ in}
                 alert.addAction(saved)
-                rootViewController.presentViewController(alert, animated: true, completion: nil)
+                rootViewController.present(alert, animated: true, completion: nil)
                 
                 // Reload tableview from previous controller
-                NSNotificationCenter.defaultCenter().postNotificationName("loadSettings", object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "loadSettings"), object: nil)
                 
-                navigationController?.popViewControllerAnimated(true)
+                _ = navigationController?.popViewController(animated: true)
             }
             catch {
-                let alert = UIAlertController(title: "", message:"There was an erro!", preferredStyle: .Alert)
-                let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
+                let alert = UIAlertController(title: "", message:"There was an erro!", preferredStyle: .alert)
+                let error = UIAlertAction(title: "Ok", style: .default) { _ in}
                 alert.addAction(error)
-                rootViewController.presentViewController(alert, animated: true, completion: nil)
+                rootViewController.present(alert, animated: true, completion: nil)
 
             }
         }
 
     }
     
-    private func validateInput() -> Bool {
-        guard let email = self.emailTextField.text  where !email.isEmpty else {
+    fileprivate func validateInput() -> Bool {
+        guard let email = self.emailTextField.text, !email.isEmpty else {
             self.showAlert(withMessage: "Please, enter an email before continuing!")
             return false
         }
@@ -92,7 +92,7 @@ final class EmailViewController: UIViewController, UITextFieldDelegate {
         let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
         let pattern = try! NSRegularExpression(pattern: emailRegex, options: [])
         let strRange = NSRange(location: 0, length: email.characters.count)
-        guard pattern.firstMatchInString(email, options: [], range: strRange) != nil else {
+        guard pattern.firstMatch(in: email, options: [], range: strRange) != nil else {
             self.showAlert(withMessage: "Please, enter a valid email before continuing!")
             return false
         }
@@ -106,10 +106,10 @@ final class EmailViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    private func showAlert(withMessage message: String) {
-        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-        rootViewController.presentViewController(alert, animated: true, completion: nil)
+    fileprivate func showAlert(withMessage message: String) {
+        let alert = UIAlertController(title: "Oops", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        rootViewController.present(alert, animated: true, completion: nil)
     }
 
 

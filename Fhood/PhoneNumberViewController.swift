@@ -15,7 +15,7 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var bottomSave: NSLayoutConstraint!
     var phoneNumber: String!
     var kbHeight: CGFloat!
-    let rootViewController: UIViewController = UIApplication.sharedApplication().windows[1].rootViewController!
+    let rootViewController: UIViewController = UIApplication.shared.windows[1].rootViewController!
     
     
     override func viewDidLoad() {
@@ -24,8 +24,8 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
         textField.delegate = self
         
         // Get phone number from Parse
-        if PFUser.currentUser()?.objectForKey("phone") != nil {
-            self.textField.text = "\(PFUser.currentUser()!.objectForKey("phone")!)"
+        if PFUser.current()?.object(forKey: "phone") != nil {
+            self.textField.text = "\(PFUser.current()!.object(forKey: "phone")!)"
             self.phoneNumber = self.textField.text
             
         }
@@ -33,17 +33,17 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
         self.textField.becomeFirstResponder()
     }
     
-    override func viewWillAppear(animated:Bool) {
+    override func viewWillAppear(_ animated:Bool) {
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(PhoneNumberViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PhoneNumberViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
     }
 
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo {
-            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
+            if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 kbHeight = keyboardSize.height
                 bottomSave.constant = kbHeight
             }
@@ -51,47 +51,47 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    @IBAction func saveButton(sender: AnyObject) {
+    @IBAction func saveButton(_ sender: AnyObject) {
         
         let number = self.textField.text!
         
         if number.characters.count == 13 && self.phoneNumber != self.textField.text{
         
-            let user = PFUser.currentUser()
+            let user = PFUser.current()
         
             user!["phone"] = number
             do {
                 try user!.save()
                 
-                let alert = UIAlertController(title: "", message:"Your new phone number has been saved!", preferredStyle: .Alert)
-                let saved = UIAlertAction(title: "Cool!", style: .Default) { _ in}
+                let alert = UIAlertController(title: "", message:"Your new phone number has been saved!", preferredStyle: .alert)
+                let saved = UIAlertAction(title: "Cool!", style: .default) { _ in}
                 alert.addAction(saved)
-                rootViewController.presentViewController(alert, animated: true, completion: nil)
+                rootViewController.present(alert, animated: true, completion: nil)
                 
                 // Reload tableview from previous controller
-                NSNotificationCenter.defaultCenter().postNotificationName("loadSettings", object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "loadSettings"), object: nil)
                 
-                navigationController?.popViewControllerAnimated(true)
+                _ = navigationController?.popViewController(animated: true)
             }
             catch {
-                let alert = UIAlertController(title: "", message:"Something went wrong!", preferredStyle: .Alert)
-                let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
+                let alert = UIAlertController(title: "", message:"Something went wrong!", preferredStyle: .alert)
+                let error = UIAlertAction(title: "Ok", style: .default) { _ in}
                 alert.addAction(error)
-                rootViewController.presentViewController(alert, animated: true){}
+                rootViewController.present(alert, animated: true){}
             }
 
         }
         else if number.characters.count == 13 && self.phoneNumber == self.textField.text {
-            let alert = UIAlertController(title: "", message:"Your phone number is already saved!", preferredStyle: .Alert)
-            let redun = UIAlertAction(title: "Ok", style: .Default) { _ in}
+            let alert = UIAlertController(title: "", message:"Your phone number is already saved!", preferredStyle: .alert)
+            let redun = UIAlertAction(title: "Ok", style: .default) { _ in}
             alert.addAction(redun)
-            rootViewController.presentViewController(alert, animated: true){}
+            rootViewController.present(alert, animated: true){}
         }
         else {
-            let alert = UIAlertController(title: "", message:"Are you sure that's your phone number?", preferredStyle: .Alert)
-            let not = UIAlertAction(title: "Guess not", style: .Default) { _ in}
+            let alert = UIAlertController(title: "", message:"Are you sure that's your phone number?", preferredStyle: .alert)
+            let not = UIAlertAction(title: "Guess not", style: .default) { _ in}
             alert.addAction(not)
-            rootViewController.presentViewController(alert, animated: true){}
+            rootViewController.present(alert, animated: true){}
         }
         
     }
@@ -99,14 +99,14 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
     
     
     // Auto phone number formatter
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let newString = (textField.text! as NSString).stringByReplacingCharactersInRange(range, withString: string)
-        let components = newString.componentsSeparatedByCharactersInSet(NSCharacterSet.decimalDigitCharacterSet().invertedSet)
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newString = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
         
-        let decimalString : String = components.joinWithSeparator("")
+        let decimalString : String = components.joined(separator: "")
         let length = decimalString.characters.count
         let decimalStr = decimalString as NSString
-        let hasLeadingOne = length > 0 && decimalStr.characterAtIndex(0) == (1 as unichar)
+        let hasLeadingOne = length > 0 && decimalStr.character(at: 0) == (1 as unichar)
         
         if length == 0 || (length > 10 && !hasLeadingOne) || length > 11
         {
@@ -119,24 +119,24 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
         
         if hasLeadingOne
         {
-            formattedString.appendString("1 ")
+            formattedString.append("1 ")
             index += 1
         }
         if (length - index) > 3
         {
-            let areaCode = decimalStr.substringWithRange(NSMakeRange(index, 3))
+            let areaCode = decimalStr.substring(with: NSMakeRange(index, 3))
             formattedString.appendFormat("(%@)", areaCode)
             index += 3
         }
         if length - index > 3
         {
-            let prefix = decimalStr.substringWithRange(NSMakeRange(index, 3))
+            let prefix = decimalStr.substring(with: NSMakeRange(index, 3))
             formattedString.appendFormat("%@-", prefix)
             index += 3
         }
         
-        let remainder = decimalStr.substringFromIndex(index)
-        formattedString.appendString(remainder)
+        let remainder = decimalStr.substring(from: index)
+        formattedString.append(remainder)
         textField.text = formattedString as String
         return false
     }

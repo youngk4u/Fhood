@@ -16,14 +16,14 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var openTextfield: UITextField!
     @IBOutlet var closeTextfield: UITextField!
     
-    private var openTimeHour: Int!
-    private var openTimeMin: Int!
-    private var closeTimeHour: Int!
-    private var closeTimeMin: Int!
-    private var amPm: Bool = true
+    fileprivate var openTimeHour: Int!
+    fileprivate var openTimeMin: Int!
+    fileprivate var closeTimeHour: Int!
+    fileprivate var closeTimeMin: Int!
+    fileprivate var amPm: Bool = true
     
-    private var totalDailyQuantity: Int!
-    private var picker : UIPickerView!
+    fileprivate var totalDailyQuantity: Int!
+    fileprivate var picker : UIPickerView!
     
     @IBOutlet weak var scheduleView: UIView!
     
@@ -34,8 +34,8 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.openTextfield.tintColor = UIColor.clearColor()
-        self.closeTextfield.tintColor = UIColor.clearColor()
+        self.openTextfield.tintColor = UIColor.clear
+        self.closeTextfield.tintColor = UIColor.clear
         
         self.openTextfield.delegate = self
         self.closeTextfield.delegate = self
@@ -46,34 +46,34 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
         
         
         let query = PFQuery(className: "Fhooder")
-        query.getObjectInBackgroundWithId(Fhooder.objectID!) { (fhooder: PFObject?, error: NSError?) -> Void in
+        query.getObjectInBackground(withId: Fhooder.objectID!) { (fhooder: PFObject?, error: Error?) -> Void in
             if error == nil && fhooder != nil {
-                Fhooder.isOpen = fhooder!.valueForKey("isOpen") as? Bool
+                Fhooder.isOpen = fhooder!.value(forKey: "isOpen") as? Bool
         
         
                 // Initializing the switch
                 if Fhooder.isOpen == true {
-                    self.cookingSwitch.on = true
+                    self.cookingSwitch.isOn = true
                     self.scheduleView.alpha = 1
                     
-                    self.openTextfield.text = fhooder!.valueForKey("openTime") as? String
-                    self.closeTextfield.text = fhooder!.valueForKey("closeTime") as? String
+                    self.openTextfield.text = fhooder!.value(forKey: "openTime") as? String
+                    self.closeTextfield.text = fhooder!.value(forKey: "closeTime") as? String
                     
                 }
                 else {
-                    self.cookingSwitch.on = false
+                    self.cookingSwitch.isOn = false
                     self.scheduleView.alpha = 0
                 }
             }
         
         }
         
-        self.cookingSwitch.addTarget(self, action: #selector(CookingTimeViewController.switchState(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.cookingSwitch.addTarget(self, action: #selector(CookingTimeViewController.switchState(_:)), for: UIControlEvents.valueChanged)
        
     }
     
     // Switch function for the cooking time on/off
-    func switchState (Switch: UISwitch) {
+    func switchState (_ Switch: UISwitch) {
         
         HUD.show()
         
@@ -81,12 +81,12 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
         
         // See if dailyQuantity is set for any items before opening the shop
         let query = PFQuery(className: "Fhooder")
-        query.getObjectInBackgroundWithId(Fhooder.objectID!) { (fhooder: PFObject?, error: NSError?) -> Void in
+        query.getObjectInBackground(withId: Fhooder.objectID!) { (fhooder: PFObject?, error: Error?) -> Void in
             
-            let relation = fhooder!.relationForKey("items")
+            let relation = fhooder!.relation(forKey: "items")
             let query2 = relation.query()
             
-            query2.findObjectsInBackgroundWithBlock({ (items: [PFObject]?, error2: NSError?) -> Void in
+            query2.findObjectsInBackground(block: { (items: [PFObject]?, error2: Error?) -> Void in
                 if error2 == nil && items != nil {
                     for item in items! {
                         
@@ -94,25 +94,31 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
                         self.totalDailyQuantity = self.totalDailyQuantity + itemDailyQuantity
                         
                         
-                        if Switch.on && self.totalDailyQuantity == 0 {
-                            Switch.on = false
+                        if Switch.isOn && self.totalDailyQuantity == 0 {
+                            Switch.isOn = false
                             Fhooder.isOpen = false
-                            let alert = UIAlertController(title: "", message:"Please set daily quantity before opening!", preferredStyle: .Alert)
-                            let error = UIAlertAction(title: "Ok", style: .Default) { _ in}
+                            let alert = UIAlertController(title: "", message:"Please set daily quantity before opening!", preferredStyle: .alert)
+                            let error = UIAlertAction(title: "Ok", style: .default) { _ in}
                             alert.addAction(error)
-                            self.presentViewController(alert, animated: true, completion: nil)
+                            self.present(alert, animated: true, completion: nil)
                             
                         }
-                        else if Switch.on {
+                        else if Switch.isOn {
                             Fhooder.isOpen = true
-                            UIView.animateWithDuration(0.3, animations: { () -> Void in
+                            UIView.animate(withDuration: 0.3, animations: { 
                                 self.scheduleView.alpha = 1
+                            }, completion: { (true) in
+                                
                             })
+                            
+
                         }
                         else {
                             Fhooder.isOpen = false
-                            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                                self.scheduleView.alpha = 0
+                            UIView.animate(withDuration: 0.3, animations: {
+                                self.scheduleView.alpha = 1
+                            }, completion: { (true) in
+                                
                             })
                         }
                         
@@ -124,98 +130,98 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
     }
 
     // Closed button for Switch
-    @IBAction func closedButton(sender: AnyObject) {
+    @IBAction func closedButton(_ sender: AnyObject) {
         self.cookingSwitch.setOn(false, animated: true)
         switchState(cookingSwitch)
     }
     
     // Open button for Switch
-    @IBAction func openButton(sender: AnyObject) {
+    @IBAction func openButton(_ sender: AnyObject) {
         self.cookingSwitch.setOn(true, animated: true)
         switchState(cookingSwitch)
     }
     
-    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         
         self.createDoneButton(textField)
         
         let datePickerView:UIDatePicker = UIDatePicker()
-        datePickerView.datePickerMode = UIDatePickerMode.Time
-        let currentDate = NSDate()
-        var newDate : NSDate!
+        datePickerView.datePickerMode = UIDatePickerMode.time
+        let currentDate = Date()
+        var newDate : Date!
         
         if textField == self.openTextfield {
             
-            newDate = NSDate(timeInterval: (0 * 60), sinceDate: currentDate)
+            newDate = Date(timeInterval: (0 * 60), since: currentDate)
             
             datePickerView.minimumDate = newDate
             datePickerView.date = newDate
             textField.inputView = datePickerView
             
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-            openTextfield.text = dateFormatter.stringFromDate(newDate)
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = DateFormatter.Style.short
+            openTextfield.text = dateFormatter.string(from: newDate)
             
-            datePickerView.addTarget(self, action: #selector(CookingTimeViewController.datePickerValueChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            datePickerView.addTarget(self, action: #selector(CookingTimeViewController.datePickerValueChanged(_:)), for: UIControlEvents.valueChanged)
         }
         else if textField == self.closeTextfield {
             
             if self.openTextfield.text != "Now" {
                 
-                let dateFormatter = NSDateFormatter()
+                let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "h:mm a"
                 
                 let localeStr = "en_US_POSIX"
-                dateFormatter.locale = NSLocale(localeIdentifier: localeStr)
-                dateFormatter.timeZone = NSTimeZone(name: "US/Pacific")
+                dateFormatter.locale = Locale(identifier: localeStr)
+                dateFormatter.timeZone = TimeZone(identifier: "US/Pacific")
                 
                 let openTimeString = self.openTextfield.text!
-                let openTime = dateFormatter.dateFromString(openTimeString)
+                let openTime = dateFormatter.date(from: openTimeString)
 
-                newDate = NSDate(timeInterval: (1 * 60), sinceDate: openTime!)
+                newDate = Date(timeInterval: (1 * 60), since: openTime!)
             }
             else {
-                newDate = NSDate(timeInterval: (1 * 60), sinceDate: currentDate)
+                newDate = Date(timeInterval: (1 * 60), since: currentDate)
             }
             
             datePickerView.minimumDate = newDate
             datePickerView.date = newDate
             textField.inputView = datePickerView
             
-            let dateFormatter = NSDateFormatter()
-            dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-            closeTextfield.text = dateFormatter.stringFromDate(newDate)
+            let dateFormatter = DateFormatter()
+            dateFormatter.timeStyle = DateFormatter.Style.short
+            closeTextfield.text = dateFormatter.string(from: newDate)
         
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+            UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
                 self.view.frame.origin.y -= 100
             })
-            datePickerView.addTarget(self, action: #selector(CookingTimeViewController.datePickerValueChanged2(_:)), forControlEvents: UIControlEvents.ValueChanged)
+            datePickerView.addTarget(self, action: #selector(CookingTimeViewController.datePickerValueChanged2(_:)), for: UIControlEvents.valueChanged)
         }
         return true
     }
     
     
-    func createDoneButton(sender: UITextField) {
+    func createDoneButton(_ sender: UITextField) {
         // Create a button bar for the number pad or cuisine type picker
         let keyboardDoneButtonView = UIToolbar()
         keyboardDoneButtonView.sizeToFit()
         
         if sender == closeTextfield {
         // Setup the buttons to be put in the system.
-            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CookingTimeViewController.pickerDoneButton2) )
-            let item2 = UIBarButtonItem(title: "Later", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CookingTimeViewController.laterButton) )
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
-            item.tintColor = UIColor.blackColor()
+            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CookingTimeViewController.pickerDoneButton2) )
+            let item2 = UIBarButtonItem(title: "Later", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CookingTimeViewController.laterButton) )
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+            item.tintColor = UIColor.black
             let toolbarButtons = [flexibleSpace, item, flexibleSpace, item2]
             //Put the buttons into the ToolBar and display the tool bar
             keyboardDoneButtonView.setItems(toolbarButtons, animated: false)
             sender.inputAccessoryView = keyboardDoneButtonView
         }
         else {
-            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CookingTimeViewController.pickerDoneButton) )
-            let item2 = UIBarButtonItem(title: "Now", style: UIBarButtonItemStyle.Plain, target: self, action: #selector(CookingTimeViewController.nowButton))
-            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: self, action: nil)
-            item.tintColor = UIColor.blackColor()
+            let item = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CookingTimeViewController.pickerDoneButton) )
+            let item2 = UIBarButtonItem(title: "Now", style: UIBarButtonItemStyle.plain, target: self, action: #selector(CookingTimeViewController.nowButton))
+            let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+            item.tintColor = UIColor.black
             let toolbarButtons = [flexibleSpace, item, flexibleSpace, item2]
             //Put the buttons into the ToolBar and display the tool bar
             keyboardDoneButtonView.setItems(toolbarButtons, animated: false)
@@ -229,7 +235,7 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
     }
     
     func pickerDoneButton2() {
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             self.view.frame.origin.y -= -100
         })
         self.view.endEditing(true)
@@ -241,7 +247,7 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
     }
     
     func laterButton() {
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+        UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             self.view.frame.origin.y -= -100
         })
 
@@ -252,26 +258,26 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
 
     
     
-    func datePickerValueChanged(sender:UIDatePicker) {
+    func datePickerValueChanged(_ sender:UIDatePicker) {
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        openTextfield.text = dateFormatter.stringFromDate(sender.date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        openTextfield.text = dateFormatter.string(from: sender.date)
     }
     
-    func datePickerValueChanged2(sender:UIDatePicker) {
+    func datePickerValueChanged2(_ sender:UIDatePicker) {
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        closeTextfield.text = dateFormatter.stringFromDate(sender.date)
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = DateFormatter.Style.short
+        closeTextfield.text = dateFormatter.string(from: sender.date)
     }
     
     
     // Done button
-    @IBAction func doneButton(sender: AnyObject) {
+    @IBAction func doneButton(_ sender: AnyObject) {
         
         let query = PFQuery(className: "Fhooder")
-        query.getObjectInBackgroundWithId(Fhooder.objectID!) { (fhooder: PFObject?, error: NSError?) -> Void in
+        query.getObjectInBackground(withId: Fhooder.objectID!) { (fhooder: PFObject?, error: Error?) -> Void in
             if error == nil && fhooder != nil {
                 
                 fhooder!["isOpen"] = Fhooder.isOpen
@@ -295,9 +301,9 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
             }
         }
         
-        NSNotificationCenter.defaultCenter().postNotificationName("load3", object: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "load3"), object: nil)
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
 
 }

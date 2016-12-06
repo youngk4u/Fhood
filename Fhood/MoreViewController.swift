@@ -12,7 +12,7 @@ final class MoreViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBOutlet weak var tableView: UITableView!
     
-    private let moreArray = ["Contact us", "Notifications", "About us", "Report users", "Help"]
+    fileprivate let moreArray = ["Contact us", "Notifications", "About us", "Report users", "Help"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,28 +26,28 @@ final class MoreViewController: UIViewController, UITableViewDelegate, UITableVi
 
         // Configure reveal for this view
         let revealController = self.revealViewController()
-        revealController.panGestureRecognizer()
-        revealController.tapGestureRecognizer()
+        _ = revealController?.panGestureRecognizer()
+        _ = revealController?.tapGestureRecognizer()
 
         // Account Icon
         let accountIcon = UIImage(named: "userCircle2")
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.Plain, target: revealController, action: #selector(revealController.revealToggle))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: accountIcon, style: UIBarButtonItemStyle.plain, target: revealController, action: #selector(revealController?.revealToggle(_:)))
         
     }
 
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return moreArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCellWithIdentifier("MoreTableViewCell", forIndexPath: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "MoreTableViewCell", for: indexPath)
         cell.textLabel?.text = self.moreArray[indexPath.row]
-        cell.textLabel?.textColor = UIColor.darkGrayColor()
-        cell.textLabel?.font = UIFont.systemFontOfSize(15.0)
+        cell.textLabel?.textColor = UIColor.darkGray
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 15.0)
         return cell
     }
     
-    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         return "Version alpha 1.0"
     }
 }
