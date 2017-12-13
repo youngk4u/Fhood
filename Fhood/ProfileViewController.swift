@@ -41,7 +41,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         
         // Navigation bar appearance
         let nav = self.navigationController?.navigationBar
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
+        nav?.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.black,NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): UIFont(name: "HelveticaNeue-Light", size: 20)!]
         self.title = "Profile"
         
         firstNameTextField.delegate = self
@@ -73,7 +73,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(ProfileViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func loadProfile(_ notification: Notification){
+    @objc func loadProfile(_ notification: Notification){
         loadProfilePic()
         loadAddress()
         loadAboutMe()
@@ -148,7 +148,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo {
             if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 self.kbHeight = keyboardSize.height
@@ -166,7 +166,7 @@ final class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         if let userInfo = notification.userInfo {
             if let _ = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 self.bottomUpdate.constant = 0

@@ -73,7 +73,7 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
     }
     
     // Switch function for the cooking time on/off
-    func switchState (_ Switch: UISwitch) {
+    @objc func switchState (_ Switch: UISwitch) {
         
         HUD.show()
         
@@ -230,23 +230,23 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func pickerDoneButton() {
+    @objc func pickerDoneButton() {
         self.view.endEditing(true)
     }
     
-    func pickerDoneButton2() {
+    @objc func pickerDoneButton2() {
         UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             self.view.frame.origin.y -= -100
         })
         self.view.endEditing(true)
     }
     
-    func nowButton() {
+    @objc func nowButton() {
         self.openTextfield.text = "Now"
         self.view.endEditing(true)
     }
     
-    func laterButton() {
+    @objc func laterButton() {
         UIView.animate(withDuration: 0.2, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: { () -> Void in
             self.view.frame.origin.y -= -100
         })
@@ -258,14 +258,14 @@ final class CookingTimeViewController: UIViewController, UITextFieldDelegate {
 
     
     
-    func datePickerValueChanged(_ sender:UIDatePicker) {
+    @objc func datePickerValueChanged(_ sender:UIDatePicker) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = DateFormatter.Style.short
         openTextfield.text = dateFormatter.string(from: sender.date)
     }
     
-    func datePickerValueChanged2(_ sender:UIDatePicker) {
+    @objc func datePickerValueChanged2(_ sender:UIDatePicker) {
         
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = DateFormatter.Style.short

@@ -120,7 +120,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
 
     
     
-    func refresh(_ sender:AnyObject) {
+    @objc func refresh(_ sender:AnyObject) {
         self.refreshCounter += 1
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: "fhooderListLoad"), object: nil)
@@ -131,7 +131,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
         searchBar.resignFirstResponder()
     }
     
-    func filterAction(_ sender: AnyObject) {
+    @objc func filterAction(_ sender: AnyObject) {
         if filterMenu == nil {
             let sections = [
                 FilterMenuSectionInfo(titles: ["Less than $5", "$5 ~ $10", "More than $10"]),
@@ -164,7 +164,7 @@ final class ListViewController: UIViewController, UISearchBarDelegate, FilterMen
     
     
     
-    func findFhooders(_ notification: Notification) {
+    @objc func findFhooders(_ notification: Notification) {
         
         // Find Fhooders near you
         PFGeoPoint.geoPointForCurrentLocation { ( point: PFGeoPoint?, error: Error?) -> Void in

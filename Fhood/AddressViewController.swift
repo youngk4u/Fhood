@@ -128,7 +128,7 @@ class AddressViewController: UIViewController, UITextFieldDelegate, UIPickerView
     
     
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo {
             if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 kbHeight = keyboardSize.height
@@ -140,7 +140,7 @@ class AddressViewController: UIViewController, UITextFieldDelegate, UIPickerView
         }
     }
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         if let _ = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             bottomSave.constant = 0
             UIView.animate(withDuration: 0.2, animations: {

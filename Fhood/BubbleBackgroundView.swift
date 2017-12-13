@@ -69,7 +69,7 @@ final class BubbleBackgroundView: SMCalloutBackgroundView {
         self.containerView.frame = CGRect(x: 0.0, y: dy, width: self.frame.width, height: dheight)
         self.arrowView.frame.origin.x = round(self.arrowPoint.x - self.arrowView.frame.width / 2)
         self.arrowView.frame.origin.y = pointingUp ? 0 : self.containerView.frame.height
-        self.arrowView.transform = pointingUp ? CGAffineTransform(rotationAngle: CGFloat(M_PI)) : CGAffineTransform.identity
+        self.arrowView.transform = pointingUp ? CGAffineTransform(rotationAngle: CGFloat(Double.pi)) : CGAffineTransform.identity
     }
 
     // MARK: - Private functions

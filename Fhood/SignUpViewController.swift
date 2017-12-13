@@ -167,7 +167,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     
-    func loadProfile(_ notification: Notification){
+    @objc func loadProfile(_ notification: Notification){
         loadProfilePic()
         loadAboutMe()
     }
@@ -291,7 +291,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
             
             let decimalString : String = components.joined(separator: "")
-            let length = decimalString.characters.count
+            let length = decimalString.count
             let decimalStr = decimalString as NSString
             let hasLeadingOne = length > 0 && decimalStr.character(at: 0) == (1 as unichar)
             
@@ -340,7 +340,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
 
 
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         var userInfo = notification.userInfo!
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         keyboardFrame = self.view.convert(keyboardFrame, from: nil)
@@ -351,7 +351,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
     }
     
     
-    func keyboardWillHide(_ notification: Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
     }
@@ -478,7 +478,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
         
         let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
         let pattern = try! NSRegularExpression(pattern: emailRegex, options: [])
-        let strRange = NSRange(location: 0, length: email.characters.count)
+        let strRange = NSRange(location: 0, length: email.count)
         guard pattern.firstMatch(in: email, options: [], range: strRange) != nil else {
             self.showAlert(withMessage: "Please, enter a valid email before continuing!")
             return false
@@ -535,7 +535,7 @@ final class SignUpViewController: UIViewController, UITextFieldDelegate, UIPicke
             applicant["stateProvince"] = self.stateAddressTextfield.text
             applicant["zip"] = self.zipAddressTextfield.text
             
-            let address = "\(self.streetAddressTextfield.text), \(self.cityAddressTextfield.text), \(self.stateAddressTextfield.text), \(self.zipAddressTextfield.text), USA"
+            let address = "\(String(describing: self.streetAddressTextfield.text)), \(String(describing: self.cityAddressTextfield.text)), \(String(describing: self.stateAddressTextfield.text)), \(String(describing: self.zipAddressTextfield.text)), USA"
             let geocoder = CLGeocoder()
             
             geocoder.geocodeAddressString(address, completionHandler: {(placemarks, error) -> Void in

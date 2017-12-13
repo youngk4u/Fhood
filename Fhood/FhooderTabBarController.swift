@@ -59,8 +59,8 @@ final class FhooderTabBarController: UITabBarController {
         UITabBar.appearance().barTintColor = UIColor(red: 140/255, green: 140/255, blue: 140/255, alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor(red: 0/255, green: 255/255, blue: 234/255, alpha: 1.0)
         
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.white], for:UIControlState())
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName:UIColor(red: 0/255, green: 255/255, blue: 234/255, alpha: 1.0)], for:.selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor.white], for:UIControlState())
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.foregroundColor:UIColor(red: 0/255, green: 255/255, blue: 234/255, alpha: 1.0)], for:.selected)
         
         UINavigationBar.appearance().tintColor = UIColor.black
         UINavigationBar.appearance().barTintColor = UIColor(red: 0/255, green: 255/255, blue: 234/255, alpha: 1)
@@ -68,7 +68,7 @@ final class FhooderTabBarController: UITabBarController {
         
     }
     
-    func badgeRefresh(_ Notification: Foundation.Notification) {
+    @objc func badgeRefresh(_ Notification: Foundation.Notification) {
         self.badgeNum = Fhooder.orderQuantity!
 
         if badgeNum > 0  {

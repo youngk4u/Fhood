@@ -44,7 +44,7 @@ final class FeaturedViewController: UIViewController, UITableViewDataSource, UIT
         
     }
     
-    func getImage(_ notification: Notification) {
+    @objc func getImage(_ notification: Notification) {
         
         let query = PFQuery(className: "Fhooder")
         

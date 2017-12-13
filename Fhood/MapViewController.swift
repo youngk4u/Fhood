@@ -124,6 +124,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                                             
                                             Fhooder.shopName = object.value(forKey: "shopName")! as? String
                                             Fhooder.foodTypeOne = "\(object.value(forKey: "foodTypeOne")!)"
+                                            print(Fhooder.shopName!)
                                             
                                             Fhooder.fhooderLatitude = (geolocation as AnyObject).latitude
                                             Fhooder.fhooderLongitude = (geolocation as AnyObject).longitude
@@ -167,7 +168,7 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
     }
 
     
-    func filterAction(_ sender: AnyObject) {
+    @objc func filterAction(_ sender: AnyObject) {
         /*
         if filterMenu == nil {
             let sections = [FilterMenuSectionInfo(titles: ["Less than $5", "$5 ~ $10", "More than $10"]),

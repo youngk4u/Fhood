@@ -41,7 +41,7 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
     }
 
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo {
             if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 kbHeight = keyboardSize.height
@@ -55,7 +55,7 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
         
         let number = self.textField.text!
         
-        if number.characters.count == 13 && self.phoneNumber != self.textField.text{
+        if number.count == 13 && self.phoneNumber != self.textField.text{
         
             let user = PFUser.current()
         
@@ -81,7 +81,7 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
             }
 
         }
-        else if number.characters.count == 13 && self.phoneNumber == self.textField.text {
+        else if number.count == 13 && self.phoneNumber == self.textField.text {
             let alert = UIAlertController(title: "", message:"Your phone number is already saved!", preferredStyle: .alert)
             let redun = UIAlertAction(title: "Ok", style: .default) { _ in}
             alert.addAction(redun)
@@ -104,7 +104,7 @@ final class PhoneNumberViewController: UIViewController, UITextFieldDelegate {
         let components = newString.components(separatedBy: CharacterSet.decimalDigits.inverted)
         
         let decimalString : String = components.joined(separator: "")
-        let length = decimalString.characters.count
+        let length = decimalString.count
         let decimalStr = decimalString as NSString
         let hasLeadingOne = length > 0 && decimalStr.character(at: 0) == (1 as unichar)
         

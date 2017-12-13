@@ -41,7 +41,7 @@ final class EmailViewController: UIViewController, UITextFieldDelegate {
     }
     
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if let userInfo = notification.userInfo {
             if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                 kbHeight = keyboardSize.height
@@ -91,7 +91,7 @@ final class EmailViewController: UIViewController, UITextFieldDelegate {
         
         let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
         let pattern = try! NSRegularExpression(pattern: emailRegex, options: [])
-        let strRange = NSRange(location: 0, length: email.characters.count)
+        let strRange = NSRange(location: 0, length: email.count)
         guard pattern.firstMatch(in: email, options: [], range: strRange) != nil else {
             self.showAlert(withMessage: "Please, enter a valid email before continuing!")
             return false

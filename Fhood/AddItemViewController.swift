@@ -109,7 +109,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
     
     
     // Reload Picture and name to reload from other controllers
-    func loadInfo(_ notification: Notification){
+    @objc func loadInfo(_ notification: Notification){
         
         self.currentItemIndex = (Fhooder.itemNames?.count)!
         toPhotoButton.setImage(Fhooder.itemPic, for: UIControlState())
@@ -146,7 +146,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         
         return true
     }
-    
+    @objc  
     func doneButton() {
         self.view.endEditing(true)
     }
@@ -158,7 +158,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         NotificationCenter.default.addObserver(self, selector: #selector(AddItemViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    
+    @objc  
     func keyboardWillShow(_ notification: Notification) {
         var userInfo = notification.userInfo!
         var keyboardFrame:CGRect = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
@@ -169,7 +169,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         self.scrollView.contentInset = contentInset
     }
     
-    
+    @objc  
     func keyboardWillHide(_ notification: Notification) {
         let contentInset:UIEdgeInsets = UIEdgeInsets.zero
         self.scrollView.contentInset = contentInset
@@ -273,7 +273,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
         return cell
     }
     
-    
+    @objc  
     func segment (_ sender: UISegmentedControl) {
         let i = sender.layer.value(forKey: "index") as! Int
         
@@ -415,7 +415,7 @@ final class AddItemViewController: UIViewController, UITextFieldDelegate, UITabl
                     
                     
                     let priceInString = self.priceTextfield.text!
-                    let priceString = String(priceInString.characters.dropFirst())
+                    let priceString = String(priceInString.dropFirst())
                     let priceNumber = Double(priceString)
                     
                     if itemPicExist == true {

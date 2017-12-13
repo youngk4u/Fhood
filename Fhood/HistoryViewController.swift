@@ -18,7 +18,7 @@ final class HistoryViewController: UIViewController {
         
         let nav = self.navigationController?.navigationBar
         
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
+        nav?.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.black,NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): UIFont(name: "HelveticaNeue-Light", size: 20)!]
         
         self.title = "History"
         

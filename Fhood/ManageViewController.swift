@@ -155,7 +155,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     
-    func segueToAddItemView () {
+    @objc func segueToAddItemView () {
         
         if self.arrItemNames.count == 7 {
             let alert = UIAlertController(title: "", message:"You have reached maximum items you can add!", preferredStyle: .alert)
@@ -175,7 +175,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     
     
     // Reload Parse function to use from other controllers
-    func loadList1(_ notification: Notification){
+    @objc func loadList1(_ notification: Notification){
         
         Fhooder.itemPics = []
         
@@ -228,7 +228,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
                         if unit != "" {
                             unit = unit! + ", "
                             
-                            self.fhooderAddress.text = "\(fhooder!.value(forKey: "streetAddress")!), \(unit)\(fhooder!.value(forKey: "city")!), \(fhooder!.value(forKey: "stateProvince")!) \(fhooder!.value(forKey: "zip")!)"
+                            self.fhooderAddress.text = "\(fhooder!.value(forKey: "streetAddress")!), \(String(describing: unit))\(fhooder!.value(forKey: "city")!), \(fhooder!.value(forKey: "stateProvince")!) \(fhooder!.value(forKey: "zip")!)"
                         }
                     }
                     self.fhooderAddress.text =  "\(fhooder!.value(forKey: "streetAddress")!), \(fhooder!.value(forKey: "city")!), \(fhooder!.value(forKey: "stateProvince")!) \(fhooder!.value(forKey: "zip")!)"
@@ -327,12 +327,12 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     
     
     // Reload collectionview function to use from other controllers
-    func loadList2(_ notification: Notification){
+    @objc func loadList2(_ notification: Notification){
         self.collectionView.reloadData()
     }
     
     // Reload shop open/close status
-    func loadList3(_ notification: Notification){
+    @objc func loadList3(_ notification: Notification){
         if Fhooder.isOpen == true {
             self.openNowOrClose.text = "OPEN NOW"
             self.openNowOrClose.textColor = UIColor(red: 0.0/255.0, green: 200.0/255.0, blue: 0.0/255.0, alpha: 1)
@@ -353,7 +353,7 @@ final class ManageViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     
-    func toCookingTimeView () {
+    @objc func toCookingTimeView () {
         performSegue(withIdentifier: "toCookingTime", sender: self)
     }
 

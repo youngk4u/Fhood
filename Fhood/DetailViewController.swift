@@ -123,7 +123,7 @@ final class DetailViewController: UIViewController {
     }
     
     // Detail image flip to show ingredients
-    func imageFlipped(_ gesture: UIGestureRecognizer) {
+    @objc func imageFlipped(_ gesture: UIGestureRecognizer) {
         self.detailImage.translatesAutoresizingMaskIntoConstraints = true
         UIView.transition(from: self.detailImage, to: self.detailBackImage, duration: 1,
             options: UIViewAnimationOptions.transitionFlipFromLeft, completion: nil)
@@ -133,7 +133,7 @@ final class DetailViewController: UIViewController {
         self.detailDescription.alpha = 1
         self.detailIngredients.alpha = 1
     }
-    
+    @objc  
     func imageFlipBack(_ gesture: UIGestureRecognizer) {
         self.detailBackImage.translatesAutoresizingMaskIntoConstraints = true
         UIView.transition(from: self.detailBackImage, to: self.detailImage, duration: 1,

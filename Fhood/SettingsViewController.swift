@@ -24,7 +24,7 @@ final class SettingsViewController: UIViewController, UITableViewDataSource, UIT
                 
         let nav = self.navigationController?.navigationBar
         
-        nav?.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.black,NSFontAttributeName: UIFont(name: "HelveticaNeue-Light", size: 20)!]
+        nav?.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.black,NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): UIFont(name: "HelveticaNeue-Light", size: 20)!]
         
         self.title = "Settings"
         
@@ -32,8 +32,8 @@ final class SettingsViewController: UIViewController, UITableViewDataSource, UIT
         self.tableView.dataSource = self
     }
     
-    // Reload tableView function to use from other controllers
-    func loadList(_ notification: Notification){
+    // Reload tableView function to use from other control@objc lers
+    @objc func loadList(_ notification: Notification){
         self.tableView.reloadData()
     }
 

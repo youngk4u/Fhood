@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import Braintree
 import PassKit
+import OneSignal
 
 final class ReceiptViewController: UIViewController, BTDropInViewControllerDelegate, PKPaymentAuthorizationViewControllerDelegate  {
     
@@ -251,7 +252,7 @@ final class ReceiptViewController: UIViewController, BTDropInViewControllerDeleg
     
     
     
-    func tappedApplePay() {
+    @objc func tappedApplePay() {
         let paymentRequest = self.paymentRequest()
         // Example: Promote PKPaymentAuthorizationViewController to optional so that we can verify
         // that our paymentRequest is valid. Otherwise, an invalid paymentRequest would crash our app.
@@ -370,23 +371,26 @@ final class ReceiptViewController: UIViewController, BTDropInViewControllerDeleg
     
     func pushNotification () {
         
-        let uQuery = PFUser.query()!
-        uQuery.whereKey("fhooderId", equalTo: Fhooder.objectID!)
+//        let uQuery = PFUser.query()!
+//        uQuery.whereKey("fhooderId", equalTo: Fhooder.objectID!)
+//        
+//        let iQuery = PFInstallation.query()!
+//        iQuery.whereKey("user", matchesQuery: uQuery)
+//        
+//        let push : PFPush = PFPush()
+//        push.setQuery(iQuery as? PFQuery<PFInstallation>)
+//    
+//        let pushData : NSDictionary = NSDictionary(objects: ["You've got an order!", "ordered", "1", "true"], forKeys: ["alert" as NSCopying, "type" as NSCopying, "badge" as NSCopying, "sound" as NSCopying])
+//        push.setData(pushData as? [AnyHashable: Any])
+//        
+//        do {
+//            try push.send()
+//        } catch {
+//            print("Push didn't work")
+//        }
         
-        let iQuery = PFInstallation.query()!
-        iQuery.whereKey("user", matchesQuery: uQuery)
         
-        let push : PFPush = PFPush()
-        push.setQuery(iQuery as? PFQuery<PFInstallation>)
-    
-        let pushData : NSDictionary = NSDictionary(objects: ["You've got an order!", "ordered", "1", "true"], forKeys: ["alert" as NSCopying, "type" as NSCopying, "badge" as NSCopying, "sound" as NSCopying])
-        push.setData(pushData as? [AnyHashable: Any])
-        
-        do {
-            try push.send()
-        } catch {
-            print("Push didn't work")
-        }
+        OneSignal.postNotification(["contents": ["en": "Test Message"], "include_player_ids": ["0db758e2-584a-4810-aad6-21f05e7bcb94"]])
         
 
     }

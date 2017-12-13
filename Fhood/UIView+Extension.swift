@@ -8,10 +8,11 @@
 
 import UIKit
 
-private let kDefaultFadeDuration = 0.5
+public let kDefaultFadeDuration = 0.5
 
 extension UIView {
-
+    
+    
     /**
     Animate changes to one or more views using the specified duration, delay, options. Adds defaults and
     allows for trailing closures. `delay` and `options` parameters are optional.

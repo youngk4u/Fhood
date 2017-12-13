@@ -51,7 +51,7 @@ final class AccountViewController: UIViewController  {
     
     
     // Reload Picture and name to reload from other controllers
-    func loadInfo(_ notification: Notification){
+    @objc func loadInfo(_ notification: Notification){
         loadPicAndName()
     }
 
@@ -133,7 +133,7 @@ final class AccountViewController: UIViewController  {
     }
     
     
-    func toggleSwitch(_ sender: UISwitch) {
+    @objc func toggleSwitch(_ sender: UISwitch) {
         
         
         if PFUser.current()?.object(forKey: "isFhooder") != nil {

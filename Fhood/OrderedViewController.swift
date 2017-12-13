@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-import CountdownLabel
 
 final class OrderedViewController: UIViewController {
 
@@ -28,8 +27,6 @@ final class OrderedViewController: UIViewController {
 
     @IBOutlet weak var total: UILabel!
     var totalPassed: String = ""
-
-    @IBOutlet weak var counterLabel: CountdownLabel!
     
     @IBOutlet weak var qtyOne: UILabel!
     @IBOutlet weak var qtyTwo: UILabel!
@@ -78,11 +75,11 @@ final class OrderedViewController: UIViewController {
         
         // Calculate pickup time and start the counter
         let convertedDate = Date().localDate(Fhoodie.fhoodiePickupTime!)
-        counterLabel.countdownDelegate = self
-        self.counterLabel.setCountDownDate(Date(), targetDate: Fhoodie.fhoodiePickupTime!)
-        self.counterLabel.animationType = .evaporate
-        countingAt(60, timeRemaining: counterLabel.timeRemaining)
-        self.counterLabel.start()
+//        counterLabel.countdownDelegate = self
+//        self.counterLabel.setCountDownDate(fromDate: Date() as NSDate, targetDate: Fhoodie.fhoodiePickupTime! as NSDate)
+//        self.counterLabel.animationType = .Evaporate
+//        countingAt(60, timeRemaining: counterLabel.timeRemaining)
+//        self.counterLabel.start()
         
         
         self.pickupTime.text = "PICKUP TIME: \(convertedDate)"
@@ -244,23 +241,23 @@ final class OrderedViewController: UIViewController {
     }    
 }
 
-extension OrderedViewController: CountdownLabelDelegate {
-    
-    func countdownFinished() {
-        alert("Your pickup time is due", message: "Please proceed to the Fhooder's curbside.")
-    }
-    func countingAt(_ timeCounted: TimeInterval, timeRemaining: TimeInterval) {
-        switch timeRemaining {
-        case 10*60:
-            self.alert("10 Minutes till the pickup time 😉", message: "")
-        case 5*60:
-            self.alert("5 Minutes till the pickup time!", message: "")
-            self.counterLabel.textColor = .red
-        default:
-            break
-        }
-    }
-}
+//extension OrderedViewController: CountdownLabelDelegate {
+//
+//    func countdownFinished() {
+//        alert("Your pickup time is due", message: "Please proceed to the Fhooder's curbside.")
+//    }
+//    func countingAt(_ timeCounted: TimeInterval, timeRemaining: TimeInterval) {
+//        switch timeRemaining {
+//        case 10*60:
+//            self.alert("10 Minutes till the pickup time 😉", message: "")
+//        case 5*60:
+//            self.alert("5 Minutes till the pickup time!", message: "")
+//            self.counterLabel.textColor = .red
+//        default:
+//            break
+//        }
+//    }
+//}
 
 extension OrderedViewController {
 

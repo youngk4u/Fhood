@@ -79,7 +79,7 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
     
     
     
-    func refresh(_ sender:AnyObject) {
+    @objc func refresh(_ sender:AnyObject) {
 
         NotificationCenter.default.post(name: Notification.Name(rawValue: "fhooderOrderLoad"), object: nil)
         refreshControl.endRefreshing()
@@ -101,7 +101,7 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
     
     
     // Reload Parse function to use from other_  controllers
-    func loadList1(_ notification: Notification){
+    @objc func loadList1(_ notification: Notification){
         
         if PFUser.current() != nil {
         let user = PFUser.current()!
@@ -237,3 +237,4 @@ final class OrdersViewController: UIViewController, UITableViewDelegate, UITable
         TableView.deselectRow(at: indexPath, animated: true)
     }
 }
+

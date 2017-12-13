@@ -146,12 +146,12 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     
     
     // Reload collectionview function to use from other controllers
-    func loadList(_ notification: Notification){
+    @objc func loadList(_ notification: Notification){
         
         self.collectionView.reloadData()
     }
     
-    func loadList2(_ notification: Notification){
+    @objc func loadList2(_ notification: Notification){
         
         HUD.show()
         
@@ -208,7 +208,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
                         if unit != "" {
                             unit = unit! + ", "
                             
-                            self.fhooderAddress.text = "\(fhooder!.value(forKey: "streetAddress")!), \(unit)\(fhooder!.value(forKey: "city")!), \(fhooder!.value(forKey: "stateProvince")!) \(fhooder!.value(forKey: "zip")!)"
+                            self.fhooderAddress.text = "\(fhooder!.value(forKey: "streetAddress")!), \(String(describing: unit))\(fhooder!.value(forKey: "city")!), \(fhooder!.value(forKey: "stateProvince")!) \(fhooder!.value(forKey: "zip")!)"
                         }
                     }
                     self.fhooderAddress.text =  "\(fhooder!.value(forKey: "streetAddress")!), \(fhooder!.value(forKey: "city")!), \(fhooder!.value(forKey: "stateProvince")!) \(fhooder!.value(forKey: "zip")!)"
@@ -325,7 +325,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     
     
     // Reload shop open/close status
-    func loadList3(_ notification: Notification){
+    @objc func loadList3(_ notification: Notification){
         if Fhooder.isOpen == true {
             self.openNowOrClose.text = "OPEN NOW"
             self.openNowOrClose.textColor = UIColor(red: 0.0/255.0, green: 200.0/255.0, blue: 0.0/255.0, alpha: 1)
@@ -405,7 +405,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
 
     
     // Subtract icon function
-    func subtractItem(_ sender: UIButton) {
+    @objc func subtractItem(_ sender: UIButton) {
         let i = sender.layer.value(forKey: "index") as! Int
 
         self.selectedItemCount[i] -= 1
@@ -478,7 +478,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     
 
     // Done Button
-    func donePressed(_ sender: UIButton) {
+    @objc func donePressed(_ sender: UIButton) {
         
         // Reset arrays for receipt
         self.itemReceipt = []

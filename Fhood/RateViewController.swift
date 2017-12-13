@@ -92,7 +92,7 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         return true
     }
     
-    func dismissKeyboard() {
+    @objc func dismissKeyboard() {
         self.view.layoutIfNeeded()
         self.commentBox.resignFirstResponder()
         
@@ -107,7 +107,7 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         }, completion: nil)
     }
 
-    func onePressed (_ sender: UIButton!) {
+    @objc func onePressed (_ sender: UIButton!) {
         self.spoonOne.setImage(goodSpoon, for: UIControlState())
         self.spoonTwo.setImage(badSpoon, for: UIControlState())
         self.spoonThree.setImage(badSpoon, for: UIControlState())
@@ -115,7 +115,7 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.spoonFive.setImage(badSpoon, for: UIControlState())
     }
     
-    func twoPressed (_ sender: UIButton) {
+    @objc func twoPressed (_ sender: UIButton) {
         self.spoonOne.setImage(goodSpoon, for: UIControlState())
         self.spoonTwo.setImage(goodSpoon, for: UIControlState())
         self.spoonThree.setImage(badSpoon, for: UIControlState())
@@ -123,7 +123,7 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.spoonFive.setImage(badSpoon, for: UIControlState())
     }
     
-    func threePressed (_ sender: UIButton) {
+    @objc func threePressed (_ sender: UIButton) {
         self.spoonOne.setImage(goodSpoon, for: UIControlState())
         self.spoonTwo.setImage(goodSpoon, for: UIControlState())
         self.spoonThree.setImage(goodSpoon, for: UIControlState())
@@ -131,7 +131,7 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.spoonFive.setImage(badSpoon, for: UIControlState())
     }
     
-    func fourPressed (_ sender: UIButton) {
+    @objc func fourPressed (_ sender: UIButton) {
         self.spoonOne.setImage(goodSpoon, for: UIControlState())
         self.spoonTwo.setImage(goodSpoon, for: UIControlState())
         self.spoonThree.setImage(goodSpoon, for: UIControlState())
@@ -139,7 +139,7 @@ final class RateViewController: UIViewController, UITextViewDelegate {
         self.spoonFive.setImage(badSpoon, for: UIControlState())
     }
     
-    func fivePressed (_ sender: UIButton) {
+    @objc func fivePressed (_ sender: UIButton) {
         self.spoonOne.setImage(goodSpoon, for: UIControlState())
         self.spoonTwo.setImage(goodSpoon, for: UIControlState())
         self.spoonThree.setImage(goodSpoon, for: UIControlState())

@@ -139,14 +139,14 @@ final class OnboardingViewController: UIViewController {
 
         let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
         let pattern = try! NSRegularExpression(pattern: emailRegex, options: [])
-        let strRange = NSRange(location: 0, length: email.characters.count)
+        let strRange = NSRange(location: 0, length: email.count)
         guard pattern.firstMatch(in: email, options: [], range: strRange) != nil else {
             self.showAlert(withMessage: "Please, enter a valid email before continuing!")
             self.emailTextField.becomeFirstResponder()
             return false
         }
 
-        guard password.characters.count > 4 else {
+        guard password.count > 4 else {
             self.showAlert(withMessage: "Please, enter a password with at least 5 characters!")
             self.passwordTextField.becomeFirstResponder()
             return false

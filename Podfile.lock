@@ -1,42 +1,42 @@
 PODS:
-  - Alamofire (4.2.0)
+  - Alamofire (4.5.1)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
-  - Braintree (4.7.3):
-    - Braintree/Card (= 4.7.3)
-    - Braintree/Core (= 4.7.3)
-    - Braintree/PayPal (= 4.7.3)
-    - Braintree/UI (= 4.7.3)
-  - Braintree/Apple-Pay (4.7.3):
+  - Braintree (4.9.4):
+    - Braintree/Card (= 4.9.4)
+    - Braintree/Core (= 4.9.4)
+    - Braintree/PayPal (= 4.9.4)
+    - Braintree/UI (= 4.9.4)
+  - Braintree/Apple-Pay (4.9.4):
     - Braintree/Core
-  - Braintree/Card (4.7.3):
+  - Braintree/Card (4.9.4):
     - Braintree/Core
-  - Braintree/Core (4.7.3)
-  - Braintree/PayPal (4.7.3):
+  - Braintree/Core (4.9.4)
+  - Braintree/PayPal (4.9.4):
     - Braintree/Core
     - Braintree/PayPalOneTouch
-  - Braintree/PayPalDataCollector (4.7.3):
+  - Braintree/PayPalDataCollector (4.9.4):
     - Braintree/Core
     - Braintree/PayPalUtils
-  - Braintree/PayPalOneTouch (4.7.3):
+  - Braintree/PayPalOneTouch (4.9.4):
     - Braintree/Core
     - Braintree/PayPalDataCollector
     - Braintree/PayPalUtils
-  - Braintree/PayPalUtils (4.7.3)
-  - Braintree/UI (4.7.3):
+  - Braintree/PayPalUtils (4.9.4)
+  - Braintree/UI (4.9.4):
     - Braintree/Card
     - Braintree/Core
-  - CountdownLabel (1.2.0)
-  - FBSDKCoreKit (4.18.0):
+  - FBSDKCoreKit (4.27.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.18.0):
+  - FBSDKLoginKit (4.27.0):
     - FBSDKCoreKit
-  - JGProgressHUD (1.4)
-  - Parse (1.14.2):
+  - JGProgressHUD (2.0)
+  - OneSignal (2.5.4)
+  - Parse (1.15.3):
     - Bolts/Tasks (~> 1.8)
   - ParseFacebookUtilsV4 (1.11.1):
     - Bolts/Tasks (>= 1.6)
@@ -45,24 +45,27 @@ PODS:
     - FBSDKTVOSKit (~> 4.10)
     - Parse (~> 1.12)
   - SMCalloutView (2.1.5)
-  - SnapKit (3.0.2)
+  - SnapKit (4.0.0)
   - SWRevealViewController (2.4.0)
 
 DEPENDENCIES:
   - Alamofire
+  - Bolts (from `https://github.com/BoltsFramework/Bolts-ObjC.git`)
   - Braintree
   - Braintree/Apple-Pay
-  - CountdownLabel
   - FBSDKCoreKit (from `https://github.com/facebook/facebook-ios-sdk.git`)
   - FBSDKLoginKit (from `https://github.com/facebook/facebook-ios-sdk.git`)
   - JGProgressHUD (from `https://github.com/JonasGessner/JGProgressHUD.git`)
-  - Parse (from `https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git`)
+  - OneSignal
+  - Parse (from `https://github.com/parse-community/Parse-SDK-iOS-OSX.git`)
   - ParseFacebookUtilsV4 (from `https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git`)
   - SMCalloutView (from `https://github.com/nfarina/calloutview.git`, branch `master`)
-  - SnapKit (~> 3.0.2)
+  - SnapKit (~> 4.0.0)
   - SWRevealViewController (from `https://github.com/John-Lluch/SWRevealViewController.git`, branch `master`)
 
 EXTERNAL SOURCES:
+  Bolts:
+    :git: https://github.com/BoltsFramework/Bolts-ObjC.git
   FBSDKCoreKit:
     :git: https://github.com/facebook/facebook-ios-sdk.git
   FBSDKLoginKit:
@@ -70,7 +73,7 @@ EXTERNAL SOURCES:
   JGProgressHUD:
     :git: https://github.com/JonasGessner/JGProgressHUD.git
   Parse:
-    :git: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git
+    :git: https://github.com/parse-community/Parse-SDK-iOS-OSX.git
   ParseFacebookUtilsV4:
     :git: https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git
   SMCalloutView:
@@ -81,20 +84,23 @@ EXTERNAL SOURCES:
     :git: https://github.com/John-Lluch/SWRevealViewController.git
 
 CHECKOUT OPTIONS:
+  Bolts:
+    :commit: 3b11323b62b413822eb6258ee17e74528564a18b
+    :git: https://github.com/BoltsFramework/Bolts-ObjC.git
   FBSDKCoreKit:
-    :commit: f7531a838a1ec3308721f335e801ac9f508feee4
+    :commit: 58bace5a306da0b66ef5dd342f46d978ff3ff76b
     :git: https://github.com/facebook/facebook-ios-sdk.git
   FBSDKLoginKit:
-    :commit: f7531a838a1ec3308721f335e801ac9f508feee4
+    :commit: 58bace5a306da0b66ef5dd342f46d978ff3ff76b
     :git: https://github.com/facebook/facebook-ios-sdk.git
   JGProgressHUD:
-    :commit: bba544e8601679efda06dbfedcf2dc7f627bf3ef
+    :commit: dda99135c0e53fc4a3df7ae85942d673a952cb54
     :git: https://github.com/JonasGessner/JGProgressHUD.git
   Parse:
-    :commit: 7a820b75c6726808475af9ce705053ff0e8cbd11
-    :git: https://github.com/ParsePlatform/Parse-SDK-iOS-OSX.git
+    :commit: 98ba23c37f099464287a74df03f2e084ff91f0bb
+    :git: https://github.com/parse-community/Parse-SDK-iOS-OSX.git
   ParseFacebookUtilsV4:
-    :commit: 0d8e7febb43f9ca2320a3ca82a4602fb53b4e59d
+    :commit: 6f84793897646fe459a613727193657aa3b8231d
     :git: https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git
   SMCalloutView:
     :commit: d6ecaba377c9f963aef630faf86e3b8f8cdb88d1
@@ -104,19 +110,19 @@ CHECKOUT OPTIONS:
     :git: https://github.com/John-Lluch/SWRevealViewController.git
 
 SPEC CHECKSUMS:
-  Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
-  Braintree: 3eee856da5d30357a55439283b4bb3dbaddcaa7c
-  CountdownLabel: 7dcc9bb2c8f488af7a4d29053f41c014ea0b973d
-  FBSDKCoreKit: 15fef8804a4629f98c6f4e55e81a76c9d725d85e
-  FBSDKLoginKit: 6773073e970b2b15fb12e451ce7f11da0532b880
-  JGProgressHUD: 1617b0940cf80bb53e8f7d6f0fd69252ea45d6d4
-  Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  Bolts: 3992984fb6c9c387f417e94c1b7baf5ee02ac156
+  Braintree: de7e58b8df95bf6514813cbc510578e3737b1c3b
+  FBSDKCoreKit: ebc6c5f5b3f0e72396041050e2266781a38ac587
+  FBSDKLoginKit: 887be4b7452e1c5a3cc4485ce152529965a0c41e
+  JGProgressHUD: c402c0f41fc291ca7e33bba2f999118d9682dd9c
+  OneSignal: da994bcf6a2efbdceaf71e389e1d05245c562899
+  Parse: cdc0f1f975ee8be0409e66f21b05df4ae067047c
   ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   SMCalloutView: 5c0ee363dc8e7204b2fda17dfad38c93e9e23481
-  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
+  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SWRevealViewController: b653f339865208c97be99a24876545f5be0cc4bb
 
-PODFILE CHECKSUM: 709c45226620b683684c0c66880960eb9655ac47
+PODFILE CHECKSUM: 4b5035adb2cc01bf04203958cb999445da8e523e
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.3.1

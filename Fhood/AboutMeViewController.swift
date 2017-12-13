@@ -47,10 +47,10 @@ class AboutMeViewController: UIViewController, UITextViewDelegate {
     
     func textView(_ textView: UITextView,  shouldChangeTextIn range:NSRange, replacementText text:String ) -> Bool {
         
-        if range.length + range.location > textView.text.characters.count {
+        if range.length + range.location > textView.text.count {
             return false
         }
-        let newlength = textView.text.characters.count + text.characters.count - range.length
+        let newlength = textView.text.count + text.count - range.length
         return newlength <= 300
     }
 
@@ -79,7 +79,7 @@ class AboutMeViewController: UIViewController, UITextViewDelegate {
     }
     
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         
         
         if let userInfo = notification.userInfo {

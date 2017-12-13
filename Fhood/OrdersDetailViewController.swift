@@ -41,8 +41,8 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
         // Timer
         self.navigationController?.navigationBar.topItem?.title = "Order #"
         let attributes = [
-            NSForegroundColorAttributeName: UIColor.black,
-            NSFontAttributeName: UIFont(name: "HelveticaNeue-Thin", size: 25)!
+            NSAttributedStringKey.foregroundColor: UIColor.black,
+            NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Thin", size: 25)!
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
         
@@ -71,7 +71,7 @@ final class OrdersDetailViewController: UIViewController, UITableViewDelegate, U
     }
     
     
-    func orderList(_ notification: Notification) {
+    @objc func orderList(_ notification: Notification) {
             
     
         if PFUser.current() != nil {

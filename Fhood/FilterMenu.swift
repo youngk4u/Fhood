@@ -57,7 +57,7 @@ final class FilterMenu: UIView {
         }
     }
 
-    func triggerSubMenu(_ sender: UIButton) {
+    @objc func triggerSubMenu(_ sender: UIButton) {
         if subMenuView?.tag == sender.tag {
             self.hideActiveSubmenuView()
             return
@@ -87,7 +87,7 @@ final class FilterMenu: UIView {
         }
     }
     
-    func submenuItemAction(_ sender: UIButton) {
+    @objc func submenuItemAction(_ sender: UIButton) {
         self.delegate?.filterMenuViewDidSelect(activeSubMenu, subMenu: sender.tag)
         self.hideActiveSubmenuView()
     }
