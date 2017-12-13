@@ -497,6 +497,7 @@
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = Z3A283N666;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.ApplePay = {
 								enabled = 1;
@@ -580,6 +581,7 @@
 				"${BUILT_PRODUCTS_DIR}/SMCalloutView/SMCalloutView.framework",
 				"${BUILT_PRODUCTS_DIR}/SWRevealViewController/SWRevealViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/coinbase-official/coinbase_official.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -594,6 +596,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SMCalloutView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWRevealViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/coinbase_official.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -879,6 +882,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fhood/Fhood.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Z3A283N666;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -915,7 +919,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d3ded1c4-256c-4248-a82b-942b50d9e20e";
+				PROVISIONING_PROFILE_SPECIFIER = Fhood_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "Fhood/Fhood-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
@@ -934,6 +939,7 @@
 				CODE_SIGN_ENTITLEMENTS = Fhood/Fhood.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = Z3A283N666;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
@@ -970,7 +976,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.Fhood;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "d3ded1c4-256c-4248-a82b-942b50d9e20e";
+				PROVISIONING_PROFILE_SPECIFIER = Fhood_dev;
 				SWIFT_OBJC_BRIDGING_HEADER = "Fhood/Fhood-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
 				SWIFT_VERSION = 4.0;

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import coinbase_official
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -344,6 +345,12 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if arrItemNames.count == 0 {
+            self.doneButton.alpha = 1
+            self.totalPrice.text = "Test with Coinbase when $0.00"
+            self.doneButton.addTarget(self, action: #selector(FhooderViewController.testDonePressed(_:)), for: UIControlEvents.touchUpInside)
+        }
+        
         return arrItemNames.count
     }
     
@@ -387,8 +394,9 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         coCell.subtractButton.addTarget(self, action: #selector(FhooderViewController.subtractItem(_:)), for: UIControlEvents.touchUpInside)
         
         if Fhoodie.isAnythingSelected == false {
-            self.doneButton.alpha = 0
-            self.totalPrice.text = "$0.00"
+            self.doneButton.alpha = 1
+            self.totalPrice.text = "Test with Coinbase when $0.00"
+            self.doneButton.addTarget(self, action: #selector(FhooderViewController.testDonePressed(_:)), for: UIControlEvents.touchUpInside)
         } else {
             for i in 0 ..< Fhooder.itemNames!.count {
                 self.totalItemPrice += (Double(self.selectedItemCount[i]) * Fhooder.itemPrices![i])
@@ -517,7 +525,24 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         }
     }
         
-
+    @objc func testDonePressed(_ sender: UIButton) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, let client = appDelegate.coinbaseClient else {
+            return
+        }
+        
+        client.getCurrentUser { (user, error) in
+            if error == nil {
+                let account = CoinbaseAccount(id: user?.userID, client: client)
+                account?.sendAmount("30.00", to: "Jamesmac629@gmail.com", completion: { (transaction, error) in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    } else {
+                        print(transaction)
+                    }
+                })
+            }
+        }
+    }
 
     
     // TableView

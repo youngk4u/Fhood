@@ -12,12 +12,13 @@ import FBSDKCoreKit
 import ParseFacebookUtilsV4
 import UserNotifications
 import OneSignal
-
+import coinbase_official
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
+    var coinbaseClient: Coinbase?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -219,6 +220,21 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationC
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        
+        // MARK: - Coinbase
+        if let schema = url.scheme, schema == Constants.Vendor.CoinbaseRedirectSchema {
+            CoinbaseOAuth.finishAuthentication(for: url, clientId: Constants.Vendor.CoinbaseClientID, clientSecret: Constants.Vendor.CoinbaseClientSecretID, completion: { (result, error) in
+                
+                if let error = error {
+                    print(error.localizedDescription)
+                } else if let result = result as? [String: Any], let accessToken = result["access_token"] as? String {
+                    self.coinbaseClient = Coinbase(oAuthAccessToken: accessToken)
+                }
+            })
+            
+            return true
+        }
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application, open: url,
             sourceApplication: sourceApplication, annotation: annotation)
     }

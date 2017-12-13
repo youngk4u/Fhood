@@ -17,6 +17,7 @@ target :Fhood do
     pod 'ParseFacebookUtilsV4'	  , :git => ‘https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git'
     pod 'SWRevealViewController', :git => ‘https://github.com/John-Lluch/SWRevealViewController.git', :branch => ‘master’, :inhibit_warnings => true
     pod 'SMCalloutView'         , :git => ‘https://github.com/nfarina/calloutview.git', :branch => ‘master’
+    pod 'coinbase-official', '~> 3.3'
 end	
 
 post_install do |installer|

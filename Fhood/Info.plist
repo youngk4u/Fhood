@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.Fhood</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,6 +27,14 @@
 			<array>
 				<string>fhood</string>
 				<string>fb515338641949786</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.fhood.coinbase-oauth</string>
 			</array>
 		</dict>
 	</array>
@@ -69,10 +77,10 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We&apos;ll only use your location to give you directions to pick your order.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Custom action for camera</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We&apos;ll only use your location to give you directions to pick your order.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Photo Library use permission</string>
 	<key>UIBackgroundModes</key>

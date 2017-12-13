@@ -149,6 +149,36 @@ final class MapViewController: UIViewController, UISearchBarDelegate, MKMapViewD
                                             self.mapView.addAnnotation(annotation)
                                             
                                         }
+                                    } else {
+                                        Fhooder.objectID = object.value(forKey: "objectId") as? String
+                                        Fhooder.itemPic = #imageLiteral(resourceName: "FhooderOnIcon2")
+                                        Fhooder.itemPrice = object.value(forKey: "itemPrice") as? Double
+                                        
+                                        Fhooder.shopName = object.value(forKey: "shopName")! as? String
+                                        Fhooder.foodTypeOne = "\(object.value(forKey: "foodTypeOne")!)"
+                                        print(Fhooder.shopName!)
+                                        
+                                        Fhooder.fhooderLatitude = (geolocation as AnyObject).latitude
+                                        Fhooder.fhooderLongitude = (geolocation as AnyObject).longitude
+                                        Fhooder.reviews = object.value(forKey: "reviews")! as? Int
+                                        Fhooder.isOpen = object.value(forKey: "isOpen")! as? Bool
+                                        let ratingInDouble = object.value(forKey: "ratings") as? Double
+                                        Fhooder.ratingInString = String(format: "%.1f", ratingInDouble!)
+                                        
+                                        Fhooder.pickup = object.value(forKey: "isPickup") as? Bool
+                                        Fhooder.delivery = object.value(forKey: "isDeliver") as? Bool
+                                        Fhooder.eatin = object.value(forKey: "isEatin") as? Bool
+                                        
+                                        
+                                        // Distance to fhooder in Mile
+                                        let CLLoc = CLLocation(latitude: (geolocation as AnyObject).latitude, longitude: (geolocation as AnyObject).longitude)
+                                        let distance = CLLoc.distance(from: self.userLocation)
+                                        let distanceMile = distance * 0.000621371
+                                        Fhooder.distance = round(distanceMile * 10) / 10
+                                        
+                                        let annotation = AnnotationObject(objectID: Fhooder.objectID!, title: Fhooder.shopName!, subtitle: Fhooder.foodTypeOne!, coordinate: CLLocationCoordinate2D(latitude: Fhooder.fhooderLatitude!, longitude: Fhooder.fhooderLongitude!), countReviews: Fhooder.reviews!, image: Fhooder.itemPic!, price: Fhooder.itemPrice!, open: Fhooder.isOpen!, imageRating: UIImage(named: Fhooder.ratingInString!)!, pickup: Fhooder.pickup!, deliver: Fhooder.delivery!, eatin: Fhooder.eatin!, distanceX: Fhooder.distance!)
+                                        
+                                        self.mapView.addAnnotation(annotation)
                                     }
                                 })
                                 
