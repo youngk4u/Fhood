@@ -533,7 +533,7 @@ final class FhooderViewController: UIViewController, UICollectionViewDataSource,
         client.getCurrentUser { (user, error) in
             if error == nil {
                 let account = CoinbaseAccount(id: user?.userID, client: client)
-                account?.sendAmount("30.00", to: "Jamesmac629@gmail.com", completion: { (transaction, error) in
+                account?.sendAmount("30.00", to: "youngk4u@gmail.com", completion: { (transaction, error) in
                     if let error = error {
                         print(error.localizedDescription)
                     } else {

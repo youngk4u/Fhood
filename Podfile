@@ -14,7 +14,7 @@ target :Fhood do
     pod 'FBSDKLoginKit'         , :git => ‘https://github.com/facebook/facebook-ios-sdk.git'
     pod 'JGProgressHUD'	  , :git => ‘https://github.com/JonasGessner/JGProgressHUD.git'
     pod 'Parse'			  , :git => ‘https://github.com/parse-community/Parse-SDK-iOS-OSX.git'
-    pod 'ParseFacebookUtilsV4'	  , :git => ‘https://github.com/ParsePlatform/ParseFacebookUtils-iOS.git'
+    pod 'ParseFacebookUtilsV4'	  
     pod 'SWRevealViewController', :git => ‘https://github.com/John-Lluch/SWRevealViewController.git', :branch => ‘master’, :inhibit_warnings => true
     pod 'SMCalloutView'         , :git => ‘https://github.com/nfarina/calloutview.git', :branch => ‘master’
     pod 'coinbase-official', '~> 3.3'
